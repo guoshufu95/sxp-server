@@ -1,0 +1,43 @@
+syntax = "proto3"; // 版本声明，使用Protocol Buffers v3版本
+
+option go_package = "./pb";  // 指定生成的Go代码在你项目中的导入路径
+
+package pb; // 包名
+
+
+// 定义服务
+service Model {
+  // SayHello 方法
+  rpc GetModel (ModelRequest) returns (ModelResponse) {}
+  rpc UpdateModel (UpdateRequest) returns (UpdateResponse){}
+  rpc GetByStatus(stream StatusRequest) returns (stream StatusResponse);
+
+}
+
+message UpdateRequest {
+  string ProductId = 1;
+  string Product = 2;
+}
+
+message UpdateResponse {
+  string message = 1;
+}
+
+message ModelRequest {
+  string ProductId = 1;
+}
+
+message ModelResponse {
+  string Product = 1;
+}
+
+message StatusRequest {
+  string status = 1;
+}
+
+message StatusResponse {
+  string ProductId = 1;
+  string Product = 2;
+  string Status = 3;
+}
+

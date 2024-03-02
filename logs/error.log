@@ -1,0 +1,22 @@
+2024-03-01 17:18:27	ERROR	middleware/auth.go:22	请传入合法token
+2024-03-01 17:19:10	ERROR	middleware/auth.go:22	请传入合法token
+2024-03-01 17:19:52	ERROR	middleware/auth.go:22	请传入合法token
+2024-03-01 17:20:13	ERROR	middleware/auth.go:22	请传入合法token
+2024-03-02 11:11:22	ERROR	task/task.go:67	json: cannot unmarshal number into Go struct field GetTasksReq.name of type string
+2024-03-02 11:11:43	ERROR	task/task.go:67	json: cannot unmarshal number into Go struct field GetTasksReq.name of type string
+2024-03-02 15:04:03	ERROR	product/product.go:31	json: cannot unmarshal number into Go struct field GetProductReq.id of type string
+2024-03-02 15:04:46	ERROR	service/product.go:63	grpc服务调用失败: rpc error: code = DeadlineExceeded desc = context deadline exceeded
+2024-03-02 15:05:23	ERROR	product/product.go:17	远程调用gprc服务失败: %srpc error: code = DeadlineExceeded desc = context deadline exceeded
+2024-03-02 15:05:23	ERROR	product/product.go:37	获取产品失败
+2024-03-02 15:05:31	ERROR	service/product.go:63	grpc服务调用失败: rpc error: code = DeadlineExceeded desc = context deadline exceeded
+2024-03-02 15:05:44	ERROR	product/product.go:17	远程调用gprc服务失败: %srpc error: code = DeadlineExceeded desc = context deadline exceeded
+2024-03-02 15:05:44	ERROR	product/product.go:37	获取产品失败
+2024-03-02 15:05:59	ERROR	service/product.go:63	grpc服务调用失败: rpc error: code = Canceled desc = grpc: the client connection is closing
+2024-03-02 15:06:34	ERROR	product/product.go:17	远程调用gprc服务失败: %srpc error: code = Canceled desc = grpc: the client connection is closing
+2024-03-02 15:06:34	ERROR	product/product.go:37	获取产品失败
+2024-03-02 15:06:37	ERROR	service/product.go:63	grpc服务调用失败: rpc error: code = Canceled desc = grpc: the client connection is closing
+2024-03-02 15:06:43	ERROR	product/product.go:17	远程调用gprc服务失败: %srpc error: code = Canceled desc = grpc: the client connection is closing
+2024-03-02 15:06:43	ERROR	product/product.go:37	获取产品失败
+2024-03-02 15:07:19	ERROR	service/product.go:63	grpc服务调用失败: rpc error: code = Canceled desc = grpc: the client connection is closing
+2024-03-02 15:07:31	ERROR	product/product.go:17	远程调用gprc服务失败: %srpc error: code = Canceled desc = grpc: the client connection is closing
+2024-03-02 15:07:31	ERROR	product/product.go:37	获取产品失败

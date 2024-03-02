@@ -1,0 +1,10 @@
+2024-03-02 15:59:34	INFO	logger/dbLog.go:100	C:/Users/Lenovo/Desktop/sxp-server/app/dao/task/task.go:15 [1.058ms] [rows:16] SELECT * FROM `task` WHERE `task`.`deleted_at` IS NULL
+2024-03-02 15:59:34	INFO	logger/dbLog.go:100	C:/Users/Lenovo/Desktop/sxp-server/app/dao/task/task.go:15 [1.375ms] [rows:6] SELECT * FROM `task` WHERE (task_name like '%2%' OR task_name like '2%' OR task_name like '%2' OR task_name like '2' AND status = 2) AND `task`.`deleted_at` IS NULL
+2024-03-02 15:59:34	INFO	middleware/logger.go:54	[map[latencyTime:4.0668ms method:POST requestParam:{    "name": "2",    "status": 2} statusCode:200 uri:/sxp/task/getTasks]]
+2024-03-02 16:00:22	INFO	logger/dbLog.go:100	C:/Users/Lenovo/Desktop/sxp-server/app/dao/task/task.go:15 [1.017ms] [rows:16] SELECT * FROM `task` WHERE `task`.`deleted_at` IS NULL
+2024-03-02 16:00:22	INFO	logger/dbLog.go:100	C:/Users/Lenovo/Desktop/sxp-server/app/dao/task/task.go:15 [1.696ms] [rows:6] SELECT * FROM `task` WHERE (task_name like '%2%' OR task_name like '2%' OR task_name like '%2' OR task_name like '2' AND status = 2) AND `task`.`deleted_at` IS NULL
+2024-03-02 16:00:22	INFO	middleware/logger.go:53	[map[latencyTime:5.1814ms method:POST requestParam:{"name":"2","status":2} statusCode:200 uri:/sxp/task/getTasks]]
+2024-03-02 16:02:30	INFO	logger/dbLog.go:100	C:/Users/Lenovo/Desktop/sxp-server/app/dao/task/task.go:15 [1.081ms] [rows:16] SELECT * FROM `task` WHERE `task`.`deleted_at` IS NULL
+2024-03-02 16:02:30	INFO	logger/dbLog.go:100	C:/Users/Lenovo/Desktop/sxp-server/app/dao/task/task.go:15 [1.237ms] [rows:6] SELECT * FROM `task` WHERE (task_name like '%2%' OR task_name like '2%' OR task_name like '%2' OR task_name like '2' AND status = 2) AND `task`.`deleted_at` IS NULL
+2024-03-02 16:02:30	INFO	task/task.go:76	aaaxxxxbbbbxxxcccc
+2024-03-02 16:02:30	INFO	middleware/logger.go:53	[map[latencyTime:3.8325ms method:POST requestParam:{"name":"2","status":2} statusCode:200 uri:/sxp/task/getTasks]]
