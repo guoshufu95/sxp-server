@@ -18,7 +18,6 @@ func main() {
 	//ini.Init() //初始化项目信息
 	go SetUp()
 	go queue.StartQueue() //开启延时队列
-	// 等待中断信号以优雅地关闭服务器（设置 5 秒的超时时间）
 	quit := make(chan os.Signal)
 	signal.Notify(quit, os.Interrupt)
 	<-quit
@@ -35,8 +34,11 @@ func SetUp() {
 	app := ini.App
 	r := app.Engine
 	router.InitRouter(r)
-	client.Init() //初始化grpc客户端
-	err := r.Run(":8000")
+	err := client.Init() //初始化grpc客户端
+	if err != nil {
+		l.Panicf("初始化grpc-client失败:%s", err.Error())
+	}
+	err = r.Run(":8000")
 	if err != nil {
 		l.Panicf("程序启动失败:%s", err.Error())
 		return

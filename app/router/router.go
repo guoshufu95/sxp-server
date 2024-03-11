@@ -33,6 +33,7 @@ func Router(g *gin.RouterGroup) {
 //	@param g
 func buildTask(g *gin.RouterGroup) {
 	a := task.TaskApi{}
+	g.Use(middleware.JWTAuthMiddleware())
 	g.POST("/start", a.StartTask)
 	g.POST("/getTasks", a.GetTasks)
 }
@@ -52,7 +53,7 @@ func buildIntegral(g *gin.RouterGroup) {
 //	@param g
 func buildLogin(g *gin.RouterGroup) {
 	l := login.LoginApi{}
-	g.POST("/post", l.Login)
+	g.POST("/", l.Login)
 }
 
 // buildProduct
@@ -60,6 +61,9 @@ func buildLogin(g *gin.RouterGroup) {
 //	@Description: 产品相关
 //	@param g
 func buildProduct(g *gin.RouterGroup) {
+	g.Use(middleware.JWTAuthMiddleware()).Use(middleware.UseOpenTracing())
 	p := product.ProductApi{}
 	g.POST("/getProduct", p.GetProduct)
+	g.POST("/updateProduct", p.UpdateProduct)
+	g.POST("/getByStatus", p.GetByStatus)
 }

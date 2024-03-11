@@ -1,0 +1,930 @@
+2024-03-02 15:59:34	INFO	logger/dbLog.go:100	C:/Users/Lenovo/Desktop/sxp-server/app/dao/task/task.go:15 [1.058ms] [rows:16] SELECT * FROM `task` WHERE `task`.`deleted_at` IS NULL
+2024-03-02 15:59:34	INFO	logger/dbLog.go:100	C:/Users/Lenovo/Desktop/sxp-server/app/dao/task/task.go:15 [1.375ms] [rows:6] SELECT * FROM `task` WHERE (task_name like '%2%' OR task_name like '2%' OR task_name like '%2' OR task_name like '2' AND status = 2) AND `task`.`deleted_at` IS NULL
+2024-03-02 15:59:34	INFO	middleware/logger.go:54	[map[latencyTime:4.0668ms method:POST requestParam:{    "name": "2",    "status": 2} statusCode:200 uri:/sxp/task/getTasks]]
+2024-03-02 16:00:22	INFO	logger/dbLog.go:100	C:/Users/Lenovo/Desktop/sxp-server/app/dao/task/task.go:15 [1.017ms] [rows:16] SELECT * FROM `task` WHERE `task`.`deleted_at` IS NULL
+2024-03-02 16:00:22	INFO	logger/dbLog.go:100	C:/Users/Lenovo/Desktop/sxp-server/app/dao/task/task.go:15 [1.696ms] [rows:6] SELECT * FROM `task` WHERE (task_name like '%2%' OR task_name like '2%' OR task_name like '%2' OR task_name like '2' AND status = 2) AND `task`.`deleted_at` IS NULL
+2024-03-02 16:00:22	INFO	middleware/logger.go:53	[map[latencyTime:5.1814ms method:POST requestParam:{"name":"2","status":2} statusCode:200 uri:/sxp/task/getTasks]]
+2024-03-02 16:02:30	INFO	logger/dbLog.go:100	C:/Users/Lenovo/Desktop/sxp-server/app/dao/task/task.go:15 [1.081ms] [rows:16] SELECT * FROM `task` WHERE `task`.`deleted_at` IS NULL
+2024-03-02 16:02:30	INFO	logger/dbLog.go:100	C:/Users/Lenovo/Desktop/sxp-server/app/dao/task/task.go:15 [1.237ms] [rows:6] SELECT * FROM `task` WHERE (task_name like '%2%' OR task_name like '2%' OR task_name like '%2' OR task_name like '2' AND status = 2) AND `task`.`deleted_at` IS NULL
+2024-03-02 16:02:30	INFO	task/task.go:76	aaaxxxxbbbbxxxcccc
+2024-03-02 16:02:30	INFO	middleware/logger.go:53	[map[latencyTime:3.8325ms method:POST requestParam:{"name":"2","status":2} statusCode:200 uri:/sxp/task/getTasks]]
+2024-03-04 09:46:36	INFO	service/product.go:120	reply: 0sxp 产品0sxp 0
+2024-03-04 09:46:37	INFO	service/product.go:120	reply: 1sxp 产品1sxp 1
+2024-03-04 09:46:38	INFO	service/product.go:120	reply: 2sxp 产品2sxp 2
+2024-03-04 09:46:39	INFO	service/product.go:120	reply: 3sxp 产品3sxp 3
+2024-03-04 09:46:40	INFO	service/product.go:120	reply: 4sxp 产品4sxp 4
+2024-03-04 09:46:41	INFO	service/product.go:120	reply: 5sxp 产品5sxp 5
+2024-03-04 09:46:42	INFO	service/product.go:120	reply: 6sxp 产品6sxp 6
+2024-03-04 09:46:43	INFO	service/product.go:120	reply: 7sxp 产品7sxp 7
+2024-03-04 09:46:44	INFO	service/product.go:120	reply: 8sxp 产品8sxp 8
+2024-03-04 09:46:45	INFO	service/product.go:120	reply: 9sxp 产品9sxp 9
+2024-03-04 09:47:02	INFO	middleware/logger.go:53	[map[latencyTime:30.2190547s method:POST requestParam:{"status":"2"} statusCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 09:47:27	INFO	service/product.go:120	reply: 0sxp 产品0sxp 0
+2024-03-04 09:47:28	INFO	service/product.go:120	reply: 1sxp 产品1sxp 1
+2024-03-04 09:47:29	INFO	service/product.go:120	reply: 2sxp 产品2sxp 2
+2024-03-04 09:47:30	INFO	service/product.go:120	reply: 3sxp 产品3sxp 3
+2024-03-04 09:47:31	INFO	service/product.go:120	reply: 4sxp 产品4sxp 4
+2024-03-04 09:47:32	INFO	service/product.go:120	reply: 5sxp 产品5sxp 5
+2024-03-04 09:47:33	INFO	service/product.go:120	reply: 6sxp 产品6sxp 6
+2024-03-04 09:47:34	INFO	service/product.go:120	reply: 7sxp 产品7sxp 7
+2024-03-04 09:47:35	INFO	service/product.go:120	reply: 8sxp 产品8sxp 8
+2024-03-04 09:47:36	INFO	service/product.go:120	reply: 9sxp 产品9sxp 9
+2024-03-04 09:47:37	INFO	middleware/logger.go:53	[map[latencyTime:15.4289728s method:POST requestParam:{"status":"2"} statusCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 09:47:42	INFO	service/product.go:120	reply: 0sxp 产品0sxp 0
+2024-03-04 09:47:43	INFO	service/product.go:120	reply: 1sxp 产品1sxp 1
+2024-03-04 09:47:44	INFO	service/product.go:120	reply: 2sxp 产品2sxp 2
+2024-03-04 09:47:45	INFO	service/product.go:120	reply: 3sxp 产品3sxp 3
+2024-03-04 09:47:46	INFO	service/product.go:120	reply: 4sxp 产品4sxp 4
+2024-03-04 09:47:47	INFO	service/product.go:120	reply: 5sxp 产品5sxp 5
+2024-03-04 09:47:48	INFO	service/product.go:120	reply: 6sxp 产品6sxp 6
+2024-03-04 09:47:49	INFO	service/product.go:120	reply: 7sxp 产品7sxp 7
+2024-03-04 09:47:50	INFO	service/product.go:120	reply: 8sxp 产品8sxp 8
+2024-03-04 09:47:51	INFO	service/product.go:120	reply: 9sxp 产品9sxp 9
+2024-03-04 09:47:52	INFO	middleware/logger.go:53	[map[latencyTime:10.1030014s method:POST requestParam:{"status":"2"} statusCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 09:53:32	INFO	service/product.go:111	[发送流消息错误: %s rpc error: code = Internal desc = SendMsg called after CloseSend]
+2024-03-04 09:53:32	INFO	middleware/logger.go:53	[map[latencyTime:1.015ms method:POST requestParam:{"status":"2"} statusCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 09:53:32	INFO	service/product.go:125	reply:   
+2024-03-04 09:53:32	INFO	service/product.go:111	[发送流消息错误: %s rpc error: code = Internal desc = SendMsg called after CloseSend]
+2024-03-04 09:53:32	INFO	service/product.go:111	[发送流消息错误: %s rpc error: code = Internal desc = SendMsg called after CloseSend]
+2024-03-04 09:53:32	INFO	service/product.go:111	[发送流消息错误: %s rpc error: code = Internal desc = SendMsg called after CloseSend]
+2024-03-04 09:53:32	INFO	service/product.go:111	[发送流消息错误: %s rpc error: code = Internal desc = SendMsg called after CloseSend]
+2024-03-04 09:53:32	INFO	service/product.go:111	[发送流消息错误: %s rpc error: code = Internal desc = SendMsg called after CloseSend]
+2024-03-04 09:53:32	INFO	service/product.go:111	[发送流消息错误: %s rpc error: code = Internal desc = SendMsg called after CloseSend]
+2024-03-04 09:53:32	INFO	service/product.go:111	[发送流消息错误: %s rpc error: code = Internal desc = SendMsg called after CloseSend]
+2024-03-04 09:53:32	INFO	service/product.go:111	[发送流消息错误: %s rpc error: code = Internal desc = SendMsg called after CloseSend]
+2024-03-04 09:53:32	INFO	service/product.go:111	[发送流消息错误: %s rpc error: code = Internal desc = SendMsg called after CloseSend]
+2024-03-04 09:53:33	INFO	service/product.go:125	reply:   
+2024-03-04 09:53:34	INFO	service/product.go:125	reply:   
+2024-03-04 09:53:35	INFO	service/product.go:125	reply:   
+2024-03-04 09:53:36	INFO	service/product.go:125	reply:   
+2024-03-04 09:53:37	INFO	service/product.go:125	reply:   
+2024-03-04 09:53:38	INFO	service/product.go:125	reply:   
+2024-03-04 09:53:39	INFO	service/product.go:125	reply:   
+2024-03-04 09:53:40	INFO	service/product.go:125	reply:   
+2024-03-04 09:53:41	INFO	service/product.go:125	reply:   
+2024-03-04 09:53:42	INFO	service/product.go:125	reply:   
+2024-03-04 09:53:43	INFO	service/product.go:125	reply:   
+2024-03-04 09:53:44	INFO	service/product.go:125	reply:   
+2024-03-04 09:53:45	INFO	service/product.go:125	reply:   
+2024-03-04 09:53:46	INFO	service/product.go:125	reply:   
+2024-03-04 09:53:47	INFO	service/product.go:125	reply:   
+2024-03-04 09:53:48	INFO	service/product.go:125	reply:   
+2024-03-04 09:53:49	INFO	service/product.go:125	reply:   
+2024-03-04 09:53:50	INFO	service/product.go:125	reply:   
+2024-03-04 09:53:51	INFO	service/product.go:125	reply:   
+2024-03-04 09:53:52	INFO	service/product.go:125	reply:   
+2024-03-04 09:53:53	INFO	service/product.go:125	reply:   
+2024-03-04 09:53:54	INFO	service/product.go:125	reply:   
+2024-03-04 09:53:55	INFO	service/product.go:125	reply:   
+2024-03-04 09:53:56	INFO	service/product.go:125	reply:   
+2024-03-04 09:53:57	INFO	service/product.go:125	reply:   
+2024-03-04 09:53:58	INFO	service/product.go:125	reply:   
+2024-03-04 09:54:08	INFO	middleware/logger.go:53	[map[latencyTime:1.0136ms method:POST requestParam:{"status":"2"} statusCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 09:54:08	INFO	service/product.go:126	reply: 0sxp 产品0sxp 0
+2024-03-04 09:54:09	INFO	service/product.go:126	reply: 1sxp 产品1sxp 1
+2024-03-04 09:54:10	INFO	service/product.go:126	reply: 2sxp 产品2sxp 2
+2024-03-04 09:54:11	INFO	service/product.go:126	reply: 3sxp 产品3sxp 3
+2024-03-04 09:54:12	INFO	service/product.go:126	reply: 4sxp 产品4sxp 4
+2024-03-04 09:54:13	INFO	service/product.go:126	reply: 5sxp 产品5sxp 5
+2024-03-04 09:54:14	INFO	service/product.go:126	reply: 6sxp 产品6sxp 6
+2024-03-04 09:54:15	INFO	service/product.go:126	reply: 7sxp 产品7sxp 7
+2024-03-04 09:54:16	INFO	service/product.go:126	reply: 8sxp 产品8sxp 8
+2024-03-04 09:54:17	INFO	service/product.go:126	reply: 9sxp 产品9sxp 9
+2024-03-04 09:54:42	INFO	middleware/logger.go:53	[map[latencyTime:502.7µs method:POST requestParam:{"status":"2"} statusCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 09:54:42	INFO	service/product.go:126	reply: 0sxp 产品0sxp 0
+2024-03-04 09:54:43	INFO	service/product.go:126	reply: 1sxp 产品1sxp 1
+2024-03-04 09:54:44	INFO	service/product.go:126	reply: 2sxp 产品2sxp 2
+2024-03-04 09:54:45	INFO	service/product.go:126	reply: 3sxp 产品3sxp 3
+2024-03-04 09:54:46	INFO	service/product.go:126	reply: 4sxp 产品4sxp 4
+2024-03-04 09:54:47	INFO	service/product.go:126	reply: 5sxp 产品5sxp 5
+2024-03-04 09:54:48	INFO	service/product.go:126	reply: 6sxp 产品6sxp 6
+2024-03-04 09:54:49	INFO	service/product.go:126	reply: 7sxp 产品7sxp 7
+2024-03-04 09:54:50	INFO	service/product.go:126	reply: 8sxp 产品8sxp 8
+2024-03-04 09:54:51	INFO	service/product.go:126	reply: 9sxp 产品9sxp 9
+2024-03-04 09:55:53	INFO	service/product.go:128	reply: 0sxp 产品0sxp 0
+2024-03-04 09:55:54	INFO	service/product.go:128	reply: 1sxp 产品1sxp 1
+2024-03-04 09:55:55	INFO	service/product.go:128	reply: 2sxp 产品2sxp 2
+2024-03-04 09:55:56	INFO	service/product.go:128	reply: 3sxp 产品3sxp 3
+2024-03-04 09:55:57	INFO	service/product.go:128	reply: 4sxp 产品4sxp 4
+2024-03-04 09:55:58	INFO	service/product.go:128	reply: 5sxp 产品5sxp 5
+2024-03-04 09:55:59	INFO	service/product.go:128	reply: 6sxp 产品6sxp 6
+2024-03-04 09:56:00	INFO	service/product.go:128	reply: 7sxp 产品7sxp 7
+2024-03-04 09:56:01	INFO	service/product.go:128	reply: 8sxp 产品8sxp 8
+2024-03-04 09:56:02	INFO	service/product.go:128	reply: 9sxp 产品9sxp 9
+2024-03-04 09:56:03	INFO	middleware/logger.go:53	[map[latencyTime:10.0498631s method:POST requestParam:{"status":"2"} statusCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 10:37:06	INFO	service/product.go:129	reply: 0sxp 产品0sxp 0
+2024-03-04 10:37:07	INFO	service/product.go:129	reply: 1sxp 产品1sxp 1
+2024-03-04 10:37:08	INFO	service/product.go:129	reply: 2sxp 产品2sxp 2
+2024-03-04 10:37:09	INFO	service/product.go:129	reply: 3sxp 产品3sxp 3
+2024-03-04 10:37:10	INFO	service/product.go:129	reply: 4sxp 产品4sxp 4
+2024-03-04 10:37:11	INFO	service/product.go:129	reply: 5sxp 产品5sxp 5
+2024-03-04 10:37:12	INFO	service/product.go:129	reply: 6sxp 产品6sxp 6
+2024-03-04 10:37:13	INFO	service/product.go:129	reply: 7sxp 产品7sxp 7
+2024-03-04 10:37:14	INFO	service/product.go:129	reply: 8sxp 产品8sxp 8
+2024-03-04 10:37:15	INFO	service/product.go:129	reply: 9sxp 产品9sxp 9
+2024-03-04 10:37:16	INFO	middleware/logger.go:53	[map[latencyTime:10.0892681s method:POST requestParam:{"status":"2"} statusCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 10:39:10	INFO	service/product.go:129	reply: 0sxp 产品0sxp 0
+2024-03-04 10:39:11	INFO	service/product.go:129	reply: 1sxp 产品1sxp 1
+2024-03-04 10:39:12	INFO	service/product.go:129	reply: 2sxp 产品2sxp 2
+2024-03-04 10:39:13	INFO	service/product.go:129	reply: 3sxp 产品3sxp 3
+2024-03-04 10:39:14	INFO	service/product.go:129	reply: 4sxp 产品4sxp 4
+2024-03-04 10:39:15	INFO	service/product.go:129	reply: 5sxp 产品5sxp 5
+2024-03-04 10:39:16	INFO	service/product.go:129	reply: 6sxp 产品6sxp 6
+2024-03-04 10:39:17	INFO	service/product.go:129	reply: 7sxp 产品7sxp 7
+2024-03-04 10:39:18	INFO	service/product.go:129	reply: 8sxp 产品8sxp 8
+2024-03-04 10:39:19	INFO	service/product.go:129	reply: 9sxp 产品9sxp 9
+2024-03-04 10:39:20	INFO	middleware/logger.go:53	[map[latencyTime:10.0684007s method:POST requestParam:{"status":"2"} statusCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 10:51:43	INFO	service/product.go:148	reply: 0sxp 产品0sxp 0
+2024-03-04 10:51:44	INFO	service/product.go:148	reply: 1sxp 产品1sxp 1
+2024-03-04 10:51:45	INFO	service/product.go:148	reply: 2sxp 产品2sxp 2
+2024-03-04 10:51:46	INFO	service/product.go:148	reply: 3sxp 产品3sxp 3
+2024-03-04 10:51:47	INFO	service/product.go:148	reply: 4sxp 产品4sxp 4
+2024-03-04 10:51:48	INFO	service/product.go:148	reply: 5sxp 产品5sxp 5
+2024-03-04 10:51:49	INFO	service/product.go:148	reply: 6sxp 产品6sxp 6
+2024-03-04 10:51:50	INFO	service/product.go:148	reply: 7sxp 产品7sxp 7
+2024-03-04 10:51:52	INFO	service/product.go:148	reply: 8sxp 产品8sxp 8
+2024-03-04 10:51:53	INFO	service/product.go:148	reply: 9sxp 产品9sxp 9
+2024-03-04 10:51:54	INFO	middleware/logger.go:53	[map[latencyTime:10.0934076s method:POST requestParam:{"status":"2"} statusCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 10:54:39	INFO	service/product.go:148	reply: 0sxp 产品0sxp 0
+2024-03-04 10:54:40	INFO	service/product.go:148	reply: 1sxp 产品1sxp 1
+2024-03-04 10:54:41	INFO	service/product.go:148	reply: 2sxp 产品2sxp 2
+2024-03-04 10:54:42	INFO	service/product.go:148	reply: 3sxp 产品3sxp 3
+2024-03-04 10:54:43	INFO	service/product.go:148	reply: 4sxp 产品4sxp 4
+2024-03-04 10:54:45	INFO	service/product.go:148	reply: 5sxp 产品5sxp 5
+2024-03-04 10:54:46	INFO	service/product.go:148	reply: 6sxp 产品6sxp 6
+2024-03-04 10:54:47	INFO	service/product.go:148	reply: 7sxp 产品7sxp 7
+2024-03-04 10:54:48	INFO	service/product.go:148	reply: 8sxp 产品8sxp 8
+2024-03-04 10:54:49	INFO	service/product.go:148	reply: 9sxp 产品9sxp 9
+2024-03-04 10:54:50	INFO	middleware/logger.go:53	[map[latencyTime:10.0969559s method:POST requestParam:{"status":"2"} statusCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 10:55:47	INFO	service/product.go:149	reply: 0sxp 产品0sxp 0
+2024-03-04 10:55:48	INFO	service/product.go:149	reply: 1sxp 产品1sxp 1
+2024-03-04 10:55:49	INFO	service/product.go:149	reply: 2sxp 产品2sxp 2
+2024-03-04 10:55:50	INFO	service/product.go:149	reply: 3sxp 产品3sxp 3
+2024-03-04 10:55:51	INFO	service/product.go:149	reply: 4sxp 产品4sxp 4
+2024-03-04 10:55:52	INFO	service/product.go:149	reply: 5sxp 产品5sxp 5
+2024-03-04 10:55:53	INFO	service/product.go:149	reply: 6sxp 产品6sxp 6
+2024-03-04 10:55:54	INFO	service/product.go:149	reply: 7sxp 产品7sxp 7
+2024-03-04 10:55:55	INFO	service/product.go:149	reply: 8sxp 产品8sxp 8
+2024-03-04 10:55:56	INFO	service/product.go:149	reply: 9sxp 产品9sxp 9
+2024-03-04 10:55:57	INFO	middleware/logger.go:53	[map[latencyTime:10.0689917s method:POST requestParam:{"status":"2"} statusCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 10:57:04	INFO	service/product.go:153	reply: 0sxp 产品0sxp 0
+2024-03-04 10:57:05	INFO	service/product.go:153	reply: 1sxp 产品1sxp 1
+2024-03-04 10:57:06	INFO	service/product.go:153	reply: 2sxp 产品2sxp 2
+2024-03-04 10:57:07	INFO	service/product.go:153	reply: 3sxp 产品3sxp 3
+2024-03-04 10:57:08	INFO	service/product.go:153	reply: 4sxp 产品4sxp 4
+2024-03-04 10:57:09	INFO	service/product.go:153	reply: 5sxp 产品5sxp 5
+2024-03-04 10:57:10	INFO	service/product.go:153	reply: 6sxp 产品6sxp 6
+2024-03-04 10:57:11	INFO	service/product.go:153	reply: 7sxp 产品7sxp 7
+2024-03-04 10:57:12	INFO	service/product.go:153	reply: 8sxp 产品8sxp 8
+2024-03-04 10:57:13	INFO	service/product.go:153	reply: 9sxp 产品9sxp 9
+2024-03-04 10:57:14	INFO	middleware/logger.go:53	[map[latencyTime:10.0775764s method:POST requestParam:{"status":"2"} statusCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 10:57:49	INFO	service/product.go:146	reply: 0sxp 产品0sxp 0
+2024-03-04 10:57:50	INFO	service/product.go:146	reply: 1sxp 产品1sxp 1
+2024-03-04 10:57:51	INFO	service/product.go:146	reply: 2sxp 产品2sxp 2
+2024-03-04 10:57:52	INFO	service/product.go:146	reply: 3sxp 产品3sxp 3
+2024-03-04 10:57:53	INFO	service/product.go:146	reply: 4sxp 产品4sxp 4
+2024-03-04 10:57:54	INFO	service/product.go:146	reply: 5sxp 产品5sxp 5
+2024-03-04 10:57:55	INFO	service/product.go:146	reply: 6sxp 产品6sxp 6
+2024-03-04 10:57:56	INFO	service/product.go:146	reply: 7sxp 产品7sxp 7
+2024-03-04 10:57:57	INFO	service/product.go:146	reply: 8sxp 产品8sxp 8
+2024-03-04 11:09:06	INFO	service/product.go:149	reply: 1sxp-id 产品1sxp 2
+2024-03-04 11:09:07	INFO	service/product.go:149	reply: 2sxp-id 产品2sxp 2
+2024-03-04 11:09:08	INFO	service/product.go:149	reply: 3sxp-id 产品3sxp 2
+2024-03-04 11:09:09	INFO	service/product.go:149	reply: 4sxp-id 产品4sxp 2
+2024-03-04 11:09:10	INFO	service/product.go:149	reply: 5sxp-id 产品5sxp 2
+2024-03-04 11:09:11	INFO	service/product.go:149	reply: 6sxp-id 产品6sxp 2
+2024-03-04 11:09:12	INFO	service/product.go:149	reply: 7sxp-id 产品7sxp 2
+2024-03-04 11:09:13	INFO	service/product.go:149	reply: 8sxp-id 产品8sxp 2
+2024-03-04 11:09:14	INFO	service/product.go:149	reply: 9sxp-id 产品9sxp 2
+2024-03-04 11:09:15	INFO	service/product.go:149	reply: 10sxp-id 产品10sxp 2
+2024-03-04 11:09:16	INFO	middleware/logger.go:53	[map[latencyTime:10.0979247s method:POST requestParam:{"status":"2"} statusCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 11:20:57	ERROR	login/login.go:32	token获取失败: key is of invalid type
+2024-03-04 11:20:57	ERROR	login/login.go:40	key is of invalid type
+2024-03-04 11:20:57	INFO	middleware/logger.go:53	[map[latencyTime:1.5341ms method:POST requestParam:{"username":"alan","password":"123456"} statusCode:500 uri:/sxp/login/]]
+2024-03-04 11:21:00	ERROR	login/login.go:32	token获取失败: key is of invalid type
+2024-03-04 11:21:00	ERROR	login/login.go:40	key is of invalid type
+2024-03-04 11:21:00	INFO	middleware/logger.go:53	[map[latencyTime:503.1µs method:POST requestParam:{"username":"alan","password":"123456"} statusCode:500 uri:/sxp/login/]]
+2024-03-04 11:21:22	ERROR	login/login.go:32	token获取失败: key is of invalid type
+2024-03-04 11:21:28	ERROR	login/login.go:40	key is of invalid type
+2024-03-04 11:21:28	INFO	middleware/logger.go:53	[map[latencyTime:11.2636505s method:POST requestParam:{"username":"alan","password":"123456"} statusCode:500 uri:/sxp/login/]]
+2024-03-04 11:21:54	ERROR	login/login.go:32	token获取失败: key is of invalid type
+2024-03-04 11:21:59	ERROR	login/login.go:40	key is of invalid type
+2024-03-04 11:21:59	INFO	middleware/logger.go:53	[map[latencyTime:21.3412618s method:POST requestParam:{"username":"alan","password":"123456"} statusCode:500 uri:/sxp/login/]]
+2024-03-04 11:22:47	ERROR	login/login.go:32	token获取失败: key is of invalid type
+2024-03-04 11:22:47	ERROR	login/login.go:40	key is of invalid type
+2024-03-04 11:22:47	INFO	middleware/logger.go:53	[map[latencyTime:1.0813ms method:POST requestParam:{"username":"alan","password":"123456"} statusCode:500 uri:/sxp/login/]]
+2024-03-04 11:25:53	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"username":"alan","password":"123456"} statusCode:200 uri:/sxp/login/]]
+2024-03-04 11:29:27	INFO	middleware/logger.go:54	[map[latencyTime:503.4µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1MjMxNDcsImlzcyI6InN4cC1zZXJ2ZXIifQ.TFINF_Dl0HT_3bEZNZJ5pPxgTGPrXvE3nnHyZsKDmho] message:成功生成token] statusCode:200 uri:/sxp/login/]]
+2024-03-04 11:31:24	INFO	middleware/logger.go:56	[map[latencyTime:503µs method:POST requestParam:{alan 123456} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1MjMyNjQsImlzcyI6InN4cC1zZXJ2ZXIifQ.LpSUVos2yCPpuvweoCA-scXgj4W8kIxKutDz3X--TFM] message:成功生成token] statusCode:200 uri:/sxp/login/]]
+2024-03-04 11:31:47	INFO	logger/dbLog.go:100	C:/Users/Lenovo/Desktop/sxp-server/app/dao/task/task.go:15 [1.486ms] [rows:16] SELECT * FROM `task` WHERE `task`.`deleted_at` IS NULL
+2024-03-04 11:31:47	INFO	logger/dbLog.go:100	C:/Users/Lenovo/Desktop/sxp-server/app/dao/task/task.go:15 [1.959ms] [rows:6] SELECT * FROM `task` WHERE (task_name like '%2%' OR task_name like '2%' OR task_name like '%2' OR task_name like '2' AND status = 2) AND `task`.`deleted_at` IS NULL
+2024-03-04 11:31:47	INFO	middleware/logger.go:56	[map[latencyTime:4.5279ms method:POST requestParam:{2 2} response:map[code:200 data:[[{{2 2024-03-01 15:20:46.107 +0800 CST 2024-03-01 15:20:46.107 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务2 60 1709277646 2 1} {{21 2024-03-01 16:08:30.529 +0800 CST 2024-03-01 16:08:30.529 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务21 60 1709280510 2 1} {{22 2024-03-01 16:09:18.013 +0800 CST 2024-03-01 16:09:18.013 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务22 60 1709280558 2 1} {{23 2024-03-01 16:11:14.161 +0800 CST 2024-03-01 16:11:14.161 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务23 60 1709280674 2 1} {{26 2024-03-01 16:36:45.611 +0800 CST 2024-03-01 16:36:45.611 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务26 60 1709282205 2 1} {{32 2024-03-02 11:13:56.353 +0800 CST 2024-03-02 11:13:56.353 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务202??? 5 1709349236 2 0}]] message:success] statusCode:200 uri:/sxp/task/getTasks]]
+2024-03-04 11:32:33	INFO	logger/dbLog.go:100	C:/Users/Lenovo/Desktop/sxp-server/app/dao/task/task.go:15 [2.180ms] [rows:16] SELECT * FROM `task` WHERE `task`.`deleted_at` IS NULL
+2024-03-04 11:32:33	INFO	logger/dbLog.go:100	C:/Users/Lenovo/Desktop/sxp-server/app/dao/task/task.go:15 [2.813ms] [rows:6] SELECT * FROM `task` WHERE (task_name like '%2%' OR task_name like '2%' OR task_name like '%2' OR task_name like '2' AND status = 2) AND `task`.`deleted_at` IS NULL
+2024-03-04 11:32:33	INFO	middleware/logger.go:56	[map[latencyTime:7.0459ms method:POST requestParam:<nil> response:map[code:200 data:[[{{2 2024-03-01 15:20:46.107 +0800 CST 2024-03-01 15:20:46.107 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务2 60 1709277646 2 1} {{21 2024-03-01 16:08:30.529 +0800 CST 2024-03-01 16:08:30.529 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务21 60 1709280510 2 1} {{22 2024-03-01 16:09:18.013 +0800 CST 2024-03-01 16:09:18.013 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务22 60 1709280558 2 1} {{23 2024-03-01 16:11:14.161 +0800 CST 2024-03-01 16:11:14.161 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务23 60 1709280674 2 1} {{26 2024-03-01 16:36:45.611 +0800 CST 2024-03-01 16:36:45.611 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务26 60 1709282205 2 1} {{32 2024-03-02 11:13:56.353 +0800 CST 2024-03-02 11:13:56.353 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务202??? 5 1709349236 2 0}]] message:success] statusCode:200 uri:/sxp/task/getTasks]]
+2024-03-04 11:33:05	INFO	logger/dbLog.go:100	C:/Users/Lenovo/Desktop/sxp-server/app/dao/task/task.go:15 [1.473ms] [rows:16] SELECT * FROM `task` WHERE `task`.`deleted_at` IS NULL
+2024-03-04 11:33:05	INFO	logger/dbLog.go:100	C:/Users/Lenovo/Desktop/sxp-server/app/dao/task/task.go:15 [1.783ms] [rows:6] SELECT * FROM `task` WHERE (task_name like '%2%' OR task_name like '2%' OR task_name like '%2' OR task_name like '2' AND status = 2) AND `task`.`deleted_at` IS NULL
+2024-03-04 11:33:05	INFO	middleware/logger.go:53	[map[latencyTime:3.7761ms method:POST requestParam:{"name":"2","status":2} response:map[code:200 data:[[{{2 2024-03-01 15:20:46.107 +0800 CST 2024-03-01 15:20:46.107 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务2 60 1709277646 2 1} {{21 2024-03-01 16:08:30.529 +0800 CST 2024-03-01 16:08:30.529 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务21 60 1709280510 2 1} {{22 2024-03-01 16:09:18.013 +0800 CST 2024-03-01 16:09:18.013 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务22 60 1709280558 2 1} {{23 2024-03-01 16:11:14.161 +0800 CST 2024-03-01 16:11:14.161 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务23 60 1709280674 2 1} {{26 2024-03-01 16:36:45.611 +0800 CST 2024-03-01 16:36:45.611 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务26 60 1709282205 2 1} {{32 2024-03-02 11:13:56.353 +0800 CST 2024-03-02 11:13:56.353 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务202??? 5 1709349236 2 0}]] message:success] statusCode:200 uri:/sxp/task/getTasks]]
+2024-03-04 11:36:38	ERROR	middleware/auth.go:31	请求头中auth格式有误
+2024-03-04 11:36:38	INFO	middleware/logger.go:53	[map[latencyTime:44.601457s method:POST requestParam:{"name":"2","status":2} response:<nil> responseCode:401 uri:/sxp/task/getTasks]]
+2024-03-04 11:37:09	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-04 11:37:09	INFO	middleware/logger.go:53	[map[latencyTime:1.0145ms method:POST requestParam:{"name":"2","status":2} response:<nil> responseCode:401 uri:/sxp/task/getTasks]]
+2024-03-04 11:37:53	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-04 11:37:53	INFO	middleware/logger.go:53	[map[latencyTime:40.6027027s method:POST requestParam:{"name":"2","status":2} response:<nil> responseCode:401 uri:/sxp/task/getTasks]]
+2024-03-04 11:37:57	INFO	middleware/logger.go:53	[map[latencyTime:502.6µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1MjM2NTcsImlzcyI6InN4cC1zZXJ2ZXIifQ.taG33AY-u33K7ACr8GdjsjYZ8QgftT41EYOEYyY0BlI] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-04 11:38:23	INFO	logger/dbLog.go:100	C:/Users/Lenovo/Desktop/sxp-server/app/dao/task/task.go:15 [3.064ms] [rows:16] SELECT * FROM `task` WHERE `task`.`deleted_at` IS NULL
+2024-03-04 11:38:23	INFO	logger/dbLog.go:100	C:/Users/Lenovo/Desktop/sxp-server/app/dao/task/task.go:15 [2.041ms] [rows:6] SELECT * FROM `task` WHERE (task_name like '%2%' OR task_name like '2%' OR task_name like '%2' OR task_name like '2' AND status = 2) AND `task`.`deleted_at` IS NULL
+2024-03-04 11:38:24	INFO	middleware/logger.go:53	[map[latencyTime:10.6265484s method:POST requestParam:{"name":"2","status":2} response:map[code:200 data:[[{{2 2024-03-01 15:20:46.107 +0800 CST 2024-03-01 15:20:46.107 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务2 60 1709277646 2 1} {{21 2024-03-01 16:08:30.529 +0800 CST 2024-03-01 16:08:30.529 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务21 60 1709280510 2 1} {{22 2024-03-01 16:09:18.013 +0800 CST 2024-03-01 16:09:18.013 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务22 60 1709280558 2 1} {{23 2024-03-01 16:11:14.161 +0800 CST 2024-03-01 16:11:14.161 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务23 60 1709280674 2 1} {{26 2024-03-01 16:36:45.611 +0800 CST 2024-03-01 16:36:45.611 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务26 60 1709282205 2 1} {{32 2024-03-02 11:13:56.353 +0800 CST 2024-03-02 11:13:56.353 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务202??? 5 1709349236 2 0}]] message:success] responseCode:200 uri:/sxp/task/getTasks]]
+2024-03-04 11:39:47	INFO	logger/dbLog.go:100	C:/Users/Lenovo/Desktop/sxp-server/app/dao/task/task.go:15 [1.022ms] [rows:16] SELECT * FROM `task` WHERE `task`.`deleted_at` IS NULL
+2024-03-04 11:39:47	INFO	logger/dbLog.go:100	C:/Users/Lenovo/Desktop/sxp-server/app/dao/task/task.go:15 [1.041ms] [rows:6] SELECT * FROM `task` WHERE (task_name like '%2%' OR task_name like '2%' OR task_name like '%2' OR task_name like '2' AND status = 2) AND `task`.`deleted_at` IS NULL
+2024-03-04 11:39:47	INFO	middleware/logger.go:54	[map[latencyTime:2.8224163s method:POST requestParam:{"name":"2","status":2} response:map[code:200 data:[[{{2 2024-03-01 15:20:46.107 +0800 CST 2024-03-01 15:20:46.107 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务2 60 1709277646 2 1} {{21 2024-03-01 16:08:30.529 +0800 CST 2024-03-01 16:08:30.529 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务21 60 1709280510 2 1} {{22 2024-03-01 16:09:18.013 +0800 CST 2024-03-01 16:09:18.013 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务22 60 1709280558 2 1} {{23 2024-03-01 16:11:14.161 +0800 CST 2024-03-01 16:11:14.161 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务23 60 1709280674 2 1} {{26 2024-03-01 16:36:45.611 +0800 CST 2024-03-01 16:36:45.611 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务26 60 1709282205 2 1} {{32 2024-03-02 11:13:56.353 +0800 CST 2024-03-02 11:13:56.353 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}} 测试任务202??? 5 1709349236 2 0}]] message:success] responseCode:200 uri:/sxp/task/getTasks]]
+2024-03-04 15:19:55	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1MzY5NzUsImlzcyI6InN4cC1zZXJ2ZXIifQ.QvqYjCAO9MwoKw60O-RXeoylDSnz2t49Bw1uoy7pXko] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-04 15:21:23	INFO	middleware/logger.go:53	[map[latencyTime:503.3µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1MzcwNjMsImlzcyI6InN4cC1zZXJ2ZXIifQ.fEUyUKOZPT_yh7Rod-WEqdgTWlCq4RWFXt3J1MMRNlE] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-04 15:21:54	INFO	middleware/logger.go:53	[map[latencyTime:509.4µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1MzcwOTQsImlzcyI6InN4cC1zZXJ2ZXIifQ.hFOnKmY6Es3nyeDLhGC5dqoUeebY4CZlro9y3XsSNNk] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-04 15:21:56	ERROR	middleware/auth.go:22	请传入合法token
+2024-03-04 15:21:56	INFO	middleware/logger.go:53	[map[latencyTime:503.3µs method:POST requestParam:{"productId":10,"product":"xxxxxxx"} response:<nil> responseCode:401 uri:/sxp/product/updateProduct]]
+2024-03-04 15:22:55	ERROR	middleware/auth.go:22	请传入合法token
+2024-03-04 15:22:55	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"productId":10,"product":"xxxxxxx"} response:<nil> responseCode:401 uri:/sxp/product/updateProduct]]
+2024-03-04 15:23:10	ERROR	middleware/auth.go:22	请传入合法token
+2024-03-04 15:23:10	INFO	middleware/logger.go:53	[map[latencyTime:7.6058595s method:POST requestParam:{"productId":10,"product":"xxxxxxx"} response:<nil> responseCode:401 uri:/sxp/product/updateProduct]]
+2024-03-04 15:24:43	INFO	middleware/logger.go:53	[map[latencyTime:14.8240377s method:POST requestParam:{"productId":10,"product":"xxxxxxx"} response:map[code:200 data:[{}] message:success] responseCode:200 uri:/sxp/product/updateProduct]]
+2024-03-04 15:25:10	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-04 15:25:10	INFO	middleware/logger.go:53	[map[latencyTime:514.7µs method:POST requestParam:{"productId":10,"product":"xxxxxxx"} response:<nil> responseCode:401 uri:/sxp/product/updateProduct]]
+2024-03-04 15:25:29	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-04 15:25:29	INFO	middleware/logger.go:53	[map[latencyTime:556.6µs method:POST requestParam:{"productId":10,"product":"xxxxxxx"} response:<nil> responseCode:401 uri:/sxp/product/updateProduct]]
+2024-03-04 15:25:43	INFO	middleware/logger.go:53	[map[latencyTime:503µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1MzczMjMsImlzcyI6InN4cC1zZXJ2ZXIifQ.zMYGv2EyxiXgcnME9SBTkE8ehXvDvB9lie-PNGWWBdw] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-04 15:26:07	INFO	middleware/logger.go:53	[map[latencyTime:12.6667787s method:POST requestParam:{"productId":10,"product":"xxxxxxx"} response:map[code:200 data:[{}] message:success] responseCode:200 uri:/sxp/product/updateProduct]]
+2024-03-04 15:28:00	INFO	middleware/logger.go:53	[map[latencyTime:32.7341451s method:POST requestParam:{"productId":1,"product":"ccccc"} response:map[code:200 data:[{}] message:success] responseCode:200 uri:/sxp/product/updateProduct]]
+2024-03-04 15:29:08	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-04 15:29:08	INFO	middleware/logger.go:53	[map[latencyTime:503.9µs method:POST requestParam:{"productId":1,"product":"ccccc"} response:<nil> responseCode:401 uri:/sxp/product/updateProduct]]
+2024-03-04 15:29:46	INFO	middleware/logger.go:53	[map[latencyTime:513.6µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1Mzc1NjYsImlzcyI6InN4cC1zZXJ2ZXIifQ.Tc8qAevNW8JgkZ8Vu-0RTdy6ssak-Swp9izNocUaWYg] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-04 15:30:06	INFO	middleware/logger.go:53	[map[latencyTime:5.6036079s method:POST requestParam:{"productId":1,"product":"ccccc"} response:map[code:200 data:[{}] message:success] responseCode:200 uri:/sxp/product/updateProduct]]
+2024-03-04 15:36:27	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-04 15:36:27	INFO	middleware/logger.go:53	[map[latencyTime:646.8µs method:POST requestParam:{"status":"2"} response:<nil> responseCode:401 uri:/sxp/product/getByStatus]]
+2024-03-04 15:36:34	INFO	middleware/logger.go:53	[map[latencyTime:89.4µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1Mzc5NzQsImlzcyI6InN4cC1zZXJ2ZXIifQ._fyp793hFxanjTf62IK9WnDATVnrgH_O0uxBTEiPo_k] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-04 15:36:49	INFO	middleware/logger.go:53	[map[latencyTime:2.0731ms method:POST requestParam:{"productId":1,"product":"ccccc"} response:map[code:200 data:[{}] message:success] responseCode:200 uri:/sxp/product/updateProduct]]
+2024-03-04 15:37:07	INFO	middleware/logger.go:53	[map[latencyTime:505.1µs method:POST requestParam:{"productId":1,"product":"ccccc"} response:map[code:200 data:[{}] message:success] responseCode:200 uri:/sxp/product/updateProduct]]
+2024-03-04 15:37:41	ERROR	service/product.go:114	grpc服务端校验token失败:获取token校验失败
+2024-03-04 15:37:41	ERROR	product/product.go:54	远程调用gprc服务失败: %s获取token校验失败
+2024-03-04 15:37:41	ERROR	product/product.go:84	根据status获取产品失败
+2024-03-04 15:37:41	INFO	middleware/logger.go:53	[map[latencyTime:24.2545817s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[]] message:success] responseCode:500 uri:/sxp/product/getByStatus]]
+2024-03-04 15:38:02	ERROR	service/product.go:114	grpc服务端校验token失败:获取token校验失败
+2024-03-04 15:38:02	ERROR	product/product.go:54	远程调用gprc服务失败: %s获取token校验失败
+2024-03-04 15:38:02	ERROR	product/product.go:84	根据status获取产品失败
+2024-03-04 15:38:02	INFO	middleware/logger.go:53	[map[latencyTime:1.0186ms method:POST requestParam:{"status":"2"} response:map[code:200 data:[[]] message:success] responseCode:500 uri:/sxp/product/getByStatus]]
+2024-03-04 15:38:22	ERROR	service/product.go:114	grpc服务端校验token失败:获取token校验失败
+2024-03-04 15:38:22	ERROR	product/product.go:54	远程调用gprc服务失败: %s获取token校验失败
+2024-03-04 15:38:22	ERROR	product/product.go:84	根据status获取产品失败
+2024-03-04 15:38:22	INFO	middleware/logger.go:53	[map[latencyTime:504.1µs method:POST requestParam:{"status":"2"} response:map[code:200 data:[[]] message:success] responseCode:500 uri:/sxp/product/getByStatus]]
+2024-03-04 15:39:51	ERROR	service/product.go:114	grpc服务端校验token失败:获取token校验失败
+2024-03-04 15:39:51	ERROR	product/product.go:54	远程调用gprc服务失败: %s获取token校验失败
+2024-03-04 15:39:51	ERROR	product/product.go:84	根据status获取产品失败
+2024-03-04 15:39:51	INFO	middleware/logger.go:53	[map[latencyTime:57.7342334s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[]] message:success] responseCode:500 uri:/sxp/product/getByStatus]]
+2024-03-04 15:40:48	INFO	middleware/logger.go:53	[map[latencyTime:502.9µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1MzgyMjgsImlzcyI6InN4cC1zZXJ2ZXIifQ.Mb2RG5ts1_R4a9K1J6J1lKgR2WGFQmbk1gaqD_1YoZc] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-04 15:41:00	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:41:00	INFO	middleware/logger.go:53	[map[latencyTime:2.0664ms method:POST requestParam:{"status":"2"} response:map[code:200 data:[[]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:41:50	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:41:50	INFO	middleware/logger.go:53	[map[latencyTime:22.0131554s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:42:17	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:42:17	INFO	middleware/logger.go:53	[map[latencyTime:2.0376ms method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{1 产品1 2} {2 产品2 2} {4 产品4 2} {10 产品10 2} {12 产品12 2} {14 产品14 2} {15 产品15 2} {16 产品16 2} {17 产品17 2} {22 产品22 2} {24 产品24 2} {7 产品7 2} {11 产品11 2} {13 产品13 2} {18 产品18 2} {3 产品3 2} {6 产品6 2} {8 产品8 2} {19 产品19 2} {20 产品20 2} {5 产品5 2} {9 产品9 2} {21 产品21 2} {23 产品23 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:42:27	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:42:27	INFO	middleware/logger.go:53	[map[latencyTime:503.3µs method:POST requestParam:{"status":"1"} response:map[code:200 data:[[]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:42:28	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:42:28	INFO	middleware/logger.go:53	[map[latencyTime:503.5µs method:POST requestParam:{"status":"1"} response:map[code:200 data:[[]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:42:35	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:42:35	INFO	middleware/logger.go:53	[map[latencyTime:503.3µs method:POST requestParam:{"status":"1"} response:map[code:200 data:[[]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:42:40	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:42:40	INFO	middleware/logger.go:53	[map[latencyTime:777.2µs method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{5 产品5 2} {9 产品9 2} {21 产品21 2} {23 产品23 2} {15 产品15 2} {16 产品16 2} {1 产品1 2} {2 产品2 2} {4 产品4 2} {10 产品10 2} {12 产品12 2} {14 产品14 2} {17 产品17 2} {22 产品22 2} {24 产品24 2} {7 产品7 2} {11 产品11 2} {13 产品13 2} {18 产品18 2} {3 产品3 2} {6 产品6 2} {8 产品8 2} {19 产品19 2} {20 产品20 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:42:46	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:42:46	INFO	middleware/logger.go:53	[map[latencyTime:503.2µs method:POST requestParam:{"status":"1"} response:map[code:200 data:[[]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:43:38	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:43:38	INFO	middleware/logger.go:53	[map[latencyTime:3.1671ms method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{21 产品21 1} {23 产品23 1} {5 产品5 1} {12 产品12 1} {13 产品13 1} {8 产品8 1} {19 产品19 1} {22 产品22 1} {24 产品24 1} {1 产品1 1} {6 产品6 1} {7 产品7 1} {4 产品4 1} {14 产品14 1} {17 产品17 1} {10 产品10 1} {11 产品11 1} {15 产品15 1} {16 产品16 1} {18 产品18 1} {2 产品2 1} {3 产品3 1} {9 产品9 1} {20 产品20 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:43:45	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:43:45	INFO	middleware/logger.go:53	[map[latencyTime:1.0568ms method:POST requestParam:{"status":"2"} response:map[code:200 data:[[]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:43:53	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-04 15:43:53	INFO	middleware/logger.go:53	[map[latencyTime:502.9µs method:POST requestParam:{"status":"3"} response:<nil> responseCode:401 uri:/sxp/product/getByStatus]]
+2024-03-04 15:43:57	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-04 15:43:57	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"status":"1"} response:<nil> responseCode:401 uri:/sxp/product/getByStatus]]
+2024-03-04 15:44:00	INFO	middleware/logger.go:53	[map[latencyTime:293.9µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1Mzg0MjAsImlzcyI6InN4cC1zZXJ2ZXIifQ.gdp6S3RnBd6uehB2UYasO1tsgR99Kd1_0Z-ULN173ro] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-04 15:44:13	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:44:13	INFO	middleware/logger.go:53	[map[latencyTime:1.0141ms method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{7 产品7 1} {8 产品8 1} {19 产品19 1} {22 产品22 1} {24 产品24 1} {1 产品1 1} {6 产品6 1} {17 产品17 1} {4 产品4 1} {14 产品14 1} {9 产品9 1} {10 产品10 1} {11 产品11 1} {15 产品15 1} {16 产品16 1} {18 产品18 1} {2 产品2 1} {3 产品3 1} {20 产品20 1} {13 产品13 1} {21 产品21 1} {23 产品23 1} {5 产品5 1} {12 产品12 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:44:35	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:44:35	INFO	middleware/logger.go:53	[map[latencyTime:1.0564ms method:POST requestParam:{"status":"2"} response:map[code:200 data:[[]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:46:05	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:46:15	INFO	middleware/logger.go:53	[map[latencyTime:9.9886309s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:46:19	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:46:26	INFO	middleware/logger.go:53	[map[latencyTime:6.8010193s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{15 产品15 1} {16 产品16 1} {18 产品18 1} {2 产品2 1} {3 产品3 1} {9 产品9 1} {10 产品10 1} {11 产品11 1} {20 产品20 1} {5 产品5 1} {12 产品12 1} {13 产品13 1} {21 产品21 1} {23 产品23 1} {22 产品22 1} {24 产品24 1} {1 产品1 1} {6 产品6 1} {7 产品7 1} {8 产品8 1} {19 产品19 1} {4 产品4 1} {14 产品14 1} {17 产品17 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:48:23	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-04 15:48:23	INFO	middleware/logger.go:53	[map[latencyTime:1.4204ms method:POST requestParam:{"status":"1"} response:<nil> responseCode:401 uri:/sxp/product/getByStatus]]
+2024-03-04 15:48:27	INFO	middleware/logger.go:53	[map[latencyTime:502.4µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1Mzg2ODcsImlzcyI6InN4cC1zZXJ2ZXIifQ.Y9oHjydcuYfHVhtx09b5YVNbRjKhGqhNw9qZqbozcX4] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-04 15:48:35	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:48:35	INFO	middleware/logger.go:53	[map[latencyTime:1.7251ms method:POST requestParam:{"status":"1"} response:map[code:200 data:[[]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:48:48	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:48:48	INFO	middleware/logger.go:53	[map[latencyTime:1.558ms method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{14 产品14 2} {19 产品19 2} {22 产品22 2} {1 产品1 2} {6 产品6 2} {10 产品10 2} {20 产品20 2} {2 产品2 2} {7 产品7 2} {15 产品15 2} {13 产品13 2} {18 产品18 2} {21 产品21 2} {23 产品23 2} {4 产品4 2} {11 产品11 2} {12 产品12 2} {9 产品9 2} {16 产品16 2} {17 产品17 2} {24 产品24 2} {3 产品3 2} {5 产品5 2} {8 产品8 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:49:02	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:49:02	INFO	middleware/logger.go:53	[map[latencyTime:1.5254ms method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{3 产品3 2} {5 产品5 2} {8 产品8 2} {9 产品9 2} {16 产品16 2} {17 产品17 2} {24 产品24 2} {1 产品1 2} {6 产品6 2} {10 产品10 2} {14 产品14 2} {19 产品19 2} {22 产品22 2} {2 产品2 2} {7 产品7 2} {15 产品15 2} {20 产品20 2} {4 产品4 2} {11 产品11 2} {12 产品12 2} {13 产品13 2} {18 产品18 2} {21 产品21 2} {23 产品23 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:49:23	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:49:23	INFO	middleware/logger.go:53	[map[latencyTime:2.0359ms method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{15 产品15 2} {17 产品17 2} {20 产品20 2} {21 产品21 2} {24 产品24 2} {18 产品18 2} {19 产品19 2} {23 产品23 2} {16 产品16 2} {22 产品22 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:49:28	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:49:28	INFO	middleware/logger.go:53	[map[latencyTime:1.0437ms method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{9 产品9 1} {13 产品13 1} {1 产品1 1} {6 产品6 1} {10 产品10 1} {11 产品11 1} {8 产品8 1} {12 产品12 1} {14 产品14 1} {2 产品2 1} {4 产品4 1} {7 产品7 1} {3 产品3 1} {5 产品5 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:49:42	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:49:42	INFO	middleware/logger.go:53	[map[latencyTime:1.0144ms method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{19 产品19 2} {23 产品23 2} {16 产品16 2} {22 产品22 2} {15 产品15 2} {17 产品17 2} {18 产品18 2} {20 产品20 2} {21 产品21 2} {24 产品24 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:49:45	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:49:45	INFO	middleware/logger.go:53	[map[latencyTime:1.0848ms method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{1 产品1 1} {6 产品6 1} {9 产品9 1} {13 产品13 1} {10 产品10 1} {11 产品11 1} {2 产品2 1} {4 产品4 1} {8 产品8 1} {12 产品12 1} {14 产品14 1} {3 产品3 1} {5 产品5 1} {7 产品7 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:49:49	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:49:49	INFO	middleware/logger.go:53	[map[latencyTime:503.4µs method:POST requestParam:{"status":"3"} response:map[code:200 data:[[]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:58:21	INFO	middleware/logger.go:53	[map[latencyTime:504.2µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1MzkyODEsImlzcyI6InN4cC1zZXJ2ZXIifQ.b3JgbZzsEBs-cQAeWRwsEinoP4FZ8hEzFZLT6yfirAg] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-04 15:58:32	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:58:32	INFO	middleware/logger.go:53	[map[latencyTime:1.5298ms method:POST requestParam:{"status":"3"} response:map[code:200 data:[[]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:59:16	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:59:16	INFO	middleware/logger.go:53	[map[latencyTime:2.0695ms method:POST requestParam:{"status":"3"} response:map[code:200 data:[[]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:59:23	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:59:23	INFO	middleware/logger.go:53	[map[latencyTime:1.0152ms method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{3 产品3 2} {9 产品9 2} {11 产品11 2} {14 产品14 2} {16 产品16 2} {18 产品18 2} {22 产品22 2} {1 产品1 2} {5 产品5 2} {6 产品6 2} {7 产品7 2} {10 产品10 2} {13 产品13 2} {15 产品15 2} {2 产品2 2} {8 产品8 2} {12 产品12 2} {19 产品19 2} {20 产品20 2} {24 产品24 2} {4 产品4 2} {17 产品17 2} {21 产品21 2} {23 产品23 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:59:28	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:59:28	INFO	middleware/logger.go:53	[map[latencyTime:503.4µs method:POST requestParam:{"status":"1"} response:map[code:200 data:[[]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:59:35	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:59:35	INFO	middleware/logger.go:53	[map[latencyTime:1.0161ms method:POST requestParam:{"status":"1"} response:map[code:200 data:[[]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:59:36	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:59:36	INFO	middleware/logger.go:53	[map[latencyTime:503.2µs method:POST requestParam:{"status":"1"} response:map[code:200 data:[[]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:59:37	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:59:37	INFO	middleware/logger.go:53	[map[latencyTime:1.0707ms method:POST requestParam:{"status":"1"} response:map[code:200 data:[[]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 15:59:38	INFO	service/product.go:137	[receive EOF]
+2024-03-04 15:59:38	INFO	middleware/logger.go:53	[map[latencyTime:1.0156ms method:POST requestParam:{"status":"1"} response:map[code:200 data:[[]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 16:00:20	INFO	service/product.go:137	[receive EOF]
+2024-03-04 16:00:20	INFO	middleware/logger.go:53	[map[latencyTime:2.5448ms method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{1 产品1 1} {2 产品2 1} {5 产品5 1} {15 产品15 1} {16 产品16 1} {20 产品20 1} {4 产品4 1} {7 产品7 1} {9 产品9 1} {10 产品10 1} {11 产品11 1} {17 产品17 1} {18 产品18 1} {6 产品6 1} {8 产品8 1} {12 产品12 1} {14 产品14 1} {23 产品23 1} {24 产品24 1} {3 产品3 1} {13 产品13 1} {19 产品19 1} {21 产品21 1} {22 产品22 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 16:00:25	INFO	service/product.go:137	[receive EOF]
+2024-03-04 16:00:25	INFO	middleware/logger.go:53	[map[latencyTime:503.8µs method:POST requestParam:{"status":"2"} response:map[code:200 data:[[]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 16:01:28	INFO	service/product.go:137	[receive EOF]
+2024-03-04 16:01:28	INFO	middleware/logger.go:53	[map[latencyTime:56.1871602s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 16:02:00	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-04 16:02:00	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"status":"2"} response:<nil> responseCode:401 uri:/sxp/product/getByStatus]]
+2024-03-04 16:02:04	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1Mzk1MDQsImlzcyI6InN4cC1zZXJ2ZXIifQ.2VcPa2DzVFHO9Yi8kIJZZL8WNiAjv21zCni9cmKu3_E] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-04 16:02:18	INFO	service/product.go:137	[receive EOF]
+2024-03-04 16:02:18	INFO	middleware/logger.go:53	[map[latencyTime:2.0916ms method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{3 产品3 2} {9 产品9 2} {11 产品11 2} {17 产品17 2} {1 产品1 2} {19 产品19 2} {5 产品5 2} {13 产品13 2} {23 产品23 2} {7 产品7 2} {15 产品15 2} {21 产品21 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 16:02:23	INFO	service/product.go:137	[receive EOF]
+2024-03-04 16:02:23	INFO	middleware/logger.go:53	[map[latencyTime:1.4477ms method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{18 产品18 1} {24 产品24 1} {4 产品4 1} {10 产品10 1} {16 产品16 1} {22 产品22 1} {2 产品2 1} {6 产品6 1} {20 产品20 1} {8 产品8 1} {14 产品14 1} {12 产品12 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 16:02:28	INFO	service/product.go:137	[receive EOF]
+2024-03-04 16:02:28	INFO	middleware/logger.go:53	[map[latencyTime:1.0141ms method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{19 产品19 2} {5 产品5 2} {13 产品13 2} {23 产品23 2} {7 产品7 2} {15 产品15 2} {21 产品21 2} {3 产品3 2} {9 产品9 2} {11 产品11 2} {17 产品17 2} {1 产品1 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 16:02:32	INFO	service/product.go:137	[receive EOF]
+2024-03-04 16:02:32	INFO	middleware/logger.go:53	[map[latencyTime:1.0146ms method:POST requestParam:{"status":"3"} response:map[code:200 data:[[]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 16:02:36	INFO	service/product.go:137	[receive EOF]
+2024-03-04 16:02:36	INFO	middleware/logger.go:53	[map[latencyTime:1.0146ms method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{9 产品9 2} {11 产品11 2} {17 产品17 2} {3 产品3 2} {1 产品1 2} {13 产品13 2} {19 产品19 2} {5 产品5 2} {7 产品7 2} {15 产品15 2} {21 产品21 2} {23 产品23 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 16:02:40	INFO	service/product.go:137	[receive EOF]
+2024-03-04 16:02:40	INFO	middleware/logger.go:53	[map[latencyTime:534.5µs method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{12 产品12 1} {18 产品18 1} {24 产品24 1} {4 产品4 1} {10 产品10 1} {16 产品16 1} {22 产品22 1} {2 产品2 1} {6 产品6 1} {20 产品20 1} {8 产品8 1} {14 产品14 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 16:23:35	INFO	middleware/logger.go:53	[map[latencyTime:503.6µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1NDA3OTUsImlzcyI6InN4cC1zZXJ2ZXIifQ.gF1RZwnfohqfzkc-wdF53e2QIE7RsgLT5iSg-IN8u5U] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-04 16:23:51	ERROR	service/product.go:114	grpc服务端校验token失败:获取token校验失败
+2024-03-04 16:23:51	ERROR	product/product.go:54	远程调用gprc服务失败: %s获取token校验失败
+2024-03-04 16:23:51	ERROR	product/product.go:84	根据status获取产品失败
+2024-03-04 16:23:51	INFO	middleware/logger.go:53	[map[latencyTime:1.5417ms method:POST requestParam:{"status":"1"} response:map[code:200 data:[[]] message:success] responseCode:500 uri:/sxp/product/getByStatus]]
+2024-03-04 16:23:58	ERROR	service/product.go:114	grpc服务端校验token失败:获取token校验失败
+2024-03-04 16:23:58	ERROR	product/product.go:54	远程调用gprc服务失败: %s获取token校验失败
+2024-03-04 16:23:58	ERROR	product/product.go:84	根据status获取产品失败
+2024-03-04 16:23:58	INFO	middleware/logger.go:53	[map[latencyTime:502.9µs method:POST requestParam:{"status":"1"} response:map[code:200 data:[[]] message:success] responseCode:500 uri:/sxp/product/getByStatus]]
+2024-03-04 16:24:46	ERROR	service/product.go:114	grpc服务端校验token失败:获取token校验失败
+2024-03-04 16:24:46	ERROR	product/product.go:54	远程调用gprc服务失败: 获取token校验失败
+2024-03-04 16:24:46	ERROR	product/product.go:84	根据status获取产品失败
+2024-03-04 16:24:46	INFO	middleware/logger.go:53	[map[latencyTime:4.5156ms method:POST requestParam:{"status":"1"} response:map[code:200 data:[[]] message:success] responseCode:500 uri:/sxp/product/getByStatus]]
+2024-03-04 16:25:02	ERROR	service/product.go:114	grpc服务端校验token失败:获取token校验失败
+2024-03-04 16:25:02	ERROR	product/product.go:54	远程调用gprc服务失败: 获取token校验失败
+2024-03-04 16:25:03	ERROR	product/product.go:84	根据status获取产品失败
+2024-03-04 16:25:14	INFO	middleware/logger.go:53	[map[latencyTime:14.7057177s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[]] message:success] responseCode:500 uri:/sxp/product/getByStatus]]
+2024-03-04 16:25:25	ERROR	service/product.go:114	grpc服务端校验token失败:获取token校验失败
+2024-03-04 16:25:25	ERROR	product/product.go:54	远程调用gprc服务失败: 获取token校验失败
+2024-03-04 16:25:25	ERROR	product/product.go:84	根据status获取产品失败
+2024-03-04 16:25:25	INFO	middleware/logger.go:53	[map[latencyTime:2.0499ms method:POST requestParam:{"status":"1"} response:<nil> responseCode:500 uri:/sxp/product/getByStatus]]
+2024-03-04 16:25:32	INFO	middleware/logger.go:53	[map[latencyTime:639.8µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1NDA5MTIsImlzcyI6InN4cC1zZXJ2ZXIifQ.1DSNlH_MrGIyVTzItvKJ58kl3rBTNuuOsOLvmTXjmac] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-04 16:25:45	ERROR	service/product.go:114	grpc服务端校验token失败:获取token校验失败
+2024-03-04 16:25:45	ERROR	product/product.go:54	远程调用gprc服务失败: 获取token校验失败
+2024-03-04 16:25:45	ERROR	product/product.go:84	根据status获取产品失败
+2024-03-04 16:25:45	INFO	middleware/logger.go:53	[map[latencyTime:1.0852ms method:POST requestParam:{"status":"1"} response:<nil> responseCode:500 uri:/sxp/product/getByStatus]]
+2024-03-04 16:25:49	INFO	middleware/logger.go:53	[map[latencyTime:503.4µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1NDA5MjksImlzcyI6InN4cC1zZXJ2ZXIifQ.J3bvyVvFX0hE61o83o5ckyOzcMKmLq65oHl0indBKlc] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-04 16:26:00	ERROR	service/product.go:114	grpc服务端校验token失败:获取token校验失败
+2024-03-04 16:26:00	ERROR	product/product.go:54	远程调用gprc服务失败: 获取token校验失败
+2024-03-04 16:26:00	ERROR	product/product.go:84	根据status获取产品失败
+2024-03-04 16:26:00	INFO	middleware/logger.go:53	[map[latencyTime:776.2µs method:POST requestParam:{"status":"1"} response:<nil> responseCode:500 uri:/sxp/product/getByStatus]]
+2024-03-04 16:26:37	ERROR	service/product.go:114	grpc服务端校验token失败:获取token校验失败
+2024-03-04 16:26:37	ERROR	product/product.go:54	远程调用gprc服务失败: 获取token校验失败
+2024-03-04 16:26:37	ERROR	product/product.go:84	根据status获取产品失败
+2024-03-04 16:26:37	INFO	middleware/logger.go:53	[map[latencyTime:1.2516ms method:POST requestParam:{"status":"1"} response:<nil> responseCode:500 uri:/sxp/product/getByStatus]]
+2024-03-04 16:27:17	ERROR	service/product.go:114	grpc服务端校验token失败:获取token校验失败
+2024-03-04 16:27:17	ERROR	product/product.go:54	远程调用gprc服务失败: 获取token校验失败
+2024-03-04 16:27:17	ERROR	product/product.go:84	根据status获取产品失败
+2024-03-04 16:27:17	INFO	middleware/logger.go:53	[map[latencyTime:31.4488542s method:POST requestParam:{"status":"1"} response:<nil> responseCode:500 uri:/sxp/product/getByStatus]]
+2024-03-04 16:28:21	ERROR	service/product.go:114	grpc服务端校验token失败:获取token校验失败
+2024-03-04 16:28:21	ERROR	product/product.go:54	远程调用gprc服务失败: 获取token校验失败
+2024-03-04 16:28:21	ERROR	product/product.go:84	根据status获取产品失败
+2024-03-04 16:28:21	INFO	middleware/logger.go:53	[map[latencyTime:36.5863779s method:POST requestParam:{"status":"1"} response:<nil> responseCode:500 uri:/sxp/product/getByStatus]]
+2024-03-04 16:28:29	INFO	service/product.go:137	[receive EOF]
+2024-03-04 16:28:29	INFO	middleware/logger.go:53	[map[latencyTime:5.8172781s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{6 产品6 1} {8 产品8 1} {20 产品20 1} {10 产品10 1} {12 产品12 1} {4 产品4 1} {16 产品16 1} {22 产品22 1} {24 产品24 1} {2 产品2 1} {14 产品14 1} {18 产品18 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 16:28:48	INFO	middleware/logger.go:53	[map[latencyTime:1.0969ms method:POST requestParam:{"productId":1,"product":"ccccc"} response:map[code:200 data:[{}] message:success] responseCode:200 uri:/sxp/product/updateProduct]]
+2024-03-04 16:28:55	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-04 16:28:55	INFO	middleware/logger.go:53	[map[latencyTime:503.4µs method:POST requestParam:{"productId":10,"product":"ccccc"} response:<nil> responseCode:401 uri:/sxp/product/updateProduct]]
+2024-03-04 16:29:00	INFO	middleware/logger.go:53	[map[latencyTime:334.6µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1NDExMjAsImlzcyI6InN4cC1zZXJ2ZXIifQ.RYjkG6ejfpzRBjFzBA2tdP_kLORZ6yVaDdzEcA1ZieM] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-04 16:29:14	INFO	middleware/logger.go:53	[map[latencyTime:525.8µs method:POST requestParam:{"productId":10,"product":"ccccc"} response:map[code:200 data:[{}] message:success] responseCode:200 uri:/sxp/product/updateProduct]]
+2024-03-04 16:40:04	ERROR	middleware/auth.go:22	请传入合法token
+2024-03-04 16:40:04	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"id":"11"} response:<nil> responseCode:401 uri:/sxp/product/getProduct]]
+2024-03-04 16:40:08	INFO	middleware/logger.go:53	[map[latencyTime:188.1µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1NDE3ODgsImlzcyI6InN4cC1zZXJ2ZXIifQ.ohRgpeQoZ_vO_H4iu9Hi6ChQqcIXPgpl1hKI34Lvkv4] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-04 16:40:23	ERROR	service/product.go:64	grpc服务调用失败: rpc error: code = Unavailable desc = error reading from server: read tcp 192.168.111.40:61834->192.168.111.40:9001: wsarecv: An existing connection was forcibly closed by the remote host.
+2024-03-04 16:40:23	ERROR	product/product.go:24	远程调用gprc服务失败: %srpc error: code = Unavailable desc = error reading from server: read tcp 192.168.111.40:61834->192.168.111.40:9001: wsarecv: An existing connection was forcibly closed by the remote host.
+2024-03-04 16:40:23	ERROR	product/product.go:38	获取产品失败
+2024-03-04 16:40:23	INFO	middleware/logger.go:53	[map[latencyTime:12.222ms method:POST requestParam:{"id":"11"} response:map[code:200 data:[{}] message:success] responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-04 16:42:06	INFO	middleware/logger.go:53	[map[latencyTime:69.3µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1NDE5MDYsImlzcyI6InN4cC1zZXJ2ZXIifQ.2Rf20PReJWfRZodJ2lVOxb_k9TNrayRS6CHaTNjnOkA] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-04 16:43:30	ERROR	service/product.go:64	grpc服务调用失败: rpc error: code = Unavailable desc = error reading from server: read tcp 192.168.111.40:56967->192.168.111.40:9001: wsarecv: An existing connection was forcibly closed by the remote host.
+2024-03-04 16:43:30	ERROR	product/product.go:24	远程调用gprc服务失败: %srpc error: code = Unavailable desc = error reading from server: read tcp 192.168.111.40:56967->192.168.111.40:9001: wsarecv: An existing connection was forcibly closed by the remote host.
+2024-03-04 16:43:30	ERROR	product/product.go:38	获取产品失败
+2024-03-04 16:43:30	INFO	middleware/logger.go:53	[map[latencyTime:58.8824476s method:POST requestParam:{"id":"11"} response:map[code:200 data:[{}] message:success] responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-04 16:44:28	ERROR	service/product.go:64	grpc服务调用失败: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 192.168.111.40:9001: connectex: No connection could be made because the target machine actively refused it."
+2024-03-04 16:44:28	ERROR	product/product.go:24	远程调用gprc服务失败: %srpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 192.168.111.40:9001: connectex: No connection could be made because the target machine actively refused it."
+2024-03-04 16:44:28	ERROR	service/product.go:64	grpc服务调用失败: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 192.168.111.40:9001: connectex: No connection could be made because the target machine actively refused it."
+2024-03-04 16:44:28	ERROR	service/product.go:64	grpc服务调用失败: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 192.168.111.40:9001: connectex: No connection could be made because the target machine actively refused it."
+2024-03-04 16:44:28	ERROR	service/product.go:64	grpc服务调用失败: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 192.168.111.40:9001: connectex: No connection could be made because the target machine actively refused it."
+2024-03-04 16:44:28	ERROR	product/product.go:38	获取产品失败
+2024-03-04 16:44:28	ERROR	product/product.go:24	远程调用gprc服务失败: %srpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 192.168.111.40:9001: connectex: No connection could be made because the target machine actively refused it."
+2024-03-04 16:44:28	ERROR	product/product.go:24	远程调用gprc服务失败: %srpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 192.168.111.40:9001: connectex: No connection could be made because the target machine actively refused it."
+2024-03-04 16:44:28	ERROR	product/product.go:24	远程调用gprc服务失败: %srpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 192.168.111.40:9001: connectex: No connection could be made because the target machine actively refused it."
+2024-03-04 16:44:28	ERROR	product/product.go:38	获取产品失败
+2024-03-04 16:44:28	ERROR	product/product.go:38	获取产品失败
+2024-03-04 16:44:28	ERROR	product/product.go:38	获取产品失败
+2024-03-04 16:44:28	INFO	middleware/logger.go:53	[map[latencyTime:45.6860292s method:POST requestParam:{"id":"11"} response:<nil> responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-04 16:44:28	INFO	middleware/logger.go:53	[map[latencyTime:1.5365ms method:POST requestParam:{"id":"11"} response:map[code:200 data:[{}] message:success] responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-04 16:44:28	INFO	middleware/logger.go:53	[map[latencyTime:1.5365ms method:POST requestParam:{"id":"11"} response:<nil> responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-04 16:44:28	INFO	middleware/logger.go:53	[map[latencyTime:1.5365ms method:POST requestParam:{"id":"11"} response:<nil> responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-04 16:44:54	ERROR	service/product.go:64	grpc服务调用失败: rpc error: code = Unavailable desc = error reading from server: read tcp 192.168.111.40:57148->192.168.111.40:9001: wsarecv: An existing connection was forcibly closed by the remote host.
+2024-03-04 16:44:54	ERROR	product/product.go:24	远程调用gprc服务失败: %srpc error: code = Unavailable desc = error reading from server: read tcp 192.168.111.40:57148->192.168.111.40:9001: wsarecv: An existing connection was forcibly closed by the remote host.
+2024-03-04 16:44:54	ERROR	product/product.go:38	获取产品失败
+2024-03-04 16:44:54	INFO	middleware/logger.go:53	[map[latencyTime:16.2611251s method:POST requestParam:{"id":"11"} response:map[code:200 data:[{}] message:success] responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-04 16:45:15	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-04 16:45:15	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"id":"11"} response:<nil> responseCode:401 uri:/sxp/product/getProduct]]
+2024-03-04 16:45:18	INFO	middleware/logger.go:53	[map[latencyTime:502.9µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1NDIwOTgsImlzcyI6InN4cC1zZXJ2ZXIifQ.nSC1SpoiwrR0cEMdZpEG7t-T_HQnsghCF16GIOG2kig] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-04 16:45:30	ERROR	service/product.go:64	grpc服务调用失败: rpc error: code = Unavailable desc = error reading from server: read tcp 192.168.111.40:57232->192.168.111.40:9001: wsarecv: An existing connection was forcibly closed by the remote host.
+2024-03-04 16:45:30	ERROR	product/product.go:24	远程调用gprc服务失败: %srpc error: code = Unavailable desc = error reading from server: read tcp 192.168.111.40:57232->192.168.111.40:9001: wsarecv: An existing connection was forcibly closed by the remote host.
+2024-03-04 16:45:30	ERROR	product/product.go:38	获取产品失败
+2024-03-04 16:45:30	INFO	middleware/logger.go:53	[map[latencyTime:12.8483ms method:POST requestParam:{"id":"11"} response:map[code:200 data:[{}] message:success] responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-04 16:45:38	ERROR	service/product.go:64	grpc服务调用失败: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 192.168.111.40:9001: connectex: No connection could be made because the target machine actively refused it."
+2024-03-04 16:45:38	ERROR	product/product.go:24	远程调用gprc服务失败: %srpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 192.168.111.40:9001: connectex: No connection could be made because the target machine actively refused it."
+2024-03-04 16:45:38	ERROR	product/product.go:38	获取产品失败
+2024-03-04 16:45:38	INFO	middleware/logger.go:53	[map[latencyTime:2.0296253s method:POST requestParam:{"id":"11"} response:map[code:200 data:[{}] message:success] responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-04 16:46:06	ERROR	service/product.go:64	grpc服务调用失败: rpc error: code = Unavailable desc = error reading from server: read tcp 192.168.111.40:57264->192.168.111.40:9001: wsarecv: An existing connection was forcibly closed by the remote host.
+2024-03-04 16:46:06	ERROR	product/product.go:24	远程调用gprc服务失败: %srpc error: code = Unavailable desc = error reading from server: read tcp 192.168.111.40:57264->192.168.111.40:9001: wsarecv: An existing connection was forcibly closed by the remote host.
+2024-03-04 16:46:06	ERROR	product/product.go:38	获取产品失败
+2024-03-04 16:46:06	INFO	middleware/logger.go:53	[map[latencyTime:6.3865241s method:POST requestParam:{"id":"11"} response:map[code:200 data:[{}] message:success] responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-04 16:46:35	ERROR	service/product.go:64	grpc服务调用失败: rpc error: code = Unavailable desc = error reading from server: read tcp 192.168.111.40:57298->192.168.111.40:9001: wsarecv: An existing connection was forcibly closed by the remote host.
+2024-03-04 16:46:35	ERROR	product/product.go:24	远程调用gprc服务失败: %srpc error: code = Unavailable desc = error reading from server: read tcp 192.168.111.40:57298->192.168.111.40:9001: wsarecv: An existing connection was forcibly closed by the remote host.
+2024-03-04 16:46:35	ERROR	product/product.go:38	获取产品失败
+2024-03-04 16:46:35	INFO	middleware/logger.go:53	[map[latencyTime:22.8926125s method:POST requestParam:{"id":"11"} response:map[code:200 data:[{}] message:success] responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-04 16:46:40	ERROR	service/product.go:64	grpc服务调用失败: rpc error: code = Unavailable desc = error reading from server: read tcp 192.168.111.40:57330->192.168.111.40:9001: wsarecv: An existing connection was forcibly closed by the remote host.
+2024-03-04 16:46:40	ERROR	product/product.go:24	远程调用gprc服务失败: %srpc error: code = Unavailable desc = error reading from server: read tcp 192.168.111.40:57330->192.168.111.40:9001: wsarecv: An existing connection was forcibly closed by the remote host.
+2024-03-04 16:46:40	ERROR	product/product.go:38	获取产品失败
+2024-03-04 16:46:40	INFO	middleware/logger.go:53	[map[latencyTime:12.5782ms method:POST requestParam:{"id":"11"} response:map[code:200 data:[{}] message:success] responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-04 16:46:53	ERROR	service/product.go:64	grpc服务调用失败: rpc error: code = Unavailable desc = error reading from server: read tcp 192.168.111.40:57352->192.168.111.40:9001: wsarecv: An existing connection was forcibly closed by the remote host.
+2024-03-04 16:46:53	ERROR	product/product.go:24	远程调用gprc服务失败: %srpc error: code = Unavailable desc = error reading from server: read tcp 192.168.111.40:57352->192.168.111.40:9001: wsarecv: An existing connection was forcibly closed by the remote host.
+2024-03-04 16:46:53	ERROR	product/product.go:38	获取产品失败
+2024-03-04 16:46:53	INFO	middleware/logger.go:53	[map[latencyTime:12.9422ms method:POST requestParam:{"id":"11"} response:map[code:200 data:[{}] message:success] responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-04 16:47:10	ERROR	service/product.go:64	grpc服务调用失败: rpc error: code = Unavailable desc = error reading from server: read tcp 192.168.111.40:57365->192.168.111.40:9001: wsarecv: An existing connection was forcibly closed by the remote host.
+2024-03-04 16:47:10	ERROR	product/product.go:24	远程调用gprc服务失败: %srpc error: code = Unavailable desc = error reading from server: read tcp 192.168.111.40:57365->192.168.111.40:9001: wsarecv: An existing connection was forcibly closed by the remote host.
+2024-03-04 16:47:10	ERROR	product/product.go:38	获取产品失败
+2024-03-04 16:47:10	INFO	middleware/logger.go:53	[map[latencyTime:8.9619065s method:POST requestParam:{"id":"11"} response:map[code:200 data:[{}] message:success] responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-04 16:48:12	INFO	middleware/logger.go:53	[map[latencyTime:12.228816s method:POST requestParam:{"id":"11"} response:map[code:200 data:[{产品11}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-04 16:48:21	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-04 16:48:21	INFO	middleware/logger.go:53	[map[latencyTime:504.4µs method:POST requestParam:{"id":"1"} response:<nil> responseCode:401 uri:/sxp/product/getProduct]]
+2024-03-04 16:48:24	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1NDIyODQsImlzcyI6InN4cC1zZXJ2ZXIifQ.4gw0bFxX4--YA7P5h0zbPnElf2Pgznp0RL9mZzewj7o] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-04 16:48:36	INFO	middleware/logger.go:53	[map[latencyTime:1.7767955s method:POST requestParam:{"id":"1"} response:map[code:200 data:[{产品1}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-04 16:49:14	INFO	middleware/logger.go:53	[map[latencyTime:503.8µs method:POST requestParam:{"productId":1,"product":"ccccc"} response:map[code:200 data:[{}] message:success] responseCode:200 uri:/sxp/product/updateProduct]]
+2024-03-04 16:49:18	INFO	middleware/logger.go:53	[map[latencyTime:503.4µs method:POST requestParam:{"id":"1"} response:map[code:200 data:[{ccccc}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-04 16:51:46	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-04 16:51:46	INFO	middleware/logger.go:53	[map[latencyTime:503.3µs method:POST requestParam:{"id":"1"} response:<nil> responseCode:401 uri:/sxp/product/getProduct]]
+2024-03-04 16:51:54	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-04 16:51:54	INFO	middleware/logger.go:53	[map[latencyTime:504.1µs method:POST requestParam:{"id":"1"} response:<nil> responseCode:401 uri:/sxp/product/getProduct]]
+2024-03-04 16:52:02	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-04 16:52:02	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"id":"1"} response:<nil> responseCode:401 uri:/sxp/product/getProduct]]
+2024-03-04 16:52:37	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-04 16:52:37	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"id":"1"} response:<nil> responseCode:401 uri:/sxp/product/getProduct]]
+2024-03-04 16:52:56	INFO	middleware/logger.go:53	[map[latencyTime:503µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1NDI1NTYsImlzcyI6InN4cC1zZXJ2ZXIifQ.PjtySEul9EFXA78DPqZDXx7PsiXgipq933RrGLW6Feg] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-04 16:53:21	INFO	middleware/logger.go:53	[map[latencyTime:16.0182872s method:POST requestParam:{"id":"1"} response:map[code:200 data:[{产品1}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-04 16:53:48	INFO	middleware/logger.go:53	[map[latencyTime:1.0293ms method:POST requestParam:{"id":"12"} response:map[code:200 data:[{产品12}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-04 16:54:09	INFO	middleware/logger.go:53	[map[latencyTime:625.3µs method:POST requestParam:{"id":"12"} response:map[code:200 data:[{产品12}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-04 16:54:46	INFO	middleware/logger.go:53	[map[latencyTime:1.5982ms method:POST requestParam:{"id":"12"} response:map[code:200 data:[{产品12}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-04 16:55:02	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-04 16:55:02	INFO	middleware/logger.go:53	[map[latencyTime:504.3µs method:POST requestParam:{"id":"12"} response:<nil> responseCode:401 uri:/sxp/product/getProduct]]
+2024-03-04 16:57:35	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-04 16:57:35	INFO	middleware/logger.go:53	[map[latencyTime:1.0213ms method:POST requestParam:{"id":"12"} response:<nil> responseCode:401 uri:/sxp/product/getProduct]]
+2024-03-04 16:57:37	INFO	middleware/logger.go:53	[map[latencyTime:126.8µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1NDI4MzcsImlzcyI6InN4cC1zZXJ2ZXIifQ.XVG2aEr66lkvcHshOxdHlrM2PfpcIpDMAPF9cNUVcvc] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-04 16:58:09	INFO	middleware/logger.go:53	[map[latencyTime:22.0330783s method:POST requestParam:{"id":"12"} response:map[code:200 data:[{产品12}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-04 16:59:38	ERROR	service/product.go:65	grpc服务调用失败: rpc error: code = DataLoss desc = grpc服务端解析token失败
+2024-03-04 16:59:38	ERROR	product/product.go:24	远程调用gprc服务失败: %srpc error: code = DataLoss desc = grpc服务端解析token失败
+2024-03-04 16:59:38	ERROR	product/product.go:38	获取产品失败
+2024-03-04 16:59:38	INFO	middleware/logger.go:53	[map[latencyTime:16.945959s method:POST requestParam:{"id":"12"} response:map[code:200 data:[{}] message:success] responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-04 17:03:15	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-04 17:03:15	INFO	middleware/logger.go:53	[map[latencyTime:1.044ms method:POST requestParam:{"id":"12"} response:<nil> responseCode:401 uri:/sxp/product/getProduct]]
+2024-03-04 17:03:18	INFO	middleware/logger.go:53	[map[latencyTime:504.1µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1NDMxNzgsImlzcyI6InN4cC1zZXJ2ZXIifQ.rsoFMrKhQ9ATYgWP72ixcXfD96n-VGZuq_-Fx9YyAg4] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-04 17:03:34	ERROR	service/product.go:72	grpc服务调用失败: rpc error: code = DataLoss desc = grpc服务端解析token失败
+2024-03-04 17:03:34	ERROR	product/product.go:24	远程调用gprc服务失败: %srpc error: code = DataLoss desc = grpc服务端解析token失败
+2024-03-04 17:03:34	ERROR	product/product.go:38	获取产品失败
+2024-03-04 17:03:34	INFO	middleware/logger.go:53	[map[latencyTime:6.1024725s method:POST requestParam:{"id":"12"} response:map[code:200 data:[{}] message:success] responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-04 17:04:01	ERROR	service/product.go:72	grpc服务调用失败: rpc error: code = DataLoss desc = grpc服务端解析token失败
+2024-03-04 17:04:26	ERROR	product/product.go:24	远程调用gprc服务失败: %srpc error: code = DataLoss desc = grpc服务端解析token失败
+2024-03-04 17:04:26	ERROR	product/product.go:38	获取产品失败
+2024-03-04 17:04:26	INFO	middleware/logger.go:53	[map[latencyTime:35.1501437s method:POST requestParam:{"id":"12"} response:map[code:200 data:[{}] message:success] responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-04 17:04:53	ERROR	product/product.go:24	远程调用gprc服务失败: %s获取返回标志失败
+2024-03-04 17:04:53	ERROR	product/product.go:38	获取产品失败
+2024-03-04 17:04:53	INFO	middleware/logger.go:53	[map[latencyTime:20.122746s method:POST requestParam:{"id":"12"} response:map[code:200 data:[{}] message:success] responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-04 17:06:36	ERROR	product/product.go:24	远程调用gprc服务失败: %s获取返回标志失败
+2024-03-04 17:06:36	ERROR	product/product.go:38	获取产品失败
+2024-03-04 17:06:36	INFO	middleware/logger.go:53	[map[latencyTime:33.9031981s method:POST requestParam:{"id":"12"} response:map[code:200 data:[{}] message:success] responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-04 17:10:19	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-04 17:10:19	INFO	middleware/logger.go:53	[map[latencyTime:1.0676ms method:POST requestParam:{"id":"12"} response:<nil> responseCode:401 uri:/sxp/product/getProduct]]
+2024-03-04 17:10:22	INFO	middleware/logger.go:53	[map[latencyTime:503.4µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1NDM2MDIsImlzcyI6InN4cC1zZXJ2ZXIifQ.ZIUhOJPnYpAmqQFG5Vf2WALqb86lGrsvhLLpmEZrQok] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-04 17:10:38	INFO	middleware/logger.go:53	[map[latencyTime:6.2938426s method:POST requestParam:{"id":"12"} response:map[code:200 data:[{产品12}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-04 17:11:19	INFO	service/product.go:152	[receive EOF]
+2024-03-04 17:11:19	INFO	middleware/logger.go:53	[map[latencyTime:1.05ms method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{12 产品12 1} {22 产品22 1} {8 产品8 1} {20 产品20 1} {24 产品24 1} {16 产品16 1} {10 产品10 1} {14 产品14 1} {18 产品18 1} {4 产品4 1} {2 产品2 1} {6 产品6 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 17:11:23	INFO	service/product.go:152	[receive EOF]
+2024-03-04 17:11:23	INFO	middleware/logger.go:53	[map[latencyTime:503.5µs method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{21 产品21 2} {23 产品23 2} {5 产品5 2} {11 产品11 2} {17 产品17 2} {1 产品1 2} {3 产品3 2} {13 产品13 2} {15 产品15 2} {19 产品19 2} {7 产品7 2} {9 产品9 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-04 17:40:19	INFO	middleware/logger.go:53	[map[latencyTime:541.7µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1NDUzOTksImlzcyI6InN4cC1zZXJ2ZXIifQ.8KvSKcURLdqhOSnOXTkjdwXPAw7VCTMVi9RfFbSpQpA] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-04 17:40:42	INFO	middleware/logger.go:53	[map[latencyTime:10.187455s method:POST requestParam:{"id":"12"} response:map[code:200 data:[{产品12}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-04 17:41:08	ERROR	service/product.go:72	grpc服务调用失败: rpc error: code = DataLoss desc = grpc服务端解析token失败
+2024-03-04 17:41:08	ERROR	product/product.go:24	远程调用gprc服务失败: %srpc error: code = DataLoss desc = grpc服务端解析token失败
+2024-03-04 17:41:08	ERROR	product/product.go:38	获取产品失败
+2024-03-04 17:41:08	INFO	middleware/logger.go:53	[map[latencyTime:2.0887ms method:POST requestParam:{"id":"12"} response:<nil> responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-04 17:41:13	INFO	middleware/logger.go:53	[map[latencyTime:502.8µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk1NDU0NTMsImlzcyI6InN4cC1zZXJ2ZXIifQ.UCl5LSBqxSyPNjH-Yvq71xKwtnooKvXFOrvuzRcU38w] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-04 17:41:26	ERROR	middleware/auth.go:31	请求头中auth格式有误
+2024-03-04 17:41:26	INFO	middleware/logger.go:53	[map[latencyTime:542.7µs method:POST requestParam:{"id":"12"} response:<nil> responseCode:401 uri:/sxp/product/getProduct]]
+2024-03-04 17:41:53	ERROR	middleware/auth.go:31	请求头中auth格式有误
+2024-03-04 17:41:53	INFO	middleware/logger.go:53	[map[latencyTime:504.7µs method:POST requestParam:{"id":"12"} response:<nil> responseCode:401 uri:/sxp/product/getProduct]]
+2024-03-04 17:42:10	ERROR	middleware/auth.go:31	请求头中auth格式有误
+2024-03-04 17:42:10	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"id":"12"} response:<nil> responseCode:401 uri:/sxp/product/getProduct]]
+2024-03-04 17:42:20	ERROR	service/product.go:72	grpc服务调用失败: rpc error: code = DataLoss desc = grpc服务端解析token失败
+2024-03-04 17:42:20	ERROR	product/product.go:24	远程调用gprc服务失败: %srpc error: code = DataLoss desc = grpc服务端解析token失败
+2024-03-04 17:42:20	ERROR	product/product.go:38	获取产品失败
+2024-03-04 17:42:20	INFO	middleware/logger.go:53	[map[latencyTime:503.7µs method:POST requestParam:{"id":"12"} response:<nil> responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-04 17:43:13	ERROR	service/product.go:72	grpc服务调用失败: rpc error: code = DataLoss desc = grpc服务端解析token失败
+2024-03-04 17:43:13	ERROR	product/product.go:24	远程调用gprc服务失败: %srpc error: code = DataLoss desc = grpc服务端解析token失败
+2024-03-04 17:43:13	ERROR	product/product.go:38	获取产品失败
+2024-03-04 17:43:13	INFO	middleware/logger.go:53	[map[latencyTime:18.8847234s method:POST requestParam:{"id":"12"} response:<nil> responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-05 15:26:45	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-05 15:26:45	INFO	middleware/logger.go:53	[map[latencyTime:2.8587ms method:POST requestParam:{"status":"2"} response:<nil> responseCode:401 uri:/sxp/product/getByStatus]]
+2024-03-05 15:26:48	INFO	middleware/logger.go:53	[map[latencyTime:510.8µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk2MjM3ODgsImlzcyI6InN4cC1zZXJ2ZXIifQ.0islCWlNMagyYXUh9-UnbicdeDF5zDMGKiwCycsl8yk] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-05 15:26:59	ERROR	service/product.go:122	grpc服务调用失败: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 192.168.111.40:9001: connectex: No connection could be made because the target machine actively refused it."
+2024-03-05 15:26:59	ERROR	product/product.go:54	远程调用gprc服务失败: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 192.168.111.40:9001: connectex: No connection could be made because the target machine actively refused it."
+2024-03-05 15:26:59	ERROR	product/product.go:85	根据status获取产品失败
+2024-03-05 15:26:59	INFO	middleware/logger.go:53	[map[latencyTime:1.045ms method:POST requestParam:{"status":"2"} response:<nil> responseCode:500 uri:/sxp/product/getByStatus]]
+2024-03-05 15:27:21	ERROR	service/product.go:122	grpc服务调用失败: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 192.168.111.40:9001: connectex: No connection could be made because the target machine actively refused it."
+2024-03-05 15:27:21	ERROR	product/product.go:54	远程调用gprc服务失败: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 192.168.111.40:9001: connectex: No connection could be made because the target machine actively refused it."
+2024-03-05 15:27:21	ERROR	product/product.go:85	根据status获取产品失败
+2024-03-05 15:27:21	INFO	middleware/logger.go:53	[map[latencyTime:1.089ms method:POST requestParam:{"status":"2"} response:<nil> responseCode:500 uri:/sxp/product/getByStatus]]
+2024-03-05 15:28:01	ERROR	service/product.go:122	grpc服务调用失败: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 192.168.111.40:9001: connectex: No connection could be made because the target machine actively refused it."
+2024-03-05 15:28:01	ERROR	product/product.go:54	远程调用gprc服务失败: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 192.168.111.40:9001: connectex: No connection could be made because the target machine actively refused it."
+2024-03-05 15:28:01	ERROR	product/product.go:85	根据status获取产品失败
+2024-03-05 15:28:01	INFO	middleware/logger.go:53	[map[latencyTime:503µs method:POST requestParam:{"status":"2"} response:<nil> responseCode:500 uri:/sxp/product/getByStatus]]
+2024-03-05 15:29:05	INFO	service/product.go:152	[receive EOF]
+2024-03-05 15:29:09	INFO	middleware/logger.go:53	[map[latencyTime:22.3006513s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{7 产品7 2} {9 产品9 2} {11 产品11 2} {15 产品15 2} {5 产品5 2} {19 产品19 2} {23 产品23 2} {17 产品17 2} {21 产品21 2} {1 产品1 2} {3 产品3 2} {13 产品13 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-05 15:29:56	INFO	service/product.go:152	[receive EOF]
+2024-03-05 15:29:56	INFO	middleware/logger.go:53	[map[latencyTime:33.8180014s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{23 产品23 2} {5 产品5 2} {19 产品19 2} {13 产品13 2} {17 产品17 2} {21 产品21 2} {1 产品1 2} {3 产品3 2} {15 产品15 2} {7 产品7 2} {9 产品9 2} {11 产品11 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-05 15:30:02	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-05 15:30:02	INFO	middleware/logger.go:53	[map[latencyTime:503.3µs method:POST requestParam:{"status":"1"} response:<nil> responseCode:401 uri:/sxp/product/getByStatus]]
+2024-03-05 15:30:05	INFO	middleware/logger.go:53	[map[latencyTime:201.8µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk2MjM5ODUsImlzcyI6InN4cC1zZXJ2ZXIifQ.u3Uk_cRJpCVNBW7Yb69trsHFyDSGiMIKay39LlGUys4] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-05 15:30:22	INFO	service/product.go:152	[receive EOF]
+2024-03-05 15:30:22	INFO	middleware/logger.go:53	[map[latencyTime:4.7203225s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{12 产品12 1} {16 产品16 1} {18 产品18 1} {20 产品20 1} {8 产品8 1} {22 产品22 1} {24 产品24 1} {2 产品2 1} {4 产品4 1} {6 产品6 1} {14 产品14 1} {10 产品10 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-07 14:32:28	INFO	middleware/logger.go:53	[map[latencyTime:503.1µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk3OTMzMjgsImlzcyI6InN4cC1zZXJ2ZXIifQ.g09fwheqZ-kAYLkUyrENsAzvEAXRsg18wn-4tnmi0o8] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-07 14:32:42	INFO	middleware/logger.go:53	[map[latencyTime:3.8179ms method:POST requestParam:{"id":"12"} response:map[code:200 data:[{产品12}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-07 14:34:38	ERROR	service/product.go:71	grpc服务调用失败: rpc error: code = DeadlineExceeded desc = context deadline exceeded
+2024-03-07 14:34:38	ERROR	product/product.go:24	远程调用gprc服务失败: %srpc error: code = DeadlineExceeded desc = context deadline exceeded
+2024-03-07 14:34:38	ERROR	product/product.go:38	获取产品失败
+2024-03-07 14:34:38	INFO	middleware/logger.go:53	[map[latencyTime:3.1389504s method:POST requestParam:{"id":"12"} response:<nil> responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-07 14:35:42	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-07 14:35:42	INFO	middleware/logger.go:53	[map[latencyTime:1.0421ms method:POST requestParam:{"id":"12"} response:<nil> responseCode:401 uri:/sxp/product/getProduct]]
+2024-03-07 14:35:49	INFO	middleware/logger.go:53	[map[latencyTime:346.6µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk3OTM1MjksImlzcyI6InN4cC1zZXJ2ZXIifQ.oETIFlK4U6s6O-qkOKo_SJ5Hc-mlLEmkAIM3cHsCcDA] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-07 14:36:10	INFO	middleware/logger.go:53	[map[latencyTime:8.9865972s method:POST requestParam:{"id":"12"} response:map[code:200 data:[{产品12}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-07 14:36:24	INFO	middleware/logger.go:53	[map[latencyTime:1.1432ms method:POST requestParam:{"id":"12"} response:map[code:200 data:[{产品12}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-07 14:36:54	INFO	middleware/logger.go:53	[map[latencyTime:21.8278687s method:POST requestParam:{"id":"12"} response:map[code:200 data:[{产品12}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-07 14:38:44	INFO	middleware/logger.go:53	[map[latencyTime:38.7162728s method:POST requestParam:{"id":"12"} response:map[code:200 data:[{产品12}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-07 14:42:05	INFO	middleware/logger.go:53	[map[latencyTime:504.1µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk3OTM5MDUsImlzcyI6InN4cC1zZXJ2ZXIifQ.hHha7TS5RRCEoTzhW4SbkJbUjqLADBuZJbHhbdvarao] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-07 14:42:17	INFO	middleware/logger.go:53	[map[latencyTime:1.5255ms method:POST requestParam:{"id":"12"} response:map[code:200 data:[{产品12}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-07 14:49:04	INFO	middleware/logger.go:53	[map[latencyTime:562.8µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk3OTQzMjQsImlzcyI6InN4cC1zZXJ2ZXIifQ.p4OVbV-Nv_uwng7RnqEUBqC-bFWK_NbtoLws9Hnm5sU] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-07 14:49:13	INFO	middleware/logger.go:53	[map[latencyTime:2.4106ms method:POST requestParam:{"id":"12"} response:map[code:200 data:[{产品12}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-07 14:55:47	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-07 14:55:47	INFO	middleware/logger.go:53	[map[latencyTime:653.4µs method:POST requestParam:{"id":"12"} response:<nil> responseCode:401 uri:/sxp/product/getProduct]]
+2024-03-07 14:55:48	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-07 14:55:48	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"id":"12"} response:<nil> responseCode:401 uri:/sxp/product/getProduct]]
+2024-03-07 14:56:29	INFO	middleware/logger.go:53	[map[latencyTime:124.6µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk3OTQ3NjksImlzcyI6InN4cC1zZXJ2ZXIifQ.QFBGuCgo0jL9j3GgOa-XCQbCwiOFLAp33Gg_WcUThyE] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-07 14:56:38	INFO	middleware/logger.go:53	[map[latencyTime:2.1951ms method:POST requestParam:{"id":"12"} response:map[code:200 data:[{产品12}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-07 15:01:29	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-07 15:01:29	INFO	middleware/logger.go:53	[map[latencyTime:1.0649ms method:POST requestParam:{"id":"12"} response:<nil> responseCode:401 uri:/sxp/product/getProduct]]
+2024-03-07 15:01:31	INFO	middleware/logger.go:53	[map[latencyTime:544.9µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk3OTUwNzEsImlzcyI6InN4cC1zZXJ2ZXIifQ.pSaO6kQJHq1dh2DUU25SB_IXOh1E99b6JJQwQydik4g] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-07 15:01:45	INFO	middleware/logger.go:53	[map[latencyTime:1.8907ms method:POST requestParam:{"id":"12"} response:map[code:200 data:[{产品12}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-07 15:07:31	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-07 15:07:31	INFO	middleware/logger.go:53	[map[latencyTime:504.7µs method:POST requestParam:{"id":"12"} response:<nil> responseCode:401 uri:/sxp/product/getProduct]]
+2024-03-07 15:07:34	INFO	middleware/logger.go:53	[map[latencyTime:502.8µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk3OTU0MzQsImlzcyI6InN4cC1zZXJ2ZXIifQ.tlVW2_Atg8ivxUY-N3rczoeS-remmwv8fxEMzCviCr8] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-07 15:07:41	INFO	middleware/logger.go:53	[map[latencyTime:2.0347ms method:POST requestParam:{"id":"12"} response:map[code:200 data:[{产品12}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-07 15:13:35	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-07 15:13:35	INFO	middleware/logger.go:53	[map[latencyTime:652µs method:POST requestParam:{"id":"12"} response:<nil> responseCode:401 uri:/sxp/product/getProduct]]
+2024-03-07 15:13:38	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk3OTU3OTgsImlzcyI6InN4cC1zZXJ2ZXIifQ.HBtSUeGfH98zJ2jMtJiPfY_x3arkZ49n8-jkM_1rDgU] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-07 15:13:46	INFO	middleware/logger.go:53	[map[latencyTime:3.1698ms method:POST requestParam:{"id":"12"} response:map[code:200 data:[{产品12}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-07 15:13:47	INFO	middleware/logger.go:53	[map[latencyTime:1.0507ms method:POST requestParam:{"id":"12"} response:map[code:200 data:[{产品12}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-07 15:14:05	INFO	middleware/logger.go:53	[map[latencyTime:1.5225ms method:POST requestParam:{"productId":1,"product":"ccccc"} response:map[code:200 data:[{}] message:success] responseCode:200 uri:/sxp/product/updateProduct]]
+2024-03-08 08:58:43	INFO	middleware/logger.go:53	[map[latencyTime:99.5µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NTk3MDMsImlzcyI6InN4cC1zZXJ2ZXIifQ.FKFlgtEe4JGrawo4l1xcSirhX1PnYFJHvXHy0gJyy5A] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 08:59:20	INFO	middleware/logger.go:53	[map[latencyTime:26.0730564s method:POST requestParam:{"id":"12"} response:map[code:200 data:[{产品12}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 09:00:01	INFO	service/product.go:152	[receive EOF]
+2024-03-08 09:00:01	INFO	middleware/logger.go:53	[map[latencyTime:15.2530836s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{12 产品12 1} {2 产品2 1} {8 产品8 1} {14 产品14 1} {16 产品16 1} {18 产品18 1} {20 产品20 1} {24 产品24 1} {6 产品6 1} {10 产品10 1} {22 产品22 1} {4 产品4 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:12:09	INFO	middleware/logger.go:53	[map[latencyTime:661µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NjA1MDksImlzcyI6InN4cC1zZXJ2ZXIifQ.FGIy9lEP3gc4pbMa_TSanupH1oIoosw-EwejpmdLAyw] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 09:12:27	INFO	service/product.go:152	[receive EOF]
+2024-03-08 09:12:27	INFO	middleware/logger.go:53	[map[latencyTime:8.6376468s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{4 产品4 1} {10 产品10 1} {22 产品22 1} {8 产品8 1} {12 产品12 1} {2 产品2 1} {14 产品14 1} {16 产品16 1} {6 产品6 1} {18 产品18 1} {20 产品20 1} {24 产品24 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:13:00	INFO	service/product.go:152	[receive EOF]
+2024-03-08 09:13:00	INFO	middleware/logger.go:53	[map[latencyTime:1.0955ms method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{4 产品4 1} {10 产品10 1} {22 产品22 1} {8 产品8 1} {12 产品12 1} {2 产品2 1} {14 产品14 1} {16 产品16 1} {6 产品6 1} {18 产品18 1} {20 产品20 1} {24 产品24 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:16:48	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-08 09:16:48	INFO	middleware/logger.go:53	[map[latencyTime:1.3466ms method:POST requestParam:{"status":"1"} response:<nil> responseCode:401 uri:/sxp/product/getByStatus]]
+2024-03-08 09:16:51	INFO	middleware/logger.go:53	[map[latencyTime:77.8µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NjA3OTEsImlzcyI6InN4cC1zZXJ2ZXIifQ.8ZIHAFDuZgTDNAAdhCQtYeOnFW-7smlEk4BUl8jtqhY] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 09:16:59	INFO	service/product.go:152	[receive EOF]
+2024-03-08 09:17:01	INFO	middleware/logger.go:53	[map[latencyTime:2.1254691s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{14 产品14 1} {16 产品16 1} {20 产品20 1} {24 产品24 1} {6 产品6 1} {18 产品18 1} {22 产品22 1} {4 产品4 1} {10 产品10 1} {2 产品2 1} {8 产品8 1} {12 产品12 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:26:25	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-08 09:26:25	INFO	middleware/logger.go:53	[map[latencyTime:2.011ms method:POST requestParam:{"status":"1"} response:<nil> responseCode:401 uri:/sxp/product/getByStatus]]
+2024-03-08 09:26:30	INFO	middleware/logger.go:53	[map[latencyTime:502.9µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NjEzNzAsImlzcyI6InN4cC1zZXJ2ZXIifQ.KQSja2hd2_uDOC24AYwlsqo_vdPzVqie4f_SlYe9Sac] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 09:26:55	INFO	service/product.go:153	[receive EOF]
+2024-03-08 09:26:57	INFO	middleware/logger.go:53	[map[latencyTime:18.5416908s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{22 产品22 1} {4 产品4 1} {10 产品10 1} {2 产品2 1} {8 产品8 1} {12 产品12 1} {14 产品14 1} {16 产品16 1} {20 产品20 1} {24 产品24 1} {6 产品6 1} {18 产品18 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:27:31	INFO	service/product.go:153	[receive EOF]
+2024-03-08 09:27:33	INFO	middleware/logger.go:53	[map[latencyTime:2.2604994s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{24 产品24 1} {6 产品6 1} {18 产品18 1} {20 产品20 1} {22 产品22 1} {4 产品4 1} {10 产品10 1} {2 产品2 1} {8 产品8 1} {12 产品12 1} {14 产品14 1} {16 产品16 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:27:39	INFO	service/product.go:153	[receive EOF]
+2024-03-08 09:27:41	INFO	middleware/logger.go:53	[map[latencyTime:2.2447849s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{4 产品4 1} {10 产品10 1} {22 产品22 1} {8 产品8 1} {12 产品12 1} {2 产品2 1} {14 产品14 1} {16 产品16 1} {6 产品6 1} {18 产品18 1} {20 产品20 1} {24 产品24 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:29:01	INFO	service/product.go:153	[receive EOF]
+2024-03-08 09:29:03	INFO	middleware/logger.go:53	[map[latencyTime:2.1287482s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{4 产品4 1} {10 产品10 1} {22 产品22 1} {2 产品2 1} {8 产品8 1} {12 产品12 1} {14 产品14 1} {16 产品16 1} {6 产品6 1} {18 产品18 1} {20 产品20 1} {24 产品24 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:29:27	INFO	service/product.go:153	[receive EOF]
+2024-03-08 09:29:29	INFO	middleware/logger.go:53	[map[latencyTime:2.1244527s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{10 产品10 1} {22 产品22 1} {4 产品4 1} {2 产品2 1} {8 产品8 1} {12 产品12 1} {16 产品16 1} {14 产品14 1} {18 产品18 1} {20 产品20 1} {24 产品24 1} {6 产品6 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:37:52	INFO	middleware/logger.go:53	[map[latencyTime:503.9µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NjIwNTIsImlzcyI6InN4cC1zZXJ2ZXIifQ.PK-JgoX14_LGs4zzlt2r5eHkjGhy5xDvB6gY7_-AWt0] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 09:38:01	INFO	service/product.go:153	[receive EOF]
+2024-03-08 09:38:03	INFO	middleware/logger.go:53	[map[latencyTime:2.2292062s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{12 产品12 1} {2 产品2 1} {8 产品8 1} {14 产品14 1} {16 产品16 1} {18 产品18 1} {20 产品20 1} {24 产品24 1} {6 产品6 1} {10 产品10 1} {22 产品22 1} {4 产品4 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:38:33	INFO	service/product.go:153	[receive EOF]
+2024-03-08 09:38:35	INFO	middleware/logger.go:53	[map[latencyTime:2.2321378s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{2 产品2 1} {8 产品8 1} {12 产品12 1} {14 产品14 1} {16 产品16 1} {20 产品20 1} {24 产品24 1} {6 产品6 1} {18 产品18 1} {22 产品22 1} {4 产品4 1} {10 产品10 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:38:42	INFO	service/product.go:153	[receive EOF]
+2024-03-08 09:38:44	INFO	middleware/logger.go:53	[map[latencyTime:2.2352947s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{18 产品18 1} {20 产品20 1} {24 产品24 1} {6 产品6 1} {22 产品22 1} {4 产品4 1} {10 产品10 1} {2 产品2 1} {8 产品8 1} {12 产品12 1} {16 产品16 1} {14 产品14 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:39:08	INFO	service/product.go:153	[receive EOF]
+2024-03-08 09:39:10	INFO	middleware/logger.go:53	[map[latencyTime:2.2262601s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{24 产品24 1} {6 产品6 1} {18 产品18 1} {20 产品20 1} {22 产品22 1} {4 产品4 1} {10 产品10 1} {2 产品2 1} {8 产品8 1} {12 产品12 1} {14 产品14 1} {16 产品16 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:39:38	INFO	service/product.go:153	[receive EOF]
+2024-03-08 09:39:40	INFO	middleware/logger.go:53	[map[latencyTime:2.2337007s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{22 产品22 1} {4 产品4 1} {10 产品10 1} {2 产品2 1} {8 产品8 1} {12 产品12 1} {14 产品14 1} {16 产品16 1} {24 产品24 1} {6 产品6 1} {18 产品18 1} {20 产品20 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:40:53	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-08 09:40:53	INFO	middleware/logger.go:53	[map[latencyTime:1.5721ms method:POST requestParam:{"status":"1"} response:<nil> responseCode:401 uri:/sxp/product/getByStatus]]
+2024-03-08 09:40:57	INFO	middleware/logger.go:53	[map[latencyTime:502.8µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NjIyMzcsImlzcyI6InN4cC1zZXJ2ZXIifQ.-FqCIchvSySec9aqFXKD2BMx9glBgJ3orHgriDms5nw] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 09:41:04	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-08 09:41:04	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"status":"1"} response:<nil> responseCode:401 uri:/sxp/product/getByStatus]]
+2024-03-08 09:41:15	INFO	service/product.go:153	[receive EOF]
+2024-03-08 09:41:17	INFO	middleware/logger.go:53	[map[latencyTime:2.2392307s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{20 产品20 1} {24 产品24 1} {6 产品6 1} {18 产品18 1} {22 产品22 1} {4 产品4 1} {10 产品10 1} {2 产品2 1} {8 产品8 1} {12 产品12 1} {14 产品14 1} {16 产品16 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:41:38	INFO	service/product.go:153	[receive EOF]
+2024-03-08 09:41:40	INFO	middleware/logger.go:53	[map[latencyTime:2.2154737s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{8 产品8 1} {12 产品12 1} {2 产品2 1} {14 产品14 1} {16 产品16 1} {6 产品6 1} {18 产品18 1} {20 产品20 1} {24 产品24 1} {4 产品4 1} {10 产品10 1} {22 产品22 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:41:54	INFO	service/product.go:153	[receive EOF]
+2024-03-08 09:41:56	INFO	middleware/logger.go:53	[map[latencyTime:2.2462779s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{7 产品7 2} {11 产品11 2} {19 产品19 2} {21 产品21 2} {3 产品3 2} {9 产品9 2} {15 产品15 2} {5 产品5 2} {13 产品13 2} {17 产品17 2} {23 产品23 2} {1 产品1 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:42:09	INFO	service/product.go:153	[receive EOF]
+2024-03-08 09:42:11	INFO	middleware/logger.go:53	[map[latencyTime:2.2314442s method:POST requestParam:{"status":"3"} response:map[code:200 data:[[]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:42:27	INFO	service/product.go:153	[receive EOF]
+2024-03-08 09:42:29	INFO	middleware/logger.go:53	[map[latencyTime:2.2310886s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{12 产品12 1} {2 产品2 1} {8 产品8 1} {14 产品14 1} {16 产品16 1} {18 产品18 1} {20 产品20 1} {24 产品24 1} {6 产品6 1} {10 产品10 1} {22 产品22 1} {4 产品4 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:49:35	INFO	middleware/logger.go:53	[map[latencyTime:503.2µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NjI3NTUsImlzcyI6InN4cC1zZXJ2ZXIifQ.wGvTEyZfxRZMMscVNuc0HbcXLMD30d1u1VUB-uzHzQE] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 09:49:43	INFO	service/product.go:154	[receive EOF]
+2024-03-08 09:49:46	INFO	middleware/logger.go:53	[map[latencyTime:2.2142748s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{2 产品2 1} {8 产品8 1} {12 产品12 1} {14 产品14 1} {16 产品16 1} {20 产品20 1} {24 产品24 1} {6 产品6 1} {18 产品18 1} {22 产品22 1} {4 产品4 1} {10 产品10 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:52:43	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-08 09:52:43	INFO	middleware/logger.go:53	[map[latencyTime:1.1876ms method:POST requestParam:{"status":"1"} response:<nil> responseCode:401 uri:/sxp/product/getByStatus]]
+2024-03-08 09:52:54	INFO	middleware/logger.go:53	[map[latencyTime:430.5µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NjI5NTQsImlzcyI6InN4cC1zZXJ2ZXIifQ.1RuWmOaBxrRHvvlIUeF-B4E_n74JB2ID86b96qDvgVU] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 09:53:01	INFO	service/product.go:153	[receive EOF]
+2024-03-08 09:53:03	INFO	middleware/logger.go:53	[map[latencyTime:2.2369011s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{2 产品2 1} {8 产品8 1} {12 产品12 1} {16 产品16 1} {14 产品14 1} {18 产品18 1} {20 产品20 1} {24 产品24 1} {6 产品6 1} {22 产品22 1} {4 产品4 1} {10 产品10 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:53:33	INFO	service/product.go:153	[receive EOF]
+2024-03-08 09:53:36	INFO	middleware/logger.go:53	[map[latencyTime:5.4694746s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{20 产品20 1} {24 产品24 1} {6 产品6 1} {18 产品18 1} {22 产品22 1} {4 产品4 1} {10 产品10 1} {2 产品2 1} {8 产品8 1} {12 产品12 1} {14 产品14 1} {16 产品16 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:53:39	INFO	service/product.go:153	[receive EOF]
+2024-03-08 09:53:41	INFO	middleware/logger.go:53	[map[latencyTime:2.2232294s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{22 产品22 1} {4 产品4 1} {10 产品10 1} {2 产品2 1} {8 产品8 1} {12 产品12 1} {14 产品14 1} {16 产品16 1} {20 产品20 1} {24 产品24 1} {6 产品6 1} {18 产品18 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:53:54	INFO	service/product.go:153	[receive EOF]
+2024-03-08 09:53:56	INFO	middleware/logger.go:53	[map[latencyTime:2.256872s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{2 产品2 1} {8 产品8 1} {12 产品12 1} {16 产品16 1} {14 产品14 1} {18 产品18 1} {20 产品20 1} {24 产品24 1} {6 产品6 1} {10 产品10 1} {22 产品22 1} {4 产品4 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:54:12	INFO	service/product.go:153	[receive EOF]
+2024-03-08 09:54:14	INFO	middleware/logger.go:53	[map[latencyTime:2.2236956s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{5 产品5 2} {9 产品9 2} {15 产品15 2} {23 产品23 2} {1 产品1 2} {13 产品13 2} {17 产品17 2} {11 产品11 2} {19 产品19 2} {21 产品21 2} {3 产品3 2} {7 产品7 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:55:00	INFO	service/product.go:153	[receive EOF]
+2024-03-08 09:55:02	INFO	middleware/logger.go:53	[map[latencyTime:2.1409855s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{15 产品15 2} {5 产品5 2} {9 产品9 2} {17 产品17 2} {23 产品23 2} {1 产品1 2} {13 产品13 2} {11 产品11 2} {19 产品19 2} {21 产品21 2} {3 产品3 2} {7 产品7 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:55:03	INFO	service/product.go:153	[receive EOF]
+2024-03-08 09:55:05	INFO	middleware/logger.go:53	[map[latencyTime:2.1165723s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{23 产品23 2} {1 产品1 2} {13 产品13 2} {17 产品17 2} {21 产品21 2} {3 产品3 2} {7 产品7 2} {11 产品11 2} {19 产品19 2} {5 产品5 2} {9 产品9 2} {15 产品15 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 09:57:54	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-08 09:57:54	INFO	middleware/logger.go:53	[map[latencyTime:503.6µs method:POST requestParam:{"status":"2"} response:<nil> responseCode:401 uri:/sxp/product/getByStatus]]
+2024-03-08 09:57:57	INFO	middleware/logger.go:53	[map[latencyTime:503µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NjMyNTcsImlzcyI6InN4cC1zZXJ2ZXIifQ.XmxsbReWciGDTAGvLRs32UPBwQ88NpMRcfgtSZFXIO8] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 09:58:08	INFO	middleware/logger.go:53	[map[latencyTime:2.1118657s method:POST requestParam:{"id":"12"} response:map[code:200 data:[{产品12}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 09:59:27	INFO	middleware/logger.go:53	[map[latencyTime:2.1601373s method:POST requestParam:{"id":"12"} response:map[code:200 data:[{产品12}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 10:00:34	INFO	middleware/logger.go:53	[map[latencyTime:2.2479162s method:POST requestParam:{"id":"12"} response:map[code:200 data:[{产品12}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 10:01:04	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-08 10:01:04	INFO	middleware/logger.go:53	[map[latencyTime:504.1µs method:POST requestParam:{"id":"12"} response:<nil> responseCode:401 uri:/sxp/product/getProduct]]
+2024-03-08 10:01:07	INFO	middleware/logger.go:53	[map[latencyTime:233.6µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NjM0NDcsImlzcyI6InN4cC1zZXJ2ZXIifQ.pE7Ejsmhrq-f605xUN4OaA0QQG4cl6PE5kSn7UmwllM] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 10:01:16	INFO	service/product.go:155	[receive EOF]
+2024-03-08 10:01:18	INFO	middleware/logger.go:53	[map[latencyTime:2.2543287s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{5 产品5 2} {9 产品9 2} {15 产品15 2} {1 产品1 2} {13 产品13 2} {17 产品17 2} {23 产品23 2} {3 产品3 2} {7 产品7 2} {11 产品11 2} {19 产品19 2} {21 产品21 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 10:01:33	INFO	service/product.go:155	[receive EOF]
+2024-03-08 10:01:35	INFO	middleware/logger.go:53	[map[latencyTime:2.2534846s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{14 产品14 1} {16 产品16 1} {24 产品24 1} {6 产品6 1} {18 产品18 1} {20 产品20 1} {22 产品22 1} {4 产品4 1} {10 产品10 1} {2 产品2 1} {8 产品8 1} {12 产品12 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 10:01:44	INFO	middleware/logger.go:53	[map[latencyTime:68.5µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NjM0ODQsImlzcyI6InN4cC1zZXJ2ZXIifQ.2g7kXmMmzDqFvKMh98qCc5Z-OGJSu43x_MlnwL3YVSI] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 10:01:54	INFO	middleware/logger.go:53	[map[latencyTime:2.2573604s method:POST requestParam:{"id":"12"} response:map[code:200 data:[{产品12}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 10:02:00	INFO	middleware/logger.go:53	[map[latencyTime:2.2362623s method:POST requestParam:{"id":"2"} response:map[code:200 data:[{产品2}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 10:04:04	ERROR	service/product.go:74	grpc服务调用失败: rpc error: code = DeadlineExceeded desc = context deadline exceeded
+2024-03-08 10:04:04	ERROR	product/product.go:26	远程调用gprc服务失败: %srpc error: code = DeadlineExceeded desc = context deadline exceeded
+2024-03-08 10:04:04	ERROR	product/product.go:38	获取产品失败
+2024-03-08 10:04:06	INFO	middleware/logger.go:53	[map[latencyTime:7.1636216s method:POST requestParam:{"id":"2"} response:<nil> responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-08 10:05:36	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-08 10:05:36	INFO	middleware/logger.go:53	[map[latencyTime:445.3µs method:POST requestParam:{"id":"2"} response:<nil> responseCode:401 uri:/sxp/product/getProduct]]
+2024-03-08 10:05:38	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NjM3MTgsImlzcyI6InN4cC1zZXJ2ZXIifQ.O72FCCfV6moYjr2b8erFrzbqjN_skPnV44DA_ONX8-Y] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 10:05:49	INFO	middleware/logger.go:53	[map[latencyTime:2.2497592s method:POST requestParam:{"id":"2"} response:map[code:200 data:[{产品2}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 10:07:11	INFO	middleware/logger.go:53	[map[latencyTime:381.1µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NjM4MTEsImlzcyI6InN4cC1zZXJ2ZXIifQ.LLAhAsz9l7pQwkrrsrdlYSk9_8U1qWDWGJNyX9N0w-g] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 10:07:25	INFO	middleware/logger.go:53	[map[latencyTime:2.2591313s method:POST requestParam:{"id":"10"} response:map[code:200 data:[{产品10}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 10:08:03	ERROR	service/product.go:72	grpc服务调用失败: rpc error: code = DeadlineExceeded desc = context deadline exceeded
+2024-03-08 10:08:03	ERROR	product/product.go:28	远程调用gprc服务失败: %srpc error: code = DeadlineExceeded desc = context deadline exceeded
+2024-03-08 10:08:03	ERROR	product/product.go:38	获取产品失败
+2024-03-08 10:08:05	INFO	middleware/logger.go:53	[map[latencyTime:7.1605332s method:POST requestParam:{"id":"10"} response:<nil> responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-08 10:08:29	INFO	middleware/logger.go:53	[map[latencyTime:6.3503044s method:POST requestParam:{"id":"10"} response:map[code:200 data:[{产品10}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 10:10:25	INFO	middleware/logger.go:53	[map[latencyTime:503.2µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NjQwMDUsImlzcyI6InN4cC1zZXJ2ZXIifQ.mwB8Tx32JBMVexe8TIBsyZWVh7FvS3hepRU9jYH3aJ4] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 10:10:28	INFO	middleware/logger.go:53	[map[latencyTime:503.5µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NjQwMDgsImlzcyI6InN4cC1zZXJ2ZXIifQ.9jk4xLTEvqdrC7cWAfye5rxw7kpTnbeg8yG1Fshf7b0] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 10:10:40	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-08 10:10:40	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"productId":1,"product":"xxxxx"} response:<nil> responseCode:401 uri:/sxp/product/updateProduct]]
+2024-03-08 10:10:46	INFO	middleware/logger.go:53	[map[latencyTime:503.8µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NjQwMjYsImlzcyI6InN4cC1zZXJ2ZXIifQ.cR69Cpxv1O87PBaegs81p3AbfCZ8dMiTPsPhqpWC-2k] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 10:10:55	INFO	middleware/logger.go:53	[map[latencyTime:2.1470163s method:POST requestParam:{"productId":1,"product":"xxxxx"} response:map[code:200 data:[{}] message:success] responseCode:200 uri:/sxp/product/updateProduct]]
+2024-03-08 10:12:07	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NjQxMDcsImlzcyI6InN4cC1zZXJ2ZXIifQ.8TwWI22wC-LqeZ03I-KRhQLEJETRoiUsYh8j0LqH5Ws] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 10:12:19	INFO	service/product.go:153	[receive EOF]
+2024-03-08 10:12:21	INFO	middleware/logger.go:53	[map[latencyTime:2.2512361s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{21 产品21 2} {9 产品9 2} {15 产品15 2} {17 产品17 2} {1 xxxxx 2} {5 产品5 2} {3 产品3 2} {7 产品7 2} {11 产品11 2} {13 产品13 2} {19 产品19 2} {23 产品23 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 10:14:44	INFO	middleware/logger.go:53	[map[latencyTime:792.4µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NjQyNjQsImlzcyI6InN4cC1zZXJ2ZXIifQ.hDOkwJHB7_ps8AYf7DNjyZ8HNXh88QUUEK21Y1QYElk] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 10:14:58	INFO	service/product.go:153	[receive EOF]
+2024-03-08 10:15:00	INFO	middleware/logger.go:53	[map[latencyTime:2.2249233s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{8 产品8 1} {10 产品10 1} {2 产品2 1} {16 产品16 1} {18 产品18 1} {20 产品20 1} {12 产品12 1} {14 产品14 1} {22 产品22 1} {24 产品24 1} {4 产品4 1} {6 产品6 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 10:15:21	INFO	service/product.go:153	[receive EOF]
+2024-03-08 10:15:23	INFO	middleware/logger.go:53	[map[latencyTime:2.2246543s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{18 产品18 1} {20 产品20 1} {12 产品12 1} {14 产品14 1} {22 产品22 1} {24 产品24 1} {4 产品4 1} {6 产品6 1} {8 产品8 1} {10 产品10 1} {2 产品2 1} {16 产品16 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 10:15:25	INFO	service/product.go:153	[receive EOF]
+2024-03-08 10:15:27	INFO	middleware/logger.go:53	[map[latencyTime:2.2669949s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{14 产品14 1} {18 产品18 1} {20 产品20 1} {12 产品12 1} {22 产品22 1} {24 产品24 1} {6 产品6 1} {4 产品4 1} {8 产品8 1} {10 产品10 1} {16 产品16 1} {2 产品2 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 10:16:20	INFO	service/product.go:153	[receive EOF]
+2024-03-08 10:16:22	INFO	middleware/logger.go:53	[map[latencyTime:2.255211s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{12 产品12 1} {14 产品14 1} {18 产品18 1} {20 产品20 1} {22 产品22 1} {24 产品24 1} {4 产品4 1} {6 产品6 1} {8 产品8 1} {10 产品10 1} {2 产品2 1} {16 产品16 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 10:37:39	INFO	middleware/logger.go:53	[map[latencyTime:503.1µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NjU2MzksImlzcyI6InN4cC1zZXJ2ZXIifQ.n_VfYGNaRZUG3VOhJF0dkLILWjI8IBxmXEdl1P7I_R0] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 10:37:56	INFO	middleware/logger.go:53	[map[latencyTime:6.5055973s method:POST requestParam:{"id":"10"} response:map[code:200 data:[{产品10}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 10:39:40	ERROR	service/product.go:72	grpc服务调用失败: rpc error: code = DeadlineExceeded desc = context deadline exceeded
+2024-03-08 10:39:40	ERROR	product/product.go:28	远程调用gprc服务失败: %srpc error: code = DeadlineExceeded desc = context deadline exceeded
+2024-03-08 10:39:40	ERROR	product/product.go:38	获取产品失败
+2024-03-08 10:39:42	INFO	middleware/logger.go:53	[map[latencyTime:7.1802314s method:POST requestParam:{"id":"10"} response:<nil> responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-08 10:48:17	INFO	middleware/logger.go:53	[map[latencyTime:504µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NjYyNzcsImlzcyI6InN4cC1zZXJ2ZXIifQ.OkHpbLI0qLToFmhuQBjyZ5x7__ybgVg7im1q320Ju3E] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 10:48:31	INFO	middleware/logger.go:53	[map[latencyTime:2.2058026s method:POST requestParam:{"id":"10"} response:map[code:200 data:[{产品10}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 10:49:12	INFO	service/product.go:153	[receive EOF]
+2024-03-08 10:49:14	INFO	middleware/logger.go:53	[map[latencyTime:2.1307831s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{14 产品14 1} {18 产品18 1} {20 产品20 1} {12 产品12 1} {22 产品22 1} {24 产品24 1} {6 产品6 1} {4 产品4 1} {8 产品8 1} {10 产品10 1} {16 产品16 1} {2 产品2 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 10:55:55	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-08 10:55:55	INFO	middleware/logger.go:53	[map[latencyTime:502.9µs method:POST requestParam:{"status":"1"} response:<nil> responseCode:401 uri:/sxp/product/getByStatus]]
+2024-03-08 10:55:59	INFO	middleware/logger.go:53	[map[latencyTime:503.2µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NjY3MzksImlzcyI6InN4cC1zZXJ2ZXIifQ.JoUrzVNCue7JF-feyZhgzOgTYAf8n1yxE22U-B1uAhA] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 10:56:13	INFO	middleware/logger.go:53	[map[latencyTime:2.2178942s method:POST requestParam:{"id":"10"} response:map[code:200 data:[{产品10}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 10:56:34	INFO	service/product.go:153	[receive EOF]
+2024-03-08 10:56:36	INFO	middleware/logger.go:53	[map[latencyTime:2.1483201s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{14 产品14 1} {16 产品16 1} {4 产品4 1} {10 产品10 1} {12 产品12 1} {20 产品20 1} {24 产品24 1} {2 产品2 1} {22 产品22 1} {6 产品6 1} {8 产品8 1} {18 产品18 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 10:56:58	INFO	middleware/logger.go:53	[map[latencyTime:2.1383019s method:POST requestParam:{"productId":1,"product":"xxxxx"} response:map[code:200 data:[{}] message:success] responseCode:200 uri:/sxp/product/updateProduct]]
+2024-03-08 11:24:42	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4Njg0NjIsImlzcyI6InN4cC1zZXJ2ZXIifQ.DT-bJ7qxtRDgpX941EqybcxNsgJTHAQNc_CMXd0cK-w] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 11:24:51	INFO	service/product.go:153	[receive EOF]
+2024-03-08 11:24:53	INFO	middleware/logger.go:53	[map[latencyTime:2.1412616s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{20 产品20 1} {8 产品8 1} {12 产品12 1} {16 产品16 1} {10 产品10 1} {14 产品14 1} {18 产品18 1} {22 产品22 1} {2 产品2 1} {4 产品4 1} {6 产品6 1} {24 产品24 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 11:25:15	INFO	service/product.go:153	[receive EOF]
+2024-03-08 11:25:17	INFO	middleware/logger.go:53	[map[latencyTime:2.1358239s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{6 产品6 1} {2 产品2 1} {4 产品4 1} {24 产品24 1} {12 产品12 1} {16 产品16 1} {20 产品20 1} {8 产品8 1} {18 产品18 1} {10 产品10 1} {14 产品14 1} {22 产品22 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 11:25:30	INFO	service/product.go:153	[receive EOF]
+2024-03-08 11:25:32	INFO	middleware/logger.go:53	[map[latencyTime:2.1347007s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{8 产品8 1} {12 产品12 1} {16 产品16 1} {20 产品20 1} {10 产品10 1} {14 产品14 1} {18 产品18 1} {22 产品22 1} {2 产品2 1} {4 产品4 1} {6 产品6 1} {24 产品24 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 11:25:33	INFO	service/product.go:153	[receive EOF]
+2024-03-08 11:25:35	INFO	middleware/logger.go:53	[map[latencyTime:2.1317378s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{5 产品5 2} {9 产品9 2} {17 产品17 2} {19 产品19 2} {1 产品1 2} {23 产品23 2} {7 产品7 2} {15 产品15 2} {21 产品21 2} {3 产品3 2} {11 产品11 2} {13 产品13 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 11:38:21	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NjkyODEsImlzcyI6InN4cC1zZXJ2ZXIifQ.UKHTAo2a3Mb-WJ4MhMCavMVOuqA8xqDc3coCrPjhe4k] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 11:38:29	INFO	service/product.go:153	[receive EOF]
+2024-03-08 11:38:31	INFO	middleware/logger.go:53	[map[latencyTime:2.1248903s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{19 产品19 2} {3 产品3 2} {13 产品13 2} {1 产品1 2} {7 产品7 2} {21 产品21 2} {23 产品23 2} {15 产品15 2} {17 产品17 2} {5 产品5 2} {9 产品9 2} {11 产品11 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 11:40:47	INFO	service/product.go:153	[receive EOF]
+2024-03-08 11:40:49	INFO	middleware/logger.go:53	[map[latencyTime:2.1425017s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{3 产品3 2} {5 产品5 2} {9 产品9 2} {15 产品15 2} {23 产品23 2} {7 产品7 2} {13 产品13 2} {19 产品19 2} {1 产品1 2} {11 产品11 2} {17 产品17 2} {21 产品21 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 11:42:31	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-08 11:42:31	INFO	middleware/logger.go:53	[map[latencyTime:1.0412ms method:POST requestParam:{"status":"2"} response:<nil> responseCode:401 uri:/sxp/product/getByStatus]]
+2024-03-08 11:42:34	INFO	middleware/logger.go:53	[map[latencyTime:503.3µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4Njk1MzQsImlzcyI6InN4cC1zZXJ2ZXIifQ.X9EySD7myEjKg4VB62A2TByrrBtfHqiF4FdQk1hJ07I] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 11:42:48	INFO	service/product.go:154	[receive EOF]
+2024-03-08 11:42:50	INFO	middleware/logger.go:53	[map[latencyTime:2.2016124s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{3 产品3 2} {5 产品5 2} {9 产品9 2} {15 产品15 2} {23 产品23 2} {7 产品7 2} {13 产品13 2} {19 产品19 2} {1 产品1 2} {11 产品11 2} {17 产品17 2} {21 产品21 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 11:43:02	INFO	service/product.go:154	[receive EOF]
+2024-03-08 11:43:04	INFO	middleware/logger.go:53	[map[latencyTime:2.2109891s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{1 产品1 2} {11 产品11 2} {17 产品17 2} {21 产品21 2} {3 产品3 2} {5 产品5 2} {9 产品9 2} {15 产品15 2} {7 产品7 2} {13 产品13 2} {23 产品23 2} {19 产品19 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 11:43:55	INFO	service/product.go:153	[receive EOF]
+2024-03-08 11:43:57	INFO	middleware/logger.go:53	[map[latencyTime:2.1341486s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{15 产品15 2} {3 产品3 2} {5 产品5 2} {9 产品9 2} {23 产品23 2} {7 产品7 2} {13 产品13 2} {19 产品19 2} {17 产品17 2} {21 产品21 2} {1 产品1 2} {11 产品11 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 11:43:58	INFO	service/product.go:153	[receive EOF]
+2024-03-08 11:44:00	INFO	middleware/logger.go:53	[map[latencyTime:2.1412286s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{19 产品19 2} {17 产品17 2} {21 产品21 2} {1 产品1 2} {11 产品11 2} {9 产品9 2} {15 产品15 2} {3 产品3 2} {5 产品5 2} {13 产品13 2} {23 产品23 2} {7 产品7 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 11:51:43	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-08 11:51:43	INFO	middleware/logger.go:53	[map[latencyTime:557µs method:POST requestParam:{"status":"2"} response:<nil> responseCode:401 uri:/sxp/product/getByStatus]]
+2024-03-08 11:51:46	INFO	middleware/logger.go:53	[map[latencyTime:355.3µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NzAwODYsImlzcyI6InN4cC1zZXJ2ZXIifQ.7CkYp5U6P_CBPFg0mNugluL407N-gL7D04hM83EA4Ow] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 11:52:01	INFO	service/product.go:153	[receive EOF]
+2024-03-08 11:52:03	INFO	middleware/logger.go:53	[map[latencyTime:2.127399s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{23 产品23 2} {7 产品7 2} {13 产品13 2} {19 产品19 2} {17 产品17 2} {21 产品21 2} {1 产品1 2} {11 产品11 2} {15 产品15 2} {3 产品3 2} {5 产品5 2} {9 产品9 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 11:52:14	INFO	service/product.go:153	[receive EOF]
+2024-03-08 11:52:16	INFO	middleware/logger.go:53	[map[latencyTime:2.1265073s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{3 产品3 2} {5 产品5 2} {9 产品9 2} {15 产品15 2} {7 产品7 2} {13 产品13 2} {23 产品23 2} {19 产品19 2} {1 产品1 2} {11 产品11 2} {17 产品17 2} {21 产品21 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 11:52:43	INFO	middleware/logger.go:53	[map[latencyTime:2.2478616s method:POST requestParam:{"id":"10"} response:map[code:200 data:[{产品10}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 11:53:44	INFO	middleware/logger.go:53	[map[latencyTime:2.2348498s method:POST requestParam:{"id":"10"} response:map[code:200 data:[{产品10}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 11:55:21	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-08 11:55:21	INFO	middleware/logger.go:53	[map[latencyTime:503.3µs method:POST requestParam:{"id":"10"} response:<nil> responseCode:401 uri:/sxp/product/getProduct]]
+2024-03-08 11:55:24	INFO	middleware/logger.go:53	[map[latencyTime:503.2µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NzAzMDQsImlzcyI6InN4cC1zZXJ2ZXIifQ.u6Tos3D4IYAU3V8i2eV7oeBoD4xBIKjJIbb-Ca-fE-c] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 11:55:34	INFO	middleware/logger.go:53	[map[latencyTime:2.2453722s method:POST requestParam:{"id":"10"} response:map[code:200 data:[{产品10}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 13:38:55	INFO	middleware/logger.go:53	[map[latencyTime:1.0659ms method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NzY1MTUsImlzcyI6InN4cC1zZXJ2ZXIifQ.6YCN3EaijmDO-OC-CRWFLe2B_57Afmx7MVhxvSRTU9o] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 13:39:06	INFO	service/product.go:153	[receive EOF]
+2024-03-08 13:39:08	INFO	middleware/logger.go:53	[map[latencyTime:2.134281s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{7 产品7 2} {19 产品19 2} {9 产品9 2} {21 产品21 2} {23 产品23 2} {1 产品1 2} {3 产品3 2} {5 产品5 2} {15 产品15 2} {17 产品17 2} {11 产品11 2} {13 产品13 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 13:39:13	INFO	service/product.go:153	[receive EOF]
+2024-03-08 13:39:15	INFO	middleware/logger.go:53	[map[latencyTime:2.1157635s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{12 产品12 1} {20 产品20 1} {4 产品4 1} {6 产品6 1} {18 产品18 1} {8 产品8 1} {14 产品14 1} {10 产品10 1} {22 产品22 1} {16 产品16 1} {24 产品24 1} {2 产品2 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 13:45:22	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-08 13:45:22	INFO	middleware/logger.go:53	[map[latencyTime:514.5µs method:POST requestParam:{"status":"1"} response:<nil> responseCode:401 uri:/sxp/product/getByStatus]]
+2024-03-08 13:45:25	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NzY5MDUsImlzcyI6InN4cC1zZXJ2ZXIifQ.yDvidV0h2OSCYgnK18MyeZZM3WPMhyPtEDE9wmyPCyE] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 13:45:35	INFO	service/product.go:153	[receive EOF]
+2024-03-08 13:45:37	INFO	middleware/logger.go:53	[map[latencyTime:2.1288093s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{8 产品8 1} {14 产品14 1} {18 产品18 1} {22 产品22 1} {10 产品10 1} {24 产品24 1} {2 产品2 1} {16 产品16 1} {20 产品20 1} {4 产品4 1} {6 产品6 1} {12 产品12 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 13:51:35	INFO	middleware/logger.go:53	[map[latencyTime:502.9µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NzcyNzUsImlzcyI6InN4cC1zZXJ2ZXIifQ.jQIhOXkaaX7yj1HaraboX84fy1U-qhnB-crQxarb7KA] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 13:51:43	INFO	service/product.go:153	[receive EOF]
+2024-03-08 13:51:45	INFO	middleware/logger.go:53	[map[latencyTime:2.1072326s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{2 产品2 1} {16 产品16 1} {24 产品24 1} {4 产品4 1} {6 产品6 1} {12 产品12 1} {20 产品20 1} {8 产品8 1} {14 产品14 1} {18 产品18 1} {10 产品10 1} {22 产品22 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 13:52:18	INFO	middleware/logger.go:53	[map[latencyTime:2.2078395s method:POST requestParam:{"id":"10"} response:map[code:200 data:[{产品10}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 13:52:39	INFO	middleware/logger.go:53	[map[latencyTime:2.2475917s method:POST requestParam:{"id":"11"} response:map[code:200 data:[{产品11}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 13:52:50	INFO	middleware/logger.go:53	[map[latencyTime:2.2133602s method:POST requestParam:{"id":"13"} response:map[code:200 data:[{产品13}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 13:53:15	INFO	middleware/logger.go:53	[map[latencyTime:2.2488837s method:POST requestParam:{"id":"15"} response:map[code:200 data:[{产品15}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 13:58:13	INFO	middleware/logger.go:53	[map[latencyTime:347.5µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4Nzc2NzMsImlzcyI6InN4cC1zZXJ2ZXIifQ.aC6UKH3pSUuZoAvQhsTmSiar7W3AbALPkmYXBHaGw0o] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 13:58:25	INFO	middleware/logger.go:53	[map[latencyTime:2.260017s method:POST requestParam:{"id":"15"} response:map[code:200 data:[{产品15}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 14:01:45	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-08 14:01:45	INFO	middleware/logger.go:53	[map[latencyTime:502.8µs method:POST requestParam:{"id":"16"} response:<nil> responseCode:401 uri:/sxp/product/getProduct]]
+2024-03-08 14:01:47	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4Nzc4ODcsImlzcyI6InN4cC1zZXJ2ZXIifQ.5-FWlSxkKi5mA8kjDApdk1r6B6eZY_wGglwjC5ZicCY] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 14:01:58	INFO	middleware/logger.go:53	[map[latencyTime:2.2583372s method:POST requestParam:{"id":"16"} response:map[code:200 data:[{产品16}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 14:02:16	INFO	middleware/logger.go:53	[map[latencyTime:2.2311903s method:POST requestParam:{"id":"1"} response:map[code:200 data:[{产品1}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 14:03:23	INFO	middleware/logger.go:53	[map[latencyTime:2.7257949s method:POST requestParam:{"id":"1"} response:map[code:200 data:[{产品1}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 14:03:56	INFO	middleware/logger.go:53	[map[latencyTime:2.7408437s method:POST requestParam:{"id":"5"} response:map[code:200 data:[{产品5}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 14:04:30	INFO	middleware/logger.go:53	[map[latencyTime:2.2210576s method:POST requestParam:{"id":"5"} response:map[code:200 data:[{产品5}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 14:05:25	INFO	middleware/logger.go:53	[map[latencyTime:509.6µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NzgxMDUsImlzcyI6InN4cC1zZXJ2ZXIifQ.az1CA9GaFSXF_SN4OiK5W3ZJpLYVCupmAedZriLUk84] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 14:05:36	INFO	middleware/logger.go:53	[map[latencyTime:2.1443932s method:POST requestParam:{"id":"5"} response:map[code:200 data:[{产品5}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 14:06:36	INFO	middleware/logger.go:53	[map[latencyTime:2.2565833s method:POST requestParam:{"id":"5"} response:map[code:200 data:[{产品5}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 14:07:17	INFO	middleware/logger.go:53	[map[latencyTime:2.1564446s method:POST requestParam:{"productId":2,"product":"xxxxx"} response:map[code:200 data:[{}] message:success] responseCode:200 uri:/sxp/product/updateProduct]]
+2024-03-08 14:07:46	INFO	middleware/logger.go:53	[map[latencyTime:2.139618s method:POST requestParam:{"productId":10,"product":"10101010"} response:map[code:200 data:[{}] message:success] responseCode:200 uri:/sxp/product/updateProduct]]
+2024-03-08 14:08:02	INFO	middleware/logger.go:53	[map[latencyTime:2.1354662s method:POST requestParam:{"productId":10,"product":"10101010"} response:map[code:200 data:[{}] message:success] responseCode:200 uri:/sxp/product/updateProduct]]
+2024-03-08 14:08:42	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-08 14:08:42	INFO	middleware/logger.go:53	[map[latencyTime:542.9µs method:POST requestParam:{"status":"1"} response:<nil> responseCode:401 uri:/sxp/product/getByStatus]]
+2024-03-08 14:08:45	INFO	middleware/logger.go:53	[map[latencyTime:502.9µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NzgzMDUsImlzcyI6InN4cC1zZXJ2ZXIifQ.68ON6bXRtUkITG_4QR7KM3CgdkOwFFiGjm_K3plf19A] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 14:08:55	INFO	service/product.go:153	[receive EOF]
+2024-03-08 14:08:57	INFO	middleware/logger.go:53	[map[latencyTime:2.1407453s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{18 产品18 1} {20 产品20 1} {6 产品6 1} {16 产品16 1} {12 产品12 1} {2 xxxxx 1} {4 产品4 1} {8 产品8 1} {22 产品22 1} {10 10101010 1} {14 产品14 1} {24 产品24 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 14:09:24	INFO	service/product.go:153	[receive EOF]
+2024-03-08 14:09:26	INFO	middleware/logger.go:53	[map[latencyTime:2.1380641s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{10 10101010 1} {14 产品14 1} {22 产品22 1} {24 产品24 1} {6 产品6 1} {16 产品16 1} {18 产品18 1} {20 产品20 1} {2 xxxxx 1} {4 产品4 1} {8 产品8 1} {12 产品12 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 14:09:39	INFO	service/product.go:153	[receive EOF]
+2024-03-08 14:09:41	INFO	middleware/logger.go:53	[map[latencyTime:2.1344175s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{13 产品13 2} {1 产品1 2} {11 产品11 2} {15 产品15 2} {17 产品17 2} {19 产品19 2} {21 产品21 2} {23 产品23 2} {3 产品3 2} {9 产品9 2} {5 产品5 2} {7 产品7 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 14:10:29	INFO	service/product.go:153	[receive EOF]
+2024-03-08 14:10:31	INFO	middleware/logger.go:53	[map[latencyTime:2.1176059s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{10 10101010 1} {14 产品14 1} {22 产品22 1} {24 产品24 1} {16 产品16 1} {18 产品18 1} {20 产品20 1} {6 产品6 1} {4 产品4 1} {8 产品8 1} {12 产品12 1} {2 xxxxx 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 14:12:18	INFO	middleware/logger.go:53	[map[latencyTime:891.7µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4Nzg1MTgsImlzcyI6InN4cC1zZXJ2ZXIifQ.mk401vdawuiKuIjPvrA2oQUAQ8kT9BjLpi3AlLj6OGQ] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 14:12:27	INFO	service/product.go:153	[receive EOF]
+2024-03-08 14:12:29	INFO	middleware/logger.go:53	[map[latencyTime:2.1359748s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{6 产品6 1} {16 产品16 1} {18 产品18 1} {20 产品20 1} {2 xxxxx 1} {4 产品4 1} {8 产品8 1} {12 产品12 1} {10 10101010 1} {14 产品14 1} {22 产品22 1} {24 产品24 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 14:12:48	INFO	service/product.go:153	[receive EOF]
+2024-03-08 14:12:50	INFO	middleware/logger.go:53	[map[latencyTime:2.1405829s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{13 产品13 2} {1 产品1 2} {17 产品17 2} {11 产品11 2} {15 产品15 2} {19 产品19 2} {21 产品21 2} {23 产品23 2} {3 产品3 2} {9 产品9 2} {7 产品7 2} {5 产品5 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 14:18:54	INFO	middleware/logger.go:53	[map[latencyTime:503.6µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4Nzg5MTQsImlzcyI6InN4cC1zZXJ2ZXIifQ.oAcNkZ2SlpcjwAgG_yI7ZjyRPeOOL3q2lIQv_6_BWG4] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 14:19:05	INFO	middleware/logger.go:53	[map[latencyTime:2.2372368s method:POST requestParam:{"id":"5"} response:map[code:200 data:[{产品5}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 14:20:19	INFO	middleware/logger.go:53	[map[latencyTime:508.3µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4Nzg5OTksImlzcyI6InN4cC1zZXJ2ZXIifQ.Hdf29giXd5kjPdOcfEaE5qYte46qUrE5fpD_lvpgFIA] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 14:20:28	INFO	service/product.go:155	[receive EOF]
+2024-03-08 14:20:30	INFO	middleware/logger.go:53	[map[latencyTime:2.3311313s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{1 产品1 2} {13 产品13 2} {11 产品11 2} {15 产品15 2} {17 产品17 2} {3 产品3 2} {9 产品9 2} {19 产品19 2} {21 产品21 2} {23 产品23 2} {5 产品5 2} {7 产品7 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 14:21:09	INFO	middleware/logger.go:53	[map[latencyTime:324.3µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NzkwNDksImlzcyI6InN4cC1zZXJ2ZXIifQ.FziIp0YrYLIIOqgOusl1hjWvufwWJtCWkiEsBb4XBmg] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 14:21:20	INFO	service/product.go:153	[receive EOF]
+2024-03-08 14:21:22	INFO	middleware/logger.go:53	[map[latencyTime:2.3540138s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{11 产品11 2} {15 产品15 2} {17 产品17 2} {23 产品23 2} {3 产品3 2} {9 产品9 2} {19 产品19 2} {21 产品21 2} {5 产品5 2} {7 产品7 2} {1 产品1 2} {13 产品13 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 14:21:38	INFO	service/product.go:153	[receive EOF]
+2024-03-08 14:21:40	INFO	middleware/logger.go:53	[map[latencyTime:2.3326044s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{19 产品19 2} {21 产品21 2} {23 产品23 2} {3 产品3 2} {9 产品9 2} {5 产品5 2} {7 产品7 2} {13 产品13 2} {1 产品1 2} {11 产品11 2} {15 产品15 2} {17 产品17 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 14:22:20	INFO	middleware/logger.go:53	[map[latencyTime:510.4µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NzkxMjAsImlzcyI6InN4cC1zZXJ2ZXIifQ.MILSfImw5hzi_mMWVPslXOYU9vZ3tRFTGg5eqEFgHts] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 14:22:27	INFO	service/product.go:153	[receive EOF]
+2024-03-08 14:22:29	INFO	middleware/logger.go:53	[map[latencyTime:2.6560688s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{7 产品7 2} {5 产品5 2} {13 产品13 2} {1 产品1 2} {17 产品17 2} {11 产品11 2} {15 产品15 2} {19 产品19 2} {21 产品21 2} {23 产品23 2} {3 产品3 2} {9 产品9 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 14:26:26	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4NzkzNjYsImlzcyI6InN4cC1zZXJ2ZXIifQ.O1jRCqp-GVinuNIuexiz00LsXGRKClf0B5UNZenhKbw] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 14:26:37	INFO	middleware/logger.go:53	[map[latencyTime:2.2360463s method:POST requestParam:{"id":"5"} response:map[code:200 data:[{产品5}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 14:36:03	INFO	middleware/logger.go:53	[map[latencyTime:123.5µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4Nzk5NDMsImlzcyI6InN4cC1zZXJ2ZXIifQ.G5Y_C7mAq6doAgb9eWdjaZe7pWTP5DFlvPiD3_TIDqA] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 14:36:25	ERROR	service/product.go:78	grpc服务调用失败: rpc error: code = DeadlineExceeded desc = context deadline exceeded
+2024-03-08 14:36:25	ERROR	product/product.go:26	远程调用gprc服务失败: %srpc error: code = DeadlineExceeded desc = context deadline exceeded
+2024-03-08 14:36:25	ERROR	product/product.go:38	获取产品失败
+2024-03-08 14:36:27	INFO	middleware/logger.go:53	[map[latencyTime:15.4020515s method:POST requestParam:{"id":"5"} response:<nil> responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-08 14:36:35	INFO	middleware/logger.go:53	[map[latencyTime:2.3689s method:POST requestParam:{"id":"5"} response:map[code:200 data:[{产品5}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 14:37:38	ERROR	service/product.go:78	grpc服务调用失败: rpc error: code = DeadlineExceeded desc = context deadline exceeded
+2024-03-08 14:37:38	ERROR	product/product.go:26	远程调用gprc服务失败: %srpc error: code = DeadlineExceeded desc = context deadline exceeded
+2024-03-08 14:37:38	ERROR	product/product.go:38	获取产品失败
+2024-03-08 14:37:40	INFO	middleware/logger.go:53	[map[latencyTime:7.1622899s method:POST requestParam:{"id":"5"} response:<nil> responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-08 14:37:56	INFO	middleware/logger.go:53	[map[latencyTime:4.4896774s method:POST requestParam:{"id":"5"} response:map[code:200 data:[{产品5}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 14:59:40	INFO	middleware/logger.go:53	[map[latencyTime:577.9µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4ODEzNjAsImlzcyI6InN4cC1zZXJ2ZXIifQ.0PONizsVMNXxO3tUbfDrcF9rB_OM_1_bvWhPWGiJqk0] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 14:59:52	INFO	middleware/logger.go:53	[map[latencyTime:2.3452527s method:POST requestParam:{"id":"5"} response:map[code:200 data:[{产品5}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 15:01:06	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4ODE0NDYsImlzcyI6InN4cC1zZXJ2ZXIifQ.Y2Tk2cXi8rnbLnOT6x8y_HSHTdN6Lta8Voz3gh6k7Is] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 15:01:16	INFO	middleware/logger.go:53	[map[latencyTime:2.3470183s method:POST requestParam:{"id":"5"} response:map[code:200 data:[{产品5}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 15:21:50	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4ODI2OTAsImlzcyI6InN4cC1zZXJ2ZXIifQ.YqTFBMlGLe0OYZO8sCHoGNZWm5c5s9NMqSG6ozv4ClY] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 15:22:01	INFO	service/product.go:159	[receive EOF]
+2024-03-08 15:22:03	INFO	middleware/logger.go:53	[map[latencyTime:2.1153398s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{3 产品3 2} {23 产品23 2} {1 产品1 2} {11 产品11 2} {13 产品13 2} {15 产品15 2} {5 产品5 2} {19 产品19 2} {21 产品21 2} {17 产品17 2} {7 产品7 2} {9 产品9 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 15:30:21	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4ODMyMDEsImlzcyI6InN4cC1zZXJ2ZXIifQ.jbyChMMwJ5QM48-W5l3V6Y43MxciNJmNp5bGIFMW7D0] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 15:30:31	INFO	service/product.go:159	[receive EOF]
+2024-03-08 15:30:33	INFO	middleware/logger.go:53	[map[latencyTime:2.146174s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{5 产品5 2} {19 产品19 2} {21 产品21 2} {17 产品17 2} {7 产品7 2} {9 产品9 2} {3 产品3 2} {23 产品23 2} {1 产品1 2} {11 产品11 2} {13 产品13 2} {15 产品15 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 15:31:42	INFO	middleware/logger.go:53	[map[latencyTime:502.9µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4ODMyODIsImlzcyI6InN4cC1zZXJ2ZXIifQ.vR6lPcJ6tyaloUBuspkhjvAFxTpEl6U9ea_3Ws57_zI] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 15:31:50	INFO	service/product.go:159	[receive EOF]
+2024-03-08 15:31:52	INFO	middleware/logger.go:53	[map[latencyTime:2.1624517s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{3 产品3 2} {11 产品11 2} {13 产品13 2} {15 产品15 2} {23 产品23 2} {1 产品1 2} {19 产品19 2} {21 产品21 2} {5 产品5 2} {7 产品7 2} {9 产品9 2} {17 产品17 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 15:32:17	INFO	service/product.go:159	[receive EOF]
+2024-03-08 15:32:19	INFO	middleware/logger.go:53	[map[latencyTime:2.1096242s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{20 产品20 1} {12 产品12 1} {18 产品18 1} {10 产品10 1} {16 产品16 1} {22 产品22 1} {2 产品2 1} {6 产品6 1} {8 产品8 1} {14 产品14 1} {24 产品24 1} {4 产品4 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 15:32:41	INFO	service/product.go:159	[receive EOF]
+2024-03-08 15:32:43	INFO	middleware/logger.go:53	[map[latencyTime:2.1434032s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{2 产品2 1} {6 产品6 1} {8 产品8 1} {14 产品14 1} {22 产品22 1} {24 产品24 1} {4 产品4 1} {12 产品12 1} {18 产品18 1} {20 产品20 1} {10 产品10 1} {16 产品16 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 15:47:25	INFO	middleware/logger.go:53	[map[latencyTime:503µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4ODQyMjUsImlzcyI6InN4cC1zZXJ2ZXIifQ.enaVt22vII1eRnWkRdOSU_r9_98YqevEK2-cFanBgv0] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 15:47:38	INFO	middleware/logger.go:53	[map[latencyTime:2.3579161s method:POST requestParam:{"id":"5"} response:map[code:200 data:[{产品5}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 15:48:47	INFO	middleware/logger.go:53	[map[latencyTime:502.9µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4ODQzMDcsImlzcyI6InN4cC1zZXJ2ZXIifQ.8GMSCf7IWQKP4GX_BpwE7WpPQ2Qy6leBAp-Nf0XNoJ4] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 15:49:01	ERROR	service/product.go:76	grpc服务调用失败: rpc error: code = DeadlineExceeded desc = context deadline exceeded
+2024-03-08 15:49:01	ERROR	product/product.go:26	远程调用gprc服务失败: %srpc error: code = DeadlineExceeded desc = context deadline exceeded
+2024-03-08 15:49:01	ERROR	product/product.go:38	获取产品失败
+2024-03-08 15:49:03	INFO	middleware/logger.go:53	[map[latencyTime:7.1410432s method:POST requestParam:{"id":"5"} response:<nil> responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-08 15:49:15	INFO	middleware/logger.go:53	[map[latencyTime:2.2330524s method:POST requestParam:{"id":"5"} response:map[code:200 data:[{产品5}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 15:49:42	INFO	middleware/logger.go:53	[map[latencyTime:2.121305s method:POST requestParam:{"productId":10,"product":"xxxxx"} response:map[code:200 data:[{}] message:success] responseCode:200 uri:/sxp/product/updateProduct]]
+2024-03-08 16:02:12	INFO	middleware/logger.go:53	[map[latencyTime:504.3µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4ODUxMTIsImlzcyI6InN4cC1zZXJ2ZXIifQ.jCvY0Qhkk4Rv7Qq_9EC1FkBrPFDis9XAbbBIc76MCkY] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 16:02:23	INFO	service/product.go:157	[receive EOF]
+2024-03-08 16:02:25	INFO	middleware/logger.go:53	[map[latencyTime:2.1552976s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{6 产品6 1} {10 产品10 1} {24 产品24 1} {20 产品20 1} {22 产品22 1} {18 产品18 1} {4 产品4 1} {8 产品8 1} {12 产品12 1} {16 产品16 1} {2 产品2 1} {14 产品14 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 16:03:14	INFO	middleware/logger.go:53	[map[latencyTime:2.121736s method:POST requestParam:{"productId":10,"product":"xxxxx"} response:map[code:200 data:[{}] message:success] responseCode:200 uri:/sxp/product/updateProduct]]
+2024-03-08 16:03:32	INFO	middleware/logger.go:53	[map[latencyTime:2.1277288s method:POST requestParam:{"productId":15,"product":"xxxxx"} response:map[code:200 data:[{}] message:success] responseCode:200 uri:/sxp/product/updateProduct]]
+2024-03-08 16:03:47	INFO	middleware/logger.go:53	[map[latencyTime:2.1362585s method:POST requestParam:{"productId":15,"product":"xxxxx"} response:map[code:200 data:[{}] message:success] responseCode:200 uri:/sxp/product/updateProduct]]
+2024-03-08 16:04:10	INFO	service/product.go:157	[receive EOF]
+2024-03-08 16:04:12	INFO	middleware/logger.go:53	[map[latencyTime:2.1553992s method:POST requestParam:{"status":"1"} response:map[code:200 data:[[{20 产品20 1} {22 产品22 1} {24 产品24 1} {18 产品18 1} {4 产品4 1} {8 产品8 1} {12 产品12 1} {2 产品2 1} {14 产品14 1} {16 产品16 1} {6 产品6 1} {10 xxxxx 1}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 16:04:29	INFO	service/product.go:157	[receive EOF]
+2024-03-08 16:04:31	INFO	middleware/logger.go:53	[map[latencyTime:2.1193284s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{1 产品1 2} {15 xxxxx 2} {19 产品19 2} {3 产品3 2} {9 产品9 2} {7 产品7 2} {11 产品11 2} {13 产品13 2} {17 产品17 2} {21 产品21 2} {5 产品5 2} {23 产品23 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 16:04:50	INFO	service/product.go:157	[receive EOF]
+2024-03-08 16:04:52	INFO	middleware/logger.go:53	[map[latencyTime:2.1275758s method:POST requestParam:{"status":"2"} response:map[code:200 data:[[{1 产品1 2} {15 xxxxx 2} {19 产品19 2} {3 产品3 2} {9 产品9 2} {7 产品7 2} {11 产品11 2} {13 产品13 2} {17 产品17 2} {21 产品21 2} {5 产品5 2} {23 产品23 2}]] message:success] responseCode:200 uri:/sxp/product/getByStatus]]
+2024-03-08 16:05:24	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-08 16:05:24	INFO	middleware/logger.go:53	[map[latencyTime:503.8µs method:POST requestParam:{"id":"5"} response:<nil> responseCode:401 uri:/sxp/product/getProduct]]
+2024-03-08 16:05:30	ERROR	middleware/auth.go:40	token解析失败！
+2024-03-08 16:05:30	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"id":"5"} response:<nil> responseCode:401 uri:/sxp/product/getProduct]]
+2024-03-08 16:05:32	INFO	middleware/logger.go:53	[map[latencyTime:0s method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4ODUzMTIsImlzcyI6InN4cC1zZXJ2ZXIifQ.nZLjv06LSS5SAwi5yFobtQgesGsbjKmBj3kqnpmzIMQ] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 16:05:44	INFO	middleware/logger.go:53	[map[latencyTime:2.2327573s method:POST requestParam:{"id":"5"} response:map[code:200 data:[{产品5}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 16:06:38	INFO	middleware/logger.go:53	[map[latencyTime:2.61335s method:POST requestParam:{"id":"5"} response:map[code:200 data:[{产品5}] message:success] responseCode:200 uri:/sxp/product/getProduct]]
+2024-03-08 16:08:03	ERROR	service/product.go:76	grpc服务调用失败: rpc error: code = DeadlineExceeded desc = context deadline exceeded
+2024-03-08 16:08:03	ERROR	product/product.go:26	远程调用gprc服务失败: %srpc error: code = DeadlineExceeded desc = context deadline exceeded
+2024-03-08 16:08:03	ERROR	product/product.go:38	获取产品失败
+2024-03-08 16:08:05	INFO	middleware/logger.go:53	[map[latencyTime:7.1902802s method:POST requestParam:{"id":"5"} response:<nil> responseCode:500 uri:/sxp/product/getProduct]]
+2024-03-08 16:09:04	INFO	middleware/logger.go:53	[map[latencyTime:577.1µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4ODU1MjQsImlzcyI6InN4cC1zZXJ2ZXIifQ.H7xu-ugLUpHJSQDrYmhSuxywAa0n4GnU84QPcFRiIgU] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 16:09:05	INFO	middleware/logger.go:53	[map[latencyTime:304.7µs method:POST requestParam:{"username":"alan","password":"123456"} response:map[code:200 data:[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYW4iLCJleHAiOjE3MDk4ODU1MjUsImlzcyI6InN4cC1zZXJ2ZXIifQ.G2JptkSAMKg2CXaXWt_ALF38AWoEq-3DtRTa9m96u40] message:成功生成token] responseCode:200 uri:/sxp/login/]]
+2024-03-08 16:09:20	ERROR	service/product.go:76	grpc服务调用失败: rpc error: code = DeadlineExceeded desc = context deadline exceeded
+2024-03-08 16:09:20	ERROR	product/product.go:26	远程调用gprc服务失败: %srpc error: code = DeadlineExceeded desc = context deadline exceeded
+2024-03-08 16:09:20	ERROR	product/product.go:38	获取产品失败
+2024-03-08 16:09:22	INFO	middleware/logger.go:53	[map[latencyTime:7.1510916s method:POST requestParam:{"id":"5"} response:<nil> responseCode:500 uri:/sxp/product/getProduct]]

@@ -32,10 +32,12 @@ func (a *ProductApi) GetProduct(c *gin.Context) {
 		a.ResponseError(err)
 		return
 	}
-	err, res := ts.GetProduct(req.Id)
+	token, _ := c.Get("sxp-token")
+	err, res := ts.GetProduct(req.Id, token.(string))
 	if err != nil {
 		a.Logger.Error("获取产品失败")
 		a.ResponseError(err)
+		return
 	}
 	a.Response("success", res)
 }
@@ -54,10 +56,36 @@ func (a *ProductApi) UpdateProduct(c *gin.Context) {
 		a.ResponseError(err)
 		return
 	}
-	err, res := ts.UpdateProduct(req)
+	token, _ := c.Get("sxp-token")
+	err, res := ts.UpdateProduct(req, token.(string))
 	if err != nil {
 		a.Logger.Error("获取产品失败")
 		a.ResponseError(err)
+	}
+	a.Response("success", res)
+}
+
+// GetByStatus
+//
+//	@Description: 根据在线状态获取产品信息
+//	@receiver a
+//	@param c
+func (a *ProductApi) GetByStatus(c *gin.Context) {
+	a.MakeApi(c)
+	var req = model.GetByStatusReq{}
+	err := c.ShouldBindJSON(&req)
+	if err != nil {
+		a.Logger.Error(err.Error())
+		a.ResponseError(err)
+		return
+	}
+
+	token, _ := c.Get("sxp-token")
+	err, res := ts.GetByStatus(req.Status, token.(string))
+	if err != nil {
+		a.Logger.Error("根据status获取产品失败")
+		a.ResponseError(err)
+		return
 	}
 	a.Response("success", res)
 }

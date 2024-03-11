@@ -35,5 +35,6 @@ func (a *Api) Response(msg string, data ...interface{}) {
 		"data":    data,
 	}
 	a.Ctx.AbortWithStatusJSON(http.StatusOK, res)
+	a.Ctx.Set("response", res)
 	a.Ctx.Set("status", http.StatusOK)
 }

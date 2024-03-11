@@ -3,7 +3,6 @@ package middleware
 import (
 	"bufio"
 	"bytes"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"io"
 	"io/ioutil"
@@ -42,13 +41,14 @@ func LoggerMiddleware() gin.HandlerFunc {
 		statusCode := c.Writer.Status()
 		// 执行时间
 		latencyTime := endTime.Sub(startTime)
-
+		res, _ := c.Get("response")
 		logData := map[string]interface{}{
 			"latencyTime":  latencyTime,
 			"method":       reqMethod,
 			"uri":          reqUri,
-			"requestParam": fmt.Sprintf("%v", param),
-			"statusCode":   statusCode,
+			"requestParam": param,
+			"response":     res,
+			"responseCode": statusCode,
 		}
 		log.Info(logData)
 		c.Next()

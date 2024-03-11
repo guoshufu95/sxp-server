@@ -7,9 +7,7 @@ import (
 	"time"
 )
 
-const (
-	SECRETKEY = "sxp-server" //私钥
-)
+var SECRETKEY = []byte("sxp-server") //私钥
 
 // GenToken 生成JWT
 func GenToken(username string) (string, error) {
