@@ -14,10 +14,6 @@ type IntegralApi struct {
 
 var is integral.IntegralService
 
-func init() {
-	serv.MakeService(&is.Service)
-}
-
 // InitIntegral
 //
 //	@Description: 初始化积分相关信息
@@ -32,6 +28,7 @@ func (a *IntegralApi) InitIntegral(c *gin.Context) {
 		a.ResponseError(err)
 		return
 	}
+	serv.MakeService(&is.Service, c)
 	req.RemainCount = req.Count
 	req.RemainIntegral = req.Integral
 	err = is.InitIntegral(req)

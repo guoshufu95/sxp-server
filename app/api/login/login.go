@@ -15,9 +15,9 @@ type LoginApi struct {
 
 var ts = task.TaskService{}
 
-func init() {
-	serv.MakeService(&ts.Service)
-}
+//func init() {
+//	serv.MakeService(&ts.Service)
+//}
 
 // Login
 //
@@ -34,7 +34,7 @@ func (l *LoginApi) Login(c *gin.Context) {
 		return
 	}
 	var s login.LoginService
-	serv.MakeService(&s.Service)
+	serv.MakeService(&s.Service, c)
 	err, token := s.Login(req)
 	if err != nil {
 		l.Logger.Error(err.Error())

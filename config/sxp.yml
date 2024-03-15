@@ -1,0 +1,20 @@
+server:
+  host: 0.0.0.0
+  mode: debug
+  port: 8000
+logger:
+  path: ./logs
+  level: debug
+mysql:
+  host: 192.168.111.143
+  port: 3306
+  db: sxp-server
+  username: root
+  password: 123456
+redis:
+  addr: 192.168.111.143:6379
+  password: ""
+jwt:
+  secret: sxp-server
+  #多少秒过期
+  timeout: 600

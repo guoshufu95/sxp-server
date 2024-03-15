@@ -18,6 +18,7 @@ import (
 func LoggerMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		log := logger.GetLogger()
+		c.Set("sxp_zap_log", log)
 		// 开始时间
 		startTime := time.Now()
 		// 处理请求

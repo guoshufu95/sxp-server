@@ -3,7 +3,6 @@ package api
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	ini "sxp-server/common/initial"
 	"sxp-server/common/logger"
 )
 
@@ -13,8 +12,7 @@ type Api struct {
 }
 
 func (a *Api) MakeApi(c *gin.Context) {
-	app := ini.MakeApp()
-	a.Logger = app.Logger
+	a.Logger = c.MustGet("sxp_zap_log").(*logger.ZapLog)
 	a.Ctx = c
 }
 

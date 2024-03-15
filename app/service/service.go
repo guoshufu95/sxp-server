@@ -1,9 +1,9 @@
 package service
 
 import (
+	"github.com/gin-gonic/gin"
 	"github.com/redis/go-redis/v9"
 	"gorm.io/gorm"
-	ini "sxp-server/common/initial"
 	"sxp-server/common/logger"
 )
 
@@ -13,9 +13,8 @@ type Service struct {
 	Logger *logger.ZapLog
 }
 
-func MakeService(s *Service) {
-	app := ini.MakeApp()
-	s.Db = app.Db
-	s.Cache = app.Cache
-	s.Logger = app.Logger
+func MakeService(s *Service, c *gin.Context) {
+	s.Db = c.MustGet("sxp_gorm_db").(*gorm.DB)
+	s.Cache = c.MustGet("sxp_redis_db").(*redis.Client)
+	s.Logger = c.MustGet("sxp_zap_log").(*logger.ZapLog)
 }

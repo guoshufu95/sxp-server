@@ -14,10 +14,6 @@ type ProductApi struct {
 
 var ts = product.ProductService{}
 
-func init() {
-	serv.MakeService(&ts.Service)
-}
-
 // GetProduct
 //
 //	@Description: grpc调用获取产品
@@ -32,6 +28,7 @@ func (a *ProductApi) GetProduct(c *gin.Context) {
 		a.ResponseError(err)
 		return
 	}
+	serv.MakeService(&ts.Service, c)
 	token, _ := c.Get("sxp-token")
 	err, res := ts.GetProduct(req.Id, token.(string))
 	if err != nil {
@@ -56,6 +53,7 @@ func (a *ProductApi) UpdateProduct(c *gin.Context) {
 		a.ResponseError(err)
 		return
 	}
+	serv.MakeService(&ts.Service, c)
 	token, _ := c.Get("sxp-token")
 	err, res := ts.UpdateProduct(req, token.(string))
 	if err != nil {
@@ -79,7 +77,7 @@ func (a *ProductApi) GetByStatus(c *gin.Context) {
 		a.ResponseError(err)
 		return
 	}
-
+	serv.MakeService(&ts.Service, c)
 	token, _ := c.Get("sxp-token")
 	err, res := ts.GetByStatus(req.Status, token.(string))
 	if err != nil {

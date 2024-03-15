@@ -15,10 +15,6 @@ type TaskApi struct {
 
 var ts = task.TaskService{}
 
-func init() {
-	serv.MakeService(&ts.Service)
-}
-
 // StartTask
 //
 //	@Description: 启动一个延时队列
@@ -33,6 +29,7 @@ func (a *TaskApi) StartTask(c *gin.Context) {
 		a.ResponseError(err)
 		return
 	}
+	serv.MakeService(&ts.Service, c)
 	err, flag := ts.GetTaskByName(req.TaskName)
 	if err != nil {
 		err = errors.New("获取定时任务失败")

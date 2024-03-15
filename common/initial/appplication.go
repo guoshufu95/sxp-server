@@ -7,6 +7,7 @@ import (
 	"sxp-server/common/cache"
 	"sxp-server/common/db"
 	"sxp-server/common/logger"
+	"sxp-server/config"
 )
 
 var App *Application
@@ -20,6 +21,7 @@ type Application struct {
 }
 
 func init() {
+	config.ReadConfig("./config/sxp.yml")
 	App = &Application{
 		Logger:      logger.GetLogger(),
 		ProjectName: "sxp-server",

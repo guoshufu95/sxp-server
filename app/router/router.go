@@ -6,6 +6,7 @@ import (
 	"sxp-server/app/api/login"
 	"sxp-server/app/api/product"
 	"sxp-server/app/api/task"
+	"sxp-server/common/initial"
 	"sxp-server/common/middleware"
 )
 
@@ -15,7 +16,9 @@ import (
 //	@param r
 func InitRouter(r *gin.Engine) {
 	g := r.Group("/sxp")
-	g.Use(middleware.LoggerMiddleware())
+	g.Use(middleware.LoggerMiddleware()).
+		Use(middleware.WithGormDb(initial.App.Db)).
+		Use(middleware.WithRedisDb(initial.App.Cache))
 	Router(g)
 	//日志中间件
 }
