@@ -9,13 +9,12 @@ import (
 	"strconv"
 	"sxp-server/app/model"
 	"sxp-server/common/initial"
+	"sxp-server/common/logger"
 	"sync"
 	"time"
 )
 
-// DelayQueue is a message queue supporting delayed/scheduled delivery based on redis
 type DelayQueue struct {
-	// name for this Queue. Make sure the name is unique in redis database
 	name          string
 	redisCli      RedisCli
 	cb            func(string) bool
@@ -27,7 +26,7 @@ type DelayQueue struct {
 	garbageKey    string // set: message id
 	useHashTag    bool
 	ticker        *time.Ticker
-	logger        *log.Logger
+	logger        *logger.ZapLog
 	close         chan struct{}
 
 	maxConsumeDuration time.Duration
@@ -60,16 +59,10 @@ type RedisCli interface {
 
 type hashTagKeyOpt int
 
-// UseHashTagKey add hashtags to redis keys to ensure all keys of this queue are allocated in the same hash slot.
-// If you are using Codis/AliyunRedisCluster/TencentCloudRedisCluster, add this option to NewQueue
-// WARNING! Changing (add or remove) this option will cause DelayQueue failing to read existed data in redis
-// see more:  https://redis.io/docs/reference/cluster-spec/#hash-tags
 func UseHashTagKey() interface{} {
 	return hashTagKeyOpt(1)
 }
 
-// NewQueue0 creates a new queue, use DelayQueue.StartConsume to consume or DelayQueue.SendScheduleMsg to publish message
-// callback returns true to confirm successful consumption. If callback returns false or not return within maxConsumeDuration, DelayQueue will re-deliver this message
 func NewQueue0(name string, cli RedisCli, callback func(string) bool, opts ...interface{}) *DelayQueue {
 	if name == "" {
 		panic("name is required")
@@ -107,33 +100,28 @@ func NewQueue0(name string, cli RedisCli, callback func(string) bool, opts ...in
 		close:              make(chan struct{}, 1),
 		maxConsumeDuration: 5 * time.Second,
 		msgTTL:             time.Hour,
-		logger:             log.Default(),
+		logger:             logger.GetLogger(),
 		defaultRetryCount:  3,
 		fetchInterval:      time.Second,
 		concurrent:         1,
 	}
 }
 
-// WithLogger customizes logger for queue
-func (q *DelayQueue) WithLogger(logger *log.Logger) *DelayQueue {
+func (q *DelayQueue) WithLogger(logger *logger.ZapLog) *DelayQueue {
 	q.logger = logger
 	return q
 }
 
-// WithFetchInterval customizes the interval at which consumer fetch message from redis
 func (q *DelayQueue) WithFetchInterval(d time.Duration) *DelayQueue {
 	q.fetchInterval = d
 	return q
 }
 
-// WithMaxConsumeDuration customizes max consume duration
-// If no acknowledge received within WithMaxConsumeDuration after message delivery, DelayQueue will try to deliver this message again
 func (q *DelayQueue) WithMaxConsumeDuration(d time.Duration) *DelayQueue {
 	q.maxConsumeDuration = d
 	return q
 }
 
-// WithFetchLimit limits the max number of unack (processing) messages
 func (q *DelayQueue) WithFetchLimit(limit uint) *DelayQueue {
 	q.fetchLimit = limit
 	return q
@@ -148,8 +136,6 @@ func (q *DelayQueue) WithConcurrent(c uint) *DelayQueue {
 	return q
 }
 
-// WithDefaultRetryCount customizes the max number of retry, it effects of messages in this queue
-// use WithRetryCount during DelayQueue.SendScheduleMsg or DelayQueue.SendDelayMsg to specific retry count of particular message
 func (q *DelayQueue) WithDefaultRetryCount(count uint) *DelayQueue {
 	q.defaultRetryCount = count
 	return q
@@ -164,21 +150,16 @@ func (q *DelayQueue) genMsgKey(idStr string) string {
 
 type RetryCountOpt int
 
-// WithRetryCount set retry count for a msg
-// example: queue.SendDelayMsg(payload, duration, delayqueue.WithRetryCount(3))
 func WithRetryCount(count int) interface{} {
 	return RetryCountOpt(count)
 }
 
 type msgTTLOpt time.Duration
 
-// WithMsgTTL set ttl for a msg
-// example: queue.SendDelayMsg(payload, duration, delayqueue.WithMsgTTL(Hour))
 func WithMsgTTL(d time.Duration) interface{} {
 	return msgTTLOpt(d)
 }
 
-// SendScheduleMsg submits a message delivered at given time
 func (q *DelayQueue) SendScheduleMsg(payload model.TaskField, t time.Time, opts ...interface{}) error {
 	// parse options
 	retryCount := q.defaultRetryCount
@@ -216,15 +197,11 @@ func (q *DelayQueue) SendScheduleMsg(payload model.TaskField, t time.Time, opts 
 	return nil
 }
 
-// SendDelayMsg submits a message delivered after given duration
 func (q *DelayQueue) SendDelayMsg(payload model.TaskField, duration time.Duration, opts ...interface{}) error {
 	t := time.Now().Add(duration)
 	return q.SendScheduleMsg(payload, t, opts...)
 }
 
-// pending2ReadyScript atomically moves messages from pending to ready
-// keys: pendingKey, readyKey
-// argv: currentTime
 const pending2ReadyScript = `
 local msgs = redis.call('ZRangeByScore', KEYS[1], '0', ARGV[1])  -- get ready msg
 if (#msgs == 0) then return end
@@ -252,9 +229,6 @@ func (q *DelayQueue) pending2Ready() error {
 	return nil
 }
 
-// ready2UnackScript atomically moves messages from ready to unack
-// keys: readyKey/retryKey, unackKey
-// argv: retryTime
 const ready2UnackScript = `
 local msg = redis.call('RPop', KEYS[1])
 if (not msg) then return end
@@ -314,14 +288,12 @@ func (q *DelayQueue) callback(idStr string) error {
 	return err
 }
 
-// batchCallback calls DelayQueue.callback in batch. callback is executed concurrently according to property DelayQueue.concurrent
-// batchCallback must wait all callback finished, otherwise the actual number of processing messages may beyond DelayQueue.FetchLimit
 func (q *DelayQueue) batchCallback(ids []string) {
 	if len(ids) == 1 || q.concurrent == 1 {
 		for _, id := range ids {
 			err := q.callback(id)
 			if err != nil {
-				q.logger.Printf("consume msg %s failed: %v", id, err)
+				q.logger.Errorf("consume msg %s failed: %v", id, err)
 			}
 		}
 		return
@@ -343,7 +315,7 @@ func (q *DelayQueue) batchCallback(ids []string) {
 			for id := range ch {
 				err := q.callback(id)
 				if err != nil {
-					q.logger.Printf("consume msg %s failed: %v", id, err)
+					q.logger.Errorf("consume msg %s failed: %v", id, err)
 				}
 			}
 		}()
@@ -418,12 +390,6 @@ func (q *DelayQueue) nack(idStr string) error {
 	return nil
 }
 
-// unack2RetryScript atomically moves messages from unack to retry which remaining retry count greater than 0,
-// and moves messages from unack to garbage which  retry count is 0
-// Because DelayQueue cannot determine garbage message before eval unack2RetryScript, so it cannot pass keys parameter to redisCli.Eval
-// Therefore unack2RetryScript moves garbage message to garbageKey instead of deleting directly
-// keys: unackKey, retryCountKey, retryKey, garbageKey
-// argv: currentTime
 const unack2RetryScript = `
 local unack2retry = function(msgs)
 	local retryCounts = redis.call('HMGet', KEYS[2], unpack(msgs)) -- get retry count
@@ -578,8 +544,6 @@ func (q *DelayQueue) consume() error {
 	return nil
 }
 
-// StartConsume creates a goroutine to consume message from DelayQueue
-// use `<-done` to wait consumer stopping
 func (q *DelayQueue) StartConsume() (done <-chan struct{}) {
 	q.ticker = time.NewTicker(q.fetchInterval)
 	done0 := make(chan struct{})
