@@ -1,17 +1,17 @@
-package task
+package service
 
 import (
 	"gorm.io/gorm"
 	"strconv"
-	"sxp-server/app/dao/task"
+	"sxp-server/app/dao"
 	"sxp-server/app/model"
-	"sxp-server/app/service"
+	"sxp-server/app/service/dto"
 	"sxp-server/common/queue"
 	"time"
 )
 
 type TaskService struct {
-	service.Service
+	Service
 }
 
 // SetTask
@@ -20,8 +20,8 @@ type TaskService struct {
 //	@receiver s
 //	@param req
 //	@return err
-func (s *TaskService) SetTask(req model.StartTaskReq) (err error) {
-	err = task.CreateTask(s.Db, req)
+func (s *TaskService) SetTask(req dto.StartTaskReq) (err error) {
+	err = dao.CreateTask(s.Db, req)
 	if err != nil {
 		s.Logger.Error(err.Error())
 		return
@@ -49,7 +49,7 @@ func (s *TaskService) SetTask(req model.StartTaskReq) (err error) {
 //	@return err
 //	@return flag
 func (s *TaskService) GetTaskByName(name string) (err error, flag bool) {
-	err, flag = task.GetTaskFromName(s.Db, name)
+	err, flag = dao.GetTaskFromName(s.Db, name)
 	if err != nil {
 		s.Logger.Error(err.Error())
 	}
@@ -62,10 +62,10 @@ func (s *TaskService) GetTaskByName(name string) (err error, flag bool) {
 //	@receiver s
 //	@return err
 //	@return tasks
-func (s *TaskService) GetTasks(req model.GetTasksReq) (err error, tasks []model.Task) {
-	err, tasks = task.GetAllTask(s.Db)
+func (s *TaskService) GetTasks(req dto.GetTasksReq) (err error, tasks []model.Task) {
+	err, tasks = dao.GetAllTask(s.Db)
 	db := s.buildQuery(req.Name, req.Status)
-	err, tasks = task.GetAllTask(db)
+	err, tasks = dao.GetAllTask(db)
 	if err != nil {
 		s.Logger.Error(err.Error())
 	}

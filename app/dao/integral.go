@@ -1,4 +1,4 @@
-package integralDao
+package dao
 
 import (
 	"gorm.io/gorm"

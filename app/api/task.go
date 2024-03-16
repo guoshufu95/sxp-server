@@ -1,19 +1,17 @@
-package task
+package api
 
 import (
 	"errors"
 	"github.com/gin-gonic/gin"
-	"sxp-server/app/api"
-	"sxp-server/app/model"
 	serv "sxp-server/app/service"
-	"sxp-server/app/service/task"
+	"sxp-server/app/service/dto"
 )
 
 type TaskApi struct {
-	api.Api
+	Api
 }
 
-var ts = task.TaskService{}
+var ts = serv.TaskService{}
 
 // StartTask
 //
@@ -22,7 +20,7 @@ var ts = task.TaskService{}
 //	@param c
 func (a *TaskApi) StartTask(c *gin.Context) {
 	a.MakeApi(c)
-	var req = model.StartTaskReq{}
+	var req = dto.StartTaskReq{}
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
 		a.Logger.Error(err.Error())
@@ -58,7 +56,7 @@ func (a *TaskApi) StartTask(c *gin.Context) {
 //	@param c
 func (a *TaskApi) GetTasks(c *gin.Context) {
 	a.MakeApi(c)
-	var req model.GetTasksReq
+	var req dto.GetTasksReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
 		a.Logger.Error(err.Error())

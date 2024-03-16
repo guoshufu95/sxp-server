@@ -1,13 +1,12 @@
-package login
+package service
 
 import (
-	"sxp-server/app/model"
-	"sxp-server/app/service"
+	"sxp-server/app/service/dto"
 	"sxp-server/common/jwtToken"
 )
 
 type LoginService struct {
-	service.Service
+	Service
 }
 
 // Login
@@ -16,7 +15,7 @@ type LoginService struct {
 //	@receiver s
 //	@param req
 //	@return err
-func (s *LoginService) Login(req model.LoginReq) (err error, token string) {
+func (s *LoginService) Login(req dto.LoginReq) (err error, token string) {
 	//err, user := login.GetUser(s.Db, req.Username)
 	//if err != nil {
 	//	s.Logger.Error("根据用户名查询用户失败!")

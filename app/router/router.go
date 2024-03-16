@@ -2,10 +2,7 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"sxp-server/app/api/integral"
-	"sxp-server/app/api/login"
-	"sxp-server/app/api/product"
-	"sxp-server/app/api/task"
+	"sxp-server/app/api"
 	"sxp-server/common/initial"
 	"sxp-server/common/middleware"
 )
@@ -28,14 +25,15 @@ func Router(g *gin.RouterGroup) {
 	buildIntegral(g.Group("/integral"))
 	buildLogin(g.Group("/login"))
 	buildProduct(g.Group("/product"))
+	buildMenu(g.Group("/menu"))
 }
 
 // buildTask
 //
-//	@Description: 定时任务
+//	@Description: 定时任务路由
 //	@param g
 func buildTask(g *gin.RouterGroup) {
-	a := task.TaskApi{}
+	a := api.TaskApi{}
 	g.Use(middleware.JWTAuthMiddleware())
 	g.POST("/start", a.StartTask)
 	g.POST("/getTasks", a.GetTasks)
@@ -43,30 +41,43 @@ func buildTask(g *gin.RouterGroup) {
 
 // buildIntegral
 //
-//	@Description: 积分
+//	@Description: 积分功能路由
 //	@param g
 func buildIntegral(g *gin.RouterGroup) {
-	i := integral.IntegralApi{}
+	i := api.IntegralApi{}
 	g.POST("/init", i.InitIntegral)
 }
 
 // buildLogin
 //
-//	@Description: 登录相关
+//	@Description: 登录路由
 //	@param g
 func buildLogin(g *gin.RouterGroup) {
-	l := login.LoginApi{}
+	l := api.LoginApi{}
 	g.POST("/", l.Login)
 }
 
 // buildProduct
 //
-//	@Description: 产品相关
+//	@Description: 产品路由
 //	@param g
 func buildProduct(g *gin.RouterGroup) {
-	g.Use(middleware.JWTAuthMiddleware()).Use(middleware.UseOpenTracing())
-	p := product.ProductApi{}
+	g.Use(middleware.JWTAuthMiddleware())
+	p := api.ProductApi{}
 	g.POST("/getProduct", p.GetProduct)
 	g.POST("/updateProduct", p.UpdateProduct)
 	g.POST("/getByStatus", p.GetByStatus)
+}
+
+// buildMenu
+//
+//	@Description: 菜单路由
+//	@param g
+func buildMenu(g *gin.RouterGroup) {
+	g.Use(middleware.JWTAuthMiddleware())
+	m := api.MenuApi{}
+	g.POST("/get", m.GetMenu)
+	g.POST("/create", m.CreateMenu)
+	g.POST("/update", m.UpdateMenu)
+	g.POST("/delete", m.DeleteMenu)
 }

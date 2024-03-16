@@ -1,8 +1,9 @@
-package task
+package dao
 
 import (
 	"gorm.io/gorm"
 	"sxp-server/app/model"
+	"sxp-server/app/service/dto"
 	"time"
 )
 
@@ -41,7 +42,7 @@ func GetTaskFromName(db *gorm.DB, taskName string) (err error, flag bool) {
 //	@param db
 //	@param req
 //	@return err
-func CreateTask(db *gorm.DB, req model.StartTaskReq) (err error) {
+func CreateTask(db *gorm.DB, req dto.StartTaskReq) (err error) {
 	var task model.Task
 	if req.Time == 0 {
 		task.Time = time.Now().Unix()

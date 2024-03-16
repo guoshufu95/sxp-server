@@ -13,6 +13,11 @@ type Service struct {
 	Logger *logger.ZapLog
 }
 
+// MakeService
+//
+//	@Description: 初始化的一些赋值
+//	@param s
+//	@param c
 func MakeService(s *Service, c *gin.Context) {
 	s.Db = c.MustGet("sxp_gorm_db").(*gorm.DB)
 	s.Cache = c.MustGet("sxp_redis_db").(*redis.Client)

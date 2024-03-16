@@ -1,14 +1,13 @@
-package product
+package service
 
 import (
-	"sxp-server/app/model"
-	"sxp-server/app/service"
+	"sxp-server/app/service/dto"
 	"sxp-server/common/grpc/helper"
 	g "sxp-server/common/grpc/service"
 )
 
 type ProductService struct {
-	service.Service
+	Service
 }
 
 // GetProduct
@@ -18,7 +17,7 @@ type ProductService struct {
 //	@param id
 //	@return err
 //	@return res
-func (s *ProductService) GetProduct(id, token string) (err error, res model.GetProductRes) {
+func (s *ProductService) GetProduct(id, token string) (err error, res dto.GetProductRes) {
 	rpc := g.NewProductGrpcService()
 	ctx := helper.BuildTokenCtx(token)
 	err, val := rpc.GetProductById(ctx, id, token)
@@ -38,7 +37,7 @@ func (s *ProductService) GetProduct(id, token string) (err error, res model.GetP
 //	@param req
 //	@return err
 //	@return res
-func (s *ProductService) UpdateProduct(req model.UpdateProductReq, token string) (err error, res model.UpdateProductRes) {
+func (s *ProductService) UpdateProduct(req dto.UpdateProductReq, token string) (err error, res dto.UpdateProductRes) {
 	rpc := g.NewProductGrpcService()
 	err, val := rpc.UpdateModel(req, token)
 	if err != nil {
@@ -49,7 +48,7 @@ func (s *ProductService) UpdateProduct(req model.UpdateProductReq, token string)
 	return
 }
 
-func (s *ProductService) GetByStatus(status, token string) (err error, res []model.GetByStatusRes) {
+func (s *ProductService) GetByStatus(status, token string) (err error, res []dto.GetByStatusRes) {
 	rpc := g.NewProductGrpcService()
 	err, val := rpc.GetByStatus(status, token)
 	if err != nil {
@@ -57,7 +56,7 @@ func (s *ProductService) GetByStatus(status, token string) (err error, res []mod
 		return
 	}
 	for _, v := range val {
-		item := model.GetByStatusRes{
+		item := dto.GetByStatusRes{
 			ProductId: v.ProductId,
 			Product:   v.Product,
 			Status:    v.Status,

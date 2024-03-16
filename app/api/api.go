@@ -11,6 +11,11 @@ type Api struct {
 	Ctx    *gin.Context
 }
 
+// MakeApi
+//
+//	@Description: 初始化一些字段
+//	@receiver a
+//	@param c
 func (a *Api) MakeApi(c *gin.Context) {
 	a.Logger = c.MustGet("sxp_zap_log").(*logger.ZapLog)
 	a.Ctx = c

@@ -1,18 +1,16 @@
-package integral
+package api
 
 import (
 	"github.com/gin-gonic/gin"
-	"sxp-server/app/api"
-	"sxp-server/app/model"
 	serv "sxp-server/app/service"
-	"sxp-server/app/service/integral"
+	"sxp-server/app/service/dto"
 )
 
 type IntegralApi struct {
-	api.Api
+	Api
 }
 
-var is integral.IntegralService
+var is serv.IntegralService
 
 // InitIntegral
 //
@@ -21,7 +19,7 @@ var is integral.IntegralService
 //	@param c
 func (a *IntegralApi) InitIntegral(c *gin.Context) {
 	a.MakeApi(c)
-	var req model.IntegralReq
+	var req dto.IntegralReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
 		a.Logger.Error(err.Error())

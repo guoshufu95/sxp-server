@@ -19,7 +19,7 @@ func IniDb() *gorm.DB {
 		config.Conf.Mysql.Host,
 		config.Conf.Mysql.Port,
 		config.Conf.Mysql.Db)
-	//dsn := "root:123456@tcp(192.168.111.143:3306)/sxp-server?charset=utf8mb4&parseTime=True&loc=Local"
+
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
 		Logger: zaplog.New(
 			logger.Config{
@@ -34,5 +34,11 @@ func IniDb() *gorm.DB {
 		l.Panicf("连接mysql数据库失败:%s", err.Error())
 	}
 	fmt.Println("mysql连接成功")
+	// 表迁移，不用可注释
+	//err = db.AutoMigrate(&model.User{}, &model.Role{}, &model.Menu{})
+	//if err != nil {
+	//	fmt.Println(err)
+	//	return nil
+	//}
 	return db
 }

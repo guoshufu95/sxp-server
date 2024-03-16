@@ -2,13 +2,6 @@ package model
 
 import "gorm.io/gorm"
 
-// LoginReq
-// @Description: 登录请求参数
-type LoginReq struct {
-	Username string `form:"UserName" json:"username" binding:"required"`
-	Password string `form:"Password" json:"password" binding:"required"`
-}
-
 // SxpUser
 // @Description: 用户数据库字段
 type SxpUser struct {

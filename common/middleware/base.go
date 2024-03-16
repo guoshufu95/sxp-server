@@ -15,7 +15,7 @@ import (
 //	@return gin.HandlerFunc
 func WithGormDb(db *gorm.DB) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		ctx.Set("sxp_gorm_db", db)
+		ctx.Set("sxp_gorm_db", db.WithContext(ctx))
 		ctx.Next()
 	}
 }

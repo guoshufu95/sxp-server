@@ -1,4 +1,4 @@
-package login
+package dao
 
 import (
 	"gorm.io/gorm"

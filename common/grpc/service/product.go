@@ -7,7 +7,7 @@ import (
 	"google.golang.org/grpc/metadata"
 	"io"
 	"strconv"
-	"sxp-server/app/model"
+	"sxp-server/app/service/dto"
 	"sxp-server/common/grpc/client"
 	"sxp-server/common/grpc/helper"
 	"sxp-server/common/grpc/pb"
@@ -93,7 +93,7 @@ func (ps *ProductGrpcService) GetProductById(ctx context.Context, id, token stri
 //
 //	@Description: 新建产品
 //	@receiver ps
-func (ps *ProductGrpcService) UpdateModel(req model.UpdateProductReq, token string) (err error, res pb.UpdateResponse) {
+func (ps *ProductGrpcService) UpdateModel(req dto.UpdateProductReq, token string) (err error, res pb.UpdateResponse) {
 	log := logger.GetLogger()
 	c := client.GetModelClient()
 	ctx := helper.BuildTokenCtx(token)
