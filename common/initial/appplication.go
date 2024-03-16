@@ -8,6 +8,7 @@ import (
 	"sxp-server/common/db"
 	"sxp-server/common/logger"
 	"sxp-server/config"
+	"sync"
 )
 
 var App *Application
@@ -18,6 +19,7 @@ type Application struct {
 	Db          *gorm.DB       `json:"globalDb"`
 	Cache       *redis.Client  `json:"cache"`
 	Logger      *logger.ZapLog `json:"logger"`
+	mux         sync.Mutex
 }
 
 func init() {
@@ -29,6 +31,18 @@ func init() {
 		Db:          db.IniDb(),
 		Cache:       cache.IniCache(),
 	}
+}
+
+func (a *Application) GetAppDb() *gorm.DB {
+	a.mux.Lock()
+	defer a.mux.Unlock()
+	return a.Db
+}
+
+func (a *Application) GetCache() *redis.Client {
+	a.mux.Lock()
+	defer a.mux.Unlock()
+	return a.Cache
 }
 
 func MakeApp() *Application {

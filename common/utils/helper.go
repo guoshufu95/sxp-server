@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"github.com/google/uuid"
 	"github.com/opentracing/opentracing-go"
 	"github.com/uber/jaeger-client-go"
 	jaegercfg "github.com/uber/jaeger-client-go/config"
@@ -72,4 +73,9 @@ func CreateTracer(serviceName string, header http.Header) (opentracing.Tracer, o
 	spanContext, _ := tracer.Extract(opentracing.HTTPHeaders,
 		opentracing.HTTPHeadersCarrier(header))
 	return tracer, spanContext, closer, err
+}
+
+func CreateRequestId() string {
+	requestId := uuid.New().String()
+	return requestId
 }

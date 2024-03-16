@@ -65,6 +65,7 @@ func (a *TaskApi) GetTasks(c *gin.Context) {
 		a.ResponseError(err)
 		return
 	}
+	serv.MakeService(&ts.Service, c)
 	err, tasks := ts.GetTasks(req)
 	if err != nil {
 		err = errors.New("获取定时任务列表失败")

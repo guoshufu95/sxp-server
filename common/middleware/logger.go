@@ -8,8 +8,11 @@ import (
 	"io/ioutil"
 	"strings"
 	"sxp-server/common/logger"
+	"sxp-server/common/utils"
 	"time"
 )
+
+const DefaultHeader = "trace-Id"
 
 // LoggerMiddleware
 //
@@ -17,7 +20,13 @@ import (
 //	@return gin.HandlerFunc
 func LoggerMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		log := logger.GetLogger()
+		requestId := c.GetHeader(DefaultHeader)
+		if requestId == "" {
+			requestId = utils.CreateRequestId()
+			c.Header(DefaultHeader, requestId)
+		}
+		c.Set(DefaultHeader, requestId)
+		log := logger.GetLogger().WithFileds("requestId:", requestId)
 		c.Set("sxp_zap_log", log)
 		// 开始时间
 		startTime := time.Now()
@@ -44,12 +53,13 @@ func LoggerMiddleware() gin.HandlerFunc {
 		latencyTime := endTime.Sub(startTime)
 		res, _ := c.Get("response")
 		logData := map[string]interface{}{
-			"latencyTime":  latencyTime,
-			"method":       reqMethod,
-			"uri":          reqUri,
-			"requestParam": param,
-			"response":     res,
-			"responseCode": statusCode,
+			//"requestId":    requestId,
+			"latencyTime":    int(latencyTime),
+			"method":         reqMethod,
+			"uri":            reqUri,
+			"requestParam":   param,
+			"response: ":     res,
+			"responseCode: ": statusCode,
 		}
 		log.Info(logData)
 		c.Next()

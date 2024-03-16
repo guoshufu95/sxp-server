@@ -8,6 +8,11 @@ import (
 	"time"
 )
 
+// WithGormDb
+//
+//	@Description: db中间件
+//	@param db
+//	@return gin.HandlerFunc
 func WithGormDb(db *gorm.DB) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		ctx.Set("sxp_gorm_db", db)
@@ -15,6 +20,11 @@ func WithGormDb(db *gorm.DB) gin.HandlerFunc {
 	}
 }
 
+// WithRedisDb
+//
+//	@Description: redis中间件
+//	@param rdb
+//	@return gin.HandlerFunc
 func WithRedisDb(rdb *redis.Client) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		ctx.Set("sxp_redis_db", rdb)

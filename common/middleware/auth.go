@@ -7,6 +7,7 @@ import (
 	"strings"
 	"sxp-server/common/jwtToken"
 	"sxp-server/common/logger"
+	"sxp-server/common/utils"
 )
 
 // JWTAuthMiddleware
@@ -15,7 +16,11 @@ import (
 //	@return gin.HandlerFunc
 func JWTAuthMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		log := logger.GetLogger()
+		requestId := c.GetHeader(DefaultHeader)
+		if requestId == "" {
+			requestId = utils.CreateRequestId()
+		}
+		log := logger.GetLogger().WithFileds("requestId", requestId)
 		header := c.Request.Header.Get("token")
 		if header == "" {
 			err := errors.New("请传入合法token")

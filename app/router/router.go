@@ -17,8 +17,8 @@ import (
 func InitRouter(r *gin.Engine) {
 	g := r.Group("/sxp")
 	g.Use(middleware.LoggerMiddleware()).
-		Use(middleware.WithGormDb(initial.App.Db)).
-		Use(middleware.WithRedisDb(initial.App.Cache))
+		Use(middleware.WithGormDb(initial.App.GetAppDb())).
+		Use(middleware.WithRedisDb(initial.App.GetCache()))
 	Router(g)
 	//日志中间件
 }
