@@ -22,7 +22,7 @@ var ls = serv.LoginService{}
 //	@receiver l
 //	@param c
 func (a *LoginApi) Login(c *gin.Context) {
-	a.MakeApi(c)
+	a.BuildApi(c).BuildService(&ls.Service)
 	var req dto.LoginReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
@@ -30,7 +30,7 @@ func (a *LoginApi) Login(c *gin.Context) {
 		a.ResponseError(err)
 		return
 	}
-	serv.MakeService(&ls.Service, c)
+	//serv.MakeService(&ls.Service, c)
 	err, token := ls.Login(req)
 	if err != nil {
 		a.Logger.Error(err.Error())

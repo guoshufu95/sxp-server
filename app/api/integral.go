@@ -18,7 +18,7 @@ var is serv.IntegralService
 //	@receiver a
 //	@param c
 func (a *IntegralApi) InitIntegral(c *gin.Context) {
-	a.MakeApi(c)
+	a.BuildApi(c).BuildService(&is.Service)
 	var req dto.IntegralReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
@@ -26,7 +26,6 @@ func (a *IntegralApi) InitIntegral(c *gin.Context) {
 		a.ResponseError(err)
 		return
 	}
-	serv.MakeService(&is.Service, c)
 	req.RemainCount = req.Count
 	req.RemainIntegral = req.Integral
 	err = is.InitIntegral(req)

@@ -12,6 +12,6 @@ type RoleApi struct {
 var rs = service.RoleService{}
 
 func (a *RoleApi) CreateRole(c *gin.Context) {
-	a.MakeApi(c)
+	a.BuildApi(c).BuildService(&rs.Service)
 	return
 }

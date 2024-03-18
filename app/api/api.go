@@ -2,7 +2,10 @@ package api
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/redis/go-redis/v9"
+	"gorm.io/gorm"
 	"net/http"
+	"sxp-server/app/service"
 	"sxp-server/common/logger"
 )
 
@@ -11,16 +14,33 @@ type Api struct {
 	Ctx    *gin.Context
 }
 
-// MakeApi
+// BuildApi
 //
-//	@Description: 初始化一些字段
+//	@Description: 初始api的一些字段
 //	@receiver a
 //	@param c
-func (a *Api) MakeApi(c *gin.Context) {
+func (a *Api) BuildApi(c *gin.Context) *Api {
 	a.Logger = c.MustGet("sxp_zap_log").(*logger.ZapLog)
 	a.Ctx = c
+	return a
 }
 
+// BuildService
+//
+//	@Description: 初始化service的一些字段
+//	@receiver a
+//	@param s
+func (a *Api) BuildService(s *service.Service) {
+	s.Db = a.Ctx.MustGet("sxp_gorm_db").(*gorm.DB)
+	s.Cache = a.Ctx.MustGet("sxp_redis_db").(*redis.Client)
+	s.Logger = a.Logger
+}
+
+// ResponseError
+//
+//	@Description: 错误返回
+//	@receiver a
+//	@param err
 func (a *Api) ResponseError(err error) {
 	res := gin.H{
 		"code":    http.StatusInternalServerError,
@@ -31,6 +51,12 @@ func (a *Api) ResponseError(err error) {
 
 }
 
+// Response
+//
+//	@Description: 正常返回
+//	@receiver a
+//	@param msg
+//	@param data
 func (a *Api) Response(msg string, data ...interface{}) {
 	res := gin.H{
 		"code":    http.StatusOK,

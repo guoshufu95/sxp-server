@@ -18,7 +18,7 @@ var ps = serv.ProductService{}
 //	@receiver a
 //	@param c
 func (a *ProductApi) GetProduct(c *gin.Context) {
-	a.MakeApi(c)
+	a.BuildApi(c).BuildService(&ts.Service)
 	var req = dto.GetProductReq{}
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
@@ -26,7 +26,6 @@ func (a *ProductApi) GetProduct(c *gin.Context) {
 		a.ResponseError(err)
 		return
 	}
-	serv.MakeService(&ts.Service, c)
 	token, _ := c.Get("sxp-token")
 	err, res := ps.GetProduct(req.Id, token.(string))
 	if err != nil {
@@ -43,7 +42,7 @@ func (a *ProductApi) GetProduct(c *gin.Context) {
 //	@receiver a
 //	@param c
 func (a *ProductApi) UpdateProduct(c *gin.Context) {
-	a.MakeApi(c)
+	a.BuildApi(c).BuildService(&ts.Service)
 	var req = dto.UpdateProductReq{}
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
@@ -51,7 +50,6 @@ func (a *ProductApi) UpdateProduct(c *gin.Context) {
 		a.ResponseError(err)
 		return
 	}
-	serv.MakeService(&ts.Service, c)
 	token, _ := c.Get("sxp-token")
 	err, res := ps.UpdateProduct(req, token.(string))
 	if err != nil {
@@ -67,7 +65,7 @@ func (a *ProductApi) UpdateProduct(c *gin.Context) {
 //	@receiver a
 //	@param c
 func (a *ProductApi) GetByStatus(c *gin.Context) {
-	a.MakeApi(c)
+	a.BuildApi(c).BuildService(&ts.Service)
 	var req = dto.GetByStatusReq{}
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
@@ -75,7 +73,6 @@ func (a *ProductApi) GetByStatus(c *gin.Context) {
 		a.ResponseError(err)
 		return
 	}
-	serv.MakeService(&ts.Service, c)
 	token, _ := c.Get("sxp-token")
 	err, res := ps.GetByStatus(req.Status, token.(string))
 	if err != nil {

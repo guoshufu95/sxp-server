@@ -27,7 +27,7 @@ func (a *MenuApi) GetMenu(c *gin.Context) {
 //	@receiver a
 //	@param c
 func (a *MenuApi) CreateMenu(c *gin.Context) {
-	a.MakeApi(c)
+	a.BuildApi(c).BuildService(&ms.Service)
 	var req dto.CreateMenuReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
@@ -35,7 +35,6 @@ func (a *MenuApi) CreateMenu(c *gin.Context) {
 		a.ResponseError(err)
 		return
 	}
-	serv.MakeService(&ms.Service, c)
 	err = ms.CreateMenu(req)
 	if err != nil {
 		a.Logger.Error(err.Error())
@@ -51,7 +50,7 @@ func (a *MenuApi) CreateMenu(c *gin.Context) {
 //	@receiver a
 //	@param c
 func (a *MenuApi) UpdateMenu(c *gin.Context) {
-	a.MakeApi(c)
+	a.BuildApi(c).BuildService(&ms.Service)
 	var req dto.UpdateMenuReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
@@ -59,7 +58,7 @@ func (a *MenuApi) UpdateMenu(c *gin.Context) {
 		a.ResponseError(err)
 		return
 	}
-	serv.MakeService(&ms.Service, c)
+
 	err = ms.UpdateMenu(req)
 	if err != nil {
 		a.Logger.Error(err.Error())

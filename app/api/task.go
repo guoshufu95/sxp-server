@@ -19,7 +19,7 @@ var ts = serv.TaskService{}
 //	@receiver a
 //	@param c
 func (a *TaskApi) StartTask(c *gin.Context) {
-	a.MakeApi(c)
+	a.BuildApi(c).BuildService(&ts.Service)
 	var req = dto.StartTaskReq{}
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
@@ -27,7 +27,6 @@ func (a *TaskApi) StartTask(c *gin.Context) {
 		a.ResponseError(err)
 		return
 	}
-	serv.MakeService(&ts.Service, c)
 	err, flag := ts.GetTaskByName(req.TaskName)
 	if err != nil {
 		err = errors.New("获取定时任务失败")
@@ -55,7 +54,7 @@ func (a *TaskApi) StartTask(c *gin.Context) {
 //	@receiver a
 //	@param c
 func (a *TaskApi) GetTasks(c *gin.Context) {
-	a.MakeApi(c)
+	a.BuildApi(c).BuildService(&ts.Service)
 	var req dto.GetTasksReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
@@ -63,7 +62,6 @@ func (a *TaskApi) GetTasks(c *gin.Context) {
 		a.ResponseError(err)
 		return
 	}
-	serv.MakeService(&ts.Service, c)
 	err, tasks := ts.GetTasks(req)
 	if err != nil {
 		err = errors.New("获取定时任务列表失败")
