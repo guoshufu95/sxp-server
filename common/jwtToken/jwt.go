@@ -25,15 +25,15 @@ func GenToken(username string) (string, error) {
 }
 
 // ParseToken 解析JWT
-func ParseToken(tokenString string) (*model.MyClaims, error) {
+func ParseToken(tokenString string) (*model.MyClaims, *jwt.Token, error) {
 	token, err := jwt.ParseWithClaims(tokenString, &model.MyClaims{}, func(token *jwt.Token) (i interface{}, err error) {
 		return []byte(config.Conf.Jwt.Secret), nil
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 	if claims, ok := token.Claims.(*model.MyClaims); ok && token.Valid { // 校验token
-		return claims, nil
+		return claims, token, nil
 	}
-	return nil, errors.New("invalid token")
+	return nil, nil, errors.New("invalid token")
 }

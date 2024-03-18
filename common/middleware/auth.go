@@ -8,6 +8,7 @@ import (
 	"sxp-server/common/jwtToken"
 	"sxp-server/common/logger"
 	"sxp-server/common/utils"
+	"time"
 )
 
 // JWTAuthMiddleware
@@ -39,9 +40,18 @@ func JWTAuthMiddleware() gin.HandlerFunc {
 				"error": err.Error()})
 			return
 		}
-		_, err := jwtToken.ParseToken(parts[1])
+		claims, _, err := jwtToken.ParseToken(parts[1])
 		if err != nil {
 			err = errors.New("token解析失败！")
+			log.Error(err)
+			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
+				"code":  http.StatusUnauthorized,
+				"error": err.Error()})
+			return
+		}
+		// token过期
+		if claims.StandardClaims.ExpiresAt < time.Now().Unix() {
+			err = errors.New("token过期，请重新登录")
 			log.Error(err)
 			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
 				"code":  http.StatusUnauthorized,

@@ -20,6 +20,10 @@ func InitRouter(r *gin.Engine) {
 	//日志中间件
 }
 
+// Router
+//
+//	@Description: router
+//	@param g
 func Router(g *gin.RouterGroup) {
 	buildTask(g.Group("/task"))
 	buildIntegral(g.Group("/integral"))

@@ -34,8 +34,8 @@ func IniDb() *gorm.DB {
 		l.Panicf("连接mysql数据库失败:%s", err.Error())
 	}
 	fmt.Println("mysql连接成功")
-	// 表迁移，不用可注释
-	//err = db.AutoMigrate(&model.User{}, &model.Role{}, &model.Menu{})
+	//// 表迁移，不用可注释
+	//err = db.AutoMigrate(&model.User{}, &model.Role{}, &model.Menu{}, &model.Dept{})
 	//if err != nil {
 	//	fmt.Println(err)
 	//	return nil
