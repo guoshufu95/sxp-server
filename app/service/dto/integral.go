@@ -11,3 +11,11 @@ type IntegralReq struct {
 	//BestIntegralIndex int   `json:"bestIntegralIndex"` //手气最佳序号
 	//IntegralList      []int `json:"integralList"`      //拆分列表
 }
+
+// DoIntegral
+// @Description: 入参
+type DoIntegral struct {
+	UserName string `json:"userName"`
+	Password string `json:"password"`
+	//...
+}

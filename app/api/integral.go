@@ -36,3 +36,21 @@ func (a *IntegralApi) InitIntegral(c *gin.Context) {
 	}
 	a.Response("积分初始化成功!", nil)
 }
+
+// DoIntegral
+//
+//	@Description: 抢积分/红包
+//	@receiver a
+//	@param c
+func (a *IntegralApi) DoIntegral(c *gin.Context) {
+	a.BuildApi(c).BuildService(&is.Service)
+	var req dto.DoIntegral
+	//todo 用户校验相关的内容省略，不是重点
+	err := c.ShouldBindJSON(&req)
+	if err != nil {
+		a.Logger.Error(err.Error())
+		a.ResponseError(err)
+		return
+	}
+	err = is.Do()
+}
