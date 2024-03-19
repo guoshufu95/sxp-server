@@ -67,11 +67,6 @@ func (ps *ProductGrpcService) GetProductById(ctx context.Context, id, token stri
 		grpc.Header(&header),   // 接收服务端发来的header
 		grpc.Trailer(&trailer), // 接收服务端发来的trailer
 	)
-	response1, err := c.UpdateModel(ctx, &pb.UpdateRequest{
-		ProductId: strconv.Itoa(10),
-		Product:   "xxxxxx",
-	})
-	fmt.Println(response1)
 	if err != nil {
 		log.Errorf("grpc服务调用失败: %s", err.Error())
 		return
