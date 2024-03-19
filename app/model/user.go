@@ -2,6 +2,7 @@ package model
 
 import (
 	"gorm.io/gorm"
+	"sxp-server/common/utils"
 	"time"
 )
 
@@ -20,9 +21,27 @@ type User struct {
 	Remark        string     `json:"remark" gorm:"type:varchar(100);comment:描述;"`
 	Status        string     `json:"status" gorm:"type:int(4);comment:启用状态;"`
 	IsSuper       int        `json:"is_super" gorm:"int(2);comment:是否是超级管理员;"`
-	RoleId        string     `json:"roleId" gorm:"int(2);comment:用户所属的角色id"`
+	RoleId        int        `json:"roleId" gorm:"int(2);comment:用户所属的角色id"`
 }
 
 func (User) TableName() string {
 	return "user"
+}
+
+func (u *User) BeforeCreate(_ *gorm.DB) error {
+	err, pass := utils.Encrypt(u.Password)
+	u.Password = pass
+	return err
+}
+
+func (u *User) BeforeUpdate(_ *gorm.DB) error {
+	var (
+		err  error
+		pass string
+	)
+	if u.Password != "" {
+		err, pass = utils.Encrypt(u.Password)
+		u.Password = pass
+	}
+	return err
 }

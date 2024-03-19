@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/signal"
+	"strings"
 	"sxp-server/app/router"
 	"sxp-server/common/grpc/client"
 	g "sxp-server/common/grpc/client"
@@ -38,6 +39,14 @@ func SetUp() {
 	if err != nil {
 		l.Panicf("初始化grpc-client失败:%s", err.Error())
 	}
+	a := app.Engine.Routes()
+	data := make([]string, 0)
+	for _, v := range a {
+		if strings.Contains(v.Path, "product") {
+			data = append(data, v.Path)
+		}
+	}
+	fmt.Println(data)
 	port := fmt.Sprintf(":%s", config.Conf.Server.Port)
 	err = r.Run(port)
 	if err != nil {

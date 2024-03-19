@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	serv "sxp-server/app/service"
 	"sxp-server/app/service/dto"
+	"sxp-server/common/model"
 )
 
 type MenuApi struct {
@@ -12,13 +13,38 @@ type MenuApi struct {
 
 var ms serv.MenuService
 
-// GetMenu
+// GetMenus
 //
-//	@Description: 获取菜单树
+//	@Description: 获取所有菜单
 //	@receiver a
 //	@param c
-func (a *MenuApi) GetMenu(c *gin.Context) {
+func (a *MenuApi) GetMenus(c *gin.Context) {
+	a.BuildApi(c).BuildService(&ms.Service)
+	err, menus := ms.ListMenu()
+	if err != nil {
+		a.Logger.Error(err.Error())
+		a.ResponseError(err)
+		return
+	}
+	a.Response("成功获取所有菜单", menus)
+}
 
+// GetMenusByRole
+//
+//	@Description: 返回当前用户展示菜单
+//	@receiver a
+//	@param c
+func (a *MenuApi) GetMenusByRole(c *gin.Context) {
+	a.BuildApi(c).BuildService(&ms.Service)
+	v := c.MustGet("sxp-claims")
+	claims := v.(*model.MyClaims)
+	err, menus := ms.GetRoleMenus(claims.RoleKey, claims.RoleId)
+	if err != nil {
+		a.Logger.Error(err.Error())
+		a.ResponseError(err)
+		return
+	}
+	a.Response("成功获取当前用户菜单", menus)
 }
 
 // CreateMenu

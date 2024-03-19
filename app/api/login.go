@@ -12,10 +12,6 @@ type LoginApi struct {
 
 var ls = serv.LoginService{}
 
-//func init() {
-//	serv.MakeService(&ts.Service)
-//}
-
 // Login
 //
 //	@Description: 登录

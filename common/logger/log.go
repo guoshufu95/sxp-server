@@ -63,10 +63,10 @@ func IniLogger() {
 		logLevel = zap.InfoLevel
 	}
 	infoLevel := zap.LevelEnablerFunc(func(lvl zapcore.Level) bool {
-		return lvl >= logLevel
+		return lvl >= zapcore.InfoLevel && lvl >= logLevel
 	})
 	errorLevel := zap.LevelEnablerFunc(func(lvl zapcore.Level) bool {
-		return lvl >= logLevel
+		return lvl >= zapcore.ErrorLevel && lvl >= logLevel
 	})
 	// 获取 info、error日志文件的io.Writer 抽象 getWriter() 在下方实现
 	infoWriter := getWriter("./logs/info.log")

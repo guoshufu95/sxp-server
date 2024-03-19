@@ -20,7 +20,7 @@ type Api struct {
 //	@receiver a
 //	@param c
 func (a *Api) BuildApi(c *gin.Context) *Api {
-	a.Logger = c.MustGet("sxp_zap_log").(*logger.ZapLog)
+	a.Logger = c.MustGet("sxp-log").(*logger.ZapLog)
 	a.Ctx = c
 	return a
 }

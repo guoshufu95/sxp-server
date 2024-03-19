@@ -59,6 +59,7 @@ func JWTAuthMiddleware() gin.HandlerFunc {
 			return
 		}
 		c.Set("sxp-token", parts[1]) //设置token
+		c.Set("sxp-claims", claims)  //claims
 		c.Next()
 	}
 }

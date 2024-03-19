@@ -15,7 +15,8 @@ func InitRouter(r *gin.Engine) {
 	g := r.Group("/sxp")
 	g.Use(middleware.LoggerMiddleware()).
 		Use(middleware.WithGormDb(initial.App.GetAppDb())).
-		Use(middleware.WithRedisDb(initial.App.GetCache()))
+		Use(middleware.WithRedisDb(initial.App.GetCache())).
+		Use(gin.Recovery())
 	Router(g)
 	//日志中间件
 }
@@ -30,6 +31,7 @@ func Router(g *gin.RouterGroup) {
 	buildLogin(g.Group("/login"))
 	buildProduct(g.Group("/product"))
 	buildMenu(g.Group("/menu"))
+	buildUser(g.Group("/user"))
 }
 
 // buildTask
@@ -80,8 +82,16 @@ func buildProduct(g *gin.RouterGroup) {
 func buildMenu(g *gin.RouterGroup) {
 	g.Use(middleware.JWTAuthMiddleware())
 	m := api.MenuApi{}
-	g.POST("/get", m.GetMenu)
+	g.GET("/list", m.GetMenus)
+	g.GET("/roleMenus", m.GetMenusByRole)
 	g.POST("/create", m.CreateMenu)
 	g.POST("/update", m.UpdateMenu)
 	g.POST("/delete", m.DeleteMenu)
+}
+
+func buildUser(g *gin.RouterGroup) {
+	g.Use(middleware.JWTAuthMiddleware())
+	u := api.UserApi{}
+	g.POST("/create", u.CreateUser)
+	g.GET("/list", u.ListUsers)
 }
