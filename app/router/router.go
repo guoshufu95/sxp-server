@@ -52,6 +52,7 @@ func buildTask(g *gin.RouterGroup) {
 func buildIntegral(g *gin.RouterGroup) {
 	i := api.IntegralApi{}
 	g.POST("/init", i.InitIntegral)
+	g.POST("/do", i.DoIntegral)
 }
 
 // buildLogin
@@ -89,6 +90,10 @@ func buildMenu(g *gin.RouterGroup) {
 	g.POST("/delete", m.DeleteMenu)
 }
 
+// buildUser
+//
+//	@Description: user路由
+//	@param g
 func buildUser(g *gin.RouterGroup) {
 	g.Use(middleware.JWTAuthMiddleware())
 	u := api.UserApi{}

@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strings"
+	_const "sxp-server/common/const"
 	"sxp-server/common/jwtToken"
 	"sxp-server/common/logger"
 	"sxp-server/common/utils"
@@ -58,8 +59,8 @@ func JWTAuthMiddleware() gin.HandlerFunc {
 				"error": err.Error()})
 			return
 		}
-		c.Set("sxp-token", parts[1]) //设置token
-		c.Set("sxp-claims", claims)  //claims
+		c.Set(_const.SxpTokenKey, parts[1]) //设置token
+		c.Set(_const.SxpClaimsKey, claims)  //claims
 		c.Next()
 	}
 }

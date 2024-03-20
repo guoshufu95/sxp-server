@@ -100,33 +100,6 @@ func ClientUnaryInterceptor(tracer opentracing.Tracer) grpc.UnaryClientIntercept
 		}
 		newCtx := metadata.NewOutgoingContext(ctx, md)
 		return invoker(newCtx, method, req, reply, cc, opts...)
-		//span, _ := opentracing.StartSpanFromContext(
-		//	ctx,
-		//	"call gRPC",
-		//	opentracing.Tag{Key: string(ext.Component), Value: "gRPC"},
-		//	opentracing.Tag{Key: "serviceName", Value: "sxp-server"},
-		//	ext.SpanKindRPCClient,
-		//)
-		//defer span.Finish()
-		//md, ok := metadata.FromOutgoingContext(ctx)
-		//if !ok {
-		//	md = metadata.New(nil)
-		//} else {
-		//	md = md.Copy()
-		//}
-		//
-		//mdWriter := MDReaderWriter{md}
-		//err := opentracing.GlobalTracer().Inject(span.Context(), opentracing.TextMap, mdWriter)
-		//if err != nil {
-		//	span.LogFields(log.String("inject-error", err.Error()))
-		//}
-		//
-		//newCtx := metadata.NewOutgoingContext(ctx, md)
-		//err = invoker(newCtx, method, req, reply, cc, opts...)
-		//if err != nil {
-		//	span.LogFields(log.String("call-error", err.Error()))
-		//}
-		//return err
 	}
 }
 
@@ -183,32 +156,5 @@ func ClientStreamInterceptor(tracer opentracing.Tracer) grpc.StreamClientInterce
 			return nil, err
 		}
 		return newWrappedStream(stream), err
-
-		//span, _ := opentracing.StartSpanFromContext(
-		//	ctx,
-		//	"call gRPC",
-		//	opentracing.Tag{Key: string(ext.Component), Value: "gRPC"},
-		//	opentracing.Tag{Key: "serviceName", Value: "sxp-server"},
-		//	ext.SpanKindRPCClient,
-		//)
-		//defer span.Finish()
-		//
-		//md, ok := metadata.FromOutgoingContext(ctx)
-		//if !ok {
-		//	md = metadata.New(nil)
-		//} else {
-		//	md = md.Copy()
-		//}
-		//mdWriter := MDReaderWriter{md}
-		//err := tracer.Inject(span.Context(), opentracing.TextMap, mdWriter)
-		//if err != nil {
-		//	span.LogFields(log.String("inject-error", err.Error()))
-		//}
-		//newCtx := metadata.NewOutgoingContext(ctx, md)
-		//stream, err := streamer(newCtx, desc, cc, method, opts...)
-		//if err != nil {
-		//	return nil, err
-		//}
-		//return newWrappedStream(stream), err
 	}
 }

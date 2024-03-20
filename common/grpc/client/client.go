@@ -10,12 +10,12 @@ import (
 	"log"
 	"sxp-server/common/grpc/pb"
 	"sxp-server/common/tracer"
+	"sxp-server/config"
 	"time"
 )
 
 var (
 	modelClient pb.ModelClient
-	addr        = "192.168.111.40:9001"
 	grpcConn    *grpc.ClientConn
 )
 
@@ -25,18 +25,18 @@ var (
 func Init() (err error) {
 	retryOpts := []grpc_retry.CallOption{
 		// 最大重试次数
-		grpc_retry.WithMax(3),
+		grpc_retry.WithMax(uint(config.Conf.Grpc.Retry)),
 		// 超时时间
-		grpc_retry.WithPerRetryTimeout(30 * time.Second),
+		grpc_retry.WithPerRetryTimeout(time.Duration(config.Conf.Grpc.TimeOut) * time.Second),
 		// 只有返回对应的code才会执行重试
 		grpc_retry.WithCodes(codes.Unknown, codes.DeadlineExceeded, codes.Unavailable),
 	}
-	trace, _, err := tracer.NewJaegerTracer("sxp-server", "192.168.111.143:6831")
+	trace, _, err := tracer.NewJaegerTracer("sxp-server", config.Conf.Jaeger.Addr)
 	if err != nil {
 		return
 	}
 	// 失败重试和链路追踪middleware
-	conn, err := grpc.Dial(addr, grpc.WithTransportCredentials(insecure.NewCredentials()),
+	conn, err := grpc.Dial(config.Conf.Grpc.Addr, grpc.WithTransportCredentials(insecure.NewCredentials()),
 		grpc.WithUnaryInterceptor(grpc_middleware.ChainUnaryClient(tracer.ClientUnaryInterceptor(trace),
 			grpc_retry.UnaryClientInterceptor(retryOpts...))),
 		grpc.WithStreamInterceptor(tracer.ClientStreamInterceptor(trace)),

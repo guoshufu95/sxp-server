@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/redis/go-redis/v9"
 	"gorm.io/gorm"
+	_const "sxp-server/common/const"
 	"time"
 )
 
@@ -15,7 +16,7 @@ import (
 //	@return gin.HandlerFunc
 func WithGormDb(db *gorm.DB) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		ctx.Set("sxp_gorm_db", db.WithContext(ctx))
+		ctx.Set(_const.SxpGormDBkEY, db.WithContext(ctx.Copy()))
 		ctx.Next()
 	}
 }
@@ -27,7 +28,7 @@ func WithGormDb(db *gorm.DB) gin.HandlerFunc {
 //	@return gin.HandlerFunc
 func WithRedisDb(rdb *redis.Client) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		ctx.Set("sxp_redis_db", rdb)
+		ctx.Set(_const.SxpRedisDbKey, rdb)
 		ctx.Next()
 	}
 }

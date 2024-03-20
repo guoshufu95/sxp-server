@@ -2,7 +2,6 @@ package service
 
 import (
 	"sxp-server/app/service/dto"
-	"sxp-server/common/grpc/helper"
 	g "sxp-server/common/grpc/service"
 )
 
@@ -18,9 +17,8 @@ type ProductService struct {
 //	@return err
 //	@return res
 func (s *ProductService) GetProduct(id, token string) (err error, res dto.GetProductRes) {
-	rpc := g.NewProductGrpcService()
-	ctx := helper.BuildTokenCtx(token)
-	err, val := rpc.GetProductById(ctx, id, token)
+	rpc := g.NewProductGrpcService(g.WithLog(s.Logger))
+	err, val := rpc.GetProductById(id, token)
 	if err != nil {
 		s.Logger.Error("远程调用gprc服务失败: %s", err.Error())
 		return
@@ -38,7 +36,7 @@ func (s *ProductService) GetProduct(id, token string) (err error, res dto.GetPro
 //	@return err
 //	@return res
 func (s *ProductService) UpdateProduct(req dto.UpdateProductReq, token string) (err error, res dto.UpdateProductRes) {
-	rpc := g.NewProductGrpcService()
+	rpc := g.NewProductGrpcService(g.WithLog(s.Logger))
 	err, val := rpc.UpdateModel(req, token)
 	if err != nil {
 		s.Logger.Error("远程调用gprc服务失败: %s", err.Error())
@@ -49,7 +47,7 @@ func (s *ProductService) UpdateProduct(req dto.UpdateProductReq, token string) (
 }
 
 func (s *ProductService) GetByStatus(status, token string) (err error, res []dto.GetByStatusRes) {
-	rpc := g.NewProductGrpcService()
+	rpc := g.NewProductGrpcService(g.WithLog(s.Logger))
 	err, val := rpc.GetByStatus(status, token)
 	if err != nil {
 		s.Logger.Errorf("远程调用gprc服务失败: %s", err.Error())

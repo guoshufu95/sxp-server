@@ -6,6 +6,7 @@ import (
 	"gorm.io/gorm"
 	"net/http"
 	"sxp-server/app/service"
+	_const "sxp-server/common/const"
 	"sxp-server/common/logger"
 )
 
@@ -20,7 +21,7 @@ type Api struct {
 //	@receiver a
 //	@param c
 func (a *Api) BuildApi(c *gin.Context) *Api {
-	a.Logger = c.MustGet("sxp-log").(*logger.ZapLog)
+	a.Logger = c.MustGet(_const.SxpLogKey).(*logger.ZapLog)
 	a.Ctx = c
 	return a
 }
@@ -31,8 +32,8 @@ func (a *Api) BuildApi(c *gin.Context) *Api {
 //	@receiver a
 //	@param s
 func (a *Api) BuildService(s *service.Service) {
-	s.Db = a.Ctx.MustGet("sxp_gorm_db").(*gorm.DB)
-	s.Cache = a.Ctx.MustGet("sxp_redis_db").(*redis.Client)
+	s.Db = a.Ctx.MustGet(_const.SxpGormDBkEY).(*gorm.DB)
+	s.Cache = a.Ctx.MustGet(_const.SxpRedisDbKey).(*redis.Client)
 	s.Logger = a.Logger
 }
 
@@ -63,7 +64,6 @@ func (a *Api) Response(msg string, data ...interface{}) {
 		"message": msg,
 		"data":    data,
 	}
-	a.Ctx.AbortWithStatusJSON(http.StatusOK, res)
 	a.Ctx.Set("response", res)
 	a.Ctx.Set("status", http.StatusOK)
 }

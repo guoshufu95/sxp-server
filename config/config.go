@@ -33,6 +33,14 @@ type Config struct {
 		Secret  string
 		Timeout int64
 	}
+	Grpc struct {
+		Addr    string
+		Retry   int
+		TimeOut int
+	}
+	Jaeger struct {
+		Addr string
+	}
 }
 
 var Conf *Config

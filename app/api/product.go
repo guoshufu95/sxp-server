@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	serv "sxp-server/app/service"
 	"sxp-server/app/service/dto"
+	_const "sxp-server/common/const"
 )
 
 type ProductApi struct {
@@ -26,7 +27,7 @@ func (a *ProductApi) GetProduct(c *gin.Context) {
 		a.ResponseError(err)
 		return
 	}
-	token, _ := c.Get("sxp-token")
+	token, _ := c.Get(_const.SxpTokenKey)
 	err, res := ps.GetProduct(req.Id, token.(string))
 	if err != nil {
 		a.Logger.Error("获取产品失败")
@@ -50,7 +51,7 @@ func (a *ProductApi) UpdateProduct(c *gin.Context) {
 		a.ResponseError(err)
 		return
 	}
-	token, _ := c.Get("sxp-token")
+	token, _ := c.Get(_const.SxpTokenKey)
 	err, res := ps.UpdateProduct(req, token.(string))
 	if err != nil {
 		a.Logger.Error("获取产品失败")
@@ -73,7 +74,7 @@ func (a *ProductApi) GetByStatus(c *gin.Context) {
 		a.ResponseError(err)
 		return
 	}
-	token, _ := c.Get("sxp-token")
+	token, _ := c.Get(_const.SxpTokenKey)
 	err, res := ps.GetByStatus(req.Status, token.(string))
 	if err != nil {
 		a.Logger.Error("根据status获取产品失败")

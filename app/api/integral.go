@@ -30,7 +30,7 @@ func (a *IntegralApi) InitIntegral(c *gin.Context) {
 	req.RemainIntegral = req.Integral
 	err = is.InitIntegral(req)
 	if err != nil {
-		a.Logger.Error("初始化积分失败!")
+		a.Logger.Error(err)
 		a.ResponseError(err)
 		return
 	}
@@ -43,14 +43,21 @@ func (a *IntegralApi) InitIntegral(c *gin.Context) {
 //	@receiver a
 //	@param c
 func (a *IntegralApi) DoIntegral(c *gin.Context) {
+
 	a.BuildApi(c).BuildService(&is.Service)
 	var req dto.DoIntegral
-	//todo 用户校验相关的内容省略，不是重点
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
 		a.Logger.Error(err.Error())
 		a.ResponseError(err)
 		return
 	}
-	err = is.Do()
+	//todo 用户校验相关的内容省略，不是重点
+	err, msg, val := is.Do(req.UserName)
+	if err != nil {
+		a.Logger.Error(err)
+		a.ResponseError(err)
+		return
+	}
+	a.Response(msg, val)
 }

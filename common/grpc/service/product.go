@@ -1,7 +1,6 @@
 package service
 
 import (
-	"context"
 	"fmt"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"
@@ -15,12 +14,19 @@ import (
 )
 
 type ProductGrpcService struct {
+	Log    *logger.ZapLog
 	User   string
 	Token  string
 	RoleId int
 }
 
 type mOption func(service *ProductGrpcService)
+
+func WithLog(log *logger.ZapLog) mOption {
+	return func(s *ProductGrpcService) {
+		s.Log = log
+	}
+}
 
 func WithToken(token string) mOption {
 	return func(s *ProductGrpcService) {
@@ -56,8 +62,8 @@ func NewProductGrpcService(opts ...mOption) *ProductGrpcService {
 //
 //	@Description: 通过id查询产品
 //	@receiver ps
-func (ps *ProductGrpcService) GetProductById(ctx context.Context, id, token string) (err error, res *pb.ModelResponse) {
-	log := logger.GetLogger()
+func (ps *ProductGrpcService) GetProductById(id, token string) (err error, res *pb.ModelResponse) {
+	ctx := helper.BuildTokenCtx(token)
 	c := client.GetModelClient()
 	var header, trailer metadata.MD
 	response, err := c.GetModel(ctx,
@@ -68,12 +74,12 @@ func (ps *ProductGrpcService) GetProductById(ctx context.Context, id, token stri
 		grpc.Trailer(&trailer), // 接收服务端发来的trailer
 	)
 	if err != nil {
-		log.Errorf("grpc服务调用失败: %s", err.Error())
+		ps.Log.Errorf("grpc服务调用失败: %s", err.Error())
 		return
 	}
 	err, ok := helper.CheckTokenRes(header)
 	if err != nil || !ok {
-		log.Errorf("grpc服务端校验token失败:%s", err.Error())
+		ps.Log.Errorf("grpc服务端校验token失败:%s", err.Error())
 		return
 	}
 	err, ok = helper.CheckSign(trailer)
@@ -89,7 +95,6 @@ func (ps *ProductGrpcService) GetProductById(ctx context.Context, id, token stri
 //	@Description: 新建产品
 //	@receiver ps
 func (ps *ProductGrpcService) UpdateModel(req dto.UpdateProductReq, token string) (err error, res pb.UpdateResponse) {
-	log := logger.GetLogger()
 	c := client.GetModelClient()
 	ctx := helper.BuildTokenCtx(token)
 	response, err := c.UpdateModel(ctx, &pb.UpdateRequest{
@@ -97,7 +102,7 @@ func (ps *ProductGrpcService) UpdateModel(req dto.UpdateProductReq, token string
 		Product:   req.Product,
 	})
 	if err != nil {
-		log.Errorf("grpc服务调用失败: %s", err.Error())
+		ps.Log.Errorf("grpc服务调用失败: %s", err.Error())
 		return
 	}
 	fmt.Println(response)
@@ -114,19 +119,18 @@ func (ps *ProductGrpcService) UpdateModel(req dto.UpdateProductReq, token string
 //	@return response
 func (ps *ProductGrpcService) GetByStatus(status, token string) (err error, response []*pb.StatusResponse) {
 	ctx := helper.BuildTokenCtx(token)
-	log := logger.GetLogger()
 	c := client.GetModelClient()
 	stream, err := c.GetByStatus(ctx)
 	wch := make(chan struct{})
 	if err != nil {
-		log.Errorf("grpc服务调用失败: %s", err.Error())
+		ps.Log.Errorf("grpc服务调用失败: %s", err.Error())
 		return
 	}
 	var ok bool
 	header, _ := stream.Header()
 	err, ok = helper.CheckTokenRes(header)
 	if err != nil || !ok {
-		log.Errorf("grpc服务端校验token失败:%s", err.Error())
+		ps.Log.Errorf("grpc服务端校验token失败:%s", err.Error())
 		return
 	}
 	// 校验通过才会走到发送逻辑发送数据
@@ -136,7 +140,7 @@ func (ps *ProductGrpcService) GetByStatus(status, token string) (err error, resp
 			Status: status,
 		})
 		if err != nil {
-			log.Info("发送流消息错误: %s", err.Error())
+			ps.Log.Info("发送流消息错误: %s", err.Error())
 			return
 		}
 		_ = stream.CloseSend()
@@ -147,9 +151,9 @@ func (ps *ProductGrpcService) GetByStatus(status, token string) (err error, resp
 		for {
 			res, er := stream.Recv()
 			if er != nil && er != io.EOF {
-				log.Errorf("receive error:", er.Error())
+				ps.Log.Errorf("receive error:", er.Error())
 			} else if er == io.EOF {
-				log.Info("receive EOF")
+				ps.Log.Info("receive EOF")
 				wch <- struct{}{}
 				break
 			}

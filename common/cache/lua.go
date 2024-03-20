@@ -34,8 +34,8 @@ const (
 	redis.call("SET", "now", tonumber(now[1]));
 	--tonumber是将value转换为数字，此步是取出桶中最大令牌数、生成令牌的速率(每秒生成多少个)、当前时间
 
-	local max_token_num = 30;
-	local token_rate = 20;
+	local max_token_num = 150;
+	local token_rate = 100;
 	local current_time = tonumber(now[1]);
 	--reverse_time 即多少毫秒生成一个令牌
 	local reverse_time = 1000/token_rate;

@@ -84,7 +84,7 @@ func IniLogger() {
 func getWriter(filename string) io.Writer {
 	lumberJackLogger := &lumberjack.Logger{
 		Filename:   filename,
-		MaxSize:    1,
+		MaxSize:    100,
 		MaxBackups: 5,
 		MaxAge:     30,
 		Compress:   false,
@@ -104,13 +104,13 @@ func (l *ZapLog) Debug(args ...interface{}) {
 }
 
 func (l *ZapLog) Debugf(format string, args ...interface{}) {
+	var s string
 	if len(l.fields) != 0 {
-		var s string
 		for _, v := range l.fields {
 			s += v
 		}
-		l.GlobalLog.Debug(s, " ", fmt.Sprintf(format, args...))
 	}
+	l.GlobalLog.Debug(s, " ", fmt.Sprintf(format, args...))
 }
 
 func (l *ZapLog) Info(args ...interface{}) {
@@ -125,13 +125,13 @@ func (l *ZapLog) Info(args ...interface{}) {
 }
 
 func (l *ZapLog) Infof(format string, args ...interface{}) {
+	var s string
 	if len(l.fields) != 0 {
-		var s string
 		for _, v := range l.fields {
 			s += v
 		}
-		l.GlobalLog.Info(s, " ", fmt.Sprintf(format, args...))
 	}
+	l.GlobalLog.Info(s, " ", fmt.Sprintf(format, args...))
 }
 
 func (l *ZapLog) Error(args ...interface{}) {
@@ -146,13 +146,13 @@ func (l *ZapLog) Error(args ...interface{}) {
 }
 
 func (l *ZapLog) Errorf(format string, args ...interface{}) {
+	var s string
 	if len(l.fields) != 0 {
-		var s string
 		for _, v := range l.fields {
 			s += v
 		}
-		l.GlobalLog.Error(s, " ", fmt.Sprintf(format, args...))
 	}
+	l.GlobalLog.Error(s, " ", fmt.Sprintf(format, args...))
 }
 
 func (l *ZapLog) Panic(args ...interface{}) {
@@ -167,13 +167,13 @@ func (l *ZapLog) Panic(args ...interface{}) {
 }
 
 func (l *ZapLog) Panicf(format string, args ...interface{}) {
+	var s string
 	if len(l.fields) != 0 {
-		var s string
 		for _, v := range l.fields {
 			s += v
 		}
-		l.GlobalLog.Panicf(s, " ", fmt.Sprintf(format, args...))
 	}
+	l.GlobalLog.Panicf(s, " ", fmt.Sprintf(format, args...))
 }
 
 func (l *ZapLog) WithFileds(args ...string) *ZapLog {

@@ -7,3 +7,11 @@ var (
 	Key1          = "filter"
 	UserKey       = "hasUser"
 )
+
+var (
+	SxpLogKey     = "sxp-log"
+	SxpTokenKey   = "sxp-token"
+	SxpClaimsKey  = "sxp-claims"
+	SxpGormDBkEY  = "sxp-gorm-db"
+	SxpRedisDbKey = "sxp-redis-db"
+)

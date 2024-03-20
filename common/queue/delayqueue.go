@@ -371,16 +371,6 @@ func (q *DelayQueue) nack(idStr string) error {
 	if res[0].(string) == "0" {
 
 	}
-	//var t time.Duration
-	//if res[0].(string) == "3" {
-	//	t = 5 * time.Second
-	//}
-	//if res[0].(string) == "2" {
-	//	t = 10 * time.Second
-	//}
-	//if res[0].(string) == "1" {
-	//	t = 15 * time.Second
-	//}
 	err = q.redisCli.ZAdd(q.unAckKey, map[string]float64{
 		idStr: float64(time.Now().Add(3 * time.Second).Unix()),
 	})
@@ -557,7 +547,7 @@ func (q *DelayQueue) StartConsume() (done <-chan struct{}) {
 					log.Printf("consume error: %v", err)
 				}
 			case <-q.close:
-				fmt.Println("##########定时任务队列消费者退出###########")
+				q.logger.Info("##########定时任务队列消费者退出###########")
 				break tickerLoop
 			}
 		}
@@ -568,7 +558,7 @@ func (q *DelayQueue) StartConsume() (done <-chan struct{}) {
 
 // StopConsume stops consumer goroutine
 func (q *DelayQueue) StopConsume() {
-	fmt.Println("定时任务停止")
+	q.logger.Info("定时任务停止")
 	close(q.close)
 	if q.ticker != nil {
 		q.ticker.Stop()

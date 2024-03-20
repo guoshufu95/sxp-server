@@ -7,6 +7,7 @@ import (
 	"io"
 	"io/ioutil"
 	"strings"
+	_const "sxp-server/common/const"
 	"sxp-server/common/logger"
 	"sxp-server/common/utils"
 	"time"
@@ -27,7 +28,7 @@ func LoggerMiddleware() gin.HandlerFunc {
 		}
 		c.Set(DefaultHeader, requestId)
 		log := logger.GetLogger().WithFileds("requestId:", requestId)
-		c.Set("sxp-log", log)
+		c.Set(_const.SxpLogKey, log)
 		// 开始时间
 		startTime := time.Now()
 		// 处理请求
