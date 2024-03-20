@@ -64,6 +64,7 @@ func (a *Api) Response(msg string, data ...interface{}) {
 		"message": msg,
 		"data":    data,
 	}
+	a.Ctx.JSON(http.StatusOK, res)
 	a.Ctx.Set("response", res)
 	a.Ctx.Set("status", http.StatusOK)
 }

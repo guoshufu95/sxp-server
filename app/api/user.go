@@ -63,7 +63,7 @@ func (a *UserApi) CreateUser(c *gin.Context) {
 		a.ResponseError(err)
 		return
 	}
-	// casbin授权
+	//todo casbin授权
 	err = us.CasbinPermission(req.RoleId)
 	a.Response("创建用户成功", nil)
 }

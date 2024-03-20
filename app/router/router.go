@@ -32,6 +32,7 @@ func Router(g *gin.RouterGroup) {
 	buildProduct(g.Group("/product"))
 	buildMenu(g.Group("/menu"))
 	buildUser(g.Group("/user"))
+	buildRole(g.Group("/role"))
 }
 
 // buildTask
@@ -88,6 +89,14 @@ func buildMenu(g *gin.RouterGroup) {
 	g.POST("/create", m.CreateMenu)
 	g.POST("/update", m.UpdateMenu)
 	g.POST("/delete", m.DeleteMenu)
+}
+
+func buildRole(g *gin.RouterGroup) {
+	g.Use(middleware.JWTAuthMiddleware())
+	r := api.RoleApi{}
+	g.GET("/list", r.ListRoles)
+	g.POST("/create", r.CreateRole)
+	g.POST("update", r.UpdateRole)
 }
 
 // buildUser

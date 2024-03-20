@@ -17,7 +17,7 @@ redis:
 jwt:
   secret: sxp-server
   #多少秒过期
-  timeout: 600
+  timeout: 1800
 grpc:
   addr: 192.168.111.40:9001
   retry: 3

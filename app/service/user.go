@@ -8,6 +8,7 @@ import (
 	"sxp-server/app/dao"
 	"sxp-server/app/model"
 	"sxp-server/app/service/dto"
+	_const "sxp-server/common/const"
 	ini "sxp-server/common/initial"
 	cm "sxp-server/common/model"
 )
@@ -39,7 +40,7 @@ func (s *UserService) ListUsers() (err error, users []model.User) {
 //	@return err
 //	@return flag
 func (s *UserService) Auth(c *gin.Context) (err error) {
-	v, ok := c.Get("sxp-claims")
+	v, ok := c.Get(_const.SxpClaimsKey)
 	if !ok {
 		err = errors.New("无法获取claims")
 		return
@@ -51,7 +52,7 @@ func (s *UserService) Auth(c *gin.Context) (err error) {
 		return
 	}
 	if user.IsSuper == 0 {
-		err = errors.New("权限不足，只有超级管理员才能创建用户")
+		err = errors.New("权限不足")
 		return
 	}
 	return
