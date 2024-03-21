@@ -57,7 +57,15 @@ func getDeptTree(data []model.Dept, parentId uint) []model.Dept {
 //	@return err
 func (s *DeptService) CreateDept(req dto.CreateDeptReq) (err error) {
 	var dept model.Dept
-	err, dm := dao.GetDeptByName(s.Db, req.Name)
+	db := s.Db
+	defer func() {
+		if err != nil {
+			db.Rollback()
+		} else {
+			db.Commit()
+		}
+	}()
+	err, dm := dao.GetDeptByName(db, req.Name)
 	if err != nil {
 		s.Logger.Error("通过名称查询部门失败")
 		return
@@ -67,7 +75,7 @@ func (s *DeptService) CreateDept(req dto.CreateDeptReq) (err error) {
 		return
 	}
 	req.BuildCreateData(&dept)
-	err = dao.CreateDept(s.Db, dept)
+	err = dao.CreateDept(db, dept)
 	if err != nil {
 		s.Logger.Error("创建部门入库失败")
 		return
@@ -83,7 +91,15 @@ func (s *DeptService) CreateDept(req dto.CreateDeptReq) (err error) {
 //	@return err
 func (s *DeptService) UpdateDept(req dto.UpdateDeptReq) (err error) {
 	var dept model.Dept
-	err, dm := dao.GetDeptByName(s.Db, req.Name)
+	db := s.Db
+	defer func() {
+		if err != nil {
+			db.Rollback()
+		} else {
+			db.Commit()
+		}
+	}()
+	err, dm := dao.GetDeptByName(db, req.Name)
 	if err != nil {
 		s.Logger.Error("通过名称查询部门失败")
 		return
@@ -93,7 +109,7 @@ func (s *DeptService) UpdateDept(req dto.UpdateDeptReq) (err error) {
 		return
 	}
 	req.BuildUpdateData(&dept)
-	err = dao.UpdateDept(s.Db, dept)
+	err = dao.UpdateDept(db, dept)
 	if err != nil {
 		s.Logger.Error("更新部门信息失败")
 		return
@@ -109,20 +125,28 @@ func (s *DeptService) UpdateDept(req dto.UpdateDeptReq) (err error) {
 //	@return err
 func (s *DeptService) DeleteDept(id int) (err error) {
 	var dept model.Dept
-	err = dao.GetDeptById(s.Db, uint(id), &dept)
+	db := s.Db
+	defer func() {
+		if err != nil {
+			db.Rollback()
+		} else {
+			db.Commit()
+		}
+	}()
+	err = dao.GetDeptById(db, uint(id), &dept)
 	if err != nil {
 		s.Logger.Error("通过id查询部门信息失败")
 		return
 	}
-	err, list := getDeptTreeById(s.Db, id)
+	err, list := getDeptTreeById(db, id)
 	if err != nil {
 		return
 	}
 	dept.Children = append(dept.Children, list...)
 	ids := make([]uint, 0)
-	getTreeIds(dept.Children, &ids)
+	getDeptTreeIds(dept.Children, &ids)
 	ids = append(ids, dept.ID)
-	err = dao.DeleteDeptByIds(s.Db, ids)
+	err = dao.DeleteDeptByIds(db, ids)
 	if err != nil {
 		s.Logger.Error("通过ids删除部门失败")
 	}
@@ -146,16 +170,16 @@ func getDeptTreeById(db *gorm.DB, id int) (err error, list []model.Dept) {
 	return
 }
 
-// getTreeIds
+// getDeptTreeIds
 //
 //	@Description: 返回id列表
 //	@param depts
 //	@return []uint
-func getTreeIds(depts []model.Dept, ids *[]uint) {
+func getDeptTreeIds(depts []model.Dept, ids *[]uint) {
 	for _, val := range depts {
 		*ids = append(*ids, val.ID)
 		if len(val.Children) != 0 {
-			getTreeIds(val.Children, ids)
+			getDeptTreeIds(val.Children, ids)
 		}
 	}
 }

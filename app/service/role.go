@@ -37,20 +37,28 @@ func (s *RoleService) CreateRole(req dto.CreateRoleReq) (err error) {
 		menus []model.Menu
 		detps []model.Dept
 	)
+	db := s.Db
+	defer func() {
+		if err != nil {
+			db.Rollback()
+		} else {
+			db.Commit()
+		}
+	}()
 	req.BuildCreateData(&data)
-	err = dao.GetMenusByIds(s.Db, req.MenuIds, &menus)
+	err = dao.GetMenusByIds(db, req.MenuIds, &menus)
 	if err != nil {
 		s.Logger.Error("通过ids查询菜单列表失败")
 		return
 	}
-	err = dao.GetDeptsByIds(s.Db, req.DeptIds, &detps)
+	err = dao.GetDeptsByIds(db, req.DeptIds, &detps)
 	if err != nil {
 		s.Logger.Error("通过ids查询部门列表失败")
 		return
 	}
 	data.Menus = menus
 	data.Depts = detps
-	err = dao.CreateRole(s.Db, data)
+	err = dao.CreateRole(db, data)
 	if err != nil {
 		s.Logger.Error("创建role失败")
 		return
@@ -70,35 +78,44 @@ func (s *RoleService) UpdateRole(req dto.UpdateRoleReq) (err error) {
 		menus []model.Menu
 		detps []model.Dept
 	)
-	err = dao.GetRoleById(s.Db, req.Id, &role)
+	db := s.Db
+	db.Begin() //开启事务
+	defer func() {
+		if err != nil {
+			db.Rollback()
+		} else {
+			db.Commit()
+		}
+	}()
+	err = dao.GetRoleById(db, req.Id, &role)
 	if err != nil {
 		s.Logger.Error("通过id查询role失败")
 		return
 	}
 	req.BuildUpdateData(&role)
-	err = dao.DeleteRoleDepts(s.Db, role)
+	err = dao.DeleteRoleDepts(db, role)
 	if err != nil {
 		s.Logger.Error("删除角色部门失败")
 		return
 	}
-	err = dao.DeleteRoleMenus(s.Db, role)
+	err = dao.DeleteRoleMenus(db, role)
 	if err != nil {
 		s.Logger.Error("删除角色菜单失败")
 		return
 	}
-	err = dao.GetMenusByIds(s.Db, req.MenuIds, &menus)
+	err = dao.GetMenusByIds(db, req.MenuIds, &menus)
 	if err != nil {
 		s.Logger.Error("通过ids查询菜单列表失败")
 		return
 	}
-	err = dao.GetDeptsByIds(s.Db, req.DeptIds, &detps)
+	err = dao.GetDeptsByIds(db, req.DeptIds, &detps)
 	if err != nil {
 		s.Logger.Error("通过ids查询部门列表失败")
 		return
 	}
 	role.Menus = menus
 	role.Depts = detps
-	err = dao.UpdateRole(s.Db, role)
+	err = dao.UpdateRole(db, role)
 	if err != nil {
 		s.Logger.Error("更新role失败")
 	}

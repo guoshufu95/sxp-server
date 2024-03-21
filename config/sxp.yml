@@ -6,21 +6,21 @@ logger:
   path: ./logs
   level: debug
 mysql:
-  host: 192.168.111.143
+  host: 0.0.0.0
   port: 3306
   db: sxp-server
   username: root
   password: 123456
 redis:
-  addr: 192.168.111.143:6379
+  addr: 0.0.0.0:6379
   password: ""
 jwt:
   secret: sxp-server
   #多少秒过期
   timeout: 1800
 grpc:
-  addr: 192.168.111.40:9001
+  addr: 0.0.0.0:9001
   retry: 3
   timeout: 30
 jaeger:
-  addr: 192.168.111.143:6831
+  addr: 0.0.0.0:6831

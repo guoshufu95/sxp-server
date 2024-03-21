@@ -5,6 +5,7 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	_ "gorm.io/gorm" // gorm
+	"sxp-server/app/model"
 	zaplog "sxp-server/common/logger"
 	"sxp-server/config"
 )
@@ -25,11 +26,11 @@ func IniDb() *gorm.DB {
 		l.Panicf("连接mysql数据库失败:%s", err.Error())
 	}
 	fmt.Println("mysql连接成功")
-	//// 表迁移，不用可注释
-	//err = db.AutoMigrate(&model.User{}, &model.Role{}, &model.Menu{}, &model.Dept{})
-	//if err != nil {
-	//	fmt.Println(err)
-	//	return nil
-	//}
+	// 表迁移，不用可注释
+	err = db.AutoMigrate(&model.User{}, &model.Role{}, &model.Menu{}, &model.Dept{})
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
 	return db
 }

@@ -100,6 +100,19 @@ func (a *MenuApi) UpdateMenu(c *gin.Context) {
 //	@receiver a
 //	@param c
 func (a *MenuApi) DeleteMenu(c *gin.Context) {
-
-	return
+	a.BuildApi(c).BuildService(&ms.Service)
+	var req dto.DeleteMenuReq
+	err := c.ShouldBindJSON(&req)
+	if err != nil {
+		a.Logger.Error(err.Error())
+		a.ResponseError(err)
+		return
+	}
+	err = ms.DeleteMenu(req.Id)
+	if err != nil {
+		a.Logger.Error(err.Error())
+		a.ResponseError(err)
+		return
+	}
+	a.Response("删除菜单成功", "success")
 }

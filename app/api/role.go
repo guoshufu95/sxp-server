@@ -85,3 +85,7 @@ func (a *RoleApi) UpdateRole(c *gin.Context) {
 	}
 	a.Response("success", nil)
 }
+
+func (a *RoleApi) DeleteRole(c *gin.Context) {
+	a.BuildApi(c).BuildService(&rs.Service)
+}

@@ -62,3 +62,9 @@ func (c UpdateMenuReq) BuildUpdateData(data *model.Menu) {
 	c.CommonMenuReq.BuildData(data)
 	data.ID = uint(c.Id)
 }
+
+// DeleteMenuReq
+// @Description: 删除菜单入参，id
+type DeleteMenuReq struct {
+	Id int `json:"id"`
+}
