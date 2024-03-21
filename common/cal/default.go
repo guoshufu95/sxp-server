@@ -9,7 +9,7 @@ import (
 
 // GrabIntegral
 //
-//	@Description: 随机算法生成积分红包
+//	@Description: 随机算法生成积分
 //	@param cal
 //	@return int
 func GrabIntegral(integral *dto.IntegralReq) int {

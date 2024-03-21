@@ -110,6 +110,12 @@ func (s *UserService) CreateUser(req dto.CreateUserReq) (err error) {
 	return
 }
 
+// CasbinPermission
+//
+//	@Description: 测试用
+//	@receiver s
+//	@param roleId
+//	@return err
 func (s *UserService) CasbinPermission(roleId int) (err error) {
 	var role model.Role
 	err = dao.GetRoleById(s.Db, roleId, &role)
@@ -130,6 +136,7 @@ func (s *UserService) CasbinPermission(roleId int) (err error) {
 	for _, d := range data {
 		policys = append(policys, []string{role.RoleKey, d.Path, d.Method})
 	}
+	// 加入casbin表
 	_, err = e.AddNamedPolicies("p", policys)
 	return
 }

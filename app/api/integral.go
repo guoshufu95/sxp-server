@@ -43,7 +43,6 @@ func (a *IntegralApi) InitIntegral(c *gin.Context) {
 //	@receiver a
 //	@param c
 func (a *IntegralApi) DoIntegral(c *gin.Context) {
-
 	a.BuildApi(c).BuildService(&is.Service)
 	var req dto.DoIntegral
 	err := c.ShouldBindJSON(&req)

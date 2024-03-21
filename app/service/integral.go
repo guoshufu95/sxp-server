@@ -102,7 +102,6 @@ func (s *IntegralService) Do(name string) (err error, msg string, val int) {
 			//todo 其他业务处理
 			fmt.Println("抢到了积分")
 		default:
-			// 发生了预期之外的错误
 			err = errors.New("预期之外的错误！")
 			return
 		}

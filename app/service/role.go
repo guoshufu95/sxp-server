@@ -16,7 +16,7 @@ type RoleService struct {
 
 // Auth
 //
-//	@Description:
+//	@Description: 权限检查
 //	@param db
 //	@param c
 //	@return err

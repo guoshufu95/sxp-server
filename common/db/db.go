@@ -5,10 +5,8 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	_ "gorm.io/gorm" // gorm
-	"gorm.io/gorm/logger"
 	zaplog "sxp-server/common/logger"
 	"sxp-server/config"
-	"time"
 )
 
 func IniDb() *gorm.DB {
@@ -21,14 +19,7 @@ func IniDb() *gorm.DB {
 		config.Conf.Mysql.Db)
 
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
-		Logger: zaplog.New(
-			logger.Config{
-				SlowThreshold: time.Second,
-				Colorful:      true,
-				LogLevel: logger.LogLevel(
-					4),
-			},
-		),
+		Logger: zaplog.NewGormLogger(),
 	})
 	if err != nil {
 		l.Panicf("连接mysql数据库失败:%s", err.Error())
