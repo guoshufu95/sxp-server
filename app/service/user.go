@@ -8,9 +8,7 @@ import (
 	"sxp-server/app/dao"
 	"sxp-server/app/model"
 	"sxp-server/app/service/dto"
-	_const "sxp-server/common/const"
 	ini "sxp-server/common/initial"
-	cm "sxp-server/common/model"
 )
 
 type UserService struct {
@@ -27,32 +25,6 @@ func (s *UserService) ListUsers() (err error, users []model.User) {
 	err, users = dao.Users(s.Db)
 	if err != nil {
 		s.Logger.Error("查询用户列表失败")
-		return
-	}
-	return
-}
-
-// Auth
-//
-//	@Description:
-//	@param db
-//	@param c
-//	@return err
-//	@return flag
-func (s *UserService) Auth(c *gin.Context) (err error) {
-	v, ok := c.Get(_const.SxpClaimsKey)
-	if !ok {
-		err = errors.New("无法获取claims")
-		return
-	}
-	claims := v.(*cm.MyClaims)
-	err, user := dao.GetAuth(s.Db, claims.RoleId)
-	if err != nil {
-		err = errors.New("获取当前登录用户信息失败")
-		return
-	}
-	if user.IsSuper == 0 {
-		err = errors.New("权限不足")
 		return
 	}
 	return

@@ -15,6 +15,8 @@ import (
 
 var App *Application
 
+// Application
+// @Description: 全局application
 type Application struct {
 	ProjectName string         `json:"projectName"`
 	Engine      *gin.Engine    `json:"engine"`
@@ -25,6 +27,9 @@ type Application struct {
 	Casbin      *casbin.SyncedEnforcer `json:"casbins"`
 }
 
+// init
+//
+//	@Description: 初始化
 func init() {
 	config.ReadConfig("./config/sxp.yml")
 	App = &Application{
@@ -38,18 +43,33 @@ func init() {
 	App.Casbin = e
 }
 
+// GetAppDb
+//
+//	@Description: 返回全局的db
+//	@receiver a
+//	@return *gorm.DB
 func (a *Application) GetAppDb() *gorm.DB {
 	a.mux.Lock()
 	defer a.mux.Unlock()
 	return a.Db
 }
 
+// GetCache
+//
+//	@Description: 返回一个全局的rdb
+//	@receiver a
+//	@return *redis.Client
 func (a *Application) GetCache() *redis.Client {
 	a.mux.Lock()
 	defer a.mux.Unlock()
 	return a.Cache
 }
 
+// GetCasbin
+//
+//	@Description: 返回一个全局的casbin SyncedEnforcer
+//	@receiver a
+//	@return *casbin.SyncedEnforcer
 func (a *Application) GetCasbin() *casbin.SyncedEnforcer {
 	a.mux.Lock()
 	defer a.mux.Unlock()

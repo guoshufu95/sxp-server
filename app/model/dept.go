@@ -6,7 +6,7 @@ import "gorm.io/gorm"
 // @Description: 部门
 type Dept struct {
 	gorm.Model
-	ParentId uint   `json:"parent_id"`                                     //上级部门id
+	ParentId uint   `json:"parentId" gorm:"type:int(5);comment:父id"`       //上级部门id
 	Name     string `json:"name" gorm:"type:varchar(58);comment:部门名称"`     //部门名称
 	Leader   string `json:"leader" gorm:"type:varchar(100);comment:部门负责人"` //部门负责人
 	Phone    string `json:"phone" gorm:"type:varchar(15);comment:电话"`      //手机

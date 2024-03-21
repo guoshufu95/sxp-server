@@ -21,6 +21,11 @@ e = some(where (p.eft == allow))
 m = r.sub == p.sub && (keyMatch2(r.obj, p.obj) || keyMatch(r.obj, p.obj)) && (r.act == p.act || p.act == "*")
 `
 
+// InitCabin
+//
+//	@Description: 初始化casbin
+//	@param db
+//	@return *casbin.SyncedEnforcer
 func InitCabin(db *gorm.DB) *casbin.SyncedEnforcer {
 	Apter, err := gormAdapter.NewAdapterByDB(db)
 	if err != nil {

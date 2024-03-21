@@ -3,6 +3,7 @@ package logger
 import (
 	"context"
 	"fmt"
+	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 	"gorm.io/gorm/logger"
 	"gorm.io/gorm/utils"
@@ -19,6 +20,8 @@ var (
 	traceErrStr  = "%s %s\n[%.3fms] [rows:%v] %s"
 )
 
+// gormLogger
+// @Description: mysql启动时注入
 type gormLogger struct {
 	ZapLogger                           *ZapLog
 	LogLevel                            logger.LogLevel
@@ -60,6 +63,12 @@ func (l gormLogger) Error(ctx context.Context, msg string, data ...interface{}) 
 
 // Trace print sql message
 func (l gormLogger) Trace(ctx context.Context, begin time.Time, fc func() (string, int64), err error) {
+	switch ctx.(type) {
+	case *gin.Context:
+		//todo 其他的业务处理
+	default:
+		// 只有初始化的时候会走到这里
+	}
 	if l.LogLevel > logger.Silent {
 		elapsed := time.Since(begin)
 		switch {
@@ -89,6 +98,10 @@ func (l gormLogger) Trace(ctx context.Context, begin time.Time, fc func() (strin
 	}
 }
 
+// NewGormLogger
+//
+//	@Description: 返回自定的log结构体
+//	@return logger.Interface
 func NewGormLogger() logger.Interface {
 	logLevel := zap.DebugLevel
 	switch config.Conf.Logger.Level {

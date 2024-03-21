@@ -33,6 +33,7 @@ func Router(g *gin.RouterGroup) {
 	buildMenu(g.Group("/menu"))
 	buildUser(g.Group("/user"))
 	buildRole(g.Group("/role"))
+	buildDept(g.Group("/dept"))
 }
 
 // buildTask
@@ -108,4 +109,17 @@ func buildUser(g *gin.RouterGroup) {
 	u := api.UserApi{}
 	g.POST("/create", u.CreateUser)
 	g.GET("/list", u.ListUsers)
+}
+
+// buildDept
+//
+//	@Description: 部门路由
+//	@param g
+func buildDept(g *gin.RouterGroup) {
+	g.Use(middleware.JWTAuthMiddleware())
+	d := api.DeptApi{}
+	g.GET("/list", d.GetDepts)
+	g.POST("/insert", d.InsertDept)
+	g.POST("/update", d.UpdateDept)
+	g.POST("/delete", d.DeleteDept)
 }

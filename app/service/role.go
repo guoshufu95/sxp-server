@@ -1,43 +1,13 @@
 package service
 
 import (
-	"errors"
-	"github.com/gin-gonic/gin"
 	"sxp-server/app/dao"
 	"sxp-server/app/model"
 	"sxp-server/app/service/dto"
-	_const "sxp-server/common/const"
-	cm "sxp-server/common/model"
 )
 
 type RoleService struct {
 	Service
-}
-
-// Auth
-//
-//	@Description: 权限检查
-//	@param db
-//	@param c
-//	@return err
-//	@return flag
-func (s *RoleService) Auth(c *gin.Context) (err error) {
-	v, ok := c.Get(_const.SxpClaimsKey)
-	if !ok {
-		err = errors.New("无法获取claims")
-		return
-	}
-	claims := v.(*cm.MyClaims)
-	err, user := dao.GetAuth(s.Db, claims.RoleId)
-	if err != nil {
-		err = errors.New("获取当前登录用户信息失败")
-		return
-	}
-	if user.IsSuper == 0 {
-		err = errors.New("权限不足")
-		return
-	}
-	return
 }
 
 // ListRoles

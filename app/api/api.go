@@ -35,6 +35,7 @@ func (a *Api) BuildService(s *service.Service) {
 	s.Db = a.Ctx.MustGet(_const.SxpGormDBkEY).(*gorm.DB)
 	s.Cache = a.Ctx.MustGet(_const.SxpRedisDbKey).(*redis.Client)
 	s.Logger = a.Logger
+	s.Db.WithContext(a.Ctx)
 }
 
 // ResponseError
