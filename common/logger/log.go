@@ -1,11 +1,13 @@
 package logger
 
 import (
+	"fmt"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/natefinch/lumberjack.v2"
 	"io"
 	"os"
+	"sxp-server/config"
 	"sync"
 	"time"
 )
@@ -15,12 +17,12 @@ var Global *zap.SugaredLogger
 type ZapLog struct {
 	GlobalLog *zap.SugaredLogger
 	sync.RWMutex
-	fields map[string]interface{}
+	fields []string
 }
 
 func GetLogger() *ZapLog {
 	l := &ZapLog{
-		fields: make(map[string]interface{}),
+		fields: make([]string, 0),
 	}
 	if Global != nil {
 		l.GlobalLog = Global
@@ -47,13 +49,24 @@ func IniLogger() {
 			enc.AppendInt64(int64(d) / 1000000)
 		},
 	})
-	// 实现两个判断日志等级的interface
+	logLevel := zap.DebugLevel
+	switch config.Conf.Logger.Level {
+	case "debug":
+		logLevel = zap.DebugLevel
+	case "info":
+		logLevel = zap.InfoLevel
+	case "warn":
+		logLevel = zap.WarnLevel
+	case "error":
+		logLevel = zap.ErrorLevel
+	default:
+		logLevel = zap.InfoLevel
+	}
 	infoLevel := zap.LevelEnablerFunc(func(lvl zapcore.Level) bool {
-		return lvl >= zapcore.InfoLevel
+		return lvl >= zapcore.InfoLevel && lvl >= logLevel
 	})
-
 	errorLevel := zap.LevelEnablerFunc(func(lvl zapcore.Level) bool {
-		return lvl >= zapcore.ErrorLevel
+		return lvl >= zapcore.ErrorLevel && lvl >= logLevel
 	})
 	// 获取 info、error日志文件的io.Writer 抽象 getWriter() 在下方实现
 	infoWriter := getWriter("./logs/info.log")
@@ -64,15 +77,14 @@ func IniLogger() {
 		zapcore.NewCore(encoder, zapcore.AddSync(infoWriter), infoLevel),
 		zapcore.NewCore(encoder, zapcore.AddSync(errorWriter), errorLevel),
 	)
-
-	log := zap.New(core, zap.AddCaller(), zap.AddCallerSkip(1), zap.AddStacktrace(zap.WarnLevel)) //会显示打日志点的文件名和行数
+	log := zap.New(core, zap.AddCaller(), zap.AddCallerSkip(1), zap.AddStacktrace(zap.InfoLevel)) //会显示打日志点的文件名和行数
 	Global = log.Sugar()
 }
 
 func getWriter(filename string) io.Writer {
 	lumberJackLogger := &lumberjack.Logger{
 		Filename:   filename,
-		MaxSize:    1,
+		MaxSize:    100,
 		MaxBackups: 5,
 		MaxAge:     30,
 		Compress:   false,
@@ -80,27 +92,91 @@ func getWriter(filename string) io.Writer {
 	return lumberJackLogger
 }
 
+func (l *ZapLog) Debug(args ...interface{}) {
+	if len(l.fields) != 0 {
+		var s string
+		for _, v := range l.fields {
+			s += v
+		}
+		args = append(args, " ", s)
+	}
+	l.GlobalLog.Debug(args)
+}
+
+func (l *ZapLog) Debugf(format string, args ...interface{}) {
+	var s string
+	if len(l.fields) != 0 {
+		for _, v := range l.fields {
+			s += v
+		}
+	}
+	l.GlobalLog.Debug(s, " ", fmt.Sprintf(format, args...))
+}
+
 func (l *ZapLog) Info(args ...interface{}) {
-	l.GlobalLog.Info(args)
+	if len(l.fields) != 0 {
+		var s string
+		for _, v := range l.fields {
+			s += v
+		}
+		args = append(args, " ", s)
+	}
+	l.GlobalLog.Info(args...)
 }
 
 func (l *ZapLog) Infof(format string, args ...interface{}) {
-	l.GlobalLog.Infof(format, args...)
+	var s string
+	if len(l.fields) != 0 {
+		for _, v := range l.fields {
+			s += v
+		}
+	}
+	l.GlobalLog.Info(s, " ", fmt.Sprintf(format, args...))
 }
 
 func (l *ZapLog) Error(args ...interface{}) {
+	if len(l.fields) != 0 {
+		var s string
+		for _, v := range l.fields {
+			s += v
+		}
+		args = append(args, " ", s)
+	}
 	l.GlobalLog.Error(args...)
 }
 
 func (l *ZapLog) Errorf(format string, args ...interface{}) {
-	l.GlobalLog.Errorf(format, args...)
+	var s string
+	if len(l.fields) != 0 {
+		for _, v := range l.fields {
+			s += v
+		}
+	}
+	l.GlobalLog.Error(s, " ", fmt.Sprintf(format, args...))
 }
 
 func (l *ZapLog) Panic(args ...interface{}) {
+	if len(l.fields) != 0 {
+		var s string
+		for _, v := range l.fields {
+			s += v
+		}
+		args = append(args, " ", s)
+	}
 	l.GlobalLog.Panic(args...)
 }
 
 func (l *ZapLog) Panicf(format string, args ...interface{}) {
-	l.GlobalLog.WithOptions()
-	l.GlobalLog.Panicf(format, args...)
+	var s string
+	if len(l.fields) != 0 {
+		for _, v := range l.fields {
+			s += v
+		}
+	}
+	l.GlobalLog.Panicf(s, " ", fmt.Sprintf(format, args...))
+}
+
+func (l *ZapLog) WithFileds(args ...string) *ZapLog {
+	l.fields = append(l.fields, args...)
+	return l
 }

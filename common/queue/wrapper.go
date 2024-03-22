@@ -180,11 +180,3 @@ func (r *redisClusterWrapper) ZRem(key string, members []string) error {
 	}
 	return wrapErr(r.inner.ZRem(ctx, key, members2...).Err())
 }
-
-//func NewQueueOnCluster(name string, cli *redis.ClusterClient, callback func(string) bool, opts ...interface{}) *DelayQueue {
-//	rc := &redisClusterWrapper{
-//		inner: cli,
-//	}
-//	opts = append(opts, UseHashTagKey())
-//	return NewQueue0(name, rc, callback, opts...)
-//}

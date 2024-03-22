@@ -4,36 +4,38 @@ import (
 	"errors"
 	"github.com/dgrijalva/jwt-go"
 	"sxp-server/common/model"
+	"sxp-server/config"
 	"time"
 )
 
-const (
-	SECRETKEY = "sxp-server" //私钥
-)
+//var SECRETKEY = []byte("sxp-server") //私钥
 
 // GenToken 生成JWT
-func GenToken(username string) (string, error) {
+func GenToken(username, roleKey string, roleId int) (string, error) {
+	expTime := time.Now().Add(time.Duration(config.Conf.Jwt.Timeout) * time.Second).Unix()
 	c := model.MyClaims{
 		Username: username,
+		RoleId:   roleId,
+		RoleKey:  roleKey,
 		StandardClaims: jwt.StandardClaims{
-			ExpiresAt: time.Now().Add(180 * time.Second).Unix(), // 过期时间
-			Issuer:    "sxp-server",                             // 签发人
+			ExpiresAt: expTime,      // 过期时间
+			Issuer:    "sxp-server", // 签发人
 		},
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, c)
-	return token.SignedString(SECRETKEY)
+	return token.SignedString([]byte(config.Conf.Jwt.Secret))
 }
 
 // ParseToken 解析JWT
-func ParseToken(tokenString string) (*model.MyClaims, error) {
+func ParseToken(tokenString string) (*model.MyClaims, *jwt.Token, error) {
 	token, err := jwt.ParseWithClaims(tokenString, &model.MyClaims{}, func(token *jwt.Token) (i interface{}, err error) {
-		return SECRETKEY, nil
+		return []byte(config.Conf.Jwt.Secret), nil
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 	if claims, ok := token.Claims.(*model.MyClaims); ok && token.Valid { // 校验token
-		return claims, nil
+		return claims, token, nil
 	}
-	return nil, errors.New("invalid token")
+	return nil, nil, errors.New("invalid token")
 }

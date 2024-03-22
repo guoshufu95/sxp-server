@@ -3,16 +3,16 @@ package cal
 import (
 	"fmt"
 	"math/rand"
-	"sxp-server/app/model"
+	"sxp-server/app/service/dto"
 	"time"
 )
 
 // GrabIntegral
 //
-//	@Description: 随机算法生成积分红包
+//	@Description: 随机算法生成积分
 //	@param cal
 //	@return int
-func GrabIntegral(integral *model.IntegralReq) int {
+func GrabIntegral(integral *dto.IntegralReq) int {
 	if integral.RemainCount <= 0 {
 		panic("RemainCount <= 0")
 	}

@@ -5,8 +5,11 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strings"
+	_const "sxp-server/common/const"
 	"sxp-server/common/jwtToken"
 	"sxp-server/common/logger"
+	"sxp-server/common/utils"
+	"time"
 )
 
 // JWTAuthMiddleware
@@ -15,8 +18,12 @@ import (
 //	@return gin.HandlerFunc
 func JWTAuthMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		log := logger.GetLogger()
-		header := c.Request.Header.Get("Authorization")
+		requestId := c.GetHeader(DefaultHeader)
+		if requestId == "" {
+			requestId = utils.CreateRequestId()
+		}
+		log := logger.GetLogger().WithFileds("requestId", requestId)
+		header := c.Request.Header.Get("token")
 		if header == "" {
 			err := errors.New("请传入合法token")
 			log.Error(err)
@@ -34,7 +41,7 @@ func JWTAuthMiddleware() gin.HandlerFunc {
 				"error": err.Error()})
 			return
 		}
-		mc, err := jwtToken.ParseToken(parts[1])
+		claims, _, err := jwtToken.ParseToken(parts[1])
 		if err != nil {
 			err = errors.New("token解析失败！")
 			log.Error(err)
@@ -43,7 +50,17 @@ func JWTAuthMiddleware() gin.HandlerFunc {
 				"error": err.Error()})
 			return
 		}
-		c.Set("username", mc.Username)
+		// token过期
+		if claims.StandardClaims.ExpiresAt < time.Now().Unix() {
+			err = errors.New("token过期，请重新登录")
+			log.Error(err)
+			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
+				"code":  http.StatusUnauthorized,
+				"error": err.Error()})
+			return
+		}
+		c.Set(_const.SxpTokenKey, parts[1]) //设置token
+		c.Set(_const.SxpClaimsKey, claims)  //claims
 		c.Next()
 	}
 }

@@ -2,10 +2,8 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"sxp-server/app/api/integral"
-	"sxp-server/app/api/login"
-	"sxp-server/app/api/product"
-	"sxp-server/app/api/task"
+	"sxp-server/app/api"
+	"sxp-server/common/initial"
 	"sxp-server/common/middleware"
 )
 
@@ -15,51 +13,118 @@ import (
 //	@param r
 func InitRouter(r *gin.Engine) {
 	g := r.Group("/sxp")
-	g.Use(middleware.LoggerMiddleware())
+	g.Use(middleware.LoggerMiddleware()).
+		Use(middleware.WithGormDb(initial.App.GetAppDb())).
+		Use(middleware.WithRedisDb(initial.App.GetCache())).
+		Use(gin.Recovery())
 	Router(g)
 	//日志中间件
 }
 
+// Router
+//
+//	@Description: router
+//	@param g
 func Router(g *gin.RouterGroup) {
 	buildTask(g.Group("/task"))
 	buildIntegral(g.Group("/integral"))
 	buildLogin(g.Group("/login"))
 	buildProduct(g.Group("/product"))
+	buildMenu(g.Group("/menu"))
+	buildUser(g.Group("/user"))
+	buildRole(g.Group("/role"))
+	buildDept(g.Group("/dept"))
 }
 
 // buildTask
 //
-//	@Description: 定时任务
+//	@Description: 定时任务路由
 //	@param g
 func buildTask(g *gin.RouterGroup) {
-	a := task.TaskApi{}
+	a := api.TaskApi{}
+	g.Use(middleware.JWTAuthMiddleware())
 	g.POST("/start", a.StartTask)
 	g.POST("/getTasks", a.GetTasks)
 }
 
 // buildIntegral
 //
-//	@Description: 积分
+//	@Description: 积分功能路由
 //	@param g
 func buildIntegral(g *gin.RouterGroup) {
-	i := integral.IntegralApi{}
+	i := api.IntegralApi{}
 	g.POST("/init", i.InitIntegral)
+	g.POST("/do", i.DoIntegral)
 }
 
 // buildLogin
 //
-//	@Description: 登录相关
+//	@Description: 登录路由
 //	@param g
 func buildLogin(g *gin.RouterGroup) {
-	l := login.LoginApi{}
-	g.POST("/post", l.Login)
+	l := api.LoginApi{}
+	g.POST("/", l.Login)
 }
 
 // buildProduct
 //
-//	@Description: 产品相关
+//	@Description: 产品路由
 //	@param g
 func buildProduct(g *gin.RouterGroup) {
-	p := product.ProductApi{}
+	g.Use(middleware.JWTAuthMiddleware())
+	p := api.ProductApi{}
 	g.POST("/getProduct", p.GetProduct)
+	g.POST("/updateProduct", p.UpdateProduct)
+	g.POST("/getByStatus", p.GetByStatus)
+}
+
+// buildMenu
+//
+//	@Description: 菜单路由
+//	@param g
+func buildMenu(g *gin.RouterGroup) {
+	g.Use(middleware.JWTAuthMiddleware())
+	m := api.MenuApi{}
+	g.GET("/list", m.GetMenus)
+	g.GET("/roleMenus", m.GetMenusByRole)
+	g.POST("/create", m.CreateMenu)
+	g.POST("/update", m.UpdateMenu)
+	g.POST("/delete", m.DeleteMenu)
+}
+
+func buildRole(g *gin.RouterGroup) {
+	g.Use(middleware.JWTAuthMiddleware())
+	r := api.RoleApi{}
+	g.GET("/list", r.ListRoles)
+	g.POST("/create", r.CreateRole)
+	g.POST("update", r.UpdateRole)
+	g.POST("/delete", r.DeleteRole)
+}
+
+// buildUser
+//
+//	@Description: user路由
+//	@param g
+func buildUser(g *gin.RouterGroup) {
+	g.Use(middleware.JWTAuthMiddleware())
+	u := api.UserApi{}
+	g.GET("/list", u.ListUsers)
+	g.POST("getById", u.GetById)
+	g.POST("/create", u.CreateUser)
+	g.POST("/update", u.UpdateUser)
+	g.POST("/delete", u.DeleteUser)
+
+}
+
+// buildDept
+//
+//	@Description: 部门路由
+//	@param g
+func buildDept(g *gin.RouterGroup) {
+	g.Use(middleware.JWTAuthMiddleware())
+	d := api.DeptApi{}
+	g.GET("/list", d.GetDepts)
+	g.POST("/insert", d.InsertDept)
+	g.POST("/update", d.UpdateDept)
+	g.POST("/delete", d.DeleteDept)
 }

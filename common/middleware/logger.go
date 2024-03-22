@@ -3,14 +3,17 @@ package middleware
 import (
 	"bufio"
 	"bytes"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"io"
 	"io/ioutil"
 	"strings"
+	_const "sxp-server/common/const"
 	"sxp-server/common/logger"
+	"sxp-server/common/utils"
 	"time"
 )
+
+const DefaultHeader = "trace-Id"
 
 // LoggerMiddleware
 //
@@ -18,7 +21,14 @@ import (
 //	@return gin.HandlerFunc
 func LoggerMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		log := logger.GetLogger()
+		requestId := c.GetHeader(DefaultHeader)
+		if requestId == "" {
+			requestId = utils.CreateRequestId()
+			c.Header(DefaultHeader, requestId)
+		}
+		c.Set(DefaultHeader, requestId)
+		log := logger.GetLogger().WithFileds("requestId:", requestId)
+		c.Set(_const.SxpLogKey, log)
 		// 开始时间
 		startTime := time.Now()
 		// 处理请求
@@ -33,24 +43,29 @@ func LoggerMiddleware() gin.HandlerFunc {
 		param := strings.ReplaceAll(strings.ReplaceAll(string(rb), "\r\n", ""), " ", "")
 		c.Request.Body = ioutil.NopCloser(bytes.NewBuffer(rb))
 		c.Next()
-		endTime := time.Now()
-		// 请求方式
-		reqMethod := c.Request.Method
-		// 请求路由
-		reqUri := c.Request.RequestURI
-		// 状态码
-		statusCode := c.Writer.Status()
-		// 执行时间
-		latencyTime := endTime.Sub(startTime)
-
-		logData := map[string]interface{}{
-			"latencyTime":  latencyTime,
-			"method":       reqMethod,
-			"uri":          reqUri,
-			"requestParam": fmt.Sprintf("%v", param),
-			"statusCode":   statusCode,
+		if c.Writer.Status() == 200 {
+			endTime := time.Now()
+			// 请求方式
+			reqMethod := c.Request.Method
+			// 请求路由
+			reqUri := c.Request.RequestURI
+			// 状态码
+			statusCode := c.Writer.Status()
+			// 执行时间
+			latencyTime := endTime.Sub(startTime)
+			res, _ := c.Get("response")
+			logData := map[string]interface{}{
+				//"requestId":    requestId,
+				"latencyTime":    int(latencyTime),
+				"method":         reqMethod,
+				"uri":            reqUri,
+				"requestParam":   param,
+				"response: ":     res,
+				"responseCode: ": statusCode,
+			}
+			log.Info(logData)
+		} else {
+			log.Infof("%s %s 返回：%d  请求失败", c.Request.Method, c.Request.RequestURI, c.Writer.Status())
 		}
-		log.Info(logData)
-		c.Next()
 	}
 }
