@@ -22,7 +22,6 @@ func (a *MenuApi) GetMenus(c *gin.Context) {
 	a.BuildApi(c).BuildService(&ms.Service)
 	err, menus := ms.ListMenu()
 	if err != nil {
-		a.Logger.Error(err.Error())
 		a.ResponseError(err)
 		return
 	}
@@ -40,7 +39,6 @@ func (a *MenuApi) GetMenusByRole(c *gin.Context) {
 	claims := v.(*model.MyClaims)
 	err, menus := ms.GetRoleMenus(claims.RoleKey, claims.RoleId)
 	if err != nil {
-		a.Logger.Error(err.Error())
 		a.ResponseError(err)
 		return
 	}
@@ -57,7 +55,6 @@ func (a *MenuApi) CreateMenu(c *gin.Context) {
 	var req dto.CreateMenuReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.Logger.Error(err.Error())
 		a.ResponseError(err)
 		return
 	}
@@ -80,14 +77,11 @@ func (a *MenuApi) UpdateMenu(c *gin.Context) {
 	var req dto.UpdateMenuReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.Logger.Error(err.Error())
 		a.ResponseError(err)
 		return
 	}
-
 	err = ms.UpdateMenu(req)
 	if err != nil {
-		a.Logger.Error(err.Error())
 		a.ResponseError(err)
 		return
 	}
@@ -104,13 +98,11 @@ func (a *MenuApi) DeleteMenu(c *gin.Context) {
 	var req dto.DeleteMenuReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.Logger.Error(err.Error())
 		a.ResponseError(err)
 		return
 	}
 	err = ms.DeleteMenu(req.Id)
 	if err != nil {
-		a.Logger.Error(err.Error())
 		a.ResponseError(err)
 		return
 	}

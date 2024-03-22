@@ -62,3 +62,25 @@ func CreateUser(db *gorm.DB, user model.User) (err error) {
 	err = db.Debug().Create(&user).Error
 	return
 }
+
+// UpdateUser
+//
+//	@Description: 更新user
+//	@param db
+//	@param user
+//	@return err
+func UpdateUser(db *gorm.DB, user model.User) (err error) {
+	err = db.Debug().Model(&model.User{}).Where("id = ?", user.ID).Updates(&user).Error
+	return
+}
+
+// DeleteUerById
+//
+//	@Description: 通过id删除用户
+//	@param db
+//	@param id
+//	@return err
+func DeleteUerById(db *gorm.DB, id int) (err error) {
+	err = db.Debug().Delete(&model.User{}, id).Error
+	return
+}

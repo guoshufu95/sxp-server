@@ -10,7 +10,7 @@ type RoleCommonReq struct {
 	Label    string `json:"label"`
 	Status   int    `json:"status"`
 	RoleSort int    `json:"roleSort"`
-	MenuIds  []int  `json:"menus"`
+	MenuIds  []int  `json:"menuIds"`
 	DeptIds  []int  `json:"deptIds"`
 }
 
@@ -44,7 +44,18 @@ type UpdateRoleReq struct {
 	RoleCommonReq
 }
 
+// BuildUpdateData
+//
+//	@Description: 构造更新参数
+//	@receiver c
+//	@param data
 func (c UpdateRoleReq) BuildUpdateData(data *model.Role) {
 	c.RoleCommonReq.BuildData(data)
 	data.ID = uint(c.Id)
+}
+
+// DeleteRoleReq
+// @Description:删除role入参
+type DeleteRoleReq struct {
+	Id int `json:"id"`
 }

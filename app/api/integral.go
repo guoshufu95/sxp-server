@@ -22,7 +22,6 @@ func (a *IntegralApi) InitIntegral(c *gin.Context) {
 	var req dto.IntegralReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.Logger.Error(err.Error())
 		a.ResponseError(err)
 		return
 	}
@@ -30,7 +29,6 @@ func (a *IntegralApi) InitIntegral(c *gin.Context) {
 	req.RemainIntegral = req.Integral
 	err = is.InitIntegral(req)
 	if err != nil {
-		a.Logger.Error(err)
 		a.ResponseError(err)
 		return
 	}
@@ -47,14 +45,12 @@ func (a *IntegralApi) DoIntegral(c *gin.Context) {
 	var req dto.DoIntegral
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.Logger.Error(err.Error())
 		a.ResponseError(err)
 		return
 	}
 	//todo 用户校验相关的内容省略，不是重点
 	err, msg, val := is.Do(req.UserName)
 	if err != nil {
-		a.Logger.Error(err)
 		a.ResponseError(err)
 		return
 	}

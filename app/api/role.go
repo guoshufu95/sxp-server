@@ -21,7 +21,6 @@ func (a *RoleApi) ListRoles(c *gin.Context) {
 	a.BuildApi(c).BuildService(&rs.Service)
 	err, roles := rs.ListRoles()
 	if err != nil {
-		a.Logger.Error(err)
 		a.ResponseError(err)
 		return
 	}
@@ -38,23 +37,20 @@ func (a *RoleApi) CreateRole(c *gin.Context) {
 	var req dto.CreateRoleReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.Logger.Error(err.Error())
 		a.ResponseError(err)
 		return
 	}
 	err = rs.Auth(c)
 	if err != nil {
-		a.Logger.Error(err)
 		a.ResponseError(err)
 		return
 	}
 	err = rs.CreateRole(req)
 	if err != nil {
-		a.Logger.Error(err)
 		a.ResponseError(err)
 		return
 	}
-	a.Response("success", nil)
+	a.Response("创建角色成功", nil)
 }
 
 // UpdateRole
@@ -67,25 +63,44 @@ func (a *RoleApi) UpdateRole(c *gin.Context) {
 	var req dto.UpdateRoleReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.Logger.Error(err.Error())
 		a.ResponseError(err)
 		return
 	}
-	err = rs.Auth(c)
+	err = rs.Auth(c) //权限
 	if err != nil {
-		a.Logger.Error(err)
 		a.ResponseError(err)
 		return
 	}
 	err = rs.UpdateRole(req)
 	if err != nil {
-		a.Logger.Error(err)
 		a.ResponseError(err)
 		return
 	}
-	a.Response("success", nil)
+	a.Response("更新角色成功", nil)
 }
 
+// DeleteRole
+//
+//	@Description: 删除用户
+//	@receiver a
+//	@param c
 func (a *RoleApi) DeleteRole(c *gin.Context) {
 	a.BuildApi(c).BuildService(&rs.Service)
+	var req dto.UpdateRoleReq
+	err := c.ShouldBindJSON(&req)
+	if err != nil {
+		a.ResponseError(err)
+		return
+	}
+	err = rs.Auth(c) //权限检查
+	if err != nil {
+		a.ResponseError(err)
+		return
+	}
+	err = rs.DeleteRole(req.Id)
+	if err != nil {
+		a.ResponseError(err)
+		return
+	}
+	a.Response("删除角色成功", nil)
 }

@@ -44,6 +44,7 @@ func (a *Api) BuildService(s *service.Service) {
 //	@receiver a
 //	@param err
 func (a *Api) ResponseError(err error) {
+	a.Logger.Error(err.Error())
 	res := gin.H{
 		"code":    http.StatusInternalServerError,
 		"message": err.Error(),
@@ -60,6 +61,7 @@ func (a *Api) ResponseError(err error) {
 //	@param msg
 //	@param data
 func (a *Api) Response(msg string, data ...interface{}) {
+	a.Logger.Info("返回成功!")
 	res := gin.H{
 		"code":    http.StatusOK,
 		"message": msg,

@@ -98,6 +98,7 @@ func buildRole(g *gin.RouterGroup) {
 	g.GET("/list", r.ListRoles)
 	g.POST("/create", r.CreateRole)
 	g.POST("update", r.UpdateRole)
+	g.POST("/delete", r.DeleteRole)
 }
 
 // buildUser
@@ -107,8 +108,12 @@ func buildRole(g *gin.RouterGroup) {
 func buildUser(g *gin.RouterGroup) {
 	g.Use(middleware.JWTAuthMiddleware())
 	u := api.UserApi{}
-	g.POST("/create", u.CreateUser)
 	g.GET("/list", u.ListUsers)
+	g.POST("getById", u.GetById)
+	g.POST("/create", u.CreateUser)
+	g.POST("/update", u.UpdateUser)
+	g.POST("/delete", u.DeleteUser)
+
 }
 
 // buildDept

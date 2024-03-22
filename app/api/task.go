@@ -23,13 +23,11 @@ func (a *TaskApi) StartTask(c *gin.Context) {
 	var req = dto.StartTaskReq{}
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.Logger.Error(err.Error())
 		a.ResponseError(err)
 		return
 	}
 	err, flag := ts.GetTaskByName(req.TaskName)
 	if err != nil {
-		err = errors.New("获取定时任务失败")
 		a.ResponseError(err)
 		return
 	}
@@ -39,9 +37,7 @@ func (a *TaskApi) StartTask(c *gin.Context) {
 		return
 	}
 	err = ts.SetTask(req)
-
 	if err != nil {
-		a.Logger.Error("设置定时任务失败!")
 		a.ResponseError(err)
 		return
 	}
@@ -58,13 +54,11 @@ func (a *TaskApi) GetTasks(c *gin.Context) {
 	var req dto.GetTasksReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.Logger.Error(err.Error())
 		a.ResponseError(err)
 		return
 	}
 	err, tasks := ts.GetTasks(req)
 	if err != nil {
-		err = errors.New("获取定时任务列表失败")
 		a.ResponseError(err)
 	}
 	a.Response("success", tasks)

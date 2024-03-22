@@ -23,7 +23,7 @@ type TaskService struct {
 func (s *TaskService) SetTask(req dto.StartTaskReq) (err error) {
 	err = dao.CreateTask(s.Db, req)
 	if err != nil {
-		s.Logger.Error(err.Error())
+		s.Logger.Error("创建start定时任务入库失败")
 		return
 	}
 	go func() {
@@ -67,11 +67,19 @@ func (s *TaskService) GetTasks(req dto.GetTasksReq) (err error, tasks []model.Ta
 	db := s.buildQuery(req.Name, req.Status)
 	err, tasks = dao.GetAllTask(db)
 	if err != nil {
-		s.Logger.Error(err.Error())
+		s.Logger.Error("获取定时任务列表失败")
+		return
 	}
 	return
 }
 
+// buildQuery
+//
+//	@Description: 构造查询字段
+//	@receiver s
+//	@param name
+//	@param status
+//	@return *gorm.DB
 func (s *TaskService) buildQuery(name string, status int) *gorm.DB {
 	db := s.Db.Or("task_name like ?", "%"+name+"%").Or("task_name like ?", name+"%").Or("task_name like ?", "%"+name).
 		Or("task_name like ?", name).Where("status = ?", status)

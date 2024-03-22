@@ -73,10 +73,60 @@ func (s *UserService) GetUserById(id int) (err error, user model.User) {
 //	@return err
 func (s *UserService) CreateUser(req dto.CreateUserReq) (err error) {
 	var user model.User
-	req.BuildData(&user)
+	req.BuildCreateData(&user)
 	err = dao.CreateUser(s.Db, user)
 	if err != nil {
 		s.Logger.Error("创建用户失败")
+		return
+	}
+	return
+}
+
+// UpdateUser
+//
+//	@Description: 更新user
+//	@receiver s
+//	@param req
+//	@return err
+func (s *UserService) UpdateUser(req dto.UpdateUserReq) (err error) {
+	var user model.User
+	req.BuildUpdateData(&user)
+	db := s.Db
+	db.Begin()
+	defer func() {
+		if err != nil {
+			db.Rollback()
+		} else {
+			db.Commit()
+		}
+	}()
+	err, u := dao.GetUserByName(db, req.Username)
+	if err != nil {
+		s.Logger.Error("通过name查询失败")
+		return
+	}
+	if u.ID != uint(req.Id) {
+		err = errors.New("用户名重复，请重新设置")
+		return
+	}
+	err = dao.UpdateUser(db, user)
+	if err != nil {
+		s.Logger.Error("更新用户失败")
+		return
+	}
+	return
+}
+
+// DeleteUser
+//
+//	@Description: 删除用户
+//	@receiver s
+//	@param id
+//	@return err
+func (s *UserService) DeleteUser(id int) (err error) {
+	err = dao.DeleteUerById(s.Db, id)
+	if err != nil {
+		s.Logger.Error("删除用户失败")
 		return
 	}
 	return

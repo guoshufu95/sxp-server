@@ -21,7 +21,6 @@ func (a *UserApi) ListUsers(c *gin.Context) {
 	a.BuildApi(c).BuildService(&us.Service)
 	err, users := us.ListUsers()
 	if err != nil {
-		a.Logger.Error(err.Error())
 		a.ResponseError(err)
 		return
 	}
@@ -38,33 +37,29 @@ func (a *UserApi) CreateUser(c *gin.Context) {
 	var req = dto.CreateUserReq{}
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.Logger.Error(err.Error())
 		a.ResponseError(err)
 		return
 	}
 	//权限校验
 	err = us.Auth(c)
 	if err != nil {
-		a.Logger.Error(err)
 		a.ResponseError(err)
 		return
 	}
 	// 用户名校验
 	err = us.GetUserByName(req.Username)
 	if err != nil {
-		a.Logger.Error(err.Error())
 		a.ResponseError(err)
 		return
 	}
 	// 数据库创建
 	err = us.CreateUser(req)
 	if err != nil {
-		a.Logger.Error(err.Error())
 		a.ResponseError(err)
 		return
 	}
 	//todo casbin授权
-	err = us.CasbinPermission(req.RoleId)
+	//err = us.CasbinPermission(req.RoleId)
 	a.Response("创建用户成功", nil)
 }
 
@@ -78,9 +73,60 @@ func (a *UserApi) GetById(c *gin.Context) {
 	var req dto.GetUserByIdRequest
 	err, user := us.GetUserById(req.Id)
 	if err != nil {
-		a.Logger.Error(err.Error())
 		a.ResponseError(err)
 		return
 	}
 	a.Response("获取用户信息成功", user)
+}
+
+// UpdateUser
+//
+//	@Description: 更新
+//	@receiver a
+//	@param c
+func (a *UserApi) UpdateUser(c *gin.Context) {
+	a.BuildApi(c).BuildService(&us.Service)
+	var req dto.UpdateUserReq
+	err := c.ShouldBindJSON(&req)
+	if err != nil {
+		a.ResponseError(err)
+		return
+	}
+	err = us.Auth(c) //权限
+	if err != nil {
+		a.ResponseError(err)
+		return
+	}
+	err = us.UpdateUser(req)
+	if err != nil {
+		a.ResponseError(err)
+		return
+	}
+	a.Response("更新数据成功", nil)
+}
+
+// DeleteUser
+//
+//	@Description: 删除
+//	@receiver a
+//	@param c
+func (a *UserApi) DeleteUser(c *gin.Context) {
+	a.BuildApi(c).BuildService(&us.Service)
+	var req dto.DeleteUserReq
+	err := c.ShouldBindJSON(&req)
+	if err != nil {
+		a.ResponseError(err)
+		return
+	}
+	err = us.Auth(c) //权限
+	if err != nil {
+		a.ResponseError(err)
+		return
+	}
+	err = us.DeleteUser(req.Id)
+	if err != nil {
+		a.ResponseError(err)
+		return
+	}
+	a.Response("用户删除成功", nil)
 }

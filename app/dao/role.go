@@ -2,6 +2,7 @@ package dao
 
 import (
 	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 	"sxp-server/app/model"
 )
 
@@ -13,7 +14,7 @@ import (
 //	@param role
 //	@return err
 func GetRoleById(db *gorm.DB, id int, role *model.Role) (err error) {
-	err = db.Table("role").Debug().Where("id = ?", id).Find(&role).Error
+	err = db.Table("role").Debug().Preload("Menus").Preload("Depts").Where("id = ?", id).Find(&role).Error
 	return
 }
 
@@ -46,7 +47,7 @@ func CreateRole(db *gorm.DB, data model.Role) (err error) {
 //	@param data
 //	@return err
 func DeleteRoleMenus(db *gorm.DB, data model.Role) (err error) {
-	err = db.Debug().Association("Menus").Delete(data.Menus)
+	err = db.Debug().Model(&model.Role{}).Where("id = ?", data.ID).Delete(&data.Menus).Error
 	return
 }
 
@@ -57,7 +58,7 @@ func DeleteRoleMenus(db *gorm.DB, data model.Role) (err error) {
 //	@param data
 //	@return err
 func DeleteRoleDepts(db *gorm.DB, data model.Role) (err error) {
-	err = db.Debug().Association("Depts").Delete(data.Depts)
+	err = db.Debug().Model(&model.Role{}).Where("id = ?", data.ID).Delete(&data.Depts).Error
 	return
 }
 
@@ -68,6 +69,28 @@ func DeleteRoleDepts(db *gorm.DB, data model.Role) (err error) {
 //	@param data
 //	@return err
 func UpdateRole(db *gorm.DB, data model.Role) (err error) {
-	err = db.Model(&model.Role{}).Debug().Updates(&data).Error
+	err = db.Debug().Model(&data).Where("id = ?", data.ID).Updates(&data).Error
+	if err != nil {
+		return
+	}
+	err = db.Debug().Model(&data).Association("Menus").Replace(data.Menus)
+	if err != nil {
+		return
+	}
+	err = db.Debug().Model(&data).Association("Depts").Replace(data.Depts)
+	if err != nil {
+		return
+	}
+	return
+}
+
+// DeleteRoleById
+//
+//	@Description: 删除role
+//	@param db
+//	@param id
+//	@return err
+func DeleteRoleById(db *gorm.DB, role model.Role) (err error) {
+	err = db.Debug().Select(clause.Associations).Delete(&role).Error
 	return
 }

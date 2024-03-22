@@ -22,14 +22,11 @@ func (a *LoginApi) Login(c *gin.Context) {
 	var req dto.LoginReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.Logger.Error(err.Error())
 		a.ResponseError(err)
 		return
 	}
-	//serv.MakeService(&ls.Service, c)
 	err, token := ls.Login(req)
 	if err != nil {
-		a.Logger.Error(err.Error())
 		a.ResponseError(err)
 		return
 	}

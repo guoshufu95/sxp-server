@@ -92,17 +92,6 @@ func (s *RoleService) UpdateRole(req dto.UpdateRoleReq) (err error) {
 		s.Logger.Error("通过id查询role失败")
 		return
 	}
-	req.BuildUpdateData(&role)
-	err = dao.DeleteRoleDepts(db, role)
-	if err != nil {
-		s.Logger.Error("删除角色部门失败")
-		return
-	}
-	err = dao.DeleteRoleMenus(db, role)
-	if err != nil {
-		s.Logger.Error("删除角色菜单失败")
-		return
-	}
 	err = dao.GetMenusByIds(db, req.MenuIds, &menus)
 	if err != nil {
 		s.Logger.Error("通过ids查询菜单列表失败")
@@ -113,11 +102,42 @@ func (s *RoleService) UpdateRole(req dto.UpdateRoleReq) (err error) {
 		s.Logger.Error("通过ids查询部门列表失败")
 		return
 	}
+	req.BuildUpdateData(&role)
 	role.Menus = menus
 	role.Depts = detps
 	err = dao.UpdateRole(db, role)
 	if err != nil {
 		s.Logger.Error("更新role失败")
+	}
+	return
+}
+
+// DeleteRole
+//
+//	@Description: 删除用户
+//	@receiver s
+//	@param id
+//	@return err
+func (s *RoleService) DeleteRole(id int) (err error) {
+	db := s.Db
+	db.Begin()
+	defer func() {
+		if err != nil {
+			db.Callback()
+		} else {
+			db.Commit()
+		}
+	}()
+	var role model.Role
+	err = dao.GetRoleById(db, id, &role)
+	if err != nil {
+		s.Logger.Error("通过id查询role失败")
+		return
+	}
+	err = dao.DeleteRoleById(db, role)
+	if err != nil {
+		s.Logger.Error("删除role失败")
+		return
 	}
 	return
 }

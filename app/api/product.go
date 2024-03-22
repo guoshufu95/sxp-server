@@ -23,14 +23,12 @@ func (a *ProductApi) GetProduct(c *gin.Context) {
 	var req = dto.GetProductReq{}
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.Logger.Error(err.Error())
 		a.ResponseError(err)
 		return
 	}
 	token, _ := c.Get(_const.SxpTokenKey)
 	err, res := ps.GetProduct(req.Id, token.(string))
 	if err != nil {
-		a.Logger.Error("获取产品失败")
 		a.ResponseError(err)
 		return
 	}
@@ -47,14 +45,12 @@ func (a *ProductApi) UpdateProduct(c *gin.Context) {
 	var req = dto.UpdateProductReq{}
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.Logger.Error(err.Error())
 		a.ResponseError(err)
 		return
 	}
 	token, _ := c.Get(_const.SxpTokenKey)
 	err, res := ps.UpdateProduct(req, token.(string))
 	if err != nil {
-		a.Logger.Error("获取产品失败")
 		a.ResponseError(err)
 	}
 	a.Response("success", res)
@@ -70,14 +66,12 @@ func (a *ProductApi) GetByStatus(c *gin.Context) {
 	var req = dto.GetByStatusReq{}
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.Logger.Error(err.Error())
 		a.ResponseError(err)
 		return
 	}
 	token, _ := c.Get(_const.SxpTokenKey)
 	err, res := ps.GetByStatus(req.Status, token.(string))
 	if err != nil {
-		a.Logger.Error("根据status获取产品失败")
 		a.ResponseError(err)
 		return
 	}

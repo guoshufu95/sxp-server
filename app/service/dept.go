@@ -26,6 +26,7 @@ func (s *DeptService) GetDept() (err error, dept model.Dept) {
 		return
 	}
 	dept = getDeptTree(depts, 0)[0]
+	err = errors.New("测试错误失败的情况")
 	return
 }
 
