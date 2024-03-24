@@ -151,7 +151,7 @@ func (ps *ProductGrpcService) GetByStatus(status, token string) (err error, resp
 		for {
 			res, er := stream.Recv()
 			if er != nil && er != io.EOF {
-				ps.Log.Errorf("receive error:", er.Error())
+				ps.Log.Errorf("receive error: %s", er.Error())
 			} else if er == io.EOF {
 				ps.Log.Info("receive EOF")
 				wch <- struct{}{}

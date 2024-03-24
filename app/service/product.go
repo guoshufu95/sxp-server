@@ -20,7 +20,7 @@ func (s *ProductService) GetProduct(id, token string) (err error, res dto.GetPro
 	rpc := g.NewProductGrpcService(g.WithLog(s.Logger))
 	err, val := rpc.GetProductById(id, token)
 	if err != nil {
-		s.Logger.Error("远程调用gprc服务失败: %s", err.Error())
+		s.Logger.Errorf("远程调用gprc服务失败: %s", err.Error())
 		return
 	}
 	v := val.GetProduct()
@@ -39,7 +39,7 @@ func (s *ProductService) UpdateProduct(req dto.UpdateProductReq, token string) (
 	rpc := g.NewProductGrpcService(g.WithLog(s.Logger))
 	err, val := rpc.UpdateModel(req, token)
 	if err != nil {
-		s.Logger.Error("远程调用gprc服务失败: %s", err.Error())
+		s.Logger.Errorf("远程调用gprc服务失败: %s", err.Error())
 		return
 	}
 	res.Message = val.Message
