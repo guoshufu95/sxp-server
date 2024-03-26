@@ -8,7 +8,6 @@ import (
 	"sxp-server/common/cache"
 	cs "sxp-server/common/casbin"
 	"sxp-server/common/db"
-	"sxp-server/common/kafka"
 	"sxp-server/common/logger"
 	"sxp-server/config"
 	"sync"
@@ -19,14 +18,14 @@ var App *Application
 // Application
 // @Description: 全局application
 type Application struct {
-	ProjectName  string        `json:"projectName"`
-	Engine       *gin.Engine   `json:"engine"`
-	Db           *gorm.DB      `json:"globalDb"`
-	Cache        *redis.Client `json:"cache"`
-	KafkaManager *kafka.Manager
-	Logger       *logger.ZapLog `json:"logger"`
-	mux          sync.Mutex
-	Casbin       *casbin.SyncedEnforcer `json:"casbins"`
+	ProjectName string        `json:"projectName"`
+	Engine      *gin.Engine   `json:"engine"`
+	Db          *gorm.DB      `json:"globalDb"`
+	Cache       *redis.Client `json:"cache"`
+	//KafkaManager *kafka.Manager
+	Logger *logger.ZapLog `json:"logger"`
+	mux    sync.Mutex
+	Casbin *casbin.SyncedEnforcer `json:"casbins"`
 }
 
 // init
@@ -35,12 +34,12 @@ type Application struct {
 func init() {
 	config.ReadConfig("./config/sxp.yml")
 	App = &Application{
-		Logger:       logger.GetLogger(),
-		ProjectName:  "sxp-server",
-		Engine:       gin.Default(),
-		Db:           db.IniDb(),
-		Cache:        cache.IniCache(),
-		KafkaManager: kafka.NewManager(),
+		Logger:      logger.GetLogger(),
+		ProjectName: "sxp-server",
+		Engine:      gin.Default(),
+		Db:          db.IniDb(),
+		Cache:       cache.IniCache(),
+		//KafkaManager: kafka.NewManager(),
 	}
 	e := cs.InitCabin(App.Db)
 	App.Casbin = e

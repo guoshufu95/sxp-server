@@ -15,3 +15,13 @@ var (
 	SxpGormDBkEY  = "sxp-gorm-db"
 	SxpRedisDbKey = "sxp-redis-db"
 )
+
+// 消费者相关
+var (
+	ProductConsumerTopic = "sxp-Product-consumer-topic"
+	TaskConsumerTopic    = "sxp-task-consumer-topic"
+)
+
+var (
+	TaskProducerTopic = "sxp-task-producer-topic"
+)

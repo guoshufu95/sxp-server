@@ -1,26 +1,33 @@
 server:
-  host: 0.0.0.0
+  host: 192.168.111.143
   mode: debug
   port: 8000
 logger:
   path: ./logs
   level: debug
 mysql:
-  host: 0.0.0.0
+  host: 192.168.111.143
   port: 3306
   db: sxp-server
   username: root
   password: 123456
 redis:
-  addr: 0.0.0.0:6379
+  addr: 192.168.111.143:6379
   password: ""
 jwt:
   secret: sxp-server
   #多少秒过期
   timeout: 1800
 grpc:
-  addr: 0.0.0.0:9001
+  addr: 192.168.111.143:9001
   retry: 3
   timeout: 30
 jaeger:
-  addr: 0.0.0.0:6831
+  addr: 192.168.111.143:6831
+Kafka:
+  brokers: [192.168.111.143:9092]
+  producerTimeOut: 100000
+  consumerTimeOut: 1000
+  async: true
+  ack: -1
+  retryCount: 3

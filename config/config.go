@@ -45,7 +45,9 @@ type Config struct {
 		Brokers         []string
 		ProducerTimeOut int
 		ConsumerTimeOut int
+		Async           bool
 		Ack             int
+		RetryCount      int
 	}
 }
 
