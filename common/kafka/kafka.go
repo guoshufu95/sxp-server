@@ -13,6 +13,10 @@ import (
 	"time"
 )
 
+type DataHandler interface {
+	Do(message kafka.Message) (err error)
+}
+
 // init
 //
 //	@Description: 创建一个消费者就新增一个kv
@@ -30,7 +34,12 @@ type Manager struct {
 	Group   string
 	Topic   string
 	//Manual  bool
+	Impl   DataHandler
 	Reader *kafka.Reader
+}
+
+func (m *Manager) Do(message kafka.Message) (err error) {
+	return
 }
 
 // ConsumerMap
@@ -99,7 +108,10 @@ func (m *Manager) Consume(ctx context.Context) {
 			vv, ok := val.(kafka.Message)
 			if ok {
 				//todo 加入自己的业务逻辑
-				m.Log.Info(string(vv.Value))
+				err := m.Impl.Do(vv) //模拟操作
+				if err != nil {
+					m.Log.Errorf("%s 处理消息错误：%s", m.Topic, err.Error())
+				}
 			}
 		}
 	}
@@ -201,7 +213,7 @@ func StartKafkaConsume(ctx context.Context) {
 
 // printStop
 //
-//	@Description: 打印退出消日志
+//	@Description: 打印退出日志
 func printStop() {
 	l := logger.GetLogger()
 	l.Info("kafka消费者退出")

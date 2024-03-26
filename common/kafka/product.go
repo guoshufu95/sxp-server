@@ -2,9 +2,21 @@ package kafka
 
 import (
 	"context"
+	"fmt"
+	"github.com/segmentio/kafka-go"
 	_const "sxp-server/common/const"
+	"sxp-server/common/logger"
 	"sxp-server/config"
 )
+
+type ImplProductHandler struct {
+}
+
+func (h *ImplProductHandler) Do(msg kafka.Message) (err error) {
+	l := logger.GetLogger()
+	l.Info(fmt.Sprintf("receive approve, topic:%s,  partition:%v,   key:%s,  value:%s", msg.Topic, msg.Partition, msg.Key, string(msg.Value)))
+	return
+}
 
 // NewProductConsumer
 //
@@ -12,5 +24,12 @@ import (
 //	@param ctx
 func NewProductConsumer(ctx context.Context) {
 	m := NewManager(config.Conf.Kafka.Brokers, _const.ProductConsumerTopic, "product-group", config.Conf.Kafka.Async)
+	m.Impl = &ImplProductHandler{}
 	m.Start(ctx, DefaultConsumerNum)
+}
+
+func NewProductProducer(ctx context.Context, req any, retry int) (err error) {
+	w := NewProducer(config.Conf.Kafka.Brokers, config.Conf.Kafka.ProducerTimeOut, _const.TaskProducerTopic, config.Conf.Kafka.Async)
+	err = Send2Topic(ctx, w, req, retry)
+	return
 }
