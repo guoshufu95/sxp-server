@@ -17,8 +17,9 @@ import (
 )
 
 func main() {
-	fmt.Println("########################### sxp项目启动中 #########################")
+	l := logger.GetLogger()
 	go SetUp()
+	l.Info("########################### sxp项目启动中 #########################")
 	go queue.StartQueue() //开启延时队列
 	ctx, f := context.WithCancel(context.Background())
 	kafka.StartKafkaConsume(ctx) //开启kafka消费者
@@ -28,7 +29,7 @@ func main() {
 	f()
 	queue.GlobalQueue.StopConsume()
 	g.Stop()
-	fmt.Printf("%s sxp服务停止 ... \r\n", time.Now().Format("2006-01-02 15:04:05"))
+	l.Infof("%s sxp服务停止 ... \r\n", time.Now().Format("2006-01-02 15:04:05"))
 }
 
 // SetUp

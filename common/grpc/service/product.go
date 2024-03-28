@@ -1,7 +1,6 @@
 package service
 
 import (
-	"fmt"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"
 	"io"
@@ -79,7 +78,6 @@ func (ps *ProductGrpcService) GetProductById(id, token string) (err error, res *
 	}
 	err, ok := helper.CheckTokenRes(header)
 	if err != nil || !ok {
-		ps.Log.Errorf("grpc服务端校验token失败:%s", err.Error())
 		return
 	}
 	err, ok = helper.CheckSign(trailer)
@@ -94,18 +92,30 @@ func (ps *ProductGrpcService) GetProductById(id, token string) (err error, res *
 //
 //	@Description: 新建产品
 //	@receiver ps
-func (ps *ProductGrpcService) UpdateModel(req dto.UpdateProductReq, token string) (err error, res pb.UpdateResponse) {
+func (ps *ProductGrpcService) UpdateModel(req dto.UpdateProductReq, token string) (err error, res *pb.UpdateResponse) {
 	c := client.GetModelClient()
 	ctx := helper.BuildTokenCtx(token)
+	var header, trailer metadata.MD
 	response, err := c.UpdateModel(ctx, &pb.UpdateRequest{
 		ProductId: strconv.Itoa(req.ProductId),
 		Product:   req.Product,
-	})
+	},
+		grpc.Header(&header),   // 接收服务端发来的header
+		grpc.Trailer(&trailer), // 接收服务端发来的trailer
+	)
 	if err != nil {
 		ps.Log.Errorf("grpc服务调用失败: %s", err.Error())
 		return
 	}
-	fmt.Println(response)
+	err, ok := helper.CheckTokenRes(header)
+	if err != nil || !ok {
+		return
+	}
+	err, ok = helper.CheckSign(trailer)
+	if err != nil || !ok {
+		return
+	}
+	res = response
 	return
 }
 
@@ -130,7 +140,6 @@ func (ps *ProductGrpcService) GetByStatus(status, token string) (err error, resp
 	header, _ := stream.Header()
 	err, ok = helper.CheckTokenRes(header)
 	if err != nil || !ok {
-		ps.Log.Errorf("grpc服务端校验token失败:%s", err.Error())
 		return
 	}
 	// 校验通过才会走到发送逻辑发送数据

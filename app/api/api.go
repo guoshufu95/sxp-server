@@ -50,7 +50,7 @@ func (a *Api) ResponseError(err error) {
 		"message": err.Error(),
 	}
 	a.Ctx.Set("status", http.StatusInternalServerError)
-	a.Ctx.AbortWithStatusJSON(http.StatusInternalServerError, res)
+	a.Ctx.JSON(http.StatusInternalServerError, res)
 
 }
 
@@ -67,7 +67,7 @@ func (a *Api) Response(msg string, data ...interface{}) {
 		"message": msg,
 		"data":    data,
 	}
-	a.Ctx.JSON(http.StatusOK, res)
 	a.Ctx.Set("response", res)
 	a.Ctx.Set("status", http.StatusOK)
+	a.Ctx.JSON(http.StatusOK, res)
 }

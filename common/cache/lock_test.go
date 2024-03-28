@@ -39,5 +39,4 @@ func TestNewLock(t *testing.T) {
 		}(i)
 	}
 	wg.Wait()
-	fmt.Println("xxxxxxxxxxxxxxx")
 }
