@@ -30,7 +30,7 @@ sxp-server的功能比较繁杂，不会一一进行介绍，下面会选择一�
 
 ![img_2.png](img_2.png)
 
-    sxp-server也基于RBAC模型设计了一个权限管理方案，表结构的设计如下所示：
+sxp-server也基于RBAC模型设计了一个权限管理方案，表结构的设计如下所示：
 
 ![img_1.png](img_1.png)
 
