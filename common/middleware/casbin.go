@@ -19,7 +19,7 @@ func Permission() gin.HandlerFunc {
 		}
 		data, _ := ctx.Get("sxp-claims")
 		claims := data.(*model.MyClaims)
-		if claims.RoleKey == "admin" { //admin用户直接放行
+		if claims.Username == "admin" { //admin用户直接放行
 			ctx.Next()
 			return
 		}
@@ -36,7 +36,7 @@ func Permission() gin.HandlerFunc {
 		}
 		method := ctx.Request.Method
 		path := ctx.Request.URL.Path
-		res, err := e.Enforce(claims.RoleKey, path, method)
+		res, err := e.Enforce(claims.Username, path, method)
 		if err != nil {
 			log.Errorf("casbin校验错误：%s", err.Error())
 			return

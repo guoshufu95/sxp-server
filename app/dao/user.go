@@ -12,7 +12,7 @@ import (
 //	@return err
 //	@return users
 func Users(db *gorm.DB) (err error, users []model.User) {
-	err = db.Debug().Find(&users).Error
+	err = db.Debug().Preload("Depts").Find(&users).Error
 	return
 }
 
@@ -23,8 +23,8 @@ func Users(db *gorm.DB) (err error, users []model.User) {
 //	@param roleId
 //	@return err
 //	@return user
-func GetAuth(db *gorm.DB, roleId int) (err error, user model.User) {
-	db.Table("user").Where("role_id = ?", roleId).Debug().Find(&user)
+func GetAuth(db *gorm.DB, name string) (err error, user model.User) {
+	db.Table("user").Where("username = ?", name).Debug().Find(&user)
 	return
 }
 

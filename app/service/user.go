@@ -72,8 +72,17 @@ func (s *UserService) GetUserById(id int) (err error, user model.User) {
 //	@param req
 //	@return err
 func (s *UserService) CreateUser(req dto.CreateUserReq) (err error) {
-	var user model.User
+	var (
+		user  model.User
+		depts []model.Dept
+	)
 	req.BuildCreateData(&user)
+	err = dao.GetDeptsByIds(s.Db, req.DeptIds, &depts)
+	if err != nil {
+		s.Logger.Error("获取部门信息失败")
+		return
+	}
+	user.Depts = depts
 	err = dao.CreateUser(s.Db, user)
 	if err != nil {
 		s.Logger.Error("创建用户失败")

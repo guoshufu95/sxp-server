@@ -32,17 +32,25 @@ func (s *MenuService) ListMenu() (err error, menus []model.Menu) {
 //	@receiver s
 //	@return err
 //	@return menus
-func (s *MenuService) GetRoleMenus(roleKey string, roleId int) (err error, menus []model.Menu) {
+func (s *MenuService) GetRoleMenus(name string, roleIds []int) (err error, menus []model.Menu) {
 	// admin返回所有
-	if roleKey == "admin" {
+	if name == "admin" {
 		err = dao.ListMenus(s.Db, &menus)
 	} else {
-		var role model.Role
-		err = dao.RoleMenus(s.Db, roleId, &role)
+		var roles []model.Role
+		err = dao.RoleMenus(s.Db, roleIds, &roles)
 		if err != nil {
 			s.Logger.Error("获取当前用户菜单列表失败")
 		}
-		menus = role.Menus
+		m := make(map[uint]model.Menu)
+		for _, role := range roles { //去重
+			for _, menu := range role.Menus {
+				m[menu.ID] = menu
+			}
+		}
+		for _, v := range m {
+			menus = append(menus, v)
+		}
 	}
 	menus = GetMenuTree(menus, 0)
 	return

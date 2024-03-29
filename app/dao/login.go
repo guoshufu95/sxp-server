@@ -13,7 +13,7 @@ import (
 //	@param name
 //	@return err
 func GetUser(db *gorm.DB, name string) (err error, user model.User) {
-	err = db.Table("user").Where("username = ?", name).Find(&user).Error
+	err = db.Table("user").Where("username = ?", name).Preload("Depts").Find(&user).Error
 	return
 }
 

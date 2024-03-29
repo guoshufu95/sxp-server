@@ -11,7 +11,7 @@ type CommonUserReq struct {
 	Phone    string `json:"phone"`
 	Remark   string `json:"remark"`
 	Status   string `json:"status"`
-	RoleId   int    `json:"roleId"`
+	DeptIds  []int  `json:"deptIds"`
 	IsSuper  int    `json:"is_super"`
 }
 
@@ -24,7 +24,7 @@ func (c CommonUserReq) buildData(user *model.User) {
 	user.Phone = c.Phone
 	user.Remark = c.Remark
 	user.Status = c.Status
-	user.RoleId = c.RoleId
+	//user.RoleId = c.RoleId
 	user.IsSuper = c.IsSuper
 }
 

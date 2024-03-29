@@ -23,8 +23,8 @@ func ListMenus(db *gorm.DB, menus *[]model.Menu) (err error) {
 //	@param id
 //	@param menus
 //	@return err
-func RoleMenus(db *gorm.DB, id int, role *model.Role) (err error) {
-	err = db.Model(&role).Where("id = ?", id).Preload("Menus").Find(&role).Error
+func RoleMenus(db *gorm.DB, ids []int, roles *[]model.Role) (err error) {
+	err = db.Preload("Menus").Find(&roles, ids).Error
 	return
 }
 
