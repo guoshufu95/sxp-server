@@ -28,11 +28,11 @@ sxp-server的功能比较繁杂，不会一一进行介绍，下面会选择一�
 在权限管理这一块，RBAC模型是一种通用的解决方案，大部分公司都是围着这个模型进行的权限功能设计，
 核心思想是围绕着user-role-permission这个概念，结合自己的业务进行权限管理相关功能实现。
 
-![img_2.png](img_2.png)
+![img_1.png](img_1.png)
 
 sxp-server也基于RBAC模型设计了一个权限管理方案，表结构的设计如下所示：
 
-![img_1.png](img_1.png)
+![img_2.png](img_2.png)
 
 sxp-server后台系统的权限管理，参考了我在实际项目中遇到的一些场景。在RBAC0模型的基础上，加入了
 部门（dept）的概念，users属于depts，depts关联roles，roles关联menus即可实现users和menus的
