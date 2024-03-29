@@ -4,7 +4,7 @@ server:
   port: 8000
 logger:
   path: ./logs
-  level: debug
+  level: info
 mysql:
   host: 192.168.111.143
   port: 3306
@@ -17,7 +17,7 @@ redis:
 jwt:
   secret: sxp-server
   #多少秒过期
-  timeout: 1800
+  timeout: 18000
 grpc:
   addr: 192.168.111.143:9001
   retry: 3
