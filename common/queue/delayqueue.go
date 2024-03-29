@@ -556,7 +556,10 @@ func (q *DelayQueue) StartConsume() (done <-chan struct{}) {
 	return done0
 }
 
-// StopConsume stops consumer goroutine
+// StopConsume
+//
+//	@Description: 定时任务队列停止
+//	@receiver q
 func (q *DelayQueue) StopConsume() {
 	q.logger.Info("定时任务停止")
 	close(q.close)

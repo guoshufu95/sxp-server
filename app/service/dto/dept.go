@@ -3,7 +3,7 @@ package dto
 import "sxp-server/app/model"
 
 type CommonDeptReq struct {
-	ParentId uint   `json:"parentId"`
+	ParentId int    `json:"parentId"`
 	Name     string `json:"name"`   //部门名称
 	Leader   string `json:"leader"` //部门负责人
 	Phone    string `json:"phone"`  //手机
@@ -17,7 +17,7 @@ type CommonDeptReq struct {
 //	@receiver c
 //	@param data
 func (c CommonDeptReq) BuildData(data *model.Dept) {
-	data.ParentId = c.ParentId
+	data.ParentId = uint(c.ParentId)
 	data.Name = c.Name
 	data.Leader = c.Leader
 	data.Phone = c.Phone

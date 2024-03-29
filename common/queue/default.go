@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strconv"
 	"sxp-server/common/initial"
+	"sxp-server/common/logger"
 )
 
 var GlobalQueue *DelayQueue
@@ -28,8 +29,10 @@ func Operator(i string) (flag bool) { //模拟业务场景
 //
 //	@Description: 开启并消费队列
 func StartQueue() {
+	l := logger.GetLogger()
 	app := initial.App
 	GlobalQueue = NewQueue(app.ProjectName, app.Cache, Operator)
 	done := GlobalQueue.StartConsume()
+	l.Info("定时任务队列启动")
 	<-done
 }

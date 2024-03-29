@@ -37,7 +37,7 @@ func (a *MenuApi) GetMenusByRole(c *gin.Context) {
 	a.BuildApi(c).BuildService(&ms.Service)
 	v := c.MustGet("sxp-claims")
 	claims := v.(*model.MyClaims)
-	err, menus := ms.GetRoleMenus(claims.RoleKey, claims.RoleId)
+	err, menus := ms.GetRoleMenus(claims.Username, claims.RoleIds)
 	if err != nil {
 		a.ResponseError(err)
 		return

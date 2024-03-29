@@ -18,13 +18,14 @@ var App *Application
 // Application
 // @Description: 全局application
 type Application struct {
-	ProjectName string         `json:"projectName"`
-	Engine      *gin.Engine    `json:"engine"`
-	Db          *gorm.DB       `json:"globalDb"`
-	Cache       *redis.Client  `json:"cache"`
-	Logger      *logger.ZapLog `json:"logger"`
-	mux         sync.Mutex
-	Casbin      *casbin.SyncedEnforcer `json:"casbins"`
+	ProjectName string        `json:"projectName"`
+	Engine      *gin.Engine   `json:"engine"`
+	Db          *gorm.DB      `json:"globalDb"`
+	Cache       *redis.Client `json:"cache"`
+	//KafkaManager *kafka.Manager
+	Logger *logger.ZapLog `json:"logger"`
+	mux    sync.Mutex
+	Casbin *casbin.SyncedEnforcer `json:"casbins"`
 }
 
 // init
@@ -38,6 +39,7 @@ func init() {
 		Engine:      gin.Default(),
 		Db:          db.IniDb(),
 		Cache:       cache.IniCache(),
+		//KafkaManager: kafka.NewManager(),
 	}
 	e := cs.InitCabin(App.Db)
 	App.Casbin = e

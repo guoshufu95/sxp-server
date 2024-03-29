@@ -56,7 +56,7 @@ func GetModelClient() pb.ModelClient {
 
 // Stop
 //
-//	@Description: grpc停止
+//	@Description: 关闭grpc-client
 func Stop() {
 	fmt.Println("grpc服务停止")
 	err := grpcConn.Close()

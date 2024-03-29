@@ -29,13 +29,23 @@ func (s *LoginService) Login(req dto.LoginReq) (err error, token string) {
 		s.Logger.Error("用户密码不匹配")
 		return
 	}
-	var role model.Role
-	err = dao.GetRoleById(s.Db, user.RoleId, &role)
+	var (
+		roles []model.Role
+	)
+	err = dao.GetRoleByDepts(s.Db, user.Depts, &roles)
 	if err != nil {
-		s.Logger.Error("通过id查询用户信息失败")
+		s.Logger.Error("depts关联查询roles错误")
 		return
 	}
-	token, err = jwtToken.GenToken(req.Username, role.RoleKey, user.RoleId)
+	var (
+		roleKeys []string
+		ids      []int
+	)
+	for _, role := range roles {
+		roleKeys = append(roleKeys, role.RoleKey)
+		ids = append(ids, int(role.ID))
+	}
+	token, err = jwtToken.GenToken(req.Username, roleKeys, ids)
 	if err != nil {
 		s.Logger.Errorf("token获取失败: %s", err.Error())
 		return

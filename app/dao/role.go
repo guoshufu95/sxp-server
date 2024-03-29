@@ -94,3 +94,15 @@ func DeleteRoleById(db *gorm.DB, role model.Role) (err error) {
 	err = db.Debug().Select(clause.Associations).Delete(&role).Error
 	return
 }
+
+// GetRoleByDepts
+//
+//	@Description: 通过detps关联查询出roles
+//	@param db
+//	@param depts[]
+//	@param roles
+//	@return err
+func GetRoleByDepts(db *gorm.DB, depts []model.Dept, roles *[]model.Role) (err error) {
+	err = db.Model(&depts).Distinct().Association("Roles").Find(&roles)
+	return
+}

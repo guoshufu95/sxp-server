@@ -41,6 +41,14 @@ type Config struct {
 	Jaeger struct {
 		Addr string
 	}
+	Kafka struct {
+		Brokers         []string
+		ProducerTimeOut int
+		ConsumerTimeOut int
+		Async           bool
+		Ack             int
+		RetryCount      int
+	}
 }
 
 var Conf *Config

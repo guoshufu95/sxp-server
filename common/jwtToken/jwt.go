@@ -11,12 +11,12 @@ import (
 //var SECRETKEY = []byte("sxp-server") //私钥
 
 // GenToken 生成JWT
-func GenToken(username, roleKey string, roleId int) (string, error) {
+func GenToken(username string, roleKeys []string, roleIds []int) (string, error) {
 	expTime := time.Now().Add(time.Duration(config.Conf.Jwt.Timeout) * time.Second).Unix()
 	c := model.MyClaims{
 		Username: username,
-		RoleId:   roleId,
-		RoleKey:  roleKey,
+		RoleIds:  roleIds,
+		RoleKeys: roleKeys,
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: expTime,      // 过期时间
 			Issuer:    "sxp-server", // 签发人

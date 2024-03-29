@@ -21,7 +21,7 @@ type User struct {
 	Remark        string     `json:"remark" gorm:"type:varchar(100);comment:描述;"`
 	Status        string     `json:"status" gorm:"type:int(4);comment:启用状态;"`
 	IsSuper       int        `json:"is_super" gorm:"int(2);comment:是否是超级管理员;"`
-	RoleId        int        `json:"roleId" gorm:"int(2);comment:用户所属的角色id"`
+	Depts         []Dept     `json:"depts" gorm:"many2many:user_dept"`
 }
 
 func (User) TableName() string {

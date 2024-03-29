@@ -42,7 +42,7 @@ func (s *Service) Auth(c *gin.Context) (err error) {
 		return
 	}
 	claims := v.(*cm.MyClaims)
-	err, user := dao.GetAuth(s.Db, claims.RoleId)
+	err, user := dao.GetAuth(s.Db, claims.Username)
 	if err != nil {
 		err = errors.New("获取当前登录用户信息失败")
 		return
