@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"os"
 	"os/signal"
@@ -20,13 +19,12 @@ func main() {
 	l := logger.GetLogger()
 	go SetUp()
 	l.Info("########################### sxp项目启动中 #########################")
-	go queue.StartQueue() //开启延时队列
-	ctx, f := context.WithCancel(context.Background())
-	kafka.StartKafkaConsume(ctx) //开启kafka消费者
+	go queue.StartQueue()     //开启延时队列
+	kafka.StartKafkaConsume() //开启kafka消费者
 	quit := make(chan os.Signal)
 	signal.Notify(quit, os.Interrupt)
 	<-quit //优雅退出
-	f()
+	kafka.StopKafkaConsume()
 	queue.GlobalQueue.StopConsume()
 	g.Stop()
 	l.Infof("%s sxp服务停止 ... \r\n", time.Now().Format("2006-01-02 15:04:05"))
