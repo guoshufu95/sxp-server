@@ -13,6 +13,35 @@ import (
 	"time"
 )
 
+var (
+	km Km
+	Cm = ConsumerMap{
+		Filed: make(map[string]func(ctx context.Context)),
+	}
+	DefaultConsumerNum = 4 //消费者组开启消费者默认个数
+	Once               sync.Once
+)
+
+// Km
+// @Description: kafka消费者控制器
+type Km struct {
+	Log        *logger.ZapLog
+	Ctx        context.Context
+	CancelFunc context.CancelFunc
+}
+
+// NewKm
+//
+//	@Description:
+func NewKm() {
+	ctx, f := context.WithCancel(context.Background())
+	km.Ctx = ctx
+	km.CancelFunc = f
+	km.Log = logger.GetLogger()
+}
+
+// DataHandler
+// @Description: 消费者实现此接口进行消费
 type DataHandler interface {
 	Do(message kafka.Message) (err error)
 }
@@ -48,14 +77,6 @@ type ConsumerMap struct {
 	Filed map[string]func(ctx context.Context)
 	Lock  sync.Mutex
 }
-
-var (
-	Cm = ConsumerMap{
-		Filed: make(map[string]func(ctx context.Context)),
-	}
-	DefaultConsumerNum = 4 //消费者组开启消费者默认个数
-	Once               sync.Once
-)
 
 // NewManager
 //
@@ -95,7 +116,6 @@ func (m *Manager) Consume(ctx context.Context) {
 	for {
 		select {
 		case <-ctx.Done():
-			Once.Do(printStop)
 			_ = m.Reader.Close()
 			return
 		case val := <-m.Ch:
@@ -203,18 +223,18 @@ func NewConsumer(brokers []string, topic, groupId string) *kafka.Reader {
 // StartKafkaConsume
 //
 //	@Description: 启动所有消费者
-func StartKafkaConsume(ctx context.Context) {
-	log := logger.GetLogger()
+func StartKafkaConsume() {
+	Once.Do(NewKm) // 程序中只需要初始化一次
 	for topic, f := range Cm.Filed {
-		log.Info(fmt.Sprintf("%s 消费者启动", topic))
-		f(ctx)
+		km.Log.Info(fmt.Sprintf("%s 消费者启动", topic))
+		f(km.Ctx)
 	}
 }
 
-// printStop
+// StopKafkaConsume
 //
-//	@Description: 打印退出日志
-func printStop() {
-	l := logger.GetLogger()
-	l.Info("kafka消费者退出")
+//	@Description: 消费者退出
+func StopKafkaConsume() {
+	km.CancelFunc()
+	km.Log.Info("消费者退出")
 }
