@@ -121,7 +121,7 @@ func buildUser(g *gin.RouterGroup) {
 //	@Description: 部门路由
 //	@param g
 func buildDept(g *gin.RouterGroup) {
-	g.Use(middleware.JWTAuthMiddleware())
+	//g.Use(middleware.JWTAuthMiddleware())
 	d := api.DeptApi{}
 	g.GET("/list", d.GetDepts)
 	g.POST("/insert", d.InsertDept)

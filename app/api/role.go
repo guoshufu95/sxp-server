@@ -17,7 +17,7 @@ var rs = service.RoleService{}
 //	@Description: 角色列表
 //	@receiver a
 //	@param c
-func (a *RoleApi) ListRoles(c *gin.Context) {
+func (a RoleApi) ListRoles(c *gin.Context) {
 	a.BuildApi(c).BuildService(&rs.Service)
 	err, roles := rs.ListRoles()
 	if err != nil {
@@ -32,7 +32,7 @@ func (a *RoleApi) ListRoles(c *gin.Context) {
 //	@Description: 创建角色
 //	@receiver a
 //	@param c
-func (a *RoleApi) CreateRole(c *gin.Context) {
+func (a RoleApi) CreateRole(c *gin.Context) {
 	a.BuildApi(c).BuildService(&rs.Service)
 	var req dto.CreateRoleReq
 	err := c.ShouldBindJSON(&req)
@@ -58,7 +58,7 @@ func (a *RoleApi) CreateRole(c *gin.Context) {
 //	@Description:
 //	@receiver a
 //	@param c
-func (a *RoleApi) UpdateRole(c *gin.Context) {
+func (a RoleApi) UpdateRole(c *gin.Context) {
 	a.BuildApi(c).BuildService(&rs.Service)
 	var req dto.UpdateRoleReq
 	err := c.ShouldBindJSON(&req)
@@ -84,7 +84,7 @@ func (a *RoleApi) UpdateRole(c *gin.Context) {
 //	@Description: 删除用户
 //	@receiver a
 //	@param c
-func (a *RoleApi) DeleteRole(c *gin.Context) {
+func (a RoleApi) DeleteRole(c *gin.Context) {
 	a.BuildApi(c).BuildService(&rs.Service)
 	var req dto.UpdateRoleReq
 	err := c.ShouldBindJSON(&req)

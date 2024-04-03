@@ -17,7 +17,7 @@ var us service.UserService
 //	@Description: 获取用户列表
 //	@receiver a
 //	@param c
-func (a *UserApi) ListUsers(c *gin.Context) {
+func (a UserApi) ListUsers(c *gin.Context) {
 	a.BuildApi(c).BuildService(&us.Service)
 	err, users := us.ListUsers()
 	if err != nil {
@@ -32,7 +32,7 @@ func (a *UserApi) ListUsers(c *gin.Context) {
 //	@Description: 创建user
 //	@receiver a
 //	@param c
-func (a *UserApi) CreateUser(c *gin.Context) {
+func (a UserApi) CreateUser(c *gin.Context) {
 	a.BuildApi(c).BuildService(&us.Service)
 	var req = dto.CreateUserReq{}
 	err := c.ShouldBindJSON(&req)
@@ -68,7 +68,7 @@ func (a *UserApi) CreateUser(c *gin.Context) {
 //	@Description: 通过id查询用户信息
 //	@receiver a
 //	@param c
-func (a *UserApi) GetById(c *gin.Context) {
+func (a UserApi) GetById(c *gin.Context) {
 	a.BuildApi(c).BuildService(&us.Service)
 	var req dto.GetUserByIdRequest
 	err, user := us.GetUserById(req.Id)
@@ -84,7 +84,7 @@ func (a *UserApi) GetById(c *gin.Context) {
 //	@Description: 更新
 //	@receiver a
 //	@param c
-func (a *UserApi) UpdateUser(c *gin.Context) {
+func (a UserApi) UpdateUser(c *gin.Context) {
 	a.BuildApi(c).BuildService(&us.Service)
 	var req dto.UpdateUserReq
 	err := c.ShouldBindJSON(&req)
@@ -110,7 +110,7 @@ func (a *UserApi) UpdateUser(c *gin.Context) {
 //	@Description: 删除
 //	@receiver a
 //	@param c
-func (a *UserApi) DeleteUser(c *gin.Context) {
+func (a UserApi) DeleteUser(c *gin.Context) {
 	a.BuildApi(c).BuildService(&us.Service)
 	var req dto.DeleteUserReq
 	err := c.ShouldBindJSON(&req)

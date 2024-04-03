@@ -17,7 +17,7 @@ var is serv.IntegralService
 //	@Description: 初始化积分相关信息
 //	@receiver a
 //	@param c
-func (a *IntegralApi) InitIntegral(c *gin.Context) {
+func (a IntegralApi) InitIntegral(c *gin.Context) {
 	a.BuildApi(c).BuildService(&is.Service)
 	var req dto.IntegralReq
 	err := c.ShouldBindJSON(&req)
@@ -40,7 +40,7 @@ func (a *IntegralApi) InitIntegral(c *gin.Context) {
 //	@Description: 抢积分/红包
 //	@receiver a
 //	@param c
-func (a *IntegralApi) DoIntegral(c *gin.Context) {
+func (a IntegralApi) DoIntegral(c *gin.Context) {
 	a.BuildApi(c).BuildService(&is.Service)
 	var req dto.DoIntegral
 	err := c.ShouldBindJSON(&req)

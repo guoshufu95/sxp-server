@@ -4,26 +4,30 @@ import (
 	"github.com/gin-gonic/gin"
 	serv "sxp-server/app/service"
 	"sxp-server/app/service/dto"
+	"time"
 )
 
 type DeptApi struct {
 	Api
 }
 
-var ds serv.DeptService
+var (
+	ds serv.DeptService
+)
 
 // GetDepts
 //
 //	@Description: 返回部门列表
 //	@receiver a
 //	@param c
-func (a *DeptApi) GetDepts(c *gin.Context) {
+func (a DeptApi) GetDepts(c *gin.Context) {
 	a.BuildApi(c).BuildService(&ds.Service)
 	err, dept := ds.GetDept()
 	if err != nil {
 		a.ResponseError(err)
 		return
 	}
+	time.Sleep(3 * time.Second)
 	a.Response("成功返回部门列表!", dept)
 }
 
@@ -32,7 +36,7 @@ func (a *DeptApi) GetDepts(c *gin.Context) {
 //	@Description: 创建部门
 //	@receiver a
 //	@param c
-func (a *DeptApi) InsertDept(c *gin.Context) {
+func (a DeptApi) InsertDept(c *gin.Context) {
 	a.BuildApi(c).BuildService(&ds.Service)
 	var req dto.CreateDeptReq
 	err := c.ShouldBindJSON(&req)
@@ -53,7 +57,7 @@ func (a *DeptApi) InsertDept(c *gin.Context) {
 	a.Response("成功创建部门!", nil)
 }
 
-func (a *DeptApi) UpdateDept(c *gin.Context) {
+func (a DeptApi) UpdateDept(c *gin.Context) {
 	a.BuildApi(c).BuildService(&ds.Service)
 	var req dto.UpdateDeptReq
 	err := c.ShouldBindJSON(&req)
@@ -79,7 +83,7 @@ func (a *DeptApi) UpdateDept(c *gin.Context) {
 //	@Description: 删除部门
 //	@receiver a
 //	@param c
-func (a *DeptApi) DeleteDept(c *gin.Context) {
+func (a DeptApi) DeleteDept(c *gin.Context) {
 	a.BuildApi(c).BuildService(&ds.Service)
 	var req dto.UpdateDeptReq
 	err := c.ShouldBindJSON(&req)

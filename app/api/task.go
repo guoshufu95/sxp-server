@@ -18,7 +18,7 @@ var ts = serv.TaskService{}
 //	@Description: 启动一个延时队列
 //	@receiver a
 //	@param c
-func (a *TaskApi) StartTask(c *gin.Context) {
+func (a TaskApi) StartTask(c *gin.Context) {
 	a.BuildApi(c).BuildService(&ts.Service)
 	var req = dto.StartTaskReq{}
 	err := c.ShouldBindJSON(&req)
@@ -49,7 +49,7 @@ func (a *TaskApi) StartTask(c *gin.Context) {
 //	@Description: 获取定时任务队列
 //	@receiver a
 //	@param c
-func (a *TaskApi) GetTasks(c *gin.Context) {
+func (a TaskApi) GetTasks(c *gin.Context) {
 	a.BuildApi(c).BuildService(&ts.Service)
 	var req dto.GetTasksReq
 	err := c.ShouldBindJSON(&req)

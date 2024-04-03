@@ -18,7 +18,7 @@ var ps = serv.ProductService{}
 //	@Description: grpc调用获取产品
 //	@receiver a
 //	@param c
-func (a *ProductApi) GetProduct(c *gin.Context) {
+func (a ProductApi) GetProduct(c *gin.Context) {
 	a.BuildApi(c).BuildService(&ts.Service)
 	var req = dto.GetProductReq{}
 	err := c.ShouldBindJSON(&req)
@@ -40,7 +40,7 @@ func (a *ProductApi) GetProduct(c *gin.Context) {
 //	@Description: 新建product
 //	@receiver a
 //	@param c
-func (a *ProductApi) UpdateProduct(c *gin.Context) {
+func (a ProductApi) UpdateProduct(c *gin.Context) {
 	a.BuildApi(c).BuildService(&ts.Service)
 	var req = dto.UpdateProductReq{}
 	err := c.ShouldBindJSON(&req)
@@ -61,7 +61,7 @@ func (a *ProductApi) UpdateProduct(c *gin.Context) {
 //	@Description: 根据在线状态获取产品信息
 //	@receiver a
 //	@param c
-func (a *ProductApi) GetByStatus(c *gin.Context) {
+func (a ProductApi) GetByStatus(c *gin.Context) {
 	a.BuildApi(c).BuildService(&ts.Service)
 	var req = dto.GetByStatusReq{}
 	err := c.ShouldBindJSON(&req)

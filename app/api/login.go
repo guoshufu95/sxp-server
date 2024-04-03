@@ -17,7 +17,7 @@ var ls = serv.LoginService{}
 //	@Description: 登录
 //	@receiver l
 //	@param c
-func (a *LoginApi) Login(c *gin.Context) {
+func (a LoginApi) Login(c *gin.Context) {
 	a.BuildApi(c).BuildService(&ls.Service)
 	var req dto.LoginReq
 	err := c.ShouldBindJSON(&req)

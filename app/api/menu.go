@@ -18,7 +18,7 @@ var ms serv.MenuService
 //	@Description: 获取所有菜单
 //	@receiver a
 //	@param c
-func (a *MenuApi) GetMenus(c *gin.Context) {
+func (a MenuApi) GetMenus(c *gin.Context) {
 	a.BuildApi(c).BuildService(&ms.Service)
 	err, menus := ms.ListMenu()
 	if err != nil {
@@ -33,7 +33,7 @@ func (a *MenuApi) GetMenus(c *gin.Context) {
 //	@Description: 返回当前用户展示菜单
 //	@receiver a
 //	@param c
-func (a *MenuApi) GetMenusByRole(c *gin.Context) {
+func (a MenuApi) GetMenusByRole(c *gin.Context) {
 	a.BuildApi(c).BuildService(&ms.Service)
 	v := c.MustGet("sxp-claims")
 	claims := v.(*model.MyClaims)
@@ -50,7 +50,7 @@ func (a *MenuApi) GetMenusByRole(c *gin.Context) {
 //	@Description: 创建菜单
 //	@receiver a
 //	@param c
-func (a *MenuApi) CreateMenu(c *gin.Context) {
+func (a MenuApi) CreateMenu(c *gin.Context) {
 	a.BuildApi(c).BuildService(&ms.Service)
 	var req dto.CreateMenuReq
 	err := c.ShouldBindJSON(&req)
@@ -72,7 +72,7 @@ func (a *MenuApi) CreateMenu(c *gin.Context) {
 //	@Description: 更新菜单
 //	@receiver a
 //	@param c
-func (a *MenuApi) UpdateMenu(c *gin.Context) {
+func (a MenuApi) UpdateMenu(c *gin.Context) {
 	a.BuildApi(c).BuildService(&ms.Service)
 	var req dto.UpdateMenuReq
 	err := c.ShouldBindJSON(&req)
@@ -93,7 +93,7 @@ func (a *MenuApi) UpdateMenu(c *gin.Context) {
 //	@Description: 删除菜单
 //	@receiver a
 //	@param c
-func (a *MenuApi) DeleteMenu(c *gin.Context) {
+func (a MenuApi) DeleteMenu(c *gin.Context) {
 	a.BuildApi(c).BuildService(&ms.Service)
 	var req dto.DeleteMenuReq
 	err := c.ShouldBindJSON(&req)
