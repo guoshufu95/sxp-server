@@ -1,7 +1,6 @@
 package client
 
 import (
-	"fmt"
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpc_retry "github.com/grpc-ecosystem/go-grpc-middleware/retry"
 	"google.golang.org/grpc"
@@ -58,7 +57,6 @@ func GetModelClient() pb.ModelClient {
 //
 //	@Description: 关闭grpc-client
 func Stop() {
-	fmt.Println("grpc服务停止")
 	err := grpcConn.Close()
 	if err != nil {
 		log.Fatalf("关闭grpcConn失败: %s", err.Error())

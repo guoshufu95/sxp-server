@@ -336,6 +336,7 @@ func (q *DelayQueue) ack(idStr string) error {
 		filed model.TaskField
 	)
 	app := initial.App
+	db := app.Db
 	val, err = q.redisCli.Get(q.genMsgKey(idStr) + "table")
 	if err != nil {
 		app.Logger.Errorf("更新task表status=1,定时任务: %s, 失败: %s", val, err.Error())
@@ -346,7 +347,7 @@ func (q *DelayQueue) ack(idStr string) error {
 		app.Logger.Errorf("更新task表status=1,获取字段反序列化失败: %s", err.Error())
 		return err
 	}
-	err = app.Db.Table("task").Debug().Where("task_name = ?", filed.TaskName).Update("status", 1).Error
+	err = db.Table("task").Debug().Where("task_name = ?", filed.TaskName).Update("status", 1).Error
 	if err != nil {
 		app.Logger.Errorf("更新task表staus=1 失败: %s", err.Error())
 		return err
@@ -365,11 +366,19 @@ func (q *DelayQueue) ack(idStr string) error {
 	return nil
 }
 
+// nack
+//
+//	@Description: 重试操作
+//	@receiver q
+//	@param idStr
+//	@return error
 func (q *DelayQueue) nack(idStr string) error {
-	// update retry time as now, unack2Retry will move it to retry immediately
 	res, err := q.redisCli.HMget(q.retryCountKey, idStr)
+	if err != nil {
+		return err
+	}
 	if res[0].(string) == "0" {
-
+		return nil
 	}
 	err = q.redisCli.ZAdd(q.unAckKey, map[string]float64{
 		idStr: float64(time.Now().Add(3 * time.Second).Unix()),

@@ -20,7 +20,7 @@ func (Task) TableName() string {
 }
 
 func (t *Task) BeforeCreate(_ *gorm.DB) error {
-	t.TaskName = t.TaskName + "???"
+	t.TaskName = t.TaskName
 	return nil
 }
 
