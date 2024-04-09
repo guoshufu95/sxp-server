@@ -8,6 +8,7 @@ import (
 	"sxp-server/app/model"
 	"sxp-server/common/cache"
 	_const "sxp-server/common/const"
+	"time"
 )
 
 // InsertIntegralInfo
@@ -55,7 +56,7 @@ func IntegralResolution(rdb *redis.Client, id, val int) (err error) {
 //	@param keys
 //	@return err
 func EvalLimit(rdb *redis.Client, keys []string) (error, int64) {
-	res, err := rdb.Eval(context.Background(), cache.FilterScript, keys).Result()
+	res, err := rdb.Eval(context.Background(), cache.FilterScript, keys, time.Now().UnixMilli()).Result()
 	i := res.(int64)
 	return err, i
 }
