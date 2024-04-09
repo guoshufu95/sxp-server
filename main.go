@@ -27,6 +27,7 @@ func main() {
 	kafka.StopKafkaConsume()
 	queue.GlobalQueue.StopConsume()
 	g.Stop()
+	ini.App.Cache.Close()
 	l.Infof("%s sxp服务停止 ... \r\n", time.Now().Format("2006-01-02 15:04:05"))
 }
 

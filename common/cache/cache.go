@@ -15,6 +15,7 @@ func IniCache() *redis.Client {
 		Addr:     config.Conf.Redis.Addr,
 		Password: config.Conf.Redis.Password,
 		DB:       0,
+		PoolSize: 20,
 	})
 	_, err := rdb.Ping(context.Background()).Result()
 	if err != nil {
@@ -22,4 +23,5 @@ func IniCache() *redis.Client {
 	}
 	CClient = rdb
 	return rdb
+
 }

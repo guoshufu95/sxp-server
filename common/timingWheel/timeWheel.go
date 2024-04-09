@@ -182,7 +182,6 @@ func (s *SingleSXPTimeWheel) execute() {
 				s.addTask(taskEle)
 			}
 			if taskEle.times == -1 {
-				s.addTask(taskEle)
 			}
 			ele = ele.Next()
 		}
