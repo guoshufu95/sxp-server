@@ -12,29 +12,47 @@ import (
 	"time"
 )
 
-var Global *zap.SugaredLogger
+// 全局og
+var (
+	Global *zap.SugaredLogger
+	Zl     *zap.Logger
+)
 
+// ZapLog
+// @Description: 自定义log结构体
 type ZapLog struct {
+	Zl        *zap.Logger
 	GlobalLog *zap.SugaredLogger
 	sync.RWMutex
 	fields []string
 }
 
-func GetLogger() *ZapLog {
+// GetLogger
+//
+//	@Description: 返回log实实例
+//	@param level
+//	@return *ZapLog
+func GetLogger(level ...string) *ZapLog {
 	l := &ZapLog{
 		fields: make([]string, 0),
 	}
-	if Global != nil {
+	if Global != nil && Zl != nil {
+		l.Zl = Zl
 		l.GlobalLog = Global
 		return l
 	} else {
-		IniLogger()
+		IniLogger(level...)
 	}
+	l.Zl = Zl
 	l.GlobalLog = Global
 	return l
 }
 
-func IniLogger() {
+// IniLogger
+//
+//	@Description: 初始化
+//	@param level
+func IniLogger(level ...string) {
 	encoder := zapcore.NewConsoleEncoder(zapcore.EncoderConfig{
 		MessageKey:  "msg",
 		LevelKey:    "level",
@@ -49,8 +67,14 @@ func IniLogger() {
 			enc.AppendInt64(int64(d) / 1000000)
 		},
 	})
+	var lv string
 	logLevel := zap.DebugLevel
-	switch config.Conf.Logger.Level {
+	if len(level) != 0 {
+		lv = level[0]
+	} else {
+		lv = config.Conf.Logger.Level
+	}
+	switch lv {
 	case "debug":
 		logLevel = zap.DebugLevel
 	case "info":
@@ -78,9 +102,16 @@ func IniLogger() {
 		zapcore.NewCore(encoder, zapcore.AddSync(errorWriter), errorLevel),
 	)
 	log := zap.New(core, zap.AddCaller(), zap.AddCallerSkip(1), zap.AddStacktrace(zap.InfoLevel)) //会显示打日志点的文件名和行数
+	// 两个都给加上
+	Zl = log
 	Global = log.Sugar()
 }
 
+// getWriter
+//
+//	@Description: 日志切分和备份
+//	@param filename
+//	@return io.Writer
 func getWriter(filename string) io.Writer {
 	lumberJackLogger := &lumberjack.Logger{
 		Filename:   filename,

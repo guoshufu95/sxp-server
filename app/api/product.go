@@ -19,7 +19,7 @@ var ps = serv.ProductService{}
 //	@receiver a
 //	@param c
 func (a ProductApi) GetProduct(c *gin.Context) {
-	a.BuildApi(c).BuildService(&ts.Service)
+	a.BuildApi(c).BuildService(&ps.Service)
 	var req = dto.GetProductReq{}
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
@@ -62,7 +62,7 @@ func (a ProductApi) UpdateProduct(c *gin.Context) {
 //	@receiver a
 //	@param c
 func (a ProductApi) GetByStatus(c *gin.Context) {
-	a.BuildApi(c).BuildService(&ts.Service)
+	a.BuildApi(c).BuildService(&ps.Service)
 	var req = dto.GetByStatusReq{}
 	err := c.ShouldBindJSON(&req)
 	if err != nil {

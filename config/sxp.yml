@@ -19,9 +19,9 @@ jwt:
   #多少秒过期
   timeout: 18000
 grpc:
-  addr: 192.168.111.143:9001
+  addr: 192.168.111.40:9011
   retry: 3
-  timeout: 30
+  timeout: 15
 jaeger:
   addr: 192.168.111.143:6831
 Kafka:

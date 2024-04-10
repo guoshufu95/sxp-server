@@ -34,13 +34,13 @@ func Init() (err error) {
 	if err != nil {
 		return
 	}
-	// 失败重试和链路追踪middleware
 	conn, err := grpc.Dial(config.Conf.Grpc.Addr, grpc.WithTransportCredentials(insecure.NewCredentials()),
-		grpc.WithUnaryInterceptor(grpc_middleware.ChainUnaryClient(tracer.ClientUnaryInterceptor(trace),
+		grpc.WithUnaryInterceptor(grpc_middleware.ChainUnaryClient(
+			tracer.ClientUnaryInterceptor(trace),
 			grpc_retry.UnaryClientInterceptor(retryOpts...))),
-		grpc.WithStreamInterceptor(tracer.ClientStreamInterceptor(trace)),
-	)
-	//grpc.WithUnaryInterceptor(grpc_retry.UnaryClientInterceptor(retryOpts...)))
+		grpc.WithStreamInterceptor(grpc_middleware.ChainStreamClient(
+			tracer.ClientStreamInterceptor(trace),
+		)))
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
