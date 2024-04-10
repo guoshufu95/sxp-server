@@ -39,3 +39,31 @@ sxp-server后台系统的权限管理，参考了我在实际项目中遇到的�
 关联，user通过部门进行权限的分配。当然这种设计是根据业务的不同进行调整的，比较简单的场景中，甚至都
 不需要roles这一层。线上项目中比较复杂的一些约束条件在本项目中没有实现，这里只提供一下设计的思路。
 
+# casbin
+
+本项目中主要用于访问控制策略
+- 定义策略：
+    [Request定义]
+    r = sub, obj, act
+    
+    [策略定义]
+    p = sub, obj, act
+    
+    [policy_effect]
+    e = some(where (p.eft == allow))
+    
+    [匹配器定义]
+    m = r.sub == p.sub && (keyMatch2(r.obj, p.obj) || keyMatch(r.obj, p.obj)) && (r.act == p.act || p.act == "*")
+
+- 代码初始化
+  
+  m, err := model.NewModelFromString(text)
+ 
+  e, err := casbin.NewSyncedEnforcer(m, Apter)
+ 
+  [从db加载策略]
+  err = e.LoadPolicy()
+
+- 在中间件中使用
+  res, err := e.Enforce(claims.Username, path, method)
+    
