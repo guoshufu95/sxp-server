@@ -64,7 +64,7 @@ sxp-server后台系统的权限管理，参考了我在实际项目中遇到的�
   return
   }
     
-- redislock
+# redislock
   sxp-server基于redis实现了一个分布式锁
   非阻塞模式下，如果加锁失败会直接返回错误；阻塞模式会持续轮询获取锁
   支持看门狗续期，释放锁时会回收看门狗
