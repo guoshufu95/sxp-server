@@ -201,7 +201,7 @@ func (r *RedisLock) watchDog(ctx context.Context) {
 	if !atomic.CompareAndSwapInt32(&r.runningDog, 0, 1) {
 		return
 	}
-	ctx, r.stopDog = context.WithCancel(ctx)
+	//ctx, r.stopDog = context.WithCancel(ctx)
 	go func() {
 		defer func() {
 			atomic.StoreInt32(&r.runningDog, 0)

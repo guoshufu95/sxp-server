@@ -41,29 +41,61 @@ sxp-server后台系统的权限管理，参考了我在实际项目中遇到的�
 
 # casbin
 
-本项目中主要用于访问控制策略
-- 定义策略：
-    [Request定义]
-    r = sub, obj, act
-    
-    [策略定义]
-    p = sub, obj, act
-    
-    [policy_effect]
-    e = some(where (p.eft == allow))
-    
-    [匹配器定义]
-    m = r.sub == p.sub && (keyMatch2(r.obj, p.obj) || keyMatch(r.obj, p.obj)) && (r.act == p.act || p.act == "*")
+本项目中主要用于访问控制策略,其原理和作用就不过多赘述了，可自行了解
 
-- 代码初始化
-  
+- 定义策略：
+    text = `r = sub, obj, act
+    p = sub, obj, act
+    e = some(where (p.eft == allow))
+    m = r.sub == p.sub && (keyMatch2(r.obj, p.obj) || keyMatch(r.obj, p.obj)) && (r.act == p.act || p.act == "*")`
+
+- 初始化
   m, err := model.NewModelFromString(text)
- 
   e, err := casbin.NewSyncedEnforcer(m, Apter)
- 
-  [从db加载策略]
+  从数据库中加载策略
   err = e.LoadPolicy()
 
 - 在中间件中使用
+  method := ctx.Request.Method
+  path := ctx.Request.URL.Path
   res, err := e.Enforce(claims.Username, path, method)
+  if err != nil {
+    log.Errorf("casbin校验错误：%s", err.Error())
+  return
+  }
+    
+- redislock
+  sxp-server基于redis实现了一个分布式锁
+  非阻塞模式下，如果加锁失败会直接返回错误；阻塞模式会持续轮询获取锁
+  支持看门狗续期，释放锁时会回收看门狗
+  加锁和解锁都使用lua脚本保证原子性操作
+  单元测试逻辑如下，仅供参考：
+  client := IniCache()
+  var wg sync.WaitGroup
+  for i := 1; i < 10; i++ {
+    wg.Add(1)
+    go func(i int) {
+    defer func() {
+      p := recover()
+      fmt.Println(p)
+    }()
+    defer wg.Done()
+    token := "token" + strconv.Itoa(i)
+    llock := NewLock("lock", token, client, WithMaxIdle(23), WithBlockTimeOut(25), WithExpire(5), WithWatch(true), WithIsBlock(true))
+    ctx := context.Background()
+    if err := llock.Lock(ctx); err != nil {
+      t.Error(err)
+      return
+    }
+    defer func() {
+      llock.stopDog()
+      err := llock.Unlock(ctx)
+      if err != nil {
+        return
+      }
+    }()
+    time.Sleep(6 * time.Second) //业务处理
+    fmt.Println(0 % 1)          //模拟骚操作
+      }(i)
+  }
     
