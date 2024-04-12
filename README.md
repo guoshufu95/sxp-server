@@ -68,7 +68,7 @@ sxp-server后台系统的权限管理，参考了我在实际项目中遇到的�
   return
   }
   ```
-# redislock
+# 分布式锁
   sxp-server基于redis实现了一个分布式锁。
   非阻塞模式下，如果加锁失败会直接返回错误；阻塞模式会持续轮询获取锁。
   支持看门狗续期，释放锁时会回收看门狗。
@@ -113,8 +113,135 @@ sxp-server后台系统的权限管理，参考了我在实际项目中遇到的�
   可以 向调用本地对象一样直接调用另一台不同机器上服务端应用的方法，使得您能够更容易地创建分布式应用和服务。
 
 - grpc的高级用法
-  sxp-server为客户端，配合仓库中的test-server服务端使用。客户端和服务端都使用grpc-middleware（一元拦截器和流式拦截器），
-  用于权限数据合法性等的校验，另外接入了jaeger链路追踪。其中拦截器引用了官方提供的如grpc_retry重试，grpc_zap和auth权限校
-  验等，当然也可以自定义拦截器进行特殊处理。
+  sxp-server为客户端，配合仓库中的grpc-server服务端使用。客户端和服务端都使用grpc-middleware（一元拦截器和流式拦截器），
+  用于权限数据合法性等的校验，另外接入了jaeger链路追踪。其中拦截器引用了如官方提供的如grpc_retry重试，grpc_zap和auth权限校
+  验等，当然也可以自定义拦截器进行特殊处理。在/sxp-server/common/gpc/client/client.go中进行grpc客户端初始化的时候加入了
+  一些我需要的拦截器，项目运行后可debug追踪拦截器的调用链路，代码如下所示:
+
+```
+    retryOpts := []grpc_retry.CallOption{
+		// 最大重试次数
+		grpc_retry.WithMax(uint(config.Conf.Grpc.Retry)),
+		// 超时时间
+		grpc_retry.WithPerRetryTimeout(time.Duration(config.Conf.Grpc.TimeOut) * time.Second),
+		// 只有返回对应的code才会执行重试
+		grpc_retry.WithCodes(codes.Unknown, codes.DeadlineExceeded, codes.Unavailable),
+	}
+	trace, _, err := tracer.NewJaegerTracer("sxp-server", config.Conf.Jaeger.Addr)
+	if err != nil {
+		return
+	}
+	conn, err := grpc.Dial(config.Conf.Grpc.Addr, grpc.WithTransportCredentials(insecure.NewCredentials()),
+		grpc.WithUnaryInterceptor(grpc_middleware.ChainUnaryClient(
+			tracer.ClientUnaryInterceptor(trace),
+			grpc_retry.UnaryClientInterceptor(retryOpts...))),
+		grpc.WithStreamInterceptor(grpc_middleware.ChainStreamClient(
+			tracer.ClientStreamInterceptor(trace),
+		)))
+	if err != nil {
+		log.Fatalf("did not connect: %v", err)
+	}
+	grpcConn = conn
+	modelClient = pb.NewModelClient(grpcConn)
+	return
+```
+
+# 限流
+
+- 令牌桶
+  可使用开源的juju/ratelimit，其底层实现原理是基于令牌桶算法：
+  - 单位时间按照一定速率匀速的生产token放入桶内，直到达到桶容量上限
+  - 处理请求，每次尝试获取一个或多个令牌
+  - 如果拿到则处理请求，失败则拒绝请求
+  
+  原理图有很多，直接网上白嫖，如下所示：
+  
+![img_3.png](img_3.png)
+
+  在某些业务场景下，可把单机版的限流进行分布式部署使用；也有集中式部署，使用统一的限流中心；或者是限流方案部署在接入层，
+  如常用的nginx+lua做网关层限流。sxp-server项目中，我选择接入到业务层中对接口进行限流处理。基于redis自己手动实现
+  了一个令牌桶算法+抢积分的逻辑，可进行分布式部署，通过内嵌lua脚本的方式保证核心业务的原子性操作。此功能模块的核心设计
+  思路是抗住活动开始时的瞬时流量，允许部分成功部分失败，对接口再加了一层保险措施。我自己jmeter 压力测试后发现，即使没
+  有经过其他限流组件处理，该接口也能抗住较大瞬时流量的冲击。脚本如下所示：
+
+```
+FilterScript = `
+	--利用redis的hash结构，存储key所对应令牌桶的上次获取时间和上次获取后桶中令牌数量
+	local bucket_info = redis.call("HMGET", KEYS[1], "last_time", "current_token_num");
+	local last_time = tonumber(bucket_info[1]);
+	local current_token_num = tonumber(bucket_info[2]);
+	redis.replicate_commands();
+	redis.call("pexpire", KEYS[1], 1000);
+	local now = redis.call("TIME");
+	redis.call("SET", "now", tonumber(now[1]));
+	--tonumber是将value转换为数字，此步是取出桶中最大令牌数、生成令牌的速率(每秒生成多少个)、当前时间
+
+	local max_token_num = 100;
+	local token_rate = 100;
+	local current_time = tonumber(now[1]) * 1000;
+	--reverse_time 即多少毫秒生成一个令牌
+	local reverse_time = 1000/token_rate;
+	local past_time
+	local reverse_token_num
+	--如果current_token_num不存在则说明令牌桶首次获取或已过期，即说明它是满的
+	if current_token_num == nil then
+		current_token_num = max_token_num;
+		last_time = current_time;
+	else
+		--计算出距上次获取已过去多长时间
+		past_time = current_time - last_time;
+		--在这一段时间内可产生多少令牌
+		reverse_token_num = math.floor(past_time/reverse_time);
+		current_token_num = current_token_num + reverse_token_num;
+		last_time = reverse_time * reverse_token_num + last_time;
+		if current_token_num > max_token_num then
+			current_token_num = max_token_num;
+		end
+	end
+	if (current_token_num > 0) then
+		current_token_num = current_token_num -1;
+	end
+	-- 将最新得出的令牌获取时间和当前令牌数量进行存储,并设置过期时间
+	redis.call('HMSET', KEYS[1], "last_time", last_time, "current_token_num", current_token_num);
+	return current_token_num
+`
+```
 
 
+  简单的压力测试截图，程序本身无打印错误日志，观察压测日志后，推测性能瓶颈可能在于物理机器和压测工具本身
+
+![img_4.png](img_4.png)
+
+
+- 滑动窗口
+
+  sxp-server也支持滑动窗口限流组件，其原理可自行了解，lua脚本如下：
+  
+```
+SlideWindowRateLimit = `
+	--获取KEY
+	local key = KEYS[1]
+	--获取ARGV内的参数
+	-- 缓存时间
+	local expire = tonumber(ARGV[1])
+	-- 当前时间
+	local currentMs = tonumber(ARGV[2])
+	-- 最大次数
+	local count = tonumber(ARGV[3])
+	--窗口开始时间
+	local windowStartMs = currentMs - expire * 1000;
+	--获取key的次数
+	local current = redis.call('zcount', key, windowStartMs, currentMs)
+	--如果key的次数存在且大于预设值直接返回当前key的次数
+	if current and tonumber(current) >= count then
+		return tonumber(current);
+	end
+	-- 清除所有过期成员
+	redis.call("ZREMRANGEBYSCORE", key, 0, windowStartMs);
+	-- 添加当前成员
+	redis.call("zadd", key, tostring(currentMs), currentMs);
+	redis.call("expire", key, expire);
+	--返回key的次数
+	return tonumber(current)
+	`
+```

@@ -119,6 +119,11 @@ func newWrappedStream(s grpc.ClientStream) grpc.ClientStream {
 	return &wrappedStream{s}
 }
 
+// ClientStreamInterceptor
+//
+//	@Description: 流式trace拦截器
+//	@param tracer
+//	@return grpc.StreamClientInterceptor
 func ClientStreamInterceptor(tracer opentracing.Tracer) grpc.StreamClientInterceptor {
 	return func(ctx context.Context,
 		desc *grpc.StreamDesc,
