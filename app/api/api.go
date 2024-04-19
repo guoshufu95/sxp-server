@@ -43,14 +43,14 @@ func (a *Api) BuildService(s *service.Service) {
 //	@Description: 错误返回
 //	@receiver a
 //	@param err
-func (a *Api) ResponseError(err error) {
+func (a *Api) ResponseError(code int, err error) {
 	a.Logger.Error(err.Error())
 	res := gin.H{
-		"code":    http.StatusInternalServerError,
+		"code":    code,
 		"message": err.Error(),
 	}
-	a.Ctx.Set("status", http.StatusInternalServerError)
-	a.Ctx.JSON(http.StatusInternalServerError, res)
+	a.Ctx.Set("status", code)
+	a.Ctx.JSON(http.StatusOK, res)
 
 }
 

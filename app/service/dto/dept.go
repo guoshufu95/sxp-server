@@ -62,3 +62,27 @@ func (c UpdateDeptReq) BuildUpdateData(data *model.Dept) {
 type DeleteDeptReq struct {
 	Id int `json:"id"`
 }
+
+// DeptsTree
+// @Description: 部门树返回
+type DeptsTree struct {
+	Id       uint        `json:"id"`
+	ParentId uint        `json:"parentId"` //上级部门id
+	Label    string      `json:"label"`    //部门名称
+	Leader   string      `json:"leader"`   //部门负责人
+	Phone    string      `json:"phone"`    //手机
+	Email    string      `json:"email"`    //邮箱
+	Status   int         `json:"status"`   //状态
+	Children []DeptsTree `json:"children"`
+}
+
+func BuildDeptsTreeRes(depts []model.Dept, treeList *[]DeptsTree) {
+	for _, dept := range depts {
+		var res DeptsTree
+		res.Id = dept.ID
+		res.Label = dept.Name
+		res.ParentId = dept.ParentId
+		*treeList = append(*treeList, res)
+	}
+
+}

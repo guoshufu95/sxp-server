@@ -2,6 +2,7 @@ package dao
 
 import (
 	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 	"sxp-server/app/model"
 )
 
@@ -36,7 +37,7 @@ func GetAuth(db *gorm.DB, name string) (err error, user model.User) {
 //	@return err
 //	@return user
 func GetUserByName(db *gorm.DB, name string) (err error, user model.User) {
-	err = db.Table("user").Where("username = ?", name).Find(&user).Error
+	err = db.Table("user").Debug().Where("username = ?", name).Find(&user).Error
 	return
 }
 
@@ -48,7 +49,19 @@ func GetUserByName(db *gorm.DB, name string) (err error, user model.User) {
 //	@return err
 //	@return user
 func GetUserById(db *gorm.DB, id int, user *model.User) (err error) {
-	err = db.Find(&user, id).Error
+	err = db.Debug().Preload("Depts").Find(&user, id).Error
+	return
+}
+
+// GetUsersByParams
+//
+//	@Description: 条件查询
+//	@param db
+//	@param req
+//	@param user
+//	@return err
+func GetUsersByParams(db *gorm.DB, user *[]model.User) (err error) {
+	err = db.Model(&model.User{}).Debug().Find(&user).Error
 	return
 }
 
@@ -80,7 +93,7 @@ func UpdateUser(db *gorm.DB, user model.User) (err error) {
 //	@param db
 //	@param id
 //	@return err
-func DeleteUerById(db *gorm.DB, id int) (err error) {
-	err = db.Debug().Delete(&model.User{}, id).Error
+func DeleteUerById(db *gorm.DB, user model.User) (err error) {
+	err = db.Debug().Unscoped().Select(clause.Associations).Delete(&user).Error
 	return
 }

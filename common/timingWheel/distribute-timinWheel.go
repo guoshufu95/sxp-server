@@ -58,10 +58,10 @@ type SxpTimingWheel struct {
 //	@return *SxpTimingWheel
 func NewSxpTimeWheel(ctx context.Context, l *zaplog.ZapLog, client *redis.Client, interval time.Duration, slotCount int) *SxpTimingWheel {
 	s := SxpTimingWheel{
-		log:          l,
-		interval:     interval * time.Second,
-		slotCount:    slotCount,
-		ticker:       time.NewTicker(60 * time.Second),
+		log:       l,
+		interval:  interval * time.Second,
+		slotCount: slotCount,
+		//ticker:       time.NewTicker(60 * time.Second),
 		currentSlot:  0,
 		redisClient:  client,
 		stopCh:       make(chan struct{}),

@@ -3,6 +3,7 @@ package api
 import (
 	"errors"
 	"github.com/gin-gonic/gin"
+	"net/http"
 	serv "sxp-server/app/service"
 	"sxp-server/app/service/dto"
 )
@@ -23,22 +24,22 @@ func (a TaskApi) StartTask(c *gin.Context) {
 	var req = dto.StartTaskReq{}
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusBadRequest, err)
 		return
 	}
 	err, flag := ts.GetTaskByName(req.TaskName)
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusInternalServerError, err)
 		return
 	}
 	if flag {
 		err = errors.New("任务名重复")
-		a.ResponseError(err)
+		a.ResponseError(http.StatusInternalServerError, err)
 		return
 	}
 	err = ts.SetTask(req)
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusInternalServerError, err)
 		return
 	}
 	a.Response("设置定时任务成功!", nil)
@@ -54,12 +55,12 @@ func (a TaskApi) GetTasks(c *gin.Context) {
 	var req dto.GetTasksReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusBadRequest, err)
 		return
 	}
 	err, tasks := ts.GetTasks(req)
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusInternalServerError, err)
 	}
 	a.Response("success", tasks)
 }

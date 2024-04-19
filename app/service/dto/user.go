@@ -1,17 +1,21 @@
 package dto
 
-import "sxp-server/app/model"
+import (
+	"strconv"
+	"sxp-server/app/model"
+	"time"
+)
 
 type CommonUserReq struct {
-	Username string `json:"username"`
-	Password string `json:"password"`
-	NickName string `json:"nick_name"`
-	Sex      string `json:"sex"`
-	Email    string `json:"email"`
-	Phone    string `json:"phone"`
+	Username string `json:"username" binding:"min=3,max=255"`
+	Password string `json:"password" binding:"min=3,max=20"`
+	NickName string `json:"nick_name" binding:"required"`
+	Sex      string `json:"sex" binding:"required"`
+	Email    string `json:"email" binding:"required,email"`
+	Phone    string `json:"phone" binding:"required"`
 	Remark   string `json:"remark"`
 	Status   string `json:"status"`
-	DeptIds  []int  `json:"deptIds"`
+	DeptIds  []int  `json:"depts"`
 	IsSuper  int    `json:"is_super"`
 }
 
@@ -23,8 +27,10 @@ func (c CommonUserReq) buildData(user *model.User) {
 	user.Email = c.Email
 	user.Phone = c.Phone
 	user.Remark = c.Remark
-	user.Status = c.Status
-	//user.RoleId = c.RoleId
+	if c.Status != "" {
+		status, _ := strconv.Atoi(c.Status)
+		user.Status = status
+	}
 	user.IsSuper = c.IsSuper
 }
 
@@ -70,4 +76,82 @@ type GetUserByIdRequest struct {
 // @Description:删除user入参
 type DeleteUserReq struct {
 	Id int `json:"id"`
+}
+
+// QueryByParamsReq
+// @Description: 条件查询参数
+type QueryByParamsReq struct {
+	UserName string `json:"username"`
+	Phone    string `json:"phone"`
+	Status   string `json:"status"`
+}
+
+// QueryRes
+// @Description: 查询返回参数
+type QueryRes struct {
+	Id            uint         `json:"id"`
+	Username      string       `json:"username"`
+	Password      string       `json:"password"`
+	NickName      string       `json:"nick_name"`
+	Sex           string       `json:"sex"`
+	Email         string       `json:"email"`
+	Phone         string       `json:"phone"`
+	LoginType     int          `json:"login_type"`
+	LastLoginTime string       `json:"last_login_time"`
+	Remark        string       `json:"remark"`
+	Status        string       `json:"status"`
+	IsSuper       int          `json:"is_super"`
+	Depts         []model.Dept `json:"depts"`
+}
+
+type QueryRes0 struct {
+	Id            uint   `json:"id"`
+	Username      string `json:"username"`
+	Password      string `json:"password"`
+	NickName      string `json:"nick_name"`
+	Sex           string `json:"sex"`
+	Email         string `json:"email"`
+	Phone         string `json:"phone"`
+	LoginType     int    `json:"login_type"`
+	LastLoginTime string `json:"last_login_time"`
+	Remark        string `json:"remark"`
+	Status        string `json:"status"`
+	IsSuper       int    `json:"is_super"`
+	Depts         []uint `json:"depts"`
+}
+
+// BuildQueryRes
+//
+//	@Description: 构建返回res
+//	@param users
+//	@param res
+func BuildQueryRes(users *[]model.User, res *[]QueryRes) {
+	for _, user := range *users {
+		var status string
+		if user.Status == 1 {
+			status = "在线"
+		} else {
+			status = "下线"
+		}
+		var t string
+		if user.LastLoginTime != nil {
+			t = user.LastLoginTime.Format(time.DateTime)
+		}
+		var v = QueryRes{
+			Id:            user.ID,
+			Username:      user.Username,
+			Password:      user.Password,
+			NickName:      user.NickName,
+			Sex:           user.Sex,
+			Email:         user.Email,
+			Phone:         user.Phone,
+			LastLoginTime: t,
+			Remark:        user.Remark,
+			Status:        status,
+			IsSuper:       user.IsSuper,
+			Depts:         user.Depts,
+		}
+		*res = append(*res, v)
+	}
+	return
 }

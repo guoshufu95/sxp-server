@@ -2,6 +2,7 @@ package api
 
 import (
 	"github.com/gin-gonic/gin"
+	"net/http"
 	serv "sxp-server/app/service"
 	"sxp-server/app/service/dto"
 	_const "sxp-server/common/const"
@@ -23,13 +24,13 @@ func (a ProductApi) GetProduct(c *gin.Context) {
 	var req = dto.GetProductReq{}
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusBadRequest, err)
 		return
 	}
 	token, _ := c.Get(_const.SxpTokenKey)
 	err, res := ps.GetProduct(req.Id, token.(string))
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusInternalServerError, err)
 		return
 	}
 	a.Response("success", res)
@@ -45,13 +46,13 @@ func (a ProductApi) UpdateProduct(c *gin.Context) {
 	var req = dto.UpdateProductReq{}
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusBadRequest, err)
 		return
 	}
 	token, _ := c.Get(_const.SxpTokenKey)
 	err, res := ps.UpdateProduct(req, token.(string))
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusInternalServerError, err)
 	}
 	a.Response("success", res)
 }
@@ -66,13 +67,13 @@ func (a ProductApi) GetByStatus(c *gin.Context) {
 	var req = dto.GetByStatusReq{}
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusBadRequest, err)
 		return
 	}
 	token, _ := c.Get(_const.SxpTokenKey)
 	err, res := ps.GetByStatus(req.Status, token.(string))
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusInternalServerError, err)
 		return
 	}
 	a.Response("success", res)

@@ -2,6 +2,7 @@ package api
 
 import (
 	"github.com/gin-gonic/gin"
+	"net/http"
 	serv "sxp-server/app/service"
 	"sxp-server/app/service/dto"
 )
@@ -22,14 +23,14 @@ func (a IntegralApi) InitIntegral(c *gin.Context) {
 	var req dto.IntegralReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusBadRequest, err)
 		return
 	}
 	req.RemainCount = req.Count
 	req.RemainIntegral = req.Integral
 	err = is.InitIntegral(req)
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusInternalServerError, err)
 		return
 	}
 	a.Response("积分初始化成功!", nil)
@@ -45,13 +46,13 @@ func (a IntegralApi) DoIntegral(c *gin.Context) {
 	var req dto.DoIntegral
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusBadRequest, err)
 		return
 	}
 	//todo 用户校验相关的内容省略，不是重点
 	err, msg, val := is.Do(req.UserName)
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusInternalServerError, err)
 		return
 	}
 	a.Response(msg, val)

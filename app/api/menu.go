@@ -2,6 +2,7 @@ package api
 
 import (
 	"github.com/gin-gonic/gin"
+	"net/http"
 	serv "sxp-server/app/service"
 	"sxp-server/app/service/dto"
 	"sxp-server/common/model"
@@ -22,7 +23,7 @@ func (a MenuApi) GetMenus(c *gin.Context) {
 	a.BuildApi(c).BuildService(&ms.Service)
 	err, menus := ms.ListMenu()
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusInternalServerError, err)
 		return
 	}
 	a.Response("成功获取所有菜单", menus)
@@ -39,7 +40,7 @@ func (a MenuApi) GetMenusByRole(c *gin.Context) {
 	claims := v.(*model.MyClaims)
 	err, menus := ms.GetRoleMenus(claims.Username, claims.RoleIds)
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusInternalServerError, err)
 		return
 	}
 	a.Response("成功获取当前用户菜单", menus)
@@ -55,13 +56,13 @@ func (a MenuApi) CreateMenu(c *gin.Context) {
 	var req dto.CreateMenuReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusBadRequest, err)
 		return
 	}
 	err = ms.CreateMenu(req)
 	if err != nil {
 		a.Logger.Error(err.Error())
-		a.ResponseError(err)
+		a.ResponseError(http.StatusInternalServerError, err)
 		return
 	}
 	a.Response("创建菜单成功", "success")
@@ -77,12 +78,12 @@ func (a MenuApi) UpdateMenu(c *gin.Context) {
 	var req dto.UpdateMenuReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusBadRequest, err)
 		return
 	}
 	err = ms.UpdateMenu(req)
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusInternalServerError, err)
 		return
 	}
 	a.Response("更新菜单成功", "success")
@@ -98,12 +99,12 @@ func (a MenuApi) DeleteMenu(c *gin.Context) {
 	var req dto.DeleteMenuReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusBadRequest, err)
 		return
 	}
 	err = ms.DeleteMenu(req.Id)
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusInternalServerError, err)
 		return
 	}
 	a.Response("删除菜单成功", "success")

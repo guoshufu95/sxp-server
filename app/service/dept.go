@@ -18,14 +18,17 @@ type DeptService struct {
 //	@receiver s
 //	@return err
 //	@return dept
-func (s *DeptService) GetDept() (err error, dept model.Dept) {
+func (s *DeptService) GetDept() (err error, res []dto.DeptsTree) {
 	var depts []model.Dept
 	err = dao.GetAllDepts(s.Db, &depts)
 	if err != nil {
 		s.Logger.Error("查询所有部门列表失败")
 		return
 	}
-	dept = getDeptTree(depts, 0)[0]
+	var tree []dto.DeptsTree
+	dto.BuildDeptsTreeRes(depts, &tree)
+	//dept = getDeptTree(depts, 0)[0]
+	res = GetTree(tree, 0)
 	return
 }
 
@@ -40,6 +43,20 @@ func getDeptTree(data []model.Dept, parentId uint) []model.Dept {
 	for _, val := range data {
 		if val.ParentId == parentId {
 			children := getDeptTree(data, val.ID)
+			if len(children) > 0 {
+				val.Children = children
+			}
+			listTree = append(listTree, val)
+		}
+	}
+	return listTree
+}
+
+func GetTree(data []dto.DeptsTree, parentId uint) []dto.DeptsTree {
+	var listTree []dto.DeptsTree
+	for _, val := range data {
+		if val.ParentId == parentId {
+			children := GetTree(data, val.Id)
 			if len(children) > 0 {
 				val.Children = children
 			}

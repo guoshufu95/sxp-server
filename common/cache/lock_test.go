@@ -28,7 +28,7 @@ func TestNewLock(t *testing.T) {
 				return
 			}
 			defer func() {
-				llock.stopDog()
+				//llock.stopDog()
 				err := llock.Unlock(ctx)
 				if err != nil {
 					return

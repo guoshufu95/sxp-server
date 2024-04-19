@@ -134,6 +134,7 @@ func (r *RedisLock) Unlock(ctx context.Context) (err error) {
 	if ret, _ := reply.(int64); ret != 1 {
 		return errors.New("删除锁失败")
 	}
+	r.stopDog()
 	fmt.Println(fmt.Sprintf("%s:解锁成功", r.token))
 	return nil
 }

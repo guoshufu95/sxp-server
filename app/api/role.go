@@ -2,6 +2,7 @@ package api
 
 import (
 	"github.com/gin-gonic/gin"
+	"net/http"
 	"sxp-server/app/service"
 	"sxp-server/app/service/dto"
 )
@@ -21,7 +22,7 @@ func (a RoleApi) ListRoles(c *gin.Context) {
 	a.BuildApi(c).BuildService(&rs.Service)
 	err, roles := rs.ListRoles()
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusBadRequest, err)
 		return
 	}
 	a.Response("success", roles)
@@ -37,17 +38,17 @@ func (a RoleApi) CreateRole(c *gin.Context) {
 	var req dto.CreateRoleReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusBadRequest, err)
 		return
 	}
 	err = rs.Auth(c)
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusForbidden, err)
 		return
 	}
 	err = rs.CreateRole(req)
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusInternalServerError, err)
 		return
 	}
 	a.Response("创建角色成功", nil)
@@ -63,17 +64,17 @@ func (a RoleApi) UpdateRole(c *gin.Context) {
 	var req dto.UpdateRoleReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusBadRequest, err)
 		return
 	}
 	err = rs.Auth(c) //权限
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusForbidden, err)
 		return
 	}
 	err = rs.UpdateRole(req)
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusInternalServerError, err)
 		return
 	}
 	a.Response("更新角色成功", nil)
@@ -89,17 +90,17 @@ func (a RoleApi) DeleteRole(c *gin.Context) {
 	var req dto.UpdateRoleReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusBadRequest, err)
 		return
 	}
 	err = rs.Auth(c) //权限检查
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusForbidden, err)
 		return
 	}
 	err = rs.DeleteRole(req.Id)
 	if err != nil {
-		a.ResponseError(err)
+		a.ResponseError(http.StatusInternalServerError, err)
 		return
 	}
 	a.Response("删除角色成功", nil)

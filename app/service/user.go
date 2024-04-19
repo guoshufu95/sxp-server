@@ -4,11 +4,14 @@ import (
 	"errors"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
+	"strconv"
 	"strings"
 	"sxp-server/app/dao"
 	"sxp-server/app/model"
 	"sxp-server/app/service/dto"
 	ini "sxp-server/common/initial"
+	"time"
 )
 
 type UserService struct {
@@ -21,12 +24,14 @@ type UserService struct {
 //	@receiver s
 //	@return err
 //	@return users
-func (s *UserService) ListUsers() (err error, users []model.User) {
-	err, users = dao.Users(s.Db)
+func (s *UserService) ListUsers() (err error, res []dto.QueryRes) {
+	err, users := dao.Users(s.Db)
 	if err != nil {
 		s.Logger.Error("查询用户列表失败")
 		return
 	}
+	res = make([]dto.QueryRes, 0)
+	dto.BuildQueryRes(&users, &res)
 	return
 }
 
@@ -50,6 +55,53 @@ func (s *UserService) GetUserByName(name string) (err error) {
 	return
 }
 
+// GetUsersByParams
+//
+//	@Description: 条件查询
+//	@receiver s
+//	@param req
+//	@return err
+//	@return users
+func (s *UserService) GetUsersByParams(req dto.QueryByParamsReq, users *[]model.User) (err error, res []dto.QueryRes) {
+	db := s.buildQuery(s.Db, req)
+	err = dao.GetUsersByParams(db, users)
+	res = make([]dto.QueryRes, 0)
+	dto.BuildQueryRes(users, &res)
+	if err != nil {
+		s.Logger.Error("条件查询user失败")
+	}
+	return
+}
+
+// buildQuery
+//
+//	@Description: 构建条件查询参数
+//	@receiver s
+//	@param db
+//	@param req
+//	@return *gorm.DB
+func (s *UserService) buildQuery(db *gorm.DB, req dto.QueryByParamsReq) *gorm.DB {
+	if req.UserName != "" {
+		db = db.Where(fmt.Sprintf("username like \"%s\" or username like \"%s\" or username like \"%s\" or username = \"%s\"",
+			"%"+req.UserName+"%",
+			"%"+req.UserName,
+			req.UserName+"%",
+			req.UserName))
+	}
+	if req.Phone != "" {
+		db = db.Where(fmt.Sprintf("phone like \"%s\" or phone like \"%s\" or phone like \"%s\" or phone = \"%s\"",
+			"%"+req.Phone+"%",
+			"%"+req.Phone,
+			req.Phone+"%",
+			req.Phone))
+	}
+	if req.Status != "" {
+		status, _ := strconv.Atoi(req.Status)
+		db = db.Where("status = ?", status)
+	}
+	return db
+}
+
 // GetUserById
 //
 //	@Description: 通过id返回用户信息
@@ -57,11 +109,35 @@ func (s *UserService) GetUserByName(name string) (err error) {
 //	@param id
 //	@return err
 //	@return user
-func (s *UserService) GetUserById(id int) (err error, user model.User) {
+func (s *UserService) GetUserById(id int) (err error, res dto.QueryRes0) {
+	var user model.User
 	err = dao.GetUserById(s.Db, id, &user)
+	res.Username = user.Username
+	res.Id = user.ID
+	res.Sex = user.Sex
+	res.Email = user.Email
+	res.NickName = user.NickName
+	res.Phone = user.Phone
+	res.LoginType = user.LoginType
+	if user.LastLoginTime != nil {
+		res.LastLoginTime = user.LastLoginTime.Format(time.DateTime)
+	}
+
+	res.Remark = user.Remark
+	if user.Status == 1 {
+		res.Status = "在线"
+	} else {
+		res.Status = "下线"
+	}
+	res.IsSuper = user.IsSuper
 	if err != nil {
 		s.Logger.Error("通过id查询用户信息失败")
 	}
+	dt := make([]uint, 0)
+	for _, dept := range user.Depts {
+		dt = append(dt, dept.ID)
+	}
+	res.Depts = dt
 	return
 }
 
@@ -133,7 +209,13 @@ func (s *UserService) UpdateUser(req dto.UpdateUserReq) (err error) {
 //	@param id
 //	@return err
 func (s *UserService) DeleteUser(id int) (err error) {
-	err = dao.DeleteUerById(s.Db, id)
+	var user model.User
+	err = dao.GetUserById(s.Db, id, &user)
+	if err != nil {
+		s.Logger.Error("查询用户失败")
+		return
+	}
+	err = dao.DeleteUerById(s.Db, user)
 	if err != nil {
 		s.Logger.Error("删除用户失败")
 		return

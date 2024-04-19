@@ -16,7 +16,8 @@ func InitRouter(r *gin.Engine) {
 	g.Use(middleware.LoggerMiddleware()).
 		Use(middleware.WithGormDb(initial.App.GetAppDb())).
 		Use(middleware.WithRedisDb(initial.App.GetCache())).
-		Use(gin.Recovery())
+		Use(gin.Recovery()).
+		Use(middleware.Cors())
 	Router(g)
 	//日志中间件
 }
@@ -109,10 +110,11 @@ func buildUser(g *gin.RouterGroup) {
 	g.Use(middleware.JWTAuthMiddleware())
 	u := api.UserApi{}
 	g.GET("/list", u.ListUsers)
-	g.POST("getById", u.GetById)
+	g.POST("/getById", u.GetById)
 	g.POST("/create", u.CreateUser)
 	g.POST("/update", u.UpdateUser)
 	g.POST("/delete", u.DeleteUser)
+	g.POST("/getByParams", u.GetUserByParams)
 
 }
 
