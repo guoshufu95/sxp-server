@@ -41,6 +41,18 @@ func GetUserByName(db *gorm.DB, name string) (err error, user model.User) {
 	return
 }
 
+// UpdateStatusById
+//
+//	@Description: 更新用户在线状态
+//	@param db
+//	@param id
+//	@param status
+//	@return err
+func UpdateStatusById(db *gorm.DB, id uint, status int) (err error) {
+	err = db.Model(&model.User{}).Debug().Where("id = ?", id).Update("status", status).Error
+	return
+}
+
 // GetUserById
 //
 //	@Description: 根据id查询用户信息
@@ -84,6 +96,17 @@ func CreateUser(db *gorm.DB, user model.User) (err error) {
 //	@return err
 func UpdateUser(db *gorm.DB, user model.User) (err error) {
 	err = db.Debug().Model(&model.User{}).Where("id = ?", user.ID).Updates(&user).Error
+	return
+}
+
+// ReplaceUserDept
+//
+//	@Description: 更新时替换user关联的dept
+//	@param db
+//	@param depts
+//	@return err
+func ReplaceUserDept(db *gorm.DB, user model.User) (err error) {
+	err = db.Debug().Model(&user).Association("Depts").Replace(user.Depts)
 	return
 }
 

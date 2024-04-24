@@ -2,6 +2,7 @@ package dao
 
 import (
 	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 	"sxp-server/app/model"
 )
 
@@ -47,7 +48,18 @@ func GetMenusByIds(db *gorm.DB, ids []int, menus *[]model.Menu) (err error) {
 //	@param menu
 //	@return err
 func CreateMenu(db *gorm.DB, menu model.Menu) (err error) {
-	err = db.Create(&menu).Error
+	err = db.Debug().Create(&menu).Error
+	return
+}
+
+// QueryMenuByParam
+//
+//	@Description: 返回条件查询数据
+//	@param db
+//	@param menu
+//	@return err
+func QueryMenuByParam(db *gorm.DB, menus *[]model.Menu) (err error) {
+	err = db.Debug().Find(&menus).Error
 	return
 }
 
@@ -57,8 +69,8 @@ func CreateMenu(db *gorm.DB, menu model.Menu) (err error) {
 //	@param db
 //	@param menu
 //	@return err
-func UpdateMenu(db *gorm.DB, menu model.Menu) (err error) {
-	err = db.Debug().Model(&model.Menu{}).Updates(&menu).Error
+func UpdateMenu(db *gorm.DB, id uint, m map[string]interface{}) (err error) {
+	err = db.Debug().Model(&model.Menu{}).Where("id = ?", id).Updates(&m).Error
 	return
 }
 
@@ -74,7 +86,13 @@ func GetMenusById(db *gorm.DB, id uint, menu *model.Menu) (err error) {
 	return
 }
 
-func DeleteMenuByIds(db *gorm.DB, ids []uint) (err error) {
-	err = db.Debug().Delete(&model.Menu{}, ids).Error
+// DeleteMenuByIds
+//
+//	@Description: 删除菜单
+//	@param db
+//	@param ids
+//	@return err
+func DeleteMenuByIds(db *gorm.DB, menu model.Menu) (err error) {
+	err = db.Debug().Select(clause.Associations).Unscoped().Delete(&menu).Error
 	return
 }

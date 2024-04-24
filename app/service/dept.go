@@ -2,6 +2,7 @@ package service
 
 import (
 	"errors"
+	"fmt"
 	"gorm.io/gorm"
 	"sxp-server/app/dao"
 	"sxp-server/app/model"
@@ -30,6 +31,106 @@ func (s *DeptService) GetDept() (err error, res []dto.DeptsTree) {
 	//dept = getDeptTree(depts, 0)[0]
 	res = GetTree(tree, 0)
 	return
+}
+
+// GetDeptByParams
+//
+//	@Description: 条件查询
+//	@receiver s
+//	@param name
+//	@return err
+func (s *DeptService) GetDeptByParams(req dto.DeptByParamsReq) (err error, res []dto.DeptsTree) {
+	var (
+		depts = make([]model.Dept, 0)
+		dps   = make([]model.Dept, 0)
+	)
+
+	if req.Name == "" && req.Status == "" {
+		err = dao.GetAllDepts(s.Db, &depts)
+		if err != nil {
+			s.Logger.Error("查询失败")
+			return
+		}
+	} else {
+		db := s.buildDeptQuery(s.Db, req)
+		err = dao.GetDeptsByParams(db, &dps)
+		for _, dept := range dps {
+			if dept.ParentId != 0 {
+				var m = make(map[uint]model.Dept)
+				s.buildParentDept(dept, m)
+				for _, v := range m {
+					depts = append(depts, v)
+				}
+			}
+		}
+	}
+	dm := make(map[uint]model.Dept)
+	for _, v := range depts {
+		dm[v.ID] = v
+	}
+	// 去重
+	var list = make([]model.Dept, 0)
+	for _, v := range dm {
+		list = append(list, v)
+	}
+	var tree []dto.DeptsTree
+	dto.BuildDeptsTreeRes(list, &tree)
+	res = GetTree(tree, 0)
+	return
+}
+
+// buildDeptQuery
+//
+//	@Description: 构造dept条件查询参数
+//	@receiver s
+//	@param req
+//	@return err
+func (s *DeptService) buildDeptQuery(db *gorm.DB, req dto.DeptByParamsReq) *gorm.DB {
+	if req.Name != "" {
+		db = db.Where(fmt.Sprintf("name like \"%s\" or name like \"%s\" or name like \"%s\" or name =\"%s\"",
+			"%"+req.Name+"%",
+			"%"+req.Name,
+			req.Name+"%",
+			req.Name))
+	}
+	if req.Status != "" {
+		if req.Status == "正常" {
+			db = db.Where("status = ?", 1)
+		} else {
+			db = db.Where("status = ?", 0)
+		}
+	}
+	return db
+}
+
+// buildParentDept
+//
+//	@Description: 组装父节点部门信息返回
+//	@receiver s
+//	@param dept
+//	@return res
+func (s *DeptService) buildParentDept(dept model.Dept, m map[uint]model.Dept) {
+	var (
+		dp model.Dept
+	)
+	if dept.ParentId != 0 {
+		err := dao.GetDeptById(s.Db, dept.ParentId, &dp)
+		if err != nil {
+			s.Logger.Error("查询部门信息失败!")
+			return
+		}
+		m[dept.ID] = dept
+		s.buildParentDept(dp, m)
+		return
+	} else {
+		err := dao.GetDeptById(s.Db, 1, &dp)
+		if err != nil {
+			s.Logger.Error("查询失败")
+			return
+		}
+		m[dp.ID] = dp
+		return
+	}
 }
 
 // getDeptTree
@@ -100,6 +201,21 @@ func (s *DeptService) CreateDept(req dto.CreateDeptReq) (err error) {
 	return
 }
 
+// GetById
+//
+//	@Description: 通过id查询dept
+//	@receiver s
+//	@param id
+//	@return err
+//	@return dept
+func (s *DeptService) GetById(id uint) (err error, dept model.Dept) {
+	err = dao.GetDeptById(s.Db, id, &dept)
+	if err != nil {
+		s.Logger.Error("通过id返回失败")
+	}
+	return
+}
+
 // UpdateDept
 //
 //	@Description: 更新部门信息
@@ -121,7 +237,7 @@ func (s *DeptService) UpdateDept(req dto.UpdateDeptReq) (err error) {
 		s.Logger.Error("通过名称查询部门失败")
 		return
 	}
-	if dm.ID != uint(req.Id) {
+	if dm.ID != 0 && dm.ID != uint(req.Id) {
 		err = errors.New("部门名重复，请重新设置")
 		return
 	}
@@ -160,10 +276,16 @@ func (s *DeptService) DeleteDept(id int) (err error) {
 		return
 	}
 	dept.Children = append(dept.Children, list...)
-	ids := make([]uint, 0)
+	ids := make([]int, 0)
 	getDeptTreeIds(dept.Children, &ids)
-	ids = append(ids, dept.ID)
-	err = dao.DeleteDeptByIds(db, ids)
+	ids = append(ids, int(dept.ID))
+	var depts []model.Dept
+	err = dao.GetDeptsByIds(db, ids, &depts)
+	if err != nil {
+		s.Logger.Error("通过ids查询失败")
+		return
+	}
+	err = dao.DeleteDeptByIds(db, depts)
 	if err != nil {
 		s.Logger.Error("通过ids删除部门失败")
 	}
@@ -192,9 +314,9 @@ func getDeptTreeById(db *gorm.DB, id int) (err error, list []model.Dept) {
 //	@Description: 返回id列表
 //	@param depts
 //	@return []uint
-func getDeptTreeIds(depts []model.Dept, ids *[]uint) {
+func getDeptTreeIds(depts []model.Dept, ids *[]int) {
 	for _, val := range depts {
-		*ids = append(*ids, val.ID)
+		*ids = append(*ids, int(val.ID))
 		if len(val.Children) != 0 {
 			getDeptTreeIds(val.Children, ids)
 		}

@@ -134,6 +134,32 @@ func (a UserApi) UpdateUser(c *gin.Context) {
 	a.Response("更新数据成功", nil)
 }
 
+// UpdateStatus
+//
+//	@Description: 更新用户上下线状态
+//	@receiver a
+//	@param c
+func (a UserApi) UpdateStatus(c *gin.Context) {
+	a.BuildApi(c).BuildService(&us.Service)
+	var req dto.UpdateStatusReq
+	err := c.ShouldBindJSON(&req)
+	if err != nil {
+		a.ResponseError(http.StatusBadRequest, err)
+		return
+	}
+	err = us.Auth(c) //权限
+	if err != nil {
+		a.ResponseError(http.StatusForbidden, err)
+		return
+	}
+	err = us.UpdateStatus(req)
+	if err != nil {
+		a.ResponseError(http.StatusInternalServerError, err)
+		return
+	}
+	a.Response("更新在线状态成功", nil)
+}
+
 // DeleteUser
 //
 //	@Description: 删除

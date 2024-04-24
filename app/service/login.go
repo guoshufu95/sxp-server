@@ -30,20 +30,21 @@ func (s *LoginService) Login(req dto.LoginReq) (err error, token string) {
 		return
 	}
 	var (
-		roles []model.Role
-	)
-	err = dao.GetRoleByDepts(s.Db, user.Depts, &roles)
-	if err != nil {
-		s.Logger.Error("depts关联查询roles错误")
-		return
-	}
-	var (
 		roleKeys []string
 		ids      []int
 	)
-	for _, role := range roles {
-		roleKeys = append(roleKeys, role.RoleKey)
-		ids = append(ids, int(role.ID))
+	for _, dept := range user.Depts {
+		var roles []model.Role
+		err = dao.GetRoleByDepts(s.Db, dept, &roles)
+		if err != nil {
+			s.Logger.Error("depts关联查询roles错误")
+			return
+		}
+		for _, role := range roles {
+			if role.RoleKey != "admin" {
+				ids = append(ids, int(role.ID))
+			}
+		}
 	}
 	token, err = jwtToken.GenToken(req.Username, roleKeys, ids)
 	if err != nil {

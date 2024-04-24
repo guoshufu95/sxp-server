@@ -29,6 +29,27 @@ func (a MenuApi) GetMenus(c *gin.Context) {
 	a.Response("成功获取所有菜单", menus)
 }
 
+// GetMenuById
+//
+//	@Description: 返回菜单详情
+//	@receiver a
+//	@param c
+func (a MenuApi) GetMenuById(c *gin.Context) {
+	a.BuildApi(c).BuildService(&ms.Service)
+	var req dto.GetMenuByIdReq
+	err := c.ShouldBindJSON(&req)
+	if err != nil {
+		a.ResponseError(http.StatusBadRequest, err)
+		return
+	}
+	err, menu := ms.GetMenuById(req.Id)
+	if err != nil {
+		a.ResponseError(http.StatusInternalServerError, err)
+		return
+	}
+	a.Response("成功获取菜单", menu)
+}
+
 // GetMenusByRole
 //
 //	@Description: 返回当前用户展示菜单
@@ -39,6 +60,27 @@ func (a MenuApi) GetMenusByRole(c *gin.Context) {
 	v := c.MustGet("sxp-claims")
 	claims := v.(*model.MyClaims)
 	err, menus := ms.GetRoleMenus(claims.Username, claims.RoleIds)
+	if err != nil {
+		a.ResponseError(http.StatusInternalServerError, err)
+		return
+	}
+	a.Response("成功获取当前用户菜单", menus)
+}
+
+// GetMenusByParam
+//
+//	@Description: 条件查询
+//	@receiver a
+//	@param c
+func (a MenuApi) GetMenusByParam(c *gin.Context) {
+	a.BuildApi(c).BuildService(&ms.Service)
+	var req dto.QueryMenusByParamReq
+	err := c.ShouldBindJSON(&req)
+	if err != nil {
+		a.ResponseError(http.StatusBadRequest, err)
+		return
+	}
+	err, menus := ms.QueryMenuByParam(req)
 	if err != nil {
 		a.ResponseError(http.StatusInternalServerError, err)
 		return

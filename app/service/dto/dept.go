@@ -43,7 +43,7 @@ func (c CreateDeptReq) BuildCreateData(data *model.Dept) {
 // UpdateDeptReq
 // @Description: 更新部门入参
 type UpdateDeptReq struct {
-	Id int `json:"id"`
+	Id int `json:"ID"`
 	CommonDeptReq
 }
 
@@ -72,17 +72,37 @@ type DeptsTree struct {
 	Leader   string      `json:"leader"`   //部门负责人
 	Phone    string      `json:"phone"`    //手机
 	Email    string      `json:"email"`    //邮箱
-	Status   int         `json:"status"`   //状态
+	Status   string      `json:"status"`   //状态
 	Children []DeptsTree `json:"children"`
 }
 
 func BuildDeptsTreeRes(depts []model.Dept, treeList *[]DeptsTree) {
 	for _, dept := range depts {
 		var res DeptsTree
+		res.Leader = dept.Leader
+		res.Phone = dept.Phone
+		res.Email = dept.Email
+		if dept.Status == 1 {
+			res.Status = "正常"
+		} else {
+			res.Status = "停用"
+		}
 		res.Id = dept.ID
 		res.Label = dept.Name
 		res.ParentId = dept.ParentId
 		*treeList = append(*treeList, res)
 	}
+}
 
+// DeptByParamsReq
+// @Description: 条件查询参数
+type DeptByParamsReq struct {
+	Name   string `json:"name"`
+	Status string `json:"status"`
+}
+
+// GetByIdReq
+// @Description: 通过id查询
+type GetByIdReq struct {
+	Id int `json:"ID"`
 }

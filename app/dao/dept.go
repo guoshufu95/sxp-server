@@ -2,6 +2,7 @@ package dao
 
 import (
 	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 	"sxp-server/app/model"
 )
 
@@ -29,6 +30,18 @@ func GetDeptById(db *gorm.DB, id uint, dept *model.Dept) (err error) {
 	return
 }
 
+// GetDeptsById
+//
+//	@Description: 通过ids返回列表
+//	@param db
+//	@param ids
+//	@param detps
+//	@return err
+func GetDeptsById(db *gorm.DB, ids []int, depts *[]model.Dept) (err error) {
+	err = db.Debug().Model(&model.Dept{}).Find(&depts, ids).Error
+	return
+}
+
 // GetDeptByName
 //
 //	@Description: 通过部门名查询
@@ -49,6 +62,18 @@ func GetDeptByName(db *gorm.DB, name string) (err error, dept model.Dept) {
 //	@return err
 func GetAllDepts(db *gorm.DB, depts *[]model.Dept) (err error) {
 	err = db.Debug().Find(&depts).Error
+	return
+}
+
+// GetDeptsByParams
+//
+//	@Description:
+//	@param db
+//	@param name
+//	@param user
+//	@return err
+func GetDeptsByParams(db *gorm.DB, user *[]model.Dept) (err error) {
+	err = db.Debug().Model(&model.Dept{}).Find(&user).Error
 	return
 }
 
@@ -80,7 +105,7 @@ func UpdateDept(db *gorm.DB, data model.Dept) (err error) {
 //	@param db
 //	@param ids
 //	@return err
-func DeleteDeptByIds(db *gorm.DB, ids []uint) (err error) {
-	err = db.Debug().Delete(&model.Dept{}, ids).Error
+func DeleteDeptByIds(db *gorm.DB, depts []model.Dept) (err error) {
+	err = db.Debug().Select(clause.Associations).Unscoped().Delete(&depts).Error
 	return
 }

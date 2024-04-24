@@ -6,6 +6,8 @@ import (
 	"time"
 )
 
+// CommonUserReq
+// @Description: 新增用户的req
 type CommonUserReq struct {
 	Username string `json:"username" binding:"min=3,max=255"`
 	Password string `json:"password" binding:"min=3,max=20"`
@@ -17,6 +19,48 @@ type CommonUserReq struct {
 	Status   string `json:"status"`
 	DeptIds  []int  `json:"depts"`
 	IsSuper  int    `json:"is_super"`
+}
+
+// UpdateUserReq
+// @Description: 更新用户的req
+type UpdateUserReq struct {
+	Id       int    `json:"id"`
+	Username string `json:"username" binding:"min=3,max=255"`
+	NickName string `json:"nick_name" binding:"required"`
+	Sex      string `json:"sex" binding:"required"`
+	Email    string `json:"email" binding:"required,email"`
+	Phone    string `json:"phone" binding:"required"`
+	Remark   string `json:"remark"`
+	Status   string `json:"status"`
+	DeptIds  []int  `json:"depts"`
+	IsSuper  int    `json:"is_super"`
+}
+
+// UpdateStatusReq
+// @Description: 修改用户上下线状态
+type UpdateStatusReq struct {
+	Id     int `json:"id"`
+	Status int `json:"status"`
+}
+
+// BuildUpdateData
+//
+//	@Description: 构建更新数据
+//	@receiver c
+//	@param user
+func (c UpdateUserReq) BuildUpdateData(user *model.User) {
+	user.ID = uint(c.Id)
+	user.Username = c.Username
+	user.NickName = c.NickName
+	user.Sex = c.Sex
+	user.Email = c.Email
+	user.Phone = c.Phone
+	user.Remark = c.Remark
+	if c.Status != "" {
+		status, _ := strconv.Atoi(c.Status)
+		user.Status = status
+	}
+	user.IsSuper = c.IsSuper
 }
 
 func (c CommonUserReq) buildData(user *model.User) {
@@ -47,23 +91,6 @@ type CreateUserReq struct {
 //	@param user
 func (c CreateUserReq) BuildCreateData(user *model.User) {
 	c.CommonUserReq.buildData(user)
-}
-
-// UpdateUserReq
-// @Description: 更新数据入参
-type UpdateUserReq struct {
-	Id int `json:"id"`
-	CommonUserReq
-}
-
-// BuildUpdateData
-//
-//	@Description: 构造更新参数
-//	@receiver c
-//	@param user
-func (c UpdateUserReq) BuildUpdateData(user *model.User) {
-	c.CommonUserReq.buildData(user)
-	user.ID = uint(c.Id)
 }
 
 // GetUserByIdRequest

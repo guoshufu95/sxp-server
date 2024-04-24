@@ -1,6 +1,9 @@
 package dto
 
-import "sxp-server/app/model"
+import (
+	"strconv"
+	"sxp-server/app/model"
+)
 
 // RoleCommonReq
 // @Description: 请求的公共参数
@@ -9,7 +12,7 @@ type RoleCommonReq struct {
 	RoleKey  string `json:"roleKey"`
 	Label    string `json:"label"`
 	Status   int    `json:"status"`
-	RoleSort int    `json:"roleSort"`
+	RoleSort string `json:"roleSort"`
 	MenuIds  []int  `json:"menuIds"`
 	DeptIds  []int  `json:"deptIds"`
 }
@@ -19,7 +22,8 @@ func (c RoleCommonReq) BuildData(data *model.Role) {
 	data.RoleKey = c.RoleKey
 	data.Label = c.Label
 	data.Status = c.Status
-	data.RoleSort = c.RoleSort
+	rs, _ := strconv.Atoi(c.RoleSort)
+	data.RoleSort = rs
 }
 
 // CreateRoleReq
@@ -44,6 +48,11 @@ type UpdateRoleReq struct {
 	RoleCommonReq
 }
 
+type UpdateRoleStatusReq struct {
+	Id     int `json:"id"`
+	Status int `json:"status"`
+}
+
 // BuildUpdateData
 //
 //	@Description: 构造更新参数
@@ -58,4 +67,31 @@ func (c UpdateRoleReq) BuildUpdateData(data *model.Role) {
 // @Description:删除role入参
 type DeleteRoleReq struct {
 	Id int `json:"id"`
+}
+
+// QueryRoleByParams
+// @Description: 角色列表条件查询
+type QueryRoleByParams struct {
+	Name    string `json:"name"`
+	RoleKey string `json:"roleKey"`
+	Status  string `json:"status"`
+}
+
+// GetRoleByIdReq
+// @Description: id查询入参
+type GetRoleByIdReq struct {
+	Id int `json:"id"`
+}
+
+// GetRoleByIdRes
+// @Description:id查询返回
+type GetRoleByIdRes struct {
+	Id       uint   `json:"id"`
+	Name     string `json:"name"`
+	RoleKey  string `json:"roleKey"`
+	Label    string `json:"label"`
+	Status   int    `json:"status"`
+	RoleSort string `json:"roleSort"`
+	MenuIds  []uint `json:"menuIds"`
+	DeptIds  []uint `json:"deptIds"`
 }

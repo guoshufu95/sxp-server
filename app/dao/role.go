@@ -40,6 +40,28 @@ func CreateRole(db *gorm.DB, data model.Role) (err error) {
 	return
 }
 
+// UpdateRoleDepts
+//
+//	@Description: 更新role关联的部门
+//	@param db
+//	@param role
+//	@return err
+func UpdateRoleDepts(db *gorm.DB, role model.Role) (err error) {
+	err = db.Debug().Model(&role).Association("Depts").Replace(role.Depts)
+	return
+}
+
+// UpdateRoleMenus
+//
+//	@Description: 更新role关联的菜单
+//	@param db
+//	@param role
+//	@return err
+func UpdateRoleMenus(db *gorm.DB, role model.Role) (err error) {
+	err = db.Debug().Model(&role).Association("Menus").Replace(role.Menus)
+	return
+}
+
 // DeleteRoleMenus
 //
 //	@Description: 删除role绑定的菜单
@@ -91,7 +113,7 @@ func UpdateRole(db *gorm.DB, data model.Role) (err error) {
 //	@param id
 //	@return err
 func DeleteRoleById(db *gorm.DB, role model.Role) (err error) {
-	err = db.Debug().Select(clause.Associations).Delete(&role).Error
+	err = db.Debug().Select(clause.Associations).Unscoped().Delete(&role).Error
 	return
 }
 
@@ -102,7 +124,30 @@ func DeleteRoleById(db *gorm.DB, role model.Role) (err error) {
 //	@param depts[]
 //	@param roles
 //	@return err
-func GetRoleByDepts(db *gorm.DB, depts []model.Dept, roles *[]model.Role) (err error) {
-	err = db.Model(&depts).Distinct().Association("Roles").Find(&roles)
+func GetRoleByDepts(db *gorm.DB, dept model.Dept, roles *[]model.Role) (err error) {
+	err = db.Model(&dept).Debug().Association("Roles").Find(&roles)
+	return
+}
+
+// GetRoleByParams
+//
+//	@Description: 条件查询
+//	@param db
+//	@param roles
+//	@return err
+func GetRoleByParams(db *gorm.DB, roles *[]model.Role) (err error) {
+	err = db.Debug().Find(&roles).Error
+	return
+}
+
+// UpdateRoleStatus
+//
+//	@Description: 更新启用状态
+//	@param db
+//	@param id
+//	@param status
+//	@return err
+func UpdateRoleStatus(db *gorm.DB, id, status int) (err error) {
+	err = db.Debug().Model(&model.Role{}).Where("id = ?", id).Update("status", status).Error
 	return
 }

@@ -87,7 +87,9 @@ func buildMenu(g *gin.RouterGroup) {
 	g.Use(middleware.JWTAuthMiddleware())
 	m := api.MenuApi{}
 	g.GET("/list", m.GetMenus)
+	g.POST("/getMenuById", m.GetMenuById)
 	g.GET("/roleMenus", m.GetMenusByRole)
+	g.POST("/getMenusByParam", m.GetMenusByParam)
 	g.POST("/create", m.CreateMenu)
 	g.POST("/update", m.UpdateMenu)
 	g.POST("/delete", m.DeleteMenu)
@@ -97,8 +99,11 @@ func buildRole(g *gin.RouterGroup) {
 	g.Use(middleware.JWTAuthMiddleware())
 	r := api.RoleApi{}
 	g.GET("/list", r.ListRoles)
+	g.POST("/getRoleById", r.GetRoleById)
+	g.POST("/getRoleByParams", r.GetRoleByParams)
 	g.POST("/create", r.CreateRole)
-	g.POST("update", r.UpdateRole)
+	g.POST("/update", r.UpdateRole)
+	g.POST("/updateRoleStatus", r.UpdateStatus)
 	g.POST("/delete", r.DeleteRole)
 }
 
@@ -113,6 +118,7 @@ func buildUser(g *gin.RouterGroup) {
 	g.POST("/getById", u.GetById)
 	g.POST("/create", u.CreateUser)
 	g.POST("/update", u.UpdateUser)
+	g.POST("/updateStatus", u.UpdateStatus)
 	g.POST("/delete", u.DeleteUser)
 	g.POST("/getByParams", u.GetUserByParams)
 
@@ -123,9 +129,11 @@ func buildUser(g *gin.RouterGroup) {
 //	@Description: 部门路由
 //	@param g
 func buildDept(g *gin.RouterGroup) {
-	//g.Use(middleware.JWTAuthMiddleware())
+	g.Use(middleware.JWTAuthMiddleware())
 	d := api.DeptApi{}
 	g.GET("/list", d.GetDepts)
+	g.POST("/getDeptByParams", d.GetDeptByParams)
+	g.POST("/getDeptById", d.GetDeptById)
 	g.POST("/insert", d.InsertDept)
 	g.POST("/update", d.UpdateDept)
 	g.POST("/delete", d.DeleteDept)

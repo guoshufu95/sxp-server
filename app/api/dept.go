@@ -30,6 +30,48 @@ func (a DeptApi) GetDepts(c *gin.Context) {
 	a.Response("成功返回部门列表!", dept)
 }
 
+// GetDeptByParams
+//
+//	@Description: 条件查询
+//	@receiver a
+//	@param c
+func (a DeptApi) GetDeptByParams(c *gin.Context) {
+	a.BuildApi(c).BuildService(&ds.Service)
+	var req dto.DeptByParamsReq
+	err := c.ShouldBindJSON(&req)
+	if err != nil {
+		a.ResponseError(http.StatusBadRequest, err)
+		return
+	}
+	err, res := ds.GetDeptByParams(req)
+	if err != nil {
+		a.ResponseError(http.StatusInternalServerError, err)
+		return
+	}
+	a.Response("查询部门成功!", res)
+}
+
+// GetDeptById
+//
+//	@Description: id查询部门详情
+//	@receiver a
+//	@param c
+func (a DeptApi) GetDeptById(c *gin.Context) {
+	a.BuildApi(c).BuildService(&ds.Service)
+	var req dto.GetByIdReq
+	err := c.ShouldBindJSON(&req)
+	if err != nil {
+		a.ResponseError(http.StatusBadRequest, err)
+		return
+	}
+	err, dept := ds.GetById(uint(req.Id))
+	if err != nil {
+		a.ResponseError(http.StatusInternalServerError, err)
+		return
+	}
+	a.Response("查询成功!", dept)
+}
+
 // InsertDept
 //
 //	@Description: 创建部门
@@ -56,6 +98,11 @@ func (a DeptApi) InsertDept(c *gin.Context) {
 	a.Response("成功创建部门!", nil)
 }
 
+// UpdateDept
+//
+//	@Description: 更新部门信息
+//	@receiver a
+//	@param c
 func (a DeptApi) UpdateDept(c *gin.Context) {
 	a.BuildApi(c).BuildService(&ds.Service)
 	var req dto.UpdateDeptReq
@@ -84,7 +131,7 @@ func (a DeptApi) UpdateDept(c *gin.Context) {
 //	@param c
 func (a DeptApi) DeleteDept(c *gin.Context) {
 	a.BuildApi(c).BuildService(&ds.Service)
-	var req dto.UpdateDeptReq
+	var req dto.DeleteDeptReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
 		a.ResponseError(http.StatusBadRequest, err)

@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
-	"strconv"
 	"strings"
 	"sxp-server/app/dao"
 	"sxp-server/app/model"
@@ -96,8 +95,12 @@ func (s *UserService) buildQuery(db *gorm.DB, req dto.QueryByParamsReq) *gorm.DB
 			req.Phone))
 	}
 	if req.Status != "" {
-		status, _ := strconv.Atoi(req.Status)
-		db = db.Where("status = ?", status)
+		if req.Status == "在线" {
+			db = db.Where("status = ?", 1)
+		} else {
+			db = db.Where("status = ?", 0)
+		}
+
 	}
 	return db
 }
@@ -190,13 +193,40 @@ func (s *UserService) UpdateUser(req dto.UpdateUserReq) (err error) {
 		s.Logger.Error("通过name查询失败")
 		return
 	}
-	if u.ID != uint(req.Id) {
+	if u.ID != 0 && u.ID != uint(req.Id) {
 		err = errors.New("用户名重复，请重新设置")
+		return
+	}
+	var depts []model.Dept
+	err = dao.GetDeptsById(s.Db, req.DeptIds, &depts)
+	if err != nil {
+		s.Logger.Error("通过id列表查询部门信息失败")
+		return
+	}
+	user.Depts = depts
+	err = dao.ReplaceUserDept(s.Db, user)
+	if err != nil {
+		s.Logger.Error("更新user管理dept失败")
 		return
 	}
 	err = dao.UpdateUser(db, user)
 	if err != nil {
 		s.Logger.Error("更新用户失败")
+		return
+	}
+	return
+}
+
+// UpdateStatus
+//
+//	@Description: 更新用户在线状态
+//	@receiver s
+//	@param req
+//	@return err
+func (s *UserService) UpdateStatus(req dto.UpdateStatusReq) (err error) {
+	err = dao.UpdateStatusById(s.Db, uint(req.Id), req.Status)
+	if err != nil {
+		s.Logger.Error("查询用户失败")
 		return
 	}
 	return
