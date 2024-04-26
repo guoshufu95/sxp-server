@@ -223,7 +223,6 @@ func (s *DeptService) GetById(id uint) (err error, dept model.Dept) {
 //	@param req
 //	@return err
 func (s *DeptService) UpdateDept(req dto.UpdateDeptReq) (err error) {
-	var dept model.Dept
 	db := s.Db
 	defer func() {
 		if err != nil {
@@ -241,8 +240,15 @@ func (s *DeptService) UpdateDept(req dto.UpdateDeptReq) (err error) {
 		err = errors.New("部门名重复，请重新设置")
 		return
 	}
-	req.BuildUpdateData(&dept)
-	err = dao.UpdateDept(db, dept)
+	m := make(map[string]interface{})
+	m["id"] = req.Id
+	m["parent_id"] = req.ParentId
+	m["name"] = req.Name
+	m["leader"] = req.Leader
+	m["phone"] = req.Phone
+	m["email"] = req.Email
+	m["status"] = req.Status
+	err = dao.UpdateDept(db, m)
 	if err != nil {
 		s.Logger.Error("更新部门信息失败")
 		return

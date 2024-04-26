@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"github.com/redis/go-redis/v9"
 	"strconv"
-	"strings"
 	zaplog "sxp-server/common/logger"
 	"sync"
 	"time"
@@ -35,18 +34,18 @@ type SxpTask struct {
 // SxpTimingWheel
 // @Description: 分布式时间轮struct
 type SxpTimingWheel struct {
-	log          *zaplog.ZapLog //log
-	redisClient  *redis.Client  //redis客户端
-	interval     time.Duration  //槽位时间间隔
-	ticker       *time.Ticker   // 定时器
-	currentSlot  int            //当前槽位
-	slotCount    int            //一轮有多少个槽位
-	stopCh       chan struct{}  //停止
-	removeTaskCh chan string    //删除
-	addTaskCh    chan *SxpTask  //添加
-	mux          sync.Mutex     //锁
-	Run          bool           //运行标志
-	fnMap        map[string]ff  //方法
+	log         *zaplog.ZapLog //log
+	redisClient *redis.Client  //redis客户端
+	interval    time.Duration  //槽位时间间隔
+	ticker      *time.Ticker   // 定时器
+	currentSlot int            //当前槽位
+	slotCount   int            //一轮有多少个槽位
+	stopCh      chan struct{}  //停止
+	//removeTaskCh chan string    //删除
+	addTaskCh chan *SxpTask //添加
+	mux       sync.Mutex    //锁
+	Run       bool          //运行标志
+	fnMap     map[string]ff //任务function,（此处为测试的时候使用，真实场景不建议这么定义）
 }
 
 // NewSxpTimeWheel
@@ -58,17 +57,16 @@ type SxpTimingWheel struct {
 //	@return *SxpTimingWheel
 func NewSxpTimeWheel(ctx context.Context, l *zaplog.ZapLog, client *redis.Client, interval time.Duration, slotCount int) *SxpTimingWheel {
 	s := SxpTimingWheel{
-		log:       l,
-		interval:  interval * time.Second,
-		slotCount: slotCount,
-		//ticker:       time.NewTicker(60 * time.Second),
-		currentSlot:  0,
-		redisClient:  client,
-		stopCh:       make(chan struct{}),
-		removeTaskCh: make(chan string),
-		addTaskCh:    make(chan *SxpTask),
-		Run:          false,
-		fnMap:        make(map[string]ff),
+		log:         l,
+		interval:    interval * time.Second,
+		slotCount:   slotCount,
+		currentSlot: 0,
+		redisClient: client,
+		stopCh:      make(chan struct{}),
+		//removeTaskCh: make(chan string),
+		addTaskCh: make(chan *SxpTask),
+		Run:       false,
+		fnMap:     make(map[string]ff),
 	}
 	s.Start(ctx)
 	return &s
@@ -106,8 +104,8 @@ func (s *SxpTimingWheel) handle(ctx context.Context) {
 			return
 		case task := <-s.addTaskCh: //新增task
 			s.addTask(task)
-		case key := <-s.removeTaskCh: //删除task
-			s.removeTask(key)
+		//case key := <-s.removeTaskCh: //删除task
+		//	s.removeTask(key)
 		case <-s.ticker.C: //定时消费
 			s.execute()
 		}
@@ -138,7 +136,6 @@ func (s *SxpTimingWheel) CreateTask(key string, job func(string), executeAt time
 	}
 	s.fnMap[key] = job
 	s.addTaskCh <- task
-	time.Sleep(3 * time.Second)
 	return
 }
 
@@ -167,19 +164,19 @@ func (s *SxpTimingWheel) addTask(task *SxpTask) {
 	return
 }
 
-// removeTask
-//
-//	@Description: 删除一个task
-//	@receiver s
-//	@param key
-func (s *SxpTimingWheel) removeTask(keys string) {
-	kl := strings.Split(keys, "-")
-	err := s.redisClient.HDel(context.Background(), kl[0], kl[1]).Err()
-	if err != nil {
-		s.log.Errorf("删除键值失败:%s", err.Error())
-		return
-	}
-}
+//// removeTask
+////
+////	@Description: 删除一个task
+////	@receiver s
+////	@param key
+//func (s *SxpTimingWheel) removeTask(keys string) {
+//	kl := strings.Split(keys, "-")
+//	err := s.redisClient.HDel(context.Background(), kl[0], kl[1]).Err()
+//	if err != nil {
+//		s.log.Errorf("删除键值失败:%s", err.Error())
+//		return
+//	}
+//}
 
 // execute
 //
@@ -212,10 +209,9 @@ func (s *SxpTimingWheel) execute() {
 				}
 				continue
 			}
-			go func() {
-				s.fnMap[task.Key]("测试task" + v)
-				delete(s.fnMap, k)
-			}()
+			//todo 更新数据库或做超时控制等
+			s.fnMap[task.Key]("测试task" + v)
+			delete(s.fnMap, k)
 			err = s.redisClient.HDel(context.Background(), key, k).Err()
 			if err != nil {
 				s.log.Errorf("删除键值失败:%s", err.Error())

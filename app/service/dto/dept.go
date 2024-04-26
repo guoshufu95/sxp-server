@@ -4,7 +4,7 @@ import "sxp-server/app/model"
 
 type CommonDeptReq struct {
 	ParentId int    `json:"parentId"`
-	Name     string `json:"name"`   //部门名称
+	Name     string `json:"label"`  //部门名称
 	Leader   string `json:"leader"` //部门负责人
 	Phone    string `json:"phone"`  //手机
 	Email    string `json:"email"`  //邮箱

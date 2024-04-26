@@ -23,7 +23,6 @@ func (s *RoleService) ListRoles() (err error, roles []model.Role) {
 	err = dao.ListRoles(s.Db, &roles)
 	for i, _ := range roles {
 		roles[i].Menus = GetMenuTree(roles[i].Menus, 0)
-
 	}
 	return
 }

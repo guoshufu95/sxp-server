@@ -9,6 +9,8 @@ import (
 	"time"
 )
 
+// MenuService
+// @Description:
 type MenuService struct {
 	Service
 }
@@ -65,7 +67,6 @@ func (s *MenuService) GetRoleMenus(name string, roleIds []int) (err error, menus
 			menus = append(menus, v)
 		}
 	}
-
 	menus = GetMenuTree(menus, 0)
 	for i, _ := range menus {
 		_, l := getMenuTreeById(s.Db, menus[i].ID)
@@ -125,7 +126,7 @@ func (s *MenuService) CreateMenu(req dto.CreateMenuReq) (err error) {
 	req.BuildCreateData(&menu)
 	err = dao.CreateMenu(s.Db, menu)
 	if err != nil {
-		s.Logger.Error("创建菜单入库口失败")
+		s.Logger.Error("创建菜单入库失败")
 		return
 	}
 	return
@@ -150,8 +151,8 @@ func (s *MenuService) QueryMenuByParam(req dto.QueryMenusByParamReq) (err error,
 	if req.Name == "" {
 		menuList = GetMenuTree(menus, 0)
 	} else {
-		var duplicateMap = make(map[uint]model.Menu)
 		// 条件查询不为空时
+		var duplicateMap = make(map[uint]model.Menu)
 		for _, menu := range menus {
 			if _, ok := duplicateMap[menu.ID]; ok {
 				continue
@@ -228,7 +229,7 @@ func (s *MenuService) UpdateMenu(req dto.UpdateMenuReq) (err error) {
 
 // DeleteMenu
 //
-//	@Description:
+//	@Description: 删除菜单
 //	@receiver s
 //	@param id
 //	@return err
@@ -254,7 +255,7 @@ func (s *MenuService) DeleteMenu(id int) (err error) {
 	}
 	menu.Children = append(menu.Children, list...)
 	ids := make([]uint, 0)
-	getMenuTreeIds(menu.Children, &ids)
+	getMenuTreeIds(menu.Children, &ids) // 获取当前菜单的子菜单列表
 	ids = append(ids, menu.ID)
 	for _, i := range ids {
 		var m model.Menu

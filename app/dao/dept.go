@@ -94,8 +94,8 @@ func CreateDept(db *gorm.DB, data model.Dept) (err error) {
 //	@param db
 //	@param data
 //	@return err
-func UpdateDept(db *gorm.DB, data model.Dept) (err error) {
-	err = db.Debug().Model(&model.Dept{}).Where("id = ?", data.ID).Updates(&data).Error
+func UpdateDept(db *gorm.DB, m map[string]interface{}) (err error) {
+	err = db.Debug().Model(&model.Dept{}).Where("id = ?", m["id"]).Updates(&m).Error
 	return
 }
 
