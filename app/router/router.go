@@ -44,7 +44,11 @@ func Router(g *gin.RouterGroup) {
 func buildTask(g *gin.RouterGroup) {
 	a := api.TaskApi{}
 	g.Use(middleware.JWTAuthMiddleware())
-	g.POST("/start", a.StartTask)
+	g.POST("/list", a.List)
+	g.POST("/getByParam", a.GetByParam)
+	g.POST("/getById", a.GetById)
+	g.POST("/create", a.CreateTask)
+	g.POST("/update", a.Update)
 	g.POST("/getTasks", a.GetTasks)
 }
 

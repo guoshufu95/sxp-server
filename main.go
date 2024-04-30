@@ -11,6 +11,8 @@ import (
 	"sxp-server/common/kafka"
 	"sxp-server/common/logger"
 	"sxp-server/common/queue"
+	"sxp-server/common/timingWheel"
+	"sxp-server/common/websocket"
 	"sxp-server/config"
 	"time"
 )
@@ -19,14 +21,19 @@ func main() {
 	l := logger.GetLogger()
 	go SetUp()
 	l.Info("########################### sxp项目启动中 #########################")
-	go queue.StartQueue()     //开启延时队列
-	kafka.StartKafkaConsume() //开启kafka消费者
+	go func() {
+		timingWheel.StartTimingWheel()
+		kafka.StartKafkaConsume() //开启kafka消费者
+	}()
+	//queue.StartQueue()      //开启延时队列
+	websocket.StartSocket() //开启websocket
 	quit := make(chan os.Signal)
 	signal.Notify(quit, os.Interrupt)
 	<-quit //优雅退出
 	kafka.StopKafkaConsume()
 	queue.GlobalQueue.StopConsume()
 	g.Stop()
+	websocket.CloseSocket()
 	ini.App.Cache.Close()
 	l.Infof("%s sxp服务停止 ... \r\n", time.Now().Format("2006-01-02 15:04:05"))
 }
@@ -49,5 +56,4 @@ func SetUp() {
 		l.Panicf("程序启动失败:%s", err.Error())
 		return
 	}
-
 }

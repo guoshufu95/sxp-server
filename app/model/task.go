@@ -8,11 +8,13 @@ import (
 // @Description: 数据库字段
 type Task struct {
 	gorm.Model
-	TaskName  string `json:"taskName" ` //任务名称
-	Value     int    `json:"value" `    //值
-	Time      int64  `json:"time" `     //执行时间
-	RetryTime int    `json:"retryTime"` //重试次数
-	Status    int    `json:"status"`    // 执行状态
+	TaskName   string `json:"name" `               //任务名称
+	Value      int    `json:"value" `              //值
+	Time       int64  `json:"time" `               //执行时间
+	RetryTime  int    `json:"retryTime"`           //重试次数
+	CreateTime string `json:"createTime" gorm:"-"` //创建时间
+	ExecTime   string `json:"execTime" gorm:"-"`
+	Status     int    `json:"status"` // 执行状态 0：未开始 1：执行成功 2：执行中
 }
 
 func (Task) TableName() string {

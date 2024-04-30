@@ -16,11 +16,7 @@ func TestNewSxpTimeWheel(t *testing.T) {
 	}
 	ctx := context.Background()
 	s := NewSxpTimeWheel(ctx, app.Logger, app.Cache, 1, 5)
-	_, _ = s.CreateTask("testfn", fn, time.Duration(1714119890), 1)
-	_, _ = s.CreateTask("testfn", fn, time.Duration(1714119895), 1)
-	_, _ = s.CreateTask("testfn", fn, time.Duration(1714119896), 1)
-	_, _ = s.CreateTask("testfn", fn, time.Duration(1714119898), 1)
-	_, _ = s.CreateTask("testfn", fn, time.Duration(1714119899), 1)
+	_, _ = s.CreateTask("testfn", fn, time.Duration(1714206174), 1)
 	for {
 		time.Sleep(1 * time.Second)
 	}

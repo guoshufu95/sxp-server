@@ -5,19 +5,28 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/google/uuid"
 	"github.com/redis/go-redis/v9"
+	"gorm.io/gorm"
 	"strconv"
+	"sxp-server/app/dao"
+	"sxp-server/common/initial"
 	zaplog "sxp-server/common/logger"
+	wb "sxp-server/common/websocket"
 	"sync"
 	"time"
 )
 
-type ff func(string)
+var GlobalTm *SxpTimingWheel
+
+type ff func(interface{}) error
 
 // SxpTask
 // @Description: task
 type SxpTask struct {
+	Name      string        `json:"name"`
 	Key       string        `json:"key"`
+	Value     int           `json:"value"`
 	ExecuteAt time.Duration `json:"executeAt"`
 	Times     int           `json:"times"`
 	Slot      int           `json:"slot"`
@@ -46,6 +55,7 @@ type SxpTimingWheel struct {
 	mux       sync.Mutex    //锁
 	Run       bool          //运行标志
 	fnMap     map[string]ff //任务function,（此处为测试的时候使用，真实场景不建议这么定义）
+	Db        *gorm.DB
 }
 
 // NewSxpTimeWheel
@@ -67,9 +77,15 @@ func NewSxpTimeWheel(ctx context.Context, l *zaplog.ZapLog, client *redis.Client
 		addTaskCh: make(chan *SxpTask),
 		Run:       false,
 		fnMap:     make(map[string]ff),
+		Db:        initial.App.Db,
 	}
 	s.Start(ctx)
+	GlobalTm = &s
 	return &s
+}
+
+func ReturnTimingWheel() *SxpTimingWheel {
+	return GlobalTm
 }
 
 // Start
@@ -121,20 +137,22 @@ func (s *SxpTimingWheel) handle(ctx context.Context) {
 //	@param executeAt
 //	@param times
 //	@return err
-func (s *SxpTimingWheel) CreateTask(key string, job func(string), executeAt time.Duration, times int) (task *SxpTask, err error) {
+func (s *SxpTimingWheel) CreateTask(name string, key string, executeAt time.Duration, value int, retry int) (task *SxpTask, err error) {
 	if key == "" {
 		return nil, errors.New("key不能为空")
 	}
-	if int64(executeAt) < time.Now().Unix() {
-		return nil, errors.New("executeAt时间错误")
+	if executeAt == 0 {
+		executeAt = time.Duration(time.Now().Unix())
 	}
-	key = fmt.Sprintf("%s:%d", key, executeAt)
+	uid := uuid.New()
+	key = fmt.Sprintf("%s:%s:%d", key, uid.String(), executeAt)
 	task = &SxpTask{
+		Name:      name,
 		Key:       key,
-		Times:     times,
-		ExecuteAt: executeAt * time.Second,
+		Value:     value,
+		Times:     retry,
+		ExecuteAt: executeAt,
 	}
-	s.fnMap[key] = job
 	s.addTaskCh <- task
 	return
 }
@@ -209,9 +227,14 @@ func (s *SxpTimingWheel) execute() {
 				}
 				continue
 			}
-			//todo 更新数据库或做超时控制等
-			s.fnMap[task.Key]("测试task" + v)
-			delete(s.fnMap, k)
+			_ = dao.UpdateTaskStatus(s.Db, task.Name, 3)
+			wb.SocketChan <- struct{}{}
+			go func() {
+				err = ProductTask(s.Db, &task)
+				if err != nil {
+					s.log.Errorf("任务执行失败： %s", err.Error())
+				}
+			}()
 			err = s.redisClient.HDel(context.Background(), key, k).Err()
 			if err != nil {
 				s.log.Errorf("删除键值失败:%s", err.Error())
@@ -230,7 +253,7 @@ func (s *SxpTimingWheel) execute() {
 //	@return slot
 //	@return circle
 func (s *SxpTimingWheel) cal(executeAt time.Duration) (slot, circle int) {
-	delay := int(int64(executeAt.Seconds()) - time.Now().Unix())
+	delay := int(int64(executeAt) - time.Now().Unix())
 	circleTime := s.slotCount * int(s.interval.Seconds())
 	circle = delay / circleTime
 	steps := delay / int(s.interval.Seconds())
@@ -249,4 +272,40 @@ func (s *SxpTimingWheel) incrCurrentSlot() {
 func (s *SxpTimingWheel) buildKey() string {
 	key := strconv.Itoa(s.currentSlot) + ":timingWheel"
 	return key
+}
+
+// StartTimingWheel
+//
+//	@Description: 开启时间轮
+func StartTimingWheel() {
+	app := initial.App
+	NewSxpTimeWheel(context.Background(), app.Logger, app.Cache, 1, 6)
+}
+
+// ProductTask
+//
+//	@Description: 自己定义的任务逻辑
+//	@param v
+//	@return error
+func ProductTask(db *gorm.DB, v interface{}) (err error) {
+	l := zaplog.GetLogger()
+	time.Sleep(3500 * time.Millisecond) // 模拟耗时操作
+	switch v.(type) {
+	case *SxpTask:
+		task := v.(*SxpTask)
+		if task.Value%2 == 0 {
+			err = dao.UpdateTaskStatus(db, task.Name, 1)
+			if err != nil {
+				l.Error("更新任务状态失败: %s", err.Error())
+			}
+
+		} else {
+			err = dao.UpdateTaskStatus(db, task.Name, 2)
+			if err != nil {
+				l.Error("更新任务状态失败: %s", err.Error())
+			}
+		}
+	}
+	wb.SocketChan <- struct{}{}
+	return
 }
