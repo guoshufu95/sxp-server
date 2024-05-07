@@ -142,3 +142,23 @@ func (a TaskApi) GetTasks(c *gin.Context) {
 	}
 	a.Response("success", tasks)
 }
+
+// DeleteTask
+//
+//	@Description: 删除任务
+//	@receiver a
+//	@param c
+func (a TaskApi) DeleteTask(c *gin.Context) {
+	a.BuildApi(c).BuildService(&ts.Service)
+	var req dto.DelTaskReq
+	err := c.ShouldBindJSON(&req)
+	if err != nil {
+		a.ResponseError(http.StatusBadRequest, err)
+		return
+	}
+	err = ts.DeleteTask(req.Id)
+	if err != nil {
+		a.ResponseError(http.StatusInternalServerError, err)
+	}
+	a.Response("success", nil)
+}

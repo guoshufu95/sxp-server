@@ -50,6 +50,7 @@ func buildTask(g *gin.RouterGroup) {
 	g.POST("/create", a.CreateTask)
 	g.POST("/update", a.Update)
 	g.POST("/getTasks", a.GetTasks)
+	g.POST("/delete", a.DeleteTask)
 }
 
 // buildIntegral

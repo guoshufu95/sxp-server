@@ -15,6 +15,12 @@ type GetTasksReq struct {
 	Status int    `json:"status"`
 }
 
+// DelTaskReq
+// @Description: 刪除task入参
+type DelTaskReq struct {
+	Id int `json:"id"`
+}
+
 // GetTasksByParamReq
 // @Description: 条件查询参数
 type GetTasksByParamReq struct {

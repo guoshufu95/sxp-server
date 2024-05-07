@@ -218,6 +218,19 @@ func (s *TaskService) GetTasks(req dto.GetTasksReq) (err error, tasks []model.Ta
 	return
 }
 
+// DeleteTask
+//
+//	@Description: 删除任务
+//	@receiver s
+//	@param id
+//	@return err
+func (s *TaskService) DeleteTask(id int) (err error) {
+	var task model.Task
+	err = dao.GetTaskById(s.Db, id, &task)
+	err = dao.DeleteTaskById(s.Db, task)
+	return
+}
+
 // buildQuery
 //
 //	@Description: 构造查询字段

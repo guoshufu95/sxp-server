@@ -15,6 +15,29 @@ func GetAllTask(db *gorm.DB) (err error, tasks []model.Task) {
 	return
 }
 
+// GetTaskById
+//
+//	@Description: id查询task
+//	@param db
+//	@param id
+//	@param task
+//	@return err
+func GetTaskById(db *gorm.DB, id int, task *model.Task) (err error) {
+	err = db.Debug().Where("id = ?", id).Find(&task).Error
+	return
+}
+
+// DeleteTaskById
+//
+//	@Description: 通过id删除task
+//	@param db
+//	@param id
+//	@return err
+func DeleteTaskById(db *gorm.DB, task model.Task) (err error) {
+	err = db.Debug().Delete(&task).Error
+	return
+}
+
 // QueryTasksByParam
 //
 //	@Description: 条件查询返回
