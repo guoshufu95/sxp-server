@@ -1,7 +1,6 @@
 package websocket
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
 	"log"
@@ -38,8 +37,9 @@ func Handler(c *gin.Context) {
 //	@Description: 通知前端页面刷新
 func W() {
 	err := conn.WriteMessage(websocket.TextMessage, []byte("start"))
-	fmt.Println("err: ", err)
+	l := logger.GetLogger()
 	if err != nil {
+		l.Errorf("websocket推送错误： %s", err.Error())
 		return
 	}
 }
@@ -49,6 +49,7 @@ func W() {
 //	@Description: 关闭socket
 func CloseSocket() {
 	l := logger.GetLogger()
+	l.Info("###################### websocket连接关闭 ########################")
 	err := conn.Close()
 	if err != nil {
 		l.Errorf("websocket关闭异常:%s", err.Error())

@@ -10,7 +10,6 @@ import (
 	ini "sxp-server/common/initial"
 	"sxp-server/common/kafka"
 	"sxp-server/common/logger"
-	"sxp-server/common/queue"
 	"sxp-server/common/timingWheel"
 	"sxp-server/common/websocket"
 	"sxp-server/config"
@@ -30,7 +29,7 @@ func main() {
 	signal.Notify(quit, os.Interrupt)
 	<-quit //优雅退出
 	kafka.StopKafkaConsume()
-	queue.GlobalQueue.StopConsume()
+	//queue.GlobalQueue.StopConsume()
 	g.Stop()
 	websocket.CloseSocket()
 	ini.App.Cache.Close()
