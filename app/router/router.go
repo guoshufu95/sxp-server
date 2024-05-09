@@ -5,6 +5,7 @@ import (
 	"sxp-server/app/api"
 	"sxp-server/common/initial"
 	"sxp-server/common/middleware"
+	ws "sxp-server/common/websocket"
 )
 
 // InitRouter
@@ -12,6 +13,7 @@ import (
 //	@Description: 初始化路由
 //	@param r
 func InitRouter(r *gin.Engine) {
+	r.GET("/taskSocket", ws.Handler)
 	g := r.Group("/sxp")
 	g.Use(middleware.LoggerMiddleware()).
 		Use(middleware.WithGormDb(initial.App.GetAppDb())).

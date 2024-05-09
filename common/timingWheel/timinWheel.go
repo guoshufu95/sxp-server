@@ -223,12 +223,12 @@ func (s *SxpTimingWheel) execute() {
 				}
 				_, err = s.redisClient.HSet(context.Background(), key, k, by).Result()
 				if err != nil {
-					s.log.Errorf("redis hset错误:%s", er.Error())
+					s.log.Errorf("redis hset错误: %s", er.Error())
 				}
 				continue
 			}
 			_ = dao.UpdateTaskStatus(s.Db, task.Name, 3)
-			wb.SocketChan <- struct{}{}
+			wb.W()
 			go func() {
 				err = ProductTask(s.Db, &task)
 				if err != nil {
@@ -306,6 +306,6 @@ func ProductTask(db *gorm.DB, v interface{}) (err error) {
 			}
 		}
 	}
-	wb.SocketChan <- struct{}{}
+	wb.W()
 	return
 }

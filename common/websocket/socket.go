@@ -1,6 +1,8 @@
 package websocket
 
 import (
+	"fmt"
+	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
 	"log"
 	"net/http"
@@ -8,8 +10,7 @@ import (
 )
 
 var (
-	conn       *websocket.Conn
-	SocketChan = make(chan struct{}, 1)
+	conn *websocket.Conn
 )
 
 var upgrade = websocket.Upgrader{
@@ -20,27 +21,27 @@ var upgrade = websocket.Upgrader{
 	},
 }
 
-func StartSocket() {
-	http.HandleFunc("/taskSocket", Handler)
-	http.ListenAndServe(":8001", nil)
-}
-
-func Handler(w http.ResponseWriter, r *http.Request) {
-	conn, err := upgrade.Upgrade(w, r, nil)
+// Handler
+//
+//	@Description: websocket连接
+//	@param c
+func Handler(c *gin.Context) {
+	cc, err := upgrade.Upgrade(c.Writer, c.Request, nil)
 	if err != nil {
 		log.Fatalln(err)
 	}
-	for {
-		select {
-		case _ = <-SocketChan:
-			err = conn.WriteMessage(websocket.TextMessage, []byte("start"))
-			if err != nil {
-				return
-			}
-		}
+	conn = cc
+}
 
+// W
+//
+//	@Description: 通知前端页面刷新
+func W() {
+	err := conn.WriteMessage(websocket.TextMessage, []byte("start"))
+	fmt.Println("err: ", err)
+	if err != nil {
+		return
 	}
-
 }
 
 // CloseSocket

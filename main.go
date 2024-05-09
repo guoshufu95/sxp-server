@@ -26,7 +26,6 @@ func main() {
 		kafka.StartKafkaConsume() //开启kafka消费者
 	}()
 	//queue.StartQueue()      //开启延时队列
-	websocket.StartSocket() //开启websocket
 	quit := make(chan os.Signal)
 	signal.Notify(quit, os.Interrupt)
 	<-quit //优雅退出

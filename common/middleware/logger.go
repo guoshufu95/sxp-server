@@ -63,7 +63,6 @@ func LoggerMiddleware() gin.HandlerFunc {
 				"response: ":     res,
 				"responseCode: ": statusCode,
 			}
-			_ = logData
 			log.Info(logData)
 		} else {
 			log.Infof("%s %s 返回：%d  请求失败", c.Request.Method, c.Request.RequestURI, c.Writer.Status())
