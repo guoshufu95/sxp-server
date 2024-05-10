@@ -18,7 +18,7 @@ var (
 	Cm = ConsumerMap{
 		Filed: make(map[string]func(ctx context.Context)),
 	}
-	DefaultConsumerNum = 4 //消费者组开启消费者默认个数
+	DefaultConsumerNum = 1
 	Once               sync.Once
 )
 
@@ -101,9 +101,7 @@ func NewManager(brokers []string, topic, group string, async bool) *Manager {
 //	@param wg
 //	@param worker
 func (m *Manager) Start(ctx context.Context, worker int) {
-	for i := 0; i < worker; i++ {
-		go m.Consume(ctx)
-	}
+	m.Consume(ctx)
 }
 
 // Consume

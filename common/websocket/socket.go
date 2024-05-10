@@ -50,8 +50,10 @@ func W() {
 func CloseSocket() {
 	l := logger.GetLogger()
 	l.Info("###################### websocket连接关闭 ########################")
-	err := conn.Close()
-	if err != nil {
-		l.Errorf("websocket关闭异常:%s", err.Error())
+	if conn != nil {
+		err := conn.Close()
+		if err != nil {
+			l.Errorf("websocket关闭异常:%s", err.Error())
+		}
 	}
 }

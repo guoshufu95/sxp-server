@@ -23,9 +23,14 @@ func (h *ImplProductHandler) Do(msg kafka.Message) (err error) {
 //	@Description: 开启一个product消费者
 //	@param ctx
 func NewProductConsumer(ctx context.Context) {
-	m := NewManager(config.Conf.Kafka.Brokers, _const.ProductConsumerTopic, "product-group", config.Conf.Kafka.Async)
-	m.Impl = &ImplProductHandler{}
-	m.Start(ctx, DefaultConsumerNum)
+	// 消费者数量，可根据实际情况进行配置
+	for i := 0; i < DefaultConsumerNum; i++ {
+		go func() {
+			m := NewManager(config.Conf.Kafka.Brokers, _const.ProductConsumerTopic, "product-group", config.Conf.Kafka.Async)
+			m.Impl = &ImplProductHandler{}
+			m.Start(ctx, DefaultConsumerNum)
+		}()
+	}
 }
 
 func NewProductProducer(ctx context.Context, req any, retry int) (err error) {

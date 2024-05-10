@@ -108,7 +108,9 @@ func buildCondition(db *gorm.DB, req dto.GetTasksByParamReq) *gorm.DB {
 //	@return err
 func (s *TaskService) SetTask(req dto.StartTaskReq) (err error) {
 	ss := strconv.Itoa(int(req.Time))
-	ss = ss[0 : len(ss)-3]
+	if ss != "0" {
+		ss = ss[0 : len(ss)-3]
+	}
 	execTime, _ := strconv.Atoi(ss)
 	var task model.Task
 	if execTime == 0 || int64(execTime) <= time.Now().Unix() { //立即执行
