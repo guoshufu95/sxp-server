@@ -34,6 +34,12 @@ type GetTaskByIdParam struct {
 	Id int `json:"id"`
 }
 
+// DeleteTaskByIdParam
+// @Description: 详情入参
+type DeleteTaskByIdParam struct {
+	Id int `json:"id"`
+}
+
 // UpdateTaskReq
 // @Description: 更新
 type UpdateTaskReq struct {

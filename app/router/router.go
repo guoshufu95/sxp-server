@@ -49,6 +49,7 @@ func buildTask(g *gin.RouterGroup) {
 	g.POST("/list", a.List)
 	g.POST("/getByParam", a.GetByParam)
 	g.POST("/getById", a.GetById)
+	g.POST("/deleteById", a.DeleteById)
 	g.POST("/create", a.CreateTask)
 	g.POST("/update", a.Update)
 	g.POST("/getTasks", a.GetTasks)

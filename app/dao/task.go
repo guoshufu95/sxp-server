@@ -34,7 +34,7 @@ func GetTaskById(db *gorm.DB, id int, task *model.Task) (err error) {
 //	@param id
 //	@return err
 func DeleteTaskById(db *gorm.DB, task model.Task) (err error) {
-	err = db.Debug().Delete(&task).Error
+	err = db.Unscoped().Debug().Delete(&task).Error
 	return
 }
 
@@ -98,7 +98,7 @@ func CreateTask(db *gorm.DB, task model.Task) (err error) {
 //	@param task
 //	@return err
 func UpdateTask(db *gorm.DB, task map[string]interface{}) (err error) {
-	err = db.Debug().Where("id = ?", task["task_name"]).Updates(&task).Error
+	err = db.Table("task").Debug().Where("task_name = ?", task["task_name"]).Updates(&task).Error
 	return
 }
 

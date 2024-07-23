@@ -1,18 +1,18 @@
 server:
-  host: 192.168.111.143
+  host: 127.0.0.1
   mode: debug
   port: 8000
 logger:
   path: ./logs
   level: info
 mysql:
-  host: 192.168.111.143
+  host: 127.0.0.1
   port: 3306
   db: sxp-server
   username: root
   password: 123456
 redis:
-  addr: 192.168.111.143:6379
+  addr: 127.0.0.1:6379
   password: ""
 jwt:
   secret: sxp-server

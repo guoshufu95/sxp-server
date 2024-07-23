@@ -71,6 +71,20 @@ func (s *TaskService) GetTaskById(id int) (err error, task model.Task) {
 	return
 }
 
+// DeleteById
+//
+//	@Description: 通过id删除
+//	@receiver s
+//	@param id
+//	@return err
+//	@return task
+func (s *TaskService) DeleteById(id int) (err error) {
+	var task model.Task
+	err = dao.GetTaskById(s.Db, id, &task)
+	err = dao.DeleteTaskById(s.Db, task)
+	return
+}
+
 // buildCondition
 //
 //	@Description: 构造查询条件
@@ -158,8 +172,8 @@ func (s *TaskService) SetTask(req dto.StartTaskReq) (err error) {
 //	@return err
 func (s *TaskService) UpdateTask(req dto.UpdateTaskReq) (err error) {
 	var (
-		execTime, value int
-		task            = make(map[string]interface{})
+		execTime int
+		task     = make(map[string]interface{})
 	)
 	if req.Time == 0 || req.Time < time.Now().Unix() { //立即执行
 		task["time"] = time.Now().Unix()
@@ -180,7 +194,8 @@ func (s *TaskService) UpdateTask(req dto.UpdateTaskReq) (err error) {
 		return
 	}
 	var tw = timingWheel.ReturnTimingWheel()
-	_, err = tw.CreateTask(req.TaskName, "productFn", time.Duration(execTime), value, retry)
+	vv, _ := strconv.Atoi(req.Value)
+	_, err = tw.CreateTask(req.TaskName, "productFn", time.Duration(execTime), vv, retry)
 	if err != nil {
 		s.Logger.Error("创建任务队列失败")
 		return

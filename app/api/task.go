@@ -71,6 +71,27 @@ func (a TaskApi) GetById(c *gin.Context) {
 	a.Response("查询成功!", task)
 }
 
+// DeleteById
+//
+//	@Description: 通过id删除
+//	@receiver a
+//	@param c
+func (a TaskApi) DeleteById(c *gin.Context) {
+	a.BuildApi(c).BuildService(&ts.Service)
+	var req = dto.DeleteTaskByIdParam{}
+	err := c.ShouldBindJSON(&req)
+	if err != nil {
+		a.ResponseError(http.StatusBadRequest, err)
+		return
+	}
+	err = ts.DeleteById(req.Id)
+	if err != nil {
+		a.ResponseError(http.StatusInternalServerError, err)
+		return
+	}
+	a.Response("删除成功!")
+}
+
 // CreateTask
 //
 //	@Description: 启动一个延时队列
